@@ -1,0 +1,22 @@
+{
+    "name": "eugene-kei/yii2-simple-news",
+    "description": "Простой модуль новостей для Yii2-advanced",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"," news"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eugene Kopytov",
+            "email": "eugene-kei@mail.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "vova07/yii2-imperavi-widget": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "eugenekei\\news\\": ""
+        }
+    }
+}
