@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+	'language' => 'ru-RU',
     'modules' => [
 		'gii' => [
             'class' => 'yii\gii\Module', //adding gii module
@@ -18,13 +19,11 @@ return [
         ],
 		'user' => [
 			'class' => 'dektrium\user\Module',
+			'admins' => ['admin'],
 		],
-		'news' => [
-            'class' => 'eugenekei\news\Module',
-            'controllerNamespace' => 'eugenekei\news\controllers\backend',
-            'imageGetUrl' => 'http://my-frontend.ru/images/news/'
-        ],
-		'rbac' => 'dektrium\rbac\RbacWebModule'
+		//'rbac' => [
+        //    'class' => 'dektrium\rbac\Module',
+        // ],
 	],
     'components' => [
         'request' => [

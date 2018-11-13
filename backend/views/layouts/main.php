@@ -37,28 +37,54 @@ if (Yii::$app->controller->action->id === 'login') {
         <?php $this->head() ?>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-    <?php $this->beginBody() ?>
-    <div class="wrapper">
+	
+	
+	
+		<?php $this->beginBody() ?>
+		<div class="wrapper">
 
-        <?= $this->render(
-            'header.php',
-            ['directoryAsset' => $directoryAsset]
-        ) ?>
+			<?php if ( !Yii::$app->user->isGuest): ?>
+				
+				<?if ( Yii::$app->user->identity->isAdmin): ?>
+				
+					<?= $this->render(
+						'header.php',
+						['directoryAsset' => $directoryAsset]
+					) ?>
 
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
-        ?>
+					<?= $this->render(
+						'left.php',
+						['directoryAsset' => $directoryAsset]
+					)
+					?>
 
-        <?= $this->render(
-            'content.php',
-            ['content' => $content, 'directoryAsset' => $directoryAsset]
-        ) ?>
+					<?= $this->render(
+						'content.php',
+						['content' => $content, 'directoryAsset' => $directoryAsset]
+					) ?>
+					
+				<?else:?>
+					<?Yii::$app->user->logout();?>
+					<?if ( Yii::$app->request->url !== '/admin/user/login' ):?>
+						<?header('Location: /admin/user/login');?>
+					<?endif;?>
+				<?endif;?>
+				
+			<?else:?>
+				
+				<?if ( Yii::$app->request->url !== '/admin/user/login' ):?>
+					<script>
+						window.location.href = '/admin/user/login';
+					</script>
+				<?endif;?>
+				
+			<?endif;?>
+		</div>
 
-    </div>
 
-    <?php $this->endBody() ?>
+		<?php $this->endBody() ?>
+		
+	
     </body>
     </html>
     <?php $this->endPage() ?>

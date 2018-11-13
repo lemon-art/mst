@@ -1,5 +1,16 @@
 
 $(function(){
+
+
+	$('#agree1').click(function() {
+		if ($(this).is(':checked')) {
+			$('.order_submit').prop('disabled', false);
+		}
+		else {
+			$('.order_submit').prop('disabled', true);
+		}
+	});
+
   
 	if( $(window).width() < 1024 ) {
 		// Слайдер Услуги

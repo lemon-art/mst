@@ -133,13 +133,20 @@ class RegistrationController extends Controller
 
         $this->performAjaxValidation($model);
 
-        if ($model->load(\Yii::$app->request->post()) && $model->register()) {
-            $this->trigger(self::EVENT_AFTER_REGISTER, $event);
+        if ($model->load(\Yii::$app->request->post()) ) {
+           
+			$model->username = $model->email;
+			
+			if ( $model->register() ){
 
-            return $this->render('/message', [
-                'title'  => \Yii::t('user', 'Your account has been created'),
-                'module' => $this->module,
-            ]);
+				$this->trigger(self::EVENT_AFTER_REGISTER, $event);
+
+				return $this->render('/message', [
+					'title'  => \Yii::t('user', 'Your account has been created'),
+					'module' => $this->module,
+				]);
+			}
+			
         }
 
         return $this->render('register', [

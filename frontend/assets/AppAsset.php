@@ -17,7 +17,6 @@ class AppAsset extends AssetBundle
 		'css/owl.carousel.css'
     ];
     public $js = [
-	'js/jquery-3.1.1.min.js',
 	'js/jquery-migrate-1.4.1.min.js',
 	'js/maskedinput.min.js',
 	'js/nice-select.js',

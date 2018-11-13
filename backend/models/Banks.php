@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\Offers;
 /**
  * This is the model class for table "banks".
  *
@@ -23,6 +23,11 @@ class Banks extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'banks';
+    }
+	
+	public function getOffers()
+    {
+        return $this->hasMany(Offers::className(),['bank_id'=>'id']);
     }
 
     /**
@@ -53,4 +58,17 @@ class Banks extends \yii\db\ActiveRecord
             'phone' => 'Телефон',
         ];
     }
+	
+	
+	//формирует список банков
+	public function GetList()
+	{
+		$arItems = Banks::find()->asArray()->all(); 
+		
+		$arDropList = Array();
+		foreach ( $arItems as $val){
+			$arDropList[$val['id']] = $val['name'];
+		}
+		return $arDropList;
+	}
 }

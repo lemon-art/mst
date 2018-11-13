@@ -15,6 +15,9 @@ use frontend\models\ContactForm;
 
 use app\models\AtriclesSearch;
 use app\models\ServicesSearch;
+use app\models\BanksSearch;
+use app\models\OffersSearch;
+use app\models\Request;
 
 /**
  * Site controller
@@ -76,19 +79,54 @@ class SiteController extends Controller
     public function actionIndex()
     {
 	
-	$articlesModel = new AtriclesSearch();
-	$servicesModel = new ServicesSearch();
-	
-        $articlesProvider = $articlesModel->search();
-	$servicesProvider = $servicesModel->search();
-	
-	return $this->render('index', [
-                'articlesProvider' => $articlesProvider,
-		'servicesProvider' => $servicesProvider,
-        ]);
+		$articlesModel = new AtriclesSearch();
+		$servicesModel = new ServicesSearch();
+		$banksModel    = new BanksSearch();
+		$offersModel    = new OffersSearch();
+		$reqModel 	   = new Request();
+		
+			$articlesProvider = $articlesModel->search();
+			$servicesProvider = $servicesModel->search();
+			$banksProvider    = $banksModel->search();
+			$bestOffersProvider = $offersModel -> searchMainSpecial();
+		
+			if ($reqModel->load(Yii::$app->request->post())) {
+				
+				if ( $reqModel->type == 'indexPage' ){
+					if ( $reqModel->save()){
+						Yii::$app->session->setFlash('requestFormSubmitted');
+					}
+					else {
+						Yii::$app->session->setFlash('requestFormFalse');
+					}
+				}
+			}
+
+
+		
+		return $this->render('index', [
+			'articlesProvider' => $articlesProvider,
+			'servicesProvider' => $servicesProvider,
+			'banksProvider'    => $banksProvider,
+			'reqModel'    	   => $reqModel,
+			'bestOffersProvider' => $bestOffersProvider
+		]);
     
-        return $this->render('index');
+
     }
+	
+	
+	public function actionPersonal()
+    {
+	
+
+		return $this->render('personal', [
+
+		]);
+    
+
+    }
+	
 
     /**
      * Logs in a user.

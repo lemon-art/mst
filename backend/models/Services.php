@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -51,4 +51,17 @@ class Services extends \yii\db\ActiveRecord
 			'sort' => 'Сортировка',
         ];
     }
+	
+	
+	//формирует список
+	public function GetList()
+	{
+		$arItems = Services::find()->asArray()->all(); 
+		
+		$arDropList = Array();
+		foreach ( $arItems as $val){
+			$arDropList[$val['id']] = $val['name'];
+		}
+		return $arDropList;
+	}
 }

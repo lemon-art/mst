@@ -37,7 +37,6 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password']) ?>
 
-    <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
     <?= Html::submitButton(Yii::t('user', 'Sign in'), ['class' => 'btn btn-primary btn-block']) ?>
 

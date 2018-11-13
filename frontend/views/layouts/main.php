@@ -9,6 +9,10 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\components\PopupForm;
+use frontend\components\Login;
+use frontend\components\Register;
+use frontend\components\Forgot;
 
 AppAsset::register($this);
 ?>
@@ -61,9 +65,16 @@ AppAsset::register($this);
 					</div>
 					
 					<div class="login">
-						<a href="#modal_login" class="modal_link">
-							<span>Вход</span>
-						</a>
+						<?php if (Yii::$app->user->isGuest): ?>
+							<a href="#modal_login" class="modal_link">
+								<span>Вход</span>
+							</a>
+						<?else:?>
+							<a href="/personal" class="">
+								<span>Личный кабинет</span>
+							</a>
+
+						<?endif;?>
 					</div>
 
 					<a href="#" class="mob_menu_link">
@@ -106,7 +117,7 @@ AppAsset::register($this);
 						<a href="/services/credit-auto">
 							<span>Автокредиты</span>
 						</a>
-						<a href="/services/specoffers">
+						<a href="/specoffers">
 							<span>Спецпредложения</span>
 						</a>
 						<a href="/services/rko">
@@ -187,6 +198,12 @@ AppAsset::register($this);
 				</div>
 			</section>
 			
+			<section class="sectionMarg">
+				<div class="cont">
+					<?= $content ?>
+				</div>
+			</section>
+			
 		<?else:?>
 			<section class="section_first">
 				<div class="cont">
@@ -215,14 +232,19 @@ AppAsset::register($this);
 				</div>
 			</section>
 		
+			<?= $content ?>
 		<?endif;?>
+		
+
+		
+		
+	<?else:?>
+	
+		<?= $content ?>
+
 	<?endif;?>
    
-   	<section class="sectionMarg">
-		<div class="cont">
-			<?= $content ?>
-		</div>
-	</section>
+
 
 
 		<footer>
@@ -334,53 +356,19 @@ AppAsset::register($this);
 
 
 	<div class="modal" id="modal_call">
-		<div class="title">Заказать обратный звонок</div>
-
-		<div class="form">
-			<form action="">
-				<div class="line_flex">
-					<div class="line_form">
-						<label>Ваше имя</label>
-
-						<input type="text" name="" value="" placeholder="Иван" class="input">
-					</div>
-
-					<div class="line_form">
-						<label>Ваш телефон</label>
-
-						<input type="tel" name="" value="" placeholder="+7 (___)-___-__-__" class="input">
-					</div>
-				</div>
-
-				<div class="submit">
-					<input type="submit" value="Отправить заявку" class="submit_btn">
-				</div>
-			</form>
-		</div>
+		<?=PopupForm::widget();?>
 	</div>
 
 	<div class="modal modal_login" id="modal_login">
-		<div class="title">Вход</div>
-
-		<div class="form">
-			<form action="/lk.html">
-				<div class="line_form">
-					<input type="text" name="" value="" placeholder="Электронная почта" class="input">
-				</div>
-
-				<div class="line_form">
-					<input type="password" name="" value="" placeholder="Пароль" class="input">
-				</div>
-
-				<div class="submit">
-					<input type="submit" value="Войти на сайт" class="submit_btn"> 
-				</div>
-
-				<div class="forgot">
-					<a href="/">Забыли пароль?</a>
-				</div>
-			</form>
-		</div>
+		<?=Login::widget();?>
+	</div>
+	
+	<div class="modal modal_login" id="modal_register">
+		<?=Register::widget();?>
+	</div>
+	
+	<div class="modal modal_login" id="modal_forgot">
+		<?=Forgot::widget();?>
 	</div>
 
 <?php $this->endBody() ?>

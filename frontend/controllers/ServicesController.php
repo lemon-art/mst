@@ -8,7 +8,7 @@ use app\models\ServicesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\OffersSearch;
 /**
  * ServicesController implements the CRUD actions for Services model.
  */
@@ -52,13 +52,51 @@ class ServicesController extends Controller
      */
     public function actionView($code)
     {
+		
 		$model = Services::findOne(['code' => $code]);
-       
-	   return $this->render('view', [
+		$offersModel    = new OffersSearch();
+		$offersProvider = $offersModel->searchByService( $model->id );
+		
+		
+		return $this->render('view', [
             'model' => $model,
+			'offersProvider' => $offersProvider
         ]);
     }
+	
+	public function actionSpecindex( )
+    {
+		
+		$searchModel = new ServicesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+		$offersModel    = new OffersSearch();
+		$offersProvider = $offersModel->searchSpecial( );
+		
+		
+		return $this->render('specindex', [
+            'dataProvider' => $dataProvider,
+			'offersProvider' => $offersProvider
+        ]);
+    }
+	
 
+	public function actionSpecoffers( $code )
+    {
+		$searchModel = new ServicesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+		$model = Services::findOne(['code' => $code]);
+		$offersModel    = new OffersSearch();
+		$offersProvider = $offersModel->searchSpecialByService( $model->id );
+		
+		
+		return $this->render('specindex', [
+            'code' => $code,
+			'dataProvider' => $dataProvider,
+			'offersProvider' => $offersProvider
+        ]);
+    }
     /**
      * Creates a new Services model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -67,7 +105,7 @@ class ServicesController extends Controller
     public function actionCreate()
     {
         $model = new Services();
-
+			
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

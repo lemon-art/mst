@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
-$this->title = 'My Yii Application';
+$this->title = 'MarketVibor - подбор кредита';
 ?>
 
 	<section class="section_amenities">
@@ -38,127 +38,68 @@ $this->title = 'My Yii Application';
 			<div class="cont">
 				<div class="main_title">Спецпредложения месяца</div>
 
-				<div class="best_month">
-					<div class="item">
-						<div class="img">
-							<a href="/">
-								<img src="images/img1.jpg" alt="">
-							</a>
-						</div>
+					
+					<?
+					echo ListView::widget([
+						'dataProvider' => $bestOffersProvider,
+						'itemView' => '_best_offers',
+						'layout' => '{items}',
+						'id'           => false,
+						'options' => [
+							'tag'=>'div',
+							'class' => 'best_month'
+						],
+						'itemOptions' => [
+						'tag' => false,
+						],
+						'viewParams' => [
+						'fullView' => false,
+						'context' => 'main-page',
+						],
+					]);
+					?>
 
-						<div class="box">
-							<div class="name">Ипотека 5%</div>
-
-							<ul class="list">
-								<li>известный банк;</li>
-								<li>моментальное одобрение;</li>
-								<li>срок до 20 лет.</li>
-							</ul>
-
-							<div class="more">
-								<a href="/">Узнать подробнее</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="item">
-						<div class="img">
-							<a href="/">
-								<img src="images/img2.jpg" alt="">
-							</a>
-						</div>
-
-						<div class="box">
-							<div class="name">Автокредит 5%</div>
-
-							<ul class="list">
-								<li>известный банк;</li>
-								<li>моментальное одобрение;</li>
-								<li>срок до 20 лет.</li>
-							</ul>
-
-							<div class="more">
-								<a href="/">Узнать подробнее</a>
-							</div>
-						</div>
-					</div>
-				</div>
 				
 				<div class="more_all">
-					<a href="/">Смотреть все</a>
+					<a href="/specoffers">Смотреть все</a>
 				</div>
 			</div>
 		</section>
 
+		
+		<?= $this->render('_request_form', [
+			'model' => $reqModel,
+		]) ?>
 
-		<section class="section_form sectionMarg">
-			<div class="cont">
-				<div class="title">Не хотите самостоятельно <span>подбирать продукт</span>?</div>
-
-				<div class="subTitle">Оставьте свой телефон и мы с Вами свяжемся!</div>
-
-				<div class="form">
-					<form action="">
-						<div class="line_flex">
-							<div class="line_form">
-								<label>Ваше имя</label>
-
-								<input type="text" name="" value="" placeholder="Иван" class="input">
-							</div>
-
-							<div class="line_form">
-								<label>Ваш телефон</label>
-
-								<input type="tel" name="" value="" placeholder="+7 (___)-___-__-__" class="input">
-							</div>
-						</div>
-
-						<div class="submit">
-							<input type="submit" value="Отправить заявку" class="submit_btn">
-						</div>
-					</form>
-				</div>
-			</div>
-		</section>
+		
 
 
 		<section class="sectionMarg">
 			<div class="cont">
 				<div class="main_title">Наши партнеры</div>
 				
-				<div class="slider_partners owl-carousel">
-					<div class="slide">
-						<img src="images/partner1.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner2.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner3.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner4.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner1.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner2.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner3.png" alt="">
-					</div>
-
-					<div class="slide">
-						<img src="images/partner4.png" alt="">
-					</div>
-				</div>
+				
+				<?
+				echo ListView::widget([
+				    'dataProvider' => $banksProvider,
+				    'itemView' => '_banks',
+				    'layout' => '{items}',
+				    'id'           => false,
+				    'options' => [
+					    'tag'=>'div',
+					    'class' => 'slider_partners owl-carousel'
+				    ],
+				    'itemOptions' => [
+					'tag' => false,
+				    ],
+				    'viewParams' => [
+					'fullView' => false,
+					'context' => 'main-page',
+				    ],
+				]);
+				?>
+				
+				
 			</div>
 		</section>
 

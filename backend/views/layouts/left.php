@@ -12,6 +12,7 @@
                     ['label' => 'Заказы', 'icon' => 'file-code-o', 'url' => ['/orders']],
                     ['label' => 'Контент', 'icon' => 'newspaper-o', 'url' => ['/debug'],
 						'items' => [
+							['label' => 'Предложения', 'icon' => 'circle-o', 'url' => ['/offers'],],
 							['label' => 'Услуги', 'icon' => 'circle-o', 'url' => ['/services'],],
 							['label' => 'Банки', 'icon' => 'circle-o', 'url' => ['/banks'],],
 							['label' => 'Статьи', 'icon' => 'circle-o', 'url' => ['/atricles'],],

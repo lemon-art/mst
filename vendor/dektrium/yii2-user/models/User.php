@@ -120,10 +120,13 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getIsAdmin()
     {
-        return
+		return $this->getAttribute('is_admin');
+		/*
+        return 
             (\Yii::$app->getAuthManager() && $this->module->adminPermission ?
                 \Yii::$app->authManager->checkAccess($this->id, $this->module->adminPermission) : false)
             || in_array($this->username, $this->module->admins);
+			*/
     }
 
     /**
@@ -211,7 +214,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $scenarios = parent::scenarios();
         return ArrayHelper::merge($scenarios, [
-            'register' => ['username', 'email', 'password'],
+            'register' => ['email', 'password'],
             'connect'  => ['username', 'email'],
             'create'   => ['username', 'email', 'password'],
             'update'   => ['username', 'email', 'password'],
@@ -224,6 +227,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             // username rules
+			/*
             'usernameTrim'     => ['username', 'trim'],
             'usernameRequired' => ['username', 'required', 'on' => ['register', 'create', 'connect', 'update']],
             'usernameMatch'    => ['username', 'match', 'pattern' => static::$usernameRegexp],
@@ -233,7 +237,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'unique',
                 'message' => \Yii::t('user', 'This username has already been taken')
             ],
-
+			*/
             // email rules
             'emailTrim'     => ['email', 'trim'],
             'emailRequired' => ['email', 'required', 'on' => ['register', 'connect', 'create', 'update']],
@@ -312,7 +316,8 @@ class User extends ActiveRecord implements IdentityInterface
         try {
             $this->confirmed_at = $this->module->enableConfirmation ? null : time();
             $this->password     = $this->module->enableGeneratingPassword ? Password::generate(8) : $this->password;
-
+			$this->confirmed_at = time();
+			//$this->username = $this->email;
             $this->trigger(self::BEFORE_REGISTER);
 
             if (!$this->save()) {

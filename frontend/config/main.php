@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+	'language' => 'ru-RU',
 	'modules' => [
 		'gii' => [
             'class' => 'yii\gii\Module', //adding gii module
@@ -18,6 +19,7 @@ return [
         ],
 		'user' => [
 			'class' => 'dektrium\user\Module',
+			
 		],
 	],
     'components' => [
@@ -48,6 +50,9 @@ return [
                 '' => 'site/index',
 				'<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
 				'services/<code>' => 'services/view',
+				'specoffers' => 'services/specindex',
+				'specoffers/<code>' => 'services/specoffers',
+				'banks/<code>' => 'banks/view',
 				'<action:(.*)>' => 'site/<action>',
             ],
         ],
