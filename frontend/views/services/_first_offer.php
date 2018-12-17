@@ -18,7 +18,7 @@ use backend\models\Files;
 						<?=$model['preview_text'] ?>
 
 						<div class="more">
-							<a href="/">Узнать подробнее</a>
+							<a href="#modal_call" class="modal_link">Узнать подробнее</a>
 						</div>
 					</div>
 				</div>

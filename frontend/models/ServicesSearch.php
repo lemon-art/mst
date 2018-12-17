@@ -39,17 +39,18 @@ class ServicesSearch extends Services
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search()
     {
-        $query = Services::find();
+        $query = Services::find()->limit(6);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => false,
         ]);
 
-        $this->load($params);
+        //$this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

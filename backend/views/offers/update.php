@@ -9,6 +9,7 @@ $this->title = 'Редактирование: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Предложения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Редактирование ';
 ?>
+
 <div class="offers-update">
 
 

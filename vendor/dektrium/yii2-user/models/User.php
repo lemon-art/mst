@@ -317,7 +317,7 @@ class User extends ActiveRecord implements IdentityInterface
             $this->confirmed_at = $this->module->enableConfirmation ? null : time();
             $this->password     = $this->module->enableGeneratingPassword ? Password::generate(8) : $this->password;
 			$this->confirmed_at = time();
-			//$this->username = $this->email;
+			$this->username = $this->email;
             $this->trigger(self::BEFORE_REGISTER);
 
             if (!$this->save()) {

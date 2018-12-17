@@ -7,33 +7,15 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Atricles */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Atricles', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => 'Статьи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="atricles-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+	<div class="text_block">
+	
+		<?=$model->detail_text?>
+	</div>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'preview_text:ntext',
-            'detail_text:ntext',
-            'date',
-        ],
-    ]) ?>
 
-</div>
+

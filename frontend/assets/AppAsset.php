@@ -14,7 +14,8 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/styles.css',
 		'css/jquery.fancybox.css',
-		'css/owl.carousel.css'
+		'css/owl.carousel.css',
+		'css/steps.css',
     ];
     public $js = [
 	'js/jquery-migrate-1.4.1.min.js',
@@ -22,6 +23,9 @@ class AppAsset extends AssetBundle
 	'js/nice-select.js',
 	'js/jquery.fancybox.min.js',
 	'js/owl.carousel.min.js',
+	'js/jquery.validate.min.js',
+	'js/additional-methods.min.js',
+	'js/jquery.steps.min.js',
 	'js/scripts.js'
 	
     ];

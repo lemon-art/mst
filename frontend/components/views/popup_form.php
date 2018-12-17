@@ -19,15 +19,27 @@ use yii\widgets\Pjax;
 				'enableReplaceState' => true,
 			]); ?>
 			
-				<?php if (Yii::$app->session->hasFlash('requestPopupFormSubmitted')): ?>
+				<?php if (Yii::$app->session->getFlash('requestPopupFormSubmitted') == 'Y' ): ?>
 					<div class="alert alert-success">
 						Спасибо за обращение к нам. Мы постараемся ответить вам как можно скорее.
 					</div>
+					<script>
+						$('#popup-form').hide();
+						setTimeout(updatePopup, 7000);
+						function updatePopup(){
+							$.fancybox.close();
+							$('#popup-form').show();
+							$('.alert-success').hide();
+							$('#request-name').val('');
+							$('#request-phone').val('');
+						}
+					</script>
+					<?Yii::$app->session->setFlash('requestPopupFormSubmitted', 'N');?>
 				<?php elseif (Yii::$app->session->hasFlash('requestPopupFormFalse')) : ?>
 					<div class="alert alert-warning">
 						Произошла ошибка при отправке сообщения!
 					</div>
-				<?php else: ?>
+				<?php endif;?>
 			
 					<?php $form = ActiveForm::begin([
 						'id' => 'popup-form',
@@ -55,7 +67,7 @@ use yii\widgets\Pjax;
 						
 					<?php ActiveForm::end(); ?>
 					
-				<?endif;?>	
+				
 				
 			<?php Pjax::end(); ?>
 		

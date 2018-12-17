@@ -11,6 +11,7 @@
 
 namespace dektrium\user\models;
 
+use Yii;
 use dektrium\user\traits\ModuleTrait;
 use yii\db\ActiveRecord;
 
@@ -35,6 +36,7 @@ class Profile extends ActiveRecord
     use ModuleTrait;
     /** @var \dektrium\user\Module */
     protected $module;
+	public $display_bithday;
 
     /** @inheritdoc */
     public function init()
@@ -51,6 +53,13 @@ class Profile extends ActiveRecord
     {
         return '//gravatar.com/avatar/' . $this->gravatar_id . '?s=' . $size;
     }
+	
+	
+	public function afterFind() {
+	
+		$this->display_bithday = Yii::$app->formatter->asDate($this->bithday, 'php:d.m.Y');
+
+	}
 
     /**
      * @return \yii\db\ActiveQueryInterface
@@ -72,7 +81,12 @@ class Profile extends ActiveRecord
             'gravatarEmailPattern' => ['gravatar_email', 'email'],
             'websiteUrl'           => ['website', 'url'],
             'nameLength'           => ['name', 'string', 'max' => 255],
+			'phoneLength'          => ['phone', 'string', 'max' => 255],
+			'bithday'              => ['bithday', 'safe'],
+			'last_nameLength'      => ['last_name', 'string', 'max' => 255],
+			'second_nameLength'    => ['second_name', 'string', 'max' => 255],
             'publicEmailLength'    => ['public_email', 'string', 'max' => 255],
+			'emailLength'    	   => ['email', 'string', 'max' => 255],
             'gravatarEmailLength'  => ['gravatar_email', 'string', 'max' => 255],
             'locationLength'       => ['location', 'string', 'max' => 255],
             'websiteLength'        => ['website', 'string', 'max' => 255],
@@ -87,11 +101,16 @@ class Profile extends ActiveRecord
         return [
             'name'           => \Yii::t('user', 'Name'),
             'public_email'   => \Yii::t('user', 'Email (public)'),
+			'email'   		 => 'Email',
+			'bithday'   	 => 'Дата рождения',
+			'phone'   	     => 'Телефон',
             'gravatar_email' => \Yii::t('user', 'Gravatar email'),
-            'location'       => \Yii::t('user', 'Location'),
+            'location'       => 'Город',
             'website'        => \Yii::t('user', 'Website'),
             'bio'            => \Yii::t('user', 'Bio'),
             'timezone'       => \Yii::t('user', 'Time zone'),
+			'last_name'      => 'Фамилия',
+			'second_name'    => 'Отчество',
         ];
     }
 

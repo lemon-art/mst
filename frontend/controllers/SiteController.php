@@ -7,18 +7,21 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use dektrium\user\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use yii\helpers\Url;
 use app\models\AtriclesSearch;
 use app\models\ServicesSearch;
 use app\models\BanksSearch;
 use app\models\OffersSearch;
+use app\models\OrdersSearch;
+use app\models\ReviewsSearch;
 use app\models\Request;
-
+use app\models\Pages;
+use dektrium\user\models\Profile;
 /**
  * Site controller
  */
@@ -82,12 +85,14 @@ class SiteController extends Controller
 		$articlesModel = new AtriclesSearch();
 		$servicesModel = new ServicesSearch();
 		$banksModel    = new BanksSearch();
-		$offersModel    = new OffersSearch();
+		$offersModel   = new OffersSearch();
+		$reviewsModel  = new ReviewsSearch();
 		$reqModel 	   = new Request();
 		
-			$articlesProvider = $articlesModel->search();
-			$servicesProvider = $servicesModel->search();
-			$banksProvider    = $banksModel->search();
+			$articlesProvider   = $articlesModel->search();
+			$servicesProvider   = $servicesModel->search();
+			$banksProvider      = $banksModel->search();
+			$reviewsProvider    = $reviewsModel->search();
 			$bestOffersProvider = $offersModel -> searchMainSpecial();
 		
 			if ($reqModel->load(Yii::$app->request->post())) {
@@ -105,11 +110,12 @@ class SiteController extends Controller
 
 		
 		return $this->render('index', [
-			'articlesProvider' => $articlesProvider,
-			'servicesProvider' => $servicesProvider,
-			'banksProvider'    => $banksProvider,
-			'reqModel'    	   => $reqModel,
-			'bestOffersProvider' => $bestOffersProvider
+			'articlesProvider'   => $articlesProvider,
+			'servicesProvider'   => $servicesProvider,
+			'banksProvider'      => $banksProvider,
+			'reqModel'    	     => $reqModel,
+			'bestOffersProvider' => $bestOffersProvider,
+			'reviewsProvider'    => $reviewsProvider
 		]);
     
 
@@ -118,11 +124,24 @@ class SiteController extends Controller
 	
 	public function actionPersonal()
     {
-	
+		if (Yii::$app->user->isGuest){
+			
+			//return Yii::$app->getResponse()->redirect(array(Url::to(['/user/login'],302)));
+			Yii::$app->user->loginUrl = ['user/login', 'return' => \Yii::$app->request->url];
+			return $this->redirect(Yii::$app->user->loginUrl)->send();
+		}
+		else {
+			$user_id = Yii::$app->user->identity->id;
+			$profileUser = Profile::find()->where(['user_id' => $user_id])->one();
+			
+			$ordersModel    = new OrdersSearch();
+			$ordersProvider = $ordersModel->searchUserOrders();
 
-		return $this->render('personal', [
-
-		]);
+			return $this->render('personal', [
+				'profileUser' => $profileUser,
+				'ordersProvider' => $ordersProvider,
+			]);
+		}
     
 
     }
@@ -191,12 +210,45 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+	public function actionPages( $action )
+    {
+		$model = Pages::find()->where(['code' => $action])->one();
+        
+		
+		$reqModel 	   = new Request();
+		
+		if ($reqModel->load(Yii::$app->request->post())) {
+				
+			    $reqModel->type = $action;
+				if ( $reqModel->save()){
+					Yii::$app->session->setFlash('requestFormSubmitted');
+					}
+				else {
+					Yii::$app->session->setFlash('requestFormFalse');
+				}
+			
+		}
+		
+		
+		if ( $model ){
+			return $this->render('pages', [
+				'model' => $model,
+				'reqModel' => $reqModel
+			]);
+		}
+		else {
+			return $this->render('error');
+		}
+    } 
+	 
+	 
+	/** 
     public function actionAbout()
     {
         return $this->render('about');
     }
 
-    /**
+    
      * Signs user up.
      *
      * @return mixed

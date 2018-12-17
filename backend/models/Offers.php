@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 use backend\models\Banks;
@@ -18,6 +18,7 @@ use backend\models\Banks;
  * @property int $min_age
  * @property int $max_age
  * @property string $preview_text
+ * @property string $valut
  */
 class Offers extends \yii\db\ActiveRecord
 {
@@ -41,10 +42,11 @@ class Offers extends \yii\db\ActiveRecord
     {
         return [
             [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate'], 'required'],
-            [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age'], 'integer'],
+            [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age', 'main_page'], 'integer'],
             [['preview_text'], 'string'],
 			[['special',], 'boolean'],
             [['name'], 'string', 'max' => 255],
+            //[['valut'], 'string', 'max' => 255],
         ];
     }
 
@@ -67,8 +69,10 @@ class Offers extends \yii\db\ActiveRecord
             'preview_text' => 'Текст анонса',
 			'service_id' => 'Услуга',
 			'special'    => 'Спецпредложение',
+			'main_page'    => 'Отображать на главной',
 			'image'    => 'Картинка',
-			'sort'    => 'Сортировка',
+			'sort'    => 'Сортировка'
+            //'valut' =>'Код валют'
         ];
     }
 }

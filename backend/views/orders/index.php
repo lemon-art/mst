@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\OrdersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Заказы';
+$this->title = 'Заявки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="orders-index">
@@ -20,9 +20,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
-            'fullName',
-			'summ',
+			[
+				'attribute' => 'id',
+				'format' => 'raw',
+				'options' => ['style' => 'width: 65px; max-width: 65px;'],
+				'value' => function($model){
+					return Html::a($model->id,['view', 'id' => $model->id]);
+				},
+			],
+			[
+				'attribute' => 'fullName',
+				'format' => 'raw',
+				'value' => function($model){
+					return Html::a($model->fullName,['view', 'id' => $model->id]);
+				},
+			],
+			[
+				'attribute' => 'summ',
+				'format' => 'raw',
+				'value' => function($model){
+					return number_format($model->summ, 0, '', ' ');
+				},
+			],
 			'term',
 			'city',
             'phone',
@@ -39,7 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'service_id',
             //'user_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+				'class' => \yii\grid\ActionColumn::className(),
+				'template'=>'{delete}',
+			]
         ],
     ]); ?>
     <?php Pjax::end(); ?>

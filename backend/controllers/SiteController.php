@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 
+use backend\models\OrdersSearch;
 /**
  * Site controller
  */
@@ -61,7 +62,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+	
+		$ordersModel = new OrdersSearch();
+		
+		$ordersProvider = $ordersModel->searchForMain();
+	
+		return $this->render('index', [
+			'ordersProvider' => $ordersProvider,
+
+		]);
+	
     }
 
     /**

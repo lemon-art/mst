@@ -39,7 +39,7 @@ class AtriclesSearch extends Atricles
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search()
     {
         $query = Atricles::find();
 
@@ -49,7 +49,7 @@ class AtriclesSearch extends Atricles
             'query' => $query,
         ]);
 
-        $this->load($params);
+        //$this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

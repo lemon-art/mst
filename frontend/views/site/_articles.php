@@ -11,7 +11,7 @@ use yii\helpers\Html;
 						<div class="tag">#Депозиты</div>
 
 						<div class="name">
-							<a href="/"><?= Html::encode($model['name']); ?></a>
+							<a href="<?=$model['detailUrl']?>"><?= Html::encode($model['name']); ?></a>
 						</div>
 
 						<div class="text"><?= Html::encode($model['preview_text']); ?></div>
@@ -20,7 +20,7 @@ use yii\helpers\Html;
 							<div class="time">10.08.2018</div>
 
 							<div class="more_all">
-								<a href="/">Подробнее</a>
+								<a href="<?=$model['detailUrl']?>">Подробнее</a>
 							</div>
 						</div>
 					</div>

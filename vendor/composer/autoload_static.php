@@ -54,6 +54,7 @@ class ComposerStaticInitf1d4129adc7932e6220e914f8184d2f2
         ),
         'd' => 
         array (
+            'drsdre\\wizardwidget\\' => 20,
             'dosamigos\\gallery\\' => 18,
             'dosamigos\\fileupload\\' => 21,
             'dmstr\\' => 6,
@@ -180,6 +181,10 @@ class ComposerStaticInitf1d4129adc7932e6220e914f8184d2f2
         'eugenekei\\news\\' => 
         array (
             0 => __DIR__ . '/..' . '/eugene-kei/yii2-simple-news',
+        ),
+        'drsdre\\wizardwidget\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/drsdre/yii2-wizardwidget',
         ),
         'dosamigos\\gallery\\' => 
         array (

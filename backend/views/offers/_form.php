@@ -32,7 +32,7 @@ use backend\models\Files;
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('service_id');?></label>
-							<?= $form->field($model, 'service_id')->dropDownList(Banks::GetList(), ['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+							<?= $form->field($model, 'service_id')->dropDownList(Services::GetList(), ['maxlength' => true, 'class' => 'form-control'])->label(false);?>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('rate');?></label>
@@ -41,6 +41,11 @@ use backend\models\Files;
 						<div class="form-group">
 							<?=$form->field($model, 'special')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
 						</div>
+						
+						<div class="form-group">
+							<?=$form->field($model, 'main_page')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
+						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('preview_text');?></label>
 							<?=  $form->field($model, 'preview_text')->widget(CKEditor::className(),[
@@ -102,6 +107,11 @@ use backend\models\Files;
 						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_age');?></label>
 						<?= $form->field($model, 'max_age')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
 					</div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><?//=$model->getAttributeLabel('valut');?></label>
+                        <?//= $form->field($model, 'valut')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+                        <?//= $form->field($model, 'valut')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+                    </div>
 				</div>
 			</div>
 		</div>

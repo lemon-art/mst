@@ -38,7 +38,7 @@ use yii\helpers\Html;
 			]) ?>
 			
 				<div class="line_form">
-					<?= $form->field($model, 'login')->textInput(['placeholder' => 'Электронная почта', 'class' => 'input']) ?>
+					<?= $form->field($model, 'login')->textInput(['placeholder' => 'Электронная почта', 'class' => 'input'])->label('Электронная почта') ?>
 				</div>
 
 				<div class="line_form">
@@ -53,9 +53,7 @@ use yii\helpers\Html;
 					<a href="#modal_forgot" class="modal_link">Забыли пароль?</a>
 				</div>
 				
-				<div class="forgot">
-					<a href="#modal_register" class="modal_link">Регистрация</a>
-				</div>
+
 				
 			<?php ActiveForm::end(); ?>
 		</div>

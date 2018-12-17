@@ -19,11 +19,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+				<div class="line_form">
+					<?= $form->field($model, 'login')->textInput(['placeholder' => 'Электронная почта', 'class' => 'input'])->label('Электронная почта') ?>
+				</div>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+				<div class="line_form">
+					<?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль', 'class' => 'input']) ?>
+				</div>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+				<div class="submit">
+					<?= Html::submitButton(Yii::t('user', 'Войти на сайт'), ['class' => 'submit_btn']) ?>
+				</div>
+
+				<div class="forgot">
+					<a href="#modal_forgot" class="modal_link">Забыли пароль?</a>
+				</div>
 
                 <div style="color:#999;margin:1em 0">
                     If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.

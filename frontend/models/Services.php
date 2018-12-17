@@ -34,7 +34,7 @@ class Services extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'code', 'sort'], 'required'],
-            [['text_main', 'preview_text_main'], 'string'],
+            [['text_main', 'preview_text_main','top_text', 'advantages', 'scheme'], 'string'],
             [['sort'], 'integer'],
             [['name', 'title_main', 'code'], 'string', 'max' => 255],
         ];

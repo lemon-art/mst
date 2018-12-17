@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -42,10 +42,10 @@ class Request extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'phone' => 'Phone',
-            'type' => 'Type',
-            'product_id' => 'Product ID',
+            'name' => 'Имя',
+            'phone' => 'Телефон',
+            'type' => 'Тип',
+            'product_id' => 'Продукт',
         ];
     }
 }

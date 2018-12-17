@@ -22,10 +22,10 @@ class PopupForm extends Widget {
 		if ($reqModel->load(Yii::$app->request->post())) {
 			if ( $reqModel->type == 'callbackForm' ){	
 				if ( $reqModel->save()){
-					Yii::$app->session->setFlash('requestPopupFormSubmitted');
+					Yii::$app->session->setFlash('requestPopupFormSubmitted', 'Y');
 				}
 				else {
-					Yii::$app->session->setFlash('requestPopupFormFalse');
+					Yii::$app->session->setFlash('requestPopupFormFalse', 'Y');
 				}
 			}
 		}

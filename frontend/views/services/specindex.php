@@ -8,9 +8,6 @@ use yii\widgets\ListView;
 
 $this->title = 'Спецпредложения';
 $this->params['breadcrumbs'][] = $this->title;
-if ( !$code ){
-	$code = '';
-}
 ?>
 
 			<?
@@ -18,8 +15,7 @@ if ( !$code ){
 				    'dataProvider' => $dataProvider,
 				    'itemView' => '_services',
 					'itemView'     => function ($model, $key, $index, $widget) {
-						echo $code;
-						return $this->render('_services', ['model' => $model, 'index' => $index, 'code' => $code ]);
+						return $this->render('_services', ['model' => $model, 'index' => $index ]);
 					},
 				    'layout' => '{items}',
 				    'id'           => false,

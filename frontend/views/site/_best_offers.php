@@ -6,9 +6,11 @@ use yii\helpers\Html;
 
 					<div class="item">
 						<div class="img">
-							<a href="#modal_call" class="modal_link">
-								<?=Html::img(Files::getPath($model['image']));?>
-							</a>
+							<?if ( $model['image'] ):?>
+								<a href="#modal_call" class="modal_link">
+									<?=Html::img(Files::getPath($model['image']));?>
+								</a>
+							<?endif;?>
 						</div>
 
 						<div class="box">

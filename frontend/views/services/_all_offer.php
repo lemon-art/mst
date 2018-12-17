@@ -18,7 +18,7 @@ use yii\helpers\Html;
 							<?=$model['preview_text'] ?>
 
 							<div class="more">
-								<a href="<?=$model['offerUrl'] ?>">Узнать подробнее</a>
+								<a href="#modal_call" class="modal_link">Узнать подробнее</a>
 							</div>
 						</div>
 					</div>

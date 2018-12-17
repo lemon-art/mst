@@ -52,10 +52,11 @@ class OffersSearch extends Offers
 		$query =  Offers::find()->limit(2);
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
-            'special' => 1
+            'main_page' => 1
 		]);
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => false,
         ]);
 		return $dataProvider;
 	}

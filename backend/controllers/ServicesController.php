@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\Services;
+use backend\models\Services;
 use backend\models\Files;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;

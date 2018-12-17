@@ -18,10 +18,17 @@ class Atricles extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+	 
+	public $detailUrl;  
+	 
     public static function tableName()
     {
         return 'atricles';
     }
+	
+	public function afterFind() {
+		$this->detailUrl = '/articles/' . $this->id;
+	}
 
     /**
      * {@inheritdoc}

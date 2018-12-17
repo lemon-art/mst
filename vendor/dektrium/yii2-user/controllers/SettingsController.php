@@ -184,6 +184,8 @@ class SettingsController extends Controller
         $model = \Yii::createObject(SettingsForm::className());
         $event = $this->getFormEvent($model);
 
+		$modelUser = $this->finder->findProfileById(\Yii::$app->user->identity->getId());
+		
         $this->performAjaxValidation($model);
 
         $this->trigger(self::EVENT_BEFORE_ACCOUNT_UPDATE, $event);
@@ -195,6 +197,7 @@ class SettingsController extends Controller
 
         return $this->render('account', [
             'model' => $model,
+			'modelUser' => $modelUser
         ]);
     }
 

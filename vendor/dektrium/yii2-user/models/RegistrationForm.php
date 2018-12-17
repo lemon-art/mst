@@ -72,6 +72,8 @@ class RegistrationForm extends Model
             'passwordLength'   => ['password', 'string', 'min' => 6, 'max' => 72],
         ];
     }
+	
+
 
     /**
      * @inheritdoc
@@ -100,8 +102,10 @@ class RegistrationForm extends Model
      */
     public function register()
     {
+
+		
         if (!$this->validate()) {
-            return false;
+            //return false;
         }
 
         /** @var User $user */

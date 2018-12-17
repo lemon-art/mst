@@ -23,13 +23,17 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
 	
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+	
+	<link rel="stylesheet" href="/css/response_1023.css" media="(max-width: 1023px)">
+	<link rel="stylesheet" href="/css/response_767.css" media="(max-width: 767px)">
+	<link rel="stylesheet" href="/css/response_479.css" media="(max-width: 479px)">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -117,12 +121,13 @@ AppAsset::register($this);
 						<a href="/services/credit-auto">
 							<span>Автокредиты</span>
 						</a>
+                        <a href="/services/rko">
+                            <span>РКО</span>
+                        </a>
 						<a href="/specoffers">
 							<span>Спецпредложения</span>
 						</a>
-						<a href="/services/rko">
-							<span>РКО</span>
-						</a>
+
 					</nav>
 
 					<div class="contact">
@@ -224,13 +229,7 @@ AppAsset::register($this);
 
 					<div class="title_inner"><?= Html::encode($this->title) ?></div>
 
-					<div class="info">Заполните заявку и мы покажем банки, в которых у вас высокая вероятность получить кредит наличными. У нас 92% отправленых заявок получают одобрение.</div>
-
-					<div class="completed">
-						<a href="#completed" class="scroll_link">Заполнить заявку</a>
-					</div>
-				</div>
-			</section>
+					
 		
 			<?= $content ?>
 		<?endif;?>
@@ -261,19 +260,16 @@ AppAsset::register($this);
 
 						<ul class="menu">
 							<li>
-								<a href="/credit.html">Кредиты</a>
+								<a href="/services/credit">Кредиты</a>
 							</li>
 							<li>
-								<a href="/">Ипотека</a>
+								<a href="/services/ipoteka">Ипотека</a>
 							</li>
 							<li>
-								<a href="/">Автокредиты</a>
+								<a href="/services/credit-auto">Автокредиты</a>
 							</li>
 							<li>
-								<a href="/">Страхование</a>
-							</li>
-							<li>
-								<a href="/">РКО</a>
+								<a href="/services/rko">РКО</a>
 							</li>
 						</ul>
 					</div>
@@ -286,10 +282,10 @@ AppAsset::register($this);
 								<a href="/services/credit-cards">Кредитные карты</a>
 							</li>
 							<li>
-								<a href="/">Дебетовые карты</a>
+								<a href="/services/debet-cards">Дебетовые карты</a>
 							</li>
 							<li>
-								<a href="/">Депозиты</a>
+								<a href="/services/deposit">Депозиты</a>
 							</li>
 
 						</ul>
@@ -300,10 +296,7 @@ AppAsset::register($this);
 
 						<ul class="menu">
 							<li>
-								<a href="/contacts.html">Контакты</a>
-							</li>
-							<li>
-								<a href="/">Правовая информация</a>
+								<a href="/contacts">Контакты</a>
 							</li>
 							<li>
 								<a href="/about">О компании</a>
@@ -313,14 +306,14 @@ AppAsset::register($this);
 					</div>
 
 					<div class="box_menu">
-						<div class="title_menu">Партенерам</div>
+						<div class="title_menu">Партнёрам</div>
 
 						<ul class="menu">
 							<li>
-								<a href="/">Условия сотрудничества</a>
+								<a href="/terms_of_cooperation">Условия сотрудничества</a>
 							</li>
 							<li>
-								<a href="/text_page.html">Условия для Банков</a>
+								<a href="/terms_of_banks">Условия для Банков</a>
 							</li>
 						</ul>
 					</div>
@@ -347,7 +340,7 @@ AppAsset::register($this);
 					</div>
 
 					<div class="created">
-						Разработано в <a href="/" target="_blank" rel="noopener"><img src="images/created.png" alt=""></a>
+						Разработано в <a href="/" target="_blank" rel="noopener"><img src="/images/created.png" alt=""></a>
 					</div>
 				</div>
 			</div>

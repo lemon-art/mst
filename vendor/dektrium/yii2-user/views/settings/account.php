@@ -18,71 +18,74 @@ use yii\widgets\ActiveForm;
  * @var dektrium\user\models\SettingsForm $model
  */
 
-$this->title = Yii::t('user', 'Account settings');
+$this->title = Yii::t('user', 'Смена пароля');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
-    <div class="col-md-3">
-        <?= $this->render('_menu') ?>
-    </div>
-    <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-            </div>
-            <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'account-form',
-                    'options' => ['class' => 'form-horizontal'],
-                    'fieldConfig' => [
-                        'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
-                        'labelOptions' => ['class' => 'col-lg-3 control-label'],
-                    ],
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                ]); ?>
 
-                <?= $form->field($model, 'email') ?>
+		<section class="sectionMarg">
+			<div class="cont">
+				<!-- Боковая колонка -->
+				<aside class="aside_left left">
+					<div class="title ic_profile">Мой профиль <a href="/user/settings/profile"></a></div>
 
-                <?= $form->field($model, 'username') ?>
+					<div class="profile">
+						<div class="name"><b><?=$modelUser->last_name?></b> <?=$modelUser->name?> <?=$modelUser->second_name?></div>
 
-                <?= $form->field($model, 'new_password')->passwordInput() ?>
+						<div class="date"><?=$modelUser->display_bithday?></div>
+					
+						<br>
+						<center><a href="/user/settings/account">Сменить пароль</a></center>
+						<br>
+						<?= Html::a(Yii::t('user', 'Logout'), ['/user/security/logout'], [
+								'class'       => 'btn btn-danger btn-block',
+								'data-method' => 'post'
+						]) ?>
+					</div>	
+						
+					
+				</aside>
+				<!-- End Боковая колонка -->
+				
 
-                <hr/>
+				<section class="section_center right">
+					<div class="title_small"><?= Html::encode($this->title) ?></div>
 
-                <?= $form->field($model, 'current_password')->passwordInput() ?>
+					
+					<?php $form = ActiveForm::begin([
+						'id' => 'account-form',
+						'options' => ['class' => 'form-horizontal'],
+						'fieldConfig' => [
+							'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
+							'labelOptions' => ['class' => 'col-lg-3 control-label'],
+						],
+						'enableAjaxValidation' => true,
+						'enableClientValidation' => false,
+					]); ?>
+						<div class="line_flex form ">
+				
+							<div class="line_form">
+								<label><?=$model->getAttributeLabel('current_password');?></label>
+								<?= $form->field($model, 'current_password')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('current_password'), 'class' => 'input'])->label(false);?>
+							</div>
+							<hr/>
+							<div class="line_form">
+								<label><?=$model->getAttributeLabel('new_password');?></label>
+								<?= $form->field($model, 'new_password')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('new_password'), 'class' => 'input'])->label(false);?>
+							</div>
+				
+				
+							<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'submit_btn order_submit']) ?>
+					
+						</div>
 
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
-                    </div>
-                </div>
+					<?php ActiveForm::end(); ?>
+					
+					
+				</section>
+				<div class="clear"></div>
+			</div>
+		</section>
 
-                <?php ActiveForm::end(); ?>
-            </div>
-        </div>
-
-        <?php if ($model->module->enableAccountDelete): ?>
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?= Yii::t('user', 'Delete account') ?></h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        <?= Yii::t('user', 'Once you delete your account, there is no going back') ?>.
-                        <?= Yii::t('user', 'It will be deleted forever') ?>.
-                        <?= Yii::t('user', 'Please be certain') ?>.
-                    </p>
-                    <?= Html::a(Yii::t('user', 'Delete account'), ['delete'], [
-                        'class' => 'btn btn-danger',
-                        'data-method' => 'post',
-                        'data-confirm' => Yii::t('user', 'Are you sure? There is no going back'),
-                    ]) ?>
-                </div>
-            </div>
-        <?php endif ?>
-    </div>
-</div>

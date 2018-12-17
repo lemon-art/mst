@@ -1,11 +1,12 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Orders;
+use backend\models\Orders;
+
 
 /**
  * OrdersSearch represents the model behind the search form of `\app\models\Orders`.
@@ -22,6 +23,18 @@ class OrdersSearch extends Orders
             [['name', 'last_name', 'second_name', 'phone', 'email', 'city', 'employment', 'provision'], 'safe'],
         ];
     }
+	
+	public function searchForMain( )
+    {
+		
+		$query =  Orders::find()->with(['services'])->limit(10);
+		$query -> addOrderBy('id DESC');
+		$dataProvider = new ActiveDataProvider([
+            'query' => $query,
+			'pagination' => false,
+        ]);
+		return $dataProvider;
+	}
 
     /**
      * {@inheritdoc}
@@ -42,7 +55,7 @@ class OrdersSearch extends Orders
     public function search($params)
     {
         $query = Orders::find();
-
+		$query -> addOrderBy('id DESC');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -76,8 +89,8 @@ class OrdersSearch extends Orders
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'employment', $this->employment])
-            ->andFilterWhere(['like', 'provision', $this->provision]);
+            ->andFilterWhere(['like', 'employment', $this->employment]);
+            //->andFilterWhere(['like', 'provision', $this->provision]);
 
         return $dataProvider;
     }

@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use backend\models\Banks;
+use app\models\Banks;
 /**
  * This is the model class for table "offers".
  *
@@ -18,6 +18,7 @@ use backend\models\Banks;
  * @property int $min_age
  * @property int $max_age
  * @property string $preview_text
+ * @property string $valut
  */
 class Offers extends \yii\db\ActiveRecord
 {
@@ -25,7 +26,7 @@ class Offers extends \yii\db\ActiveRecord
      * {@inheritdoc}
      */
 	 
-	public $offerUrl; 
+	public $offerUrl;
 	
 	 
     public static function tableName()
@@ -48,10 +49,11 @@ class Offers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate'], 'required'],
+            [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate','valut'], 'required'],
             [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age'], 'integer'],
             [['preview_text'], 'string'],
             [['name'], 'string', 'max' => 255],
+            [['valut'], 'string', 'max' => 255],
         ];
     }
 
@@ -72,7 +74,8 @@ class Offers extends \yii\db\ActiveRecord
             'min_age' => 'Минимальный возраст',
             'max_age' => 'Максимальная возраст',
             'preview_text' => 'Текст анонса',
-			'service_id' => 'Услуга'
+			'service_id' => 'Услуга',
+            'valut'=>'Код валют'
         ];
     }
 }

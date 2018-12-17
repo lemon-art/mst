@@ -186,15 +186,6 @@ return array (
       '@mihaildev/ckeditor' => $vendorDir . '/mihaildev/yii2-ckeditor',
     ),
   ),
-  'kartik-v/yii2-widget-datepicker' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-datepicker',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@kartik/date' => $vendorDir . '/kartik-v/yii2-widget-datepicker/src',
-    ),
-  ),
   '2amigos/yii2-gallery-widget' => 
   array (
     'name' => '2amigos/yii2-gallery-widget',
@@ -211,6 +202,24 @@ return array (
     'alias' => 
     array (
       '@dosamigos/fileupload' => $vendorDir . '/2amigos/yii2-file-upload-widget/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-datepicker' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-datepicker',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/date' => $vendorDir . '/kartik-v/yii2-widget-datepicker/src',
+    ),
+  ),
+  'drsdre/yii2-wizardwidget' => 
+  array (
+    'name' => 'drsdre/yii2-wizardwidget',
+    'version' => '1.2.3.0',
+    'alias' => 
+    array (
+      '@drsdre/wizardwidget' => $vendorDir . '/drsdre/yii2-wizardwidget',
     ),
   ),
 );

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
-
+use backend\models\Services;
 /**
  * This is the model class for table "orders".
  *
@@ -32,14 +32,46 @@ class Orders extends \yii\db\ActiveRecord
      */
 	 
 	public $fullName; 
+	public $statusName; 
+	public $statusCode; 
+	public $orderUrl;
 	 
     public static function tableName()
     {
         return 'orders';
     }
 	
+	public function getServices()
+    {
+        return $this->hasOne(Services::className(),['id'=>'service_id']);
+    }
+	
 	public function afterFind() {
-		 $this->fullName = $this->last_name . ' ' . $this->name . ' ' . $this->second_name;
+	
+		$this->fullName = $this->last_name . ' ' . $this->name . ' ' . $this->second_name;
+		$this->orderUrl = "/admin/orders/view?id=" . $this->id;
+		
+		$this->date = Yii::$app->formatter->asDate($this->date, 'php:d.m.Y H:i');
+	
+		switch ( $this->status ) {
+			case 0:
+				$this->statusName = 'Новая';
+				$this->statusCode = 'label-warning';
+				break;
+			case 1:
+				$this->statusName = 'На обработке';
+				$this->statusCode = 'label-info';
+				break;
+			case 2:
+				$this->statusName = 'Одобрено';
+				$this->statusCode = 'label-success';
+				break;
+			case 3:
+				$this->statusName = 'Отказано';
+				$this->statusCode = 'label-danger';
+				break;	
+		}
+	
 	}
 
     /**

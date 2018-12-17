@@ -69,8 +69,11 @@ class Files extends \yii\db\ActiveRecord
 		return true;
 	}
 	
-	public function getPath( $id ) 
+	public function getPath( $id = '' ) 
 	{
+		if ( !$id ){
+			return false;
+		}
 		$model = Files::findOne($id);
 		return '/upload/img/' . $model -> path;
 	}

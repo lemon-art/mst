@@ -13,7 +13,7 @@ use yii\helpers\Html;
 use dektrium\user\helpers\Timezone;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-
+use kartik\date\DatePicker;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -26,61 +26,103 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
-    <div class="col-md-3">
-        <?= $this->render('_menu') ?>
-    </div>
-    <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <?= Html::encode($this->title) ?>
-            </div>
-            <div class="panel-body">
-                <?php $form = ActiveForm::begin([
-                    'id' => 'profile-form',
-                    'options' => ['class' => 'form-horizontal'],
-                    'fieldConfig' => [
-                        'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
-                        'labelOptions' => ['class' => 'col-lg-3 control-label'],
-                    ],
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                    'validateOnBlur' => false,
-                ]); ?>
 
-                <?= $form->field($model, 'name') ?>
+		<section class="sectionMarg">
+			<div class="cont">
+				<!-- Боковая колонка -->
+				<aside class="aside_left left">
+					<div class="title ic_profile">Мой профиль <a href="/user/settings/profile"></a></div>
 
-                <?= $form->field($model, 'public_email') ?>
+					<div class="profile">
+						<div class="name"><b><?=$model->last_name?></b> <?=$model->name?> <?=$model->second_name?></div>
 
-                <?= $form->field($model, 'website') ?>
+						<div class="date"><?=$model->display_bithday?></div>
+					
+						<br>
+						<center><a href="/user/settings/account">Сменить пароль</a></center>
+						<br>
+						
+						<?= Html::a(Yii::t('user', 'Logout'), ['/user/security/logout'], [
+								'class'       => 'btn btn-danger btn-block',
+								'data-method' => 'post'
+						]) ?>
+					</div>	
+						
+					
+				</aside>
+				<!-- End Боковая колонка -->
+				
 
-                <?= $form->field($model, 'location') ?>
+				<section class="section_center right">
+					<div class="title_small"><?= Html::encode($this->title) ?></div>
 
-                <?= $form
-                    ->field($model, 'timezone')
-                    ->dropDownList(
-                        ArrayHelper::map(
-                            Timezone::getAll(),
-                            'timezone',
-                            'name'
-                        )
-                    ); ?>
+					
+					<?php $form = ActiveForm::begin([
+						'id' => 'profile-form',
+						'options' => ['class' => 'form-horizontal'],
+						'fieldConfig' => [
+							'template' => "{label}\n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
+							'labelOptions' => ['class' => 'col-lg-3 control-label'],
+						],
+						'enableAjaxValidation' => true,
+						'enableClientValidation' => false,
+						'validateOnBlur' => false,
+					]); ?>
 
-                <?= $form
-                    ->field($model, 'gravatar_email')
-                    ->hint(Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+					<div class="line_flex form ">
+					
+						<div class="line_form">
+							<label><?=$model->getAttributeLabel('last_name');?></label>
+							<?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('last_name'), 'class' => 'input'])->label(false);?>
+						</div>
+						
+						<div class="line_form">
+							<label><?=$model->getAttributeLabel('name');?></label>
+							<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('name'), 'class' => 'input'])->label(false);?>
+						</div>
+						
+						<div class="line_form">
+							<label><?=$model->getAttributeLabel('second_name');?></label>
+							<?= $form->field($model, 'second_name')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('name'), 'class' => 'input'])->label(false);?>
+						</div>
+						
+						<div class="line_form">
+							<label><?=$model->getAttributeLabel('bithday');?></label>
+							<?= $form->field($model, 'bithday')->widget(DatePicker::className(),[
+								'value' => date('Y-m-d'),
+								'class' => 'input',
+								'options' => ['placeholder' => 'Выберите дату'],
+								'pluginOptions' => [
+									'format' => 'yyyy-mm-dd',
+									'todayHighlight' => true
+								]
+							])->label(false);?>
+						</div>
+						
+						<div class="line_form">
+							<label><?=$model->getAttributeLabel('phone');?></label>
+							<?= $form->field($model, 'phone')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('phone'), 'class' => 'input'])->label(false);?>
+						</div>
 
-                <?= $form->field($model, 'bio')->textarea() ?>
+						<div class="line_form">
+							<label><?=$model->getAttributeLabel('location');?></label>
+							<?= $form->field($model, 'location')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('location'), 'class' => 'input'])->label(false);?>
+						</div>
 
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
-                        <br>
-                    </div>
-                </div>
 
-                <?php ActiveForm::end(); ?>
-            </div>
-        </div>
-    </div>
-</div>
+						<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'submit_btn order_submit']) ?>
+					</div>
+					
+					
+
+
+					<?php ActiveForm::end(); ?>
+					
+					
+				</section>
+				<div class="clear"></div>
+			</div>
+		</section>
+
+
+

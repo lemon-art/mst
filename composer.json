@@ -25,7 +25,8 @@
         "eugene-kei/yii2-simple-news": "^1.0",
         "mihaildev/yii2-ckeditor": "*",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "2amigos/yii2-file-upload-widget": "~1.0"
+        "2amigos/yii2-file-upload-widget": "~1.0",
+        "drsdre/yii2-wizardwidget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
