@@ -73,7 +73,12 @@ for ( $i = 0; $i < 15; $i++){
 									<label><?=$model->getAttributeLabel('summ');?></label>
 									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
 								</div>
-
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('first_payment');?></label>
+									<?= $form->field($model, 'first_payment')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+								
 								<div class="line_form">
 									<label><?=$model->getAttributeLabel('term');?></label>
 
@@ -81,45 +86,95 @@ for ( $i = 0; $i < 15; $i++){
 									 
 										<?=$form->field($model, 'term')->dropDownList([
 											''   => 'Выберите',
-											'1' => '1 месяц',
-											'3' => '3 месяца',
-											'6' => '6 месяцев',
-											'9' => '9 месяцев',
 											'12' => '1 год',
 											'24' => '2 года',
 											'36' => '3 года',
 											'48' => '4 года',
-											'60' => '5 лет'
+											'60' => '5 лет',
+											'120' => '10 лет',
+										], ['class' => 'required'])->label(false);?> 
+									</div>
+								</div>
+							</div>	
+							
+							<div class="line_flex">	
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('income');?></label>
+									<?= $form->field($model, 'income')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+								
+
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('confirmation_income');?></label>
+
+									<div class="selectWrap"> 
+										<?=$form->field($model, 'confirmation_income')->dropDownList([
+													''   => 'Выберите',
+													'Найм, Справка 2-НДФЛ' => 'Найм, Справка 2-НДФЛ',
+													'Найм, Справка по форме банка' => 'Найм, Справка по форме банка',
+													'Найм, Устное подтверждение' => 'Найм, Устное подтверждение',
+													'Созаемщик без учета дохода' => 'Созаемщик без учета дохода',
+													'ИП, Налоговая декларация' => 'ИП, Налоговая декларация',
+													'ИП, Иными документами' => 'ИП, Иными документами',
+													'ИП, Устное подтверждение' => 'ИП, Устное подтверждение',
+													'Собственник бизнеса, Налоговая декларация' => 'Собственник бизнеса, Налоговая декларация',
+													'Собственник бизнеса, Иными документами' => 'Собственник бизнеса, Иными документами',
+													'Собственник бизнеса, Устное подтверждение' => 'Собственник бизнеса, Устное подтверждение',
+										], ['class' => 'required'])->label(false);?> 
+									</div>
+								</div>	
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'treid_in', [
+										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree']
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+									
+							</div>	
+							<h4 class="title">Параметры автомобиля</h4>
+							<div class="line_flex">
+							
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('type');?></label>
+
+									<div class="selectWrap"> 
+										<?=$form->field($model, 'type')->dropDownList([
+													''   => 'Выберите',
+													'Легковой автомобиль' => 'Легковой автомобиль',
+													'Грузовой автомобиль' => 'Грузовой автомобиль',
+													'Мотоцикл' => 'Мотоцикл',
+													'Снегоход' => 'Снегоход'											
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>
 								
 								<div class="line_form">
-									<label><?=$model->getAttributeLabel('city');?></label>
-									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
-								</div>
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('purpose');?></label>
-									<div class="selectWrap">
-										<?=$form->field($model, 'purpose')->dropDownList([
-											''   => 'Выберите',
-											'Частичное снятие'   => 'Частичное снятие',
-											'Для пенсионеров'   => 'Для пенсионеров',
-											'Пополнение счета'   => 'Пополнение счета',
-											'Иное' => 'Иное'
-											
-										])->label(false);?> 
+									<label><?=$model->getAttributeLabel('condition');?></label>
+
+									<div class="selectWrap"> 
+										<?=$form->field($model, 'condition')->dropDownList([
+													''   => 'Выберите',
+													'Новый автомобиль' => 'Новый автомобиль',
+													'Автомобиль с пробегом' => 'Автомобиль с пробегом',
+										], ['class' => 'required'])->label(false);?> 
 									</div>
+								</div>	
+
+								<div class="line_form">
+									
+									<?= $form->field($model, 'kasko', [
+										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree']
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
-								
 
 								
-								
-							</div>	
-
-							
+							</div>
 							
 						</section>
 						<h3 class="hidden">Контактные данные</h3>
@@ -159,6 +214,7 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
+											'options' => ['class' => 'checkbox agree'],
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 									
@@ -189,15 +245,20 @@ for ( $i = 0; $i < 15; $i++){
 										<label><?=$model->getAttributeLabel('email');?></label>
 										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
-								
+									
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group has-success']
+											'options' => ['class' => 'form-group has-success checkbox agree']
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 								
+								
 								<?endif;?>
+								
+								
+
+								
 							</div>
 						</section>
 					</div>
@@ -372,7 +433,7 @@ $(document).ready(function(){
 				if (tmp.length == 0) {
 					$('#order-form').yiiActiveForm('submitForm');
 					$('.main__under_title').hide();
-					$('#requestOrderFormPjax').html('<p>Ваша заявка принята. Мы свяжемся с вами в ближайшее время.</p>');
+					$('#requestOrderFormPjax').html('<div class="alert"><p>Ваша заявка принята. Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a></p></div>');
 					$('html, body').animate({ scrollTop: $('#requestOrderFormPjax').offset().top - 60 }, 500);
 				}
 

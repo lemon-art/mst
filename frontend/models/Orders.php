@@ -4,9 +4,14 @@ namespace app\models;
 
 use Yii;
 use app\models\Services;
+use app\models\Kredit;
+use app\models\Avtokredit;
+use app\models\Ipoteka;
+use app\models\KreditKards;
+use app\models\DebetCards;
 use backend\models\Settings;
 use backend\models\Mailer;
-//use dektrium\user\models\User;
+use dektrium\user\models\User;
 /**
  * This is the model class for table "orders".
  *
@@ -34,7 +39,7 @@ class Orders extends \yii\db\ActiveRecord
 	public $summ_display;
 	
 	
-	public $birthdate;
+	public $bithday;
 	public $birthplace;
 	public $sn;
 	public $issuedate;
@@ -55,6 +60,31 @@ class Orders extends \yii\db\ActiveRecord
         return $this->hasOne(Services::className(),['id'=>'service_id']);
     }
 	
+	public function getKredit()
+    {
+        return $this->hasOne(Kredit::className(),['id'=>'order_id']);
+    }
+	
+	public function getAvtokredit()
+    {
+        return $this->hasOne(Avtokredit::className(),['id'=>'order_id']);
+    }
+	
+	public function getIpoteka()
+    {
+        return $this->hasOne(Ipoteka::className(),['id'=>'order_id']);
+    }
+	
+	public function getKreditKards()
+    {
+        return $this->hasOne(KreditKards::className(),['id'=>'order_id']);
+    }
+	
+	public function getDebetCards()
+    {
+        return $this->hasOne(DebetCards::className(),['id'=>'order_id']);
+    }
+	
 	protected function getMailer()
     {
         return \Yii::$container->get(Mailer::className());
@@ -62,8 +92,6 @@ class Orders extends \yii\db\ActiveRecord
 	
 	public function afterFind() {
 		$this->date = Yii::$app->formatter->asDate($this->date, 'php:d.m.Y H:i');
-		$this->term_display = $this->term . ' ' . $this ->true_wordform( $this->term, 'месяц', 'месяца', 'месяцев');
-		$this->summ_display = number_format($this->summ, 0, '', ' ') . ' ' . $this ->true_wordform( $this->summ, 'рубль', 'рубля', 'рублей');
 	}
 	
 	public function afterSave($insert, $changedAttributes){
@@ -71,6 +99,15 @@ class Orders extends \yii\db\ActiveRecord
 		
 		
 		
+	}
+	
+	public function beforeSave($insert){
+		if (parent::beforeSave($insert)) {
+	 
+			
+			return true;
+		}
+		return false;
 	}
 	
 
@@ -82,59 +119,12 @@ class Orders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-			[['email'], 'email', 'message'=>'Введите корректный email'],
-			[['email'], 'unique', 'message'=>'Пользователь с таким email уже существует. Авторизуйтесь, пожалуйста.'],
-            [['name', 'last_name', 'second_name', 'purpose', 'phone', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'email', 'summ', 'term', 'city', 'employment', 'work_month', 'work_year', 'income', 'birthdate', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone' ], 'required', 'message'=>'Заполните поле'],
-			[['phone_dop', 'phone_dop_own', 'education', 'family', 'child', 'credit_history'], 'required', 'message'=>'Заполните поле'],
-			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-			[['additional_income', 'rent_apartment', 'snils'], 'string', 'max' => 255],
-            [['name', 'phone', 'last_name', 'second_name', 'city', 'employment', 'summ', 'income'], 'string', 'max' => 255],
-			[['birthdate', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
-			[['birthdate', 'issuedate', 'registrationdate'], 'validateDate'], 
+
+           
 		];
     }
 	
 	
-	public function validateDate($attribute, $params) {
-	
-		
-		$date1 = \DateTime::createFromFormat('d.m.Y', $this->$attribute);
-		$date2 = \DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
-		if ($date2<=$date1) {
-			$this->addError($attribute, 'Введите реальную дату');
-		}
-		elseif( $attribute == 'birthdate' ){
-		
-			$interval = $date1->diff($date2);
-			$age = $interval->format('%y');
-			if ( $age < 18 ){
-				$this->addError($attribute, 'Вам должно быть больше 18 лет!');
-			}
-		}
-		
-		
-		
-    }
-	
-	public function validateBirthDate($attribute, $params) {
-		if(strtotime($this->end_date) <= strtotime($this->start_date)){ 
-			$this->addError('start_date','Please give correct Start and End dates'); 
-			$this->addError('end_date','Please give correct Start and End dates'); 
-		} 
-    }
-	
-	private function true_wordform($num, $form_for_1, $form_for_2, $form_for_5){
-	
-		$num = abs($num) % 100; // берем число по модулю и сбрасываем сотни (делим на 100, а остаток присваиваем переменной $num)
-		$num_x = $num % 10; // сбрасываем десятки и записываем в новую переменную
-		if ($num > 10 && $num < 20) // если число принадлежит отрезку [11;19]
-			return $form_for_5;
-		if ($num_x > 1 && $num_x < 5) // иначе если число оканчивается на 2,3,4
-			return $form_for_2;
-		if ($num_x == 1) // иначе если оканчивается на 1
-			return $form_for_1;
-		return $form_for_5;
-	}
 
     /**
      * {@inheritdoc}
@@ -160,7 +150,7 @@ class Orders extends \yii\db\ActiveRecord
             'have_auto' => 'Автомобиль',
             'agree' => 'Я даю свое согласие на обработку персональных данных',
 
-			'birthdate' => 'Дата рождения',
+			'bithday' => 'Дата рождения',
 			'birthplace' => 'Место рождения',
 			'sn' => 'Номер паспорта',
 			'issuedate' => 'Дата выдачи',

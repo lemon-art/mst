@@ -32,24 +32,28 @@ for ( $i = 0; $i < 15; $i++){
 				<div class="form">
 					<?
 					
-					Pjax::begin([
-						'id' => 'requestOrderFormPjax',
-						'timeout' => false,
-						'enablePushState' => true,
-						'enableReplaceState' => true,
-					]); 
+					//Pjax::begin([
+					//	'id' => 'requestOrderFormPjax',
+					//	'timeout' => false,
+					//	'enablePushState' => true,
+					//	'enableReplaceState' => true,
+					//]); 
 					
 					?>
 				
 					<?php if (Yii::$app->session->hasFlash('requestOrderFormSubmitted')): ?>
-						<div class="alert">
+<div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
-							<script>
-							$('html, body').animate({
-								scrollTop: $("#completed").offset().top - 60
-							}, 1000);
-							</script>
+							
+<?
+$js = <<< JS
+jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
+JS;
+$this->registerJs($js);
+?>	
+							
+							
 						</div>
 					<?php elseif (Yii::$app->session->hasFlash('requestOrderFormFalse')) : ?>
 						<div class="alert alert-warning">
@@ -69,62 +73,65 @@ for ( $i = 0; $i < 15; $i++){
 							<h4 class="title">Основные параметры</h4>
 							<div class="line_flex">
 						
+
+						
 								<div class="line_form">
 									<label><?=$model->getAttributeLabel('summ');?></label>
 									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
 								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('residue');?></label>
+									<?= $form->field($model, 'residue')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+								
 
 								<div class="line_form">
-									<label><?=$model->getAttributeLabel('term');?></label>
+									<label><?=$model->getAttributeLabel('currency');?></label>
 
 									<div class="selectWrap"> 
-									 
-										<?=$form->field($model, 'term')->dropDownList([
-											''   => 'Выберите',
-											'1' => '1 месяц',
-											'3' => '3 месяца',
-											'6' => '6 месяцев',
-											'9' => '9 месяцев',
-											'12' => '1 год',
-											'24' => '2 года',
-											'36' => '3 года',
-											'48' => '4 года',
-											'60' => '5 лет'
+										<?=$form->field($model, 'currency')->dropDownList([
+													''   => 'Выберите',
+													'Рубль' => 'Рубль',
+													'Доллар' => 'Доллар',
+													'Евро' => 'Евро'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
-								</div>
+								</div>	
 								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('city');?></label>
-									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
-								</div>
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('purpose');?></label>
-									<div class="selectWrap">
-										<?=$form->field($model, 'purpose')->dropDownList([
-											''   => 'Выберите',
-											'Частичное снятие'   => 'Частичное снятие',
-											'Для пенсионеров'   => 'Для пенсионеров',
-											'Пополнение счета'   => 'Пополнение счета',
-											'Иное' => 'Иное'
-											
-										])->label(false);?> 
-									</div>
-								</div>
-								
-								
-
-								
-								
+									
 							</div>	
+							
+							<div class="line_flex">
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('system');?></label>
 
-							
-							
-						</section>
-						<h3 class="hidden">Контактные данные</h3>
-						<section class="step1">
-						
+									<div class="selectWrap"> 
+										<?=$form->field($model, 'system')->dropDownList([
+													''   => 'Выберите',
+													'Visa' => 'Visa',
+													'MasterCard' => 'MasterCard',
+													'Мир' => 'Мир',
+													'American Express' => 'American Express',
+													'Другая' => 'Другая'
+										], ['class' => 'required'])->label(false);?> 
+									</div>
+								</div>	
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('type');?></label>
+
+									<div class="selectWrap"> 
+										<?=$form->field($model, 'type')->dropDownList([
+													''   => 'Выберите',
+													'Стандартная' => 'Стандартная',
+													'Золотая' => 'Золотая',
+													'Премиальная' => 'Премиальная',
+													'Электронная' => 'Электронная',
+													'Другая' => 'Другая'
+										], ['class' => 'required'])->label(false);?> 
+									</div>
+								</div>	
+							</div>	
 							<h4 class="title">Контактные данные</h4>
 							<div class="line_flex">
 							
@@ -199,6 +206,92 @@ for ( $i = 0; $i < 15; $i++){
 								
 								<?endif;?>
 							</div>
+							
+							
+						</section>
+						<h3 class="hidden">Дополнительные услуги</h3>
+						<section class="step1">
+							
+							<div class="line_flex">
+								<div class="line_form">
+									
+									<?= $form->field($model, 'percent_residue', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'free_card', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'cash_world', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+							</div>
+							
+							<div class="line_flex">
+								<div class="line_form">
+									
+									<?= $form->field($model, '3d_secure', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'contactless_payment', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'sms', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+							</div>
+							
+							<div class="line_flex">
+								<div class="line_form">
+									
+									<?= $form->field($model, 'overdraft', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'transport', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+								<div class="line_form">
+									
+									<?= $form->field($model, 'bonus', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+							</div>
+							
+							<div class="line_flex">
+								<div class="line_form">
+									
+									<?= $form->field($model, 'miles', [
+										'template' => '{input}{label}{error}',
+									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
+								</div>
+								
+
+							</div>
+							
 						</section>
 					</div>
 					
@@ -208,7 +301,7 @@ for ( $i = 0; $i < 15; $i++){
 					
 				<?endif;?>	
 				
-				<?php Pjax::end(); ?>
+				<?//php Pjax::end(); ?>
 				</div>
 			</div>
 		</section>

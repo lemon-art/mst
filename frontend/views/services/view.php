@@ -143,11 +143,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			</div>
 		</section>
 
-		<?if ( $model->id == 3):?>
-			<?=DebetForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
-		<?else:?>
-			<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
-		<?endif;?>
+		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
+
 		
 		
 	

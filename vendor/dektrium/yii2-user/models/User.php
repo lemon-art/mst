@@ -128,6 +128,18 @@ class User extends ActiveRecord implements IdentityInterface
             || in_array($this->username, $this->module->admins);
 			*/
     }
+	
+	public function getUserByEmail( $email )
+    {
+		$model = User::find()->select('id')->where(['email' => $email])->one();
+		if( $model ){
+			return $model->id;
+		}
+		else {
+			return false;
+		}
+		
+    }
 
     /**
      * @return \yii\db\ActiveQuery

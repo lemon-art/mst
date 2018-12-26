@@ -83,6 +83,7 @@ class Profile extends ActiveRecord
             'nameLength'           => ['name', 'string', 'max' => 255],
 			'phoneLength'          => ['phone', 'string', 'max' => 255],
 			'bithday'              => ['bithday', 'safe'],
+			'birthPlace'           => ['birthPlace', 'safe'],
 			'last_nameLength'      => ['last_name', 'string', 'max' => 255],
 			'second_nameLength'    => ['second_name', 'string', 'max' => 255],
             'publicEmailLength'    => ['public_email', 'string', 'max' => 255],

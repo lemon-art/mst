@@ -7,6 +7,12 @@ use yii\db\Transaction;
 use yii\base\Widget;
 use yii\helpers\Html;
 use app\models\Orders;
+use app\models\Kredit;
+use app\models\Ipoteka;
+use app\models\Debet;
+use app\models\DebetCards;
+use app\models\Avtokredit;
+use app\models\KreditKards;
 use dektrium\user\models\RegistrationForm;
 use dektrium\user\models\LoginForm;
 use dektrium\user\models\Profile;
@@ -27,18 +33,54 @@ class OrderForm extends Widget {
 
     public function run( )
     {   
+	
 		
-		$orderModel = new Orders();
+		switch ( $this->service_id ) {
+			case 1:
+				$orderModel = new Kredit();
+				$formView = 'order_form';
+				break;
+			case 2:
+				$orderModel = new Ipoteka();
+				$formView = 'ipoteka_form';
+				break;			
+			case 3:
+				$orderModel = new Debet();
+				$formView = 'debet_form';
+				break;
+			case 4:
+				$orderModel = new Avtokredit();
+				$formView = 'avtokredit_form';
+				break;	
+			case 5:
+				$orderModel = new KreditKards();
+				$formView = 'kredit_kards_form';
+				break;	
+			case 6:
+				$orderModel = new DebetCards();
+				$formView = 'debet_kards_form';
+				break;	
+			case 7:
+				$orderModel = new Debet();
+				$formView = 'debet_form';
+				break;	
+				
+		}
+		
+		
+		
 		$orderModel -> service_id = $this->service_id;
 		
-	
 		
 		if ($orderModel->load(Yii::$app->request->post()) && $orderModel->validate()) {
 		
-			if (Yii::$app->user->isGuest){
+			$haveUserProfile = false;
+	
+			if ( Yii::$app->user->isGuest){
 				
+
 				//регистрируем пользователя
-				$modelUser = \Yii::createObject(RegistrationForm::className());
+				$modelUser = Yii::createObject(RegistrationForm::className());
 				$password = $this -> generateRandomString();
 				$modelUser -> email    = $orderModel -> email;
 				$modelUser -> password = $password;
@@ -50,9 +92,28 @@ class OrderForm extends Widget {
 					$newUser -> password = $password;
 					$newUser -> login();
 					
-					$user_id = Yii::$app->user->identity->id;
-					$orderModel -> user_id = $user_id;
+					$user_id = \Yii::$app->user->identity->id;
 				
+				}
+				else {
+					echo 'Ошибка регистрации.<br>';
+					
+					
+				}
+
+			}
+			else {
+				$user_id = \Yii::$app->user->identity->id;
+				
+				if ( Profile::find()->where(['user_id' => $user_id])->one() ){
+					$haveUserProfile = true;
+				}
+				
+				
+			}
+			
+			if ( !$haveUserProfile ){		//сохраняем профиль
+			
 					//заполняем профиль
 					$profileUser = \Yii::createObject(Profile::className());
 					$profileUser = Profile::find()->where(['user_id' => $user_id])->one();
@@ -61,21 +122,46 @@ class OrderForm extends Widget {
 					$profileUser -> second_name = $orderModel -> second_name;
 					$profileUser -> phone = $orderModel -> phone;
 					$profileUser -> email = $orderModel -> email;
+					$profileUser -> public_email = $orderModel -> email;
+					
+					if ( isset( $orderModel -> bithday )){
+						$bithday = \DateTime::createFromFormat('d.m.Y', $orderModel -> bithday);
+						$profileUser -> bithday = $bithday->format('Y-m-d');
+						
+						$issuedate = \DateTime::createFromFormat('d.m.Y', $orderModel -> issuedate);
+						$profileUser -> issueDate = $issuedate->format('Y-m-d');
+						
+						$registrationdate = \DateTime::createFromFormat('d.m.Y', $orderModel -> registrationdate);
+						$profileUser -> registrationDate = $issuedate->format('Y-m-d');
+						
+						$profileUser -> birthPlace = $orderModel -> birthplace;
+						$profileUser -> sn = $orderModel -> sn;
+						$profileUser -> issueCode = $orderModel -> issuecode;
+						$profileUser -> issuer = $orderModel -> issuer;
+						$profileUser -> address = $orderModel -> address;
+						$profileUser -> registrationPhone = $orderModel -> registrationphone;
+					}
+					
 					$profileUser -> save();
-					
-					
-
-				}
-
+			
 			}
 			
 			
+			
+			$orderModel->user_id = $user_id;
 		
 			if ( $orderModel->save()){
+			
+				$order = new Orders();
+				$order -> order_id = $orderModel -> id;
+				$order -> user_id = $user_id;
+				$order -> service_id = $this->service_id;
+				$order -> save();
+			
 				Yii::$app->session->setFlash('requestOrderFormSubmitted');
 				
-				Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name );
-				Mailer::sendAdminOrderMessage( 'Новая заявка: ' . $this->service_name, $orderModel );
+				Mailer::sendUserOrderMessage( 'Заявка на ', $orderModel, $this->service_name, $this->service_id );
+				//Mailer::sendAdminOrderMessage( 'Новая заявка: ' . $this->service_name, $orderModel );
 			}
 			else {
 				Yii::$app->session->setFlash('requestOrderFormFalse');
@@ -83,12 +169,31 @@ class OrderForm extends Widget {
 
 		}
 		
+		//получаем профиль авторизованного пользователя
+		if ( !Yii::$app->user->isGuest){
+			$user_id = $user_id = \Yii::$app->user->identity->id;
+			$profileUser = Profile::find()->where(['user_id' => $user_id])->one();
+			
+			$profileUser->bithday = Yii::$app->formatter->asDate($profileUser->bithday, 'php:d.m.Y');
+			$profileUser->issueDate = Yii::$app->formatter->asDate($profileUser->issueDate, 'php:d.m.Y');
+			$profileUser->registrationDate = Yii::$app->formatter->asDate($profileUser->registrationDate, 'php:d.m.Y');
+			
+			return $this->render( $formView, [
+				'model'      	=> $orderModel,
+				'profileUser'   => $profileUser
+			]);
+		}
+		else {
+			return $this->render($formView, [
+				'model'      	=> $orderModel
+			]);
+		}
 		
-		return $this->render('order_form', [
-		  'model'      => $orderModel
-		]);
+		
+		
     }
 	
+
 	function generateRandomString($length = 10) {
 	
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

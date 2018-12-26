@@ -81,7 +81,7 @@ $(function(){
 		var value = el.val();
 
 	
-
+		var service_id = $('.service_id').val();
 		
 
 		if ( el.attr('type') == 'checkbox' ){
@@ -95,14 +95,13 @@ $(function(){
 		}
 
 
-
 		$.ajax({
 
 		    url: '/orders/validate',
 
 		    type: 'post',
 
-		    data: {'field': field, 'value': value},
+		    data: {'field': field, 'value': value, 'service_id': service_id},
 
 		    success: function (data) {
 

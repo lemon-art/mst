@@ -17,10 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
 					<div class="title ic_profile">Мой профиль <a href="/user/settings/profile"></a></div>
 
 					<div class="profile">
-						<div class="name"><b><?=$profileUser->last_name?></b> <?=$profileUser->name?> <?=$profileUser->second_name?></div>
-
-						<div class="date"><?=$profileUser->display_bithday?></div>
-					
+						<?if ( isset($profileUser->last_name) && isset($profileUser->name) && isset($profileUser->second_name) ):?>
+							<div class="name"><b><?=$profileUser->last_name?></b> <?=$profileUser->name?> <?=$profileUser->second_name?></div>
+						<?endif;?>
+						
+						<?if ( isset($profileUser->display_bithday) ):?>
+							<div class="date"><?=$profileUser->display_bithday?></div>
+						<?endif;?>
+						
 						<br>
 						<center><a href="/user/settings/account">Сменить пароль</a></center>
 						<br>

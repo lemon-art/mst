@@ -32,24 +32,28 @@ for ( $i = 0; $i < 15; $i++){
 				<div class="form">
 					<?
 					
-					Pjax::begin([
-						'id' => 'requestOrderFormPjax',
-						'timeout' => false,
-						'enablePushState' => true,
-						'enableReplaceState' => true,
-					]); 
+					//Pjax::begin([
+					//	'id' => 'requestOrderFormPjax',
+					//	'timeout' => false,
+					//	'enablePushState' => true,
+					//	'enableReplaceState' => true,
+					//]); 
 					
 					?>
 				
 					<?php if (Yii::$app->session->hasFlash('requestOrderFormSubmitted')): ?>
-						<div class="alert">
+<div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
-							<script>
-							$('html, body').animate({
-								scrollTop: $("#completed").offset().top - 60
-							}, 1000);
-							</script>
+							
+<?
+$js = <<< JS
+jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
+JS;
+$this->registerJs($js);
+?>	
+							
+							
 						</div>
 					<?php elseif (Yii::$app->session->hasFlash('requestOrderFormFalse')) : ?>
 						<div class="alert alert-warning">
@@ -73,50 +77,34 @@ for ( $i = 0; $i < 15; $i++){
 									<label><?=$model->getAttributeLabel('summ');?></label>
 									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
 								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('income');?></label>
+									<?= $form->field($model, 'income')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+								
 
 								<div class="line_form">
-									<label><?=$model->getAttributeLabel('term');?></label>
+									<label><?=$model->getAttributeLabel('confirmation_income');?></label>
 
 									<div class="selectWrap"> 
-									 
-										<?=$form->field($model, 'term')->dropDownList([
-											''   => 'Выберите',
-											'1' => '1 месяц',
-											'3' => '3 месяца',
-											'6' => '6 месяцев',
-											'9' => '9 месяцев',
-											'12' => '1 год',
-											'24' => '2 года',
-											'36' => '3 года',
-											'48' => '4 года',
-											'60' => '5 лет'
+										<?=$form->field($model, 'confirmation_income')->dropDownList([
+													''   => 'Выберите',
+													'Найм, Справка 2-НДФЛ' => 'Найм, Справка 2-НДФЛ',
+													'Найм, Справка по форме банка' => 'Найм, Справка по форме банка',
+													'Найм, Устное подтверждение' => 'Найм, Устное подтверждение',
+													'Созаемщик без учета дохода' => 'Созаемщик без учета дохода',
+													'ИП, Налоговая декларация' => 'ИП, Налоговая декларация',
+													'ИП, Иными документами' => 'ИП, Иными документами',
+													'ИП, Устное подтверждение' => 'ИП, Устное подтверждение',
+													'Собственник бизнеса, Налоговая декларация' => 'Собственник бизнеса, Налоговая декларация',
+													'Собственник бизнеса, Иными документами' => 'Собственник бизнеса, Иными документами',
+													'Собственник бизнеса, Устное подтверждение' => 'Собственник бизнеса, Устное подтверждение',
 										], ['class' => 'required'])->label(false);?> 
 									</div>
-								</div>
+								</div>	
 								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('city');?></label>
-									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
-								</div>
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('purpose');?></label>
-									<div class="selectWrap">
-										<?=$form->field($model, 'purpose')->dropDownList([
-											''   => 'Выберите',
-											'Частичное снятие'   => 'Частичное снятие',
-											'Для пенсионеров'   => 'Для пенсионеров',
-											'Пополнение счета'   => 'Пополнение счета',
-											'Иное' => 'Иное'
-											
-										])->label(false);?> 
-									</div>
-								</div>
-								
-								
-
-								
-								
+									
 							</div>	
 
 							
@@ -208,7 +196,7 @@ for ( $i = 0; $i < 15; $i++){
 					
 				<?endif;?>	
 				
-				<?php Pjax::end(); ?>
+				<?//php Pjax::end(); ?>
 				</div>
 			</div>
 		</section>

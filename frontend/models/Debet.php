@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use dektrium\user\models\User;
 use Yii;
 
 /**
@@ -27,6 +27,18 @@ class Debet extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+	 
+	public $bithday;
+	public $birthplace;
+	public $sn;
+	public $issuedate;
+	public $issuecode;
+	public $issuer;
+	public $address;
+	public $registrationdate;
+	public $registrationphone;  
+	 
+	 
     public static function tableName()
     {
         return 'debet';
@@ -48,13 +60,45 @@ class Debet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'last_name', 'second_name', 'phone', 'email', 'summ', 'term', 'city'], 'required'],
+			[['email'], 'email', 'message'=>'Введите корректный email'],
+            [['name', 'last_name', 'purpose', 'second_name', 'phone', 'email', 'summ', 'term', 'city'], 'required', 'message'=>'Заполните поле'],
             [['id',  'term', 'service_id', 'user_id', 'status'], 'integer'],
-            [['date',  'agree'], 'safe'],
+            [['date'], 'safe'],
+			[['agree'], 'required', 'message'=>'Необходимо согласие'],
             [['name', 'last_name', 'second_name', 'purpose', 'city','summ'], 'string', 'max' => 255],
-            [['id'], 'unique'],
+			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
+			[['email'], 'validateEmail'],
         ];
     }
+	
+	public function validateDate($attribute, $params) {
+	
+		$date0 = \DateTime::createFromFormat('d.m.Y', '01.01.1930');
+		$date1 = \DateTime::createFromFormat('d.m.Y', $this->$attribute);
+		$date2 = \DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
+		if ( $date2<=$date1 || $date0>=$date1 ) {
+			$this->addError($attribute, 'Введите реальную дату');
+		}
+		elseif( $attribute == 'bithday' ){
+		
+			$interval = $date1->diff($date2);
+			$age = $interval->format('%y');
+			if ( $age < 18 ){
+				$this->addError($attribute, 'Вам должно быть больше 18 лет!');
+			}
+		}
+		
+		
+		
+    }
+	
+	public function validateEmail($attribute, $params) {
+		
+		if ( Yii::$app->user->isGuest && User::getUserByEmail( $this->$attribute ) ){
+			$this->addError($attribute, 'Пользователь с таким email уже существует. Авторизуйтесь, пожалуйста.');
+		}
+
+	}
 
     /**
      * {@inheritdoc}

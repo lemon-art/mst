@@ -67,14 +67,22 @@ class Mailer extends Component
         );
     }
 	
-	public function sendUserOrderMessage( $subject, $model, $service )
+	public function sendUserOrderMessage( $subject, $model, $service_name, $service_id )
     {
+		$admin_email = Settings::GetSettings()->admin_email;
 	
-        return Mailer::sendMessage(
+        Mailer::sendMessage(
+            $admin_email,
+            $subject . $service_name,
+            'order_service_' . $service_id,
+            ['model' => $model, 'service' => $service_name]
+        );
+		
+		Mailer::sendMessage(
             $model->email,
             $subject,
             'UserOrder',
-            ['model' => $model, 'service' => $service]
+            ['model' => $model, 'service' => $service_name]
         );
     }
 	

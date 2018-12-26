@@ -4,6 +4,12 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\Orders;
+use app\models\Ipoteka;
+use app\models\Kredit;
+use app\models\Debet;
+use app\models\Avtokredit;
+use app\models\KreditKards;
+use app\models\DebetCards;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 use yii\web\NotFoundHttpException;
@@ -33,9 +39,28 @@ class OrdersController extends Controller
 		$post = Yii::$app->request->post();
 		
 
+		switch ( $post['service_id'] ) {
+			case 1:
+				$model = new Kredit();
+				break;
+			case 2:
+				$model = new Ipoteka();
+				break;
+			case 3:
+				$model = new Debet();
+				break;
+			case 4:
+				$model = new Avtokredit();
+				break;	
+			case 5:
+				$model = new KreditKards();
+				break;
+			case 6:
+				$model = new DebetCards();
+				break;	
+		}
 		
 		$arField = explode('-', $post['field']);
-        $model = new Orders;
 		$model -> $arField[1] = $post['value'];
 		$arValidate = ActiveForm::validate($model, $arField[1]);
 		echo json_encode( $arValidate );

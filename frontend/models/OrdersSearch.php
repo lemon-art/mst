@@ -7,8 +7,10 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Orders;
 use app\models\Services;
-
-  
+use app\models\Kredit;
+use app\models\Ipoteka;
+use app\models\Avtokredit;
+use app\models\KreditKards;
   
 class OrdersSearch extends Orders
 {
@@ -36,7 +38,7 @@ class OrdersSearch extends Orders
     {
 		
 		$user_id = Yii::$app->user->identity->id;
-		$query =  Orders::find()->with(['services']);;
+		$query =  Orders::find()->with(['services'])->with(['kredit'])->with(['avtokredit'])->with(['ipoteka'])->with(['kreditKards'])->with(['debetCards']);
 		$query -> addOrderBy('date DESC');
 		$query -> andFilterWhere([
             'user_id' => $user_id

@@ -136,6 +136,8 @@ class SiteController extends Controller
 			
 			$ordersModel    = new OrdersSearch();
 			$ordersProvider = $ordersModel->searchUserOrders();
+			
+			
 
 			return $this->render('personal', [
 				'profileUser' => $profileUser,
