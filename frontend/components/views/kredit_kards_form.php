@@ -147,6 +147,7 @@ $this->registerJs($js);
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
+											'options' => ['class' => 'checkbox agree form-group']
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 									
@@ -181,7 +182,7 @@ $this->registerJs($js);
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group has-success']
+											'options' => ['class' => 'form-group has-success checkbox agree']
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 								

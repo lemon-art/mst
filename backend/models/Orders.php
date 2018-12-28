@@ -4,6 +4,8 @@ namespace backend\models;
 
 use Yii;
 use backend\models\Services;
+use frontend\models\Kredit;
+use dektrium\user\models\Profile;
 /**
  * This is the model class for table "orders".
  *
@@ -48,7 +50,13 @@ class Orders extends \yii\db\ActiveRecord
 	
 	public function afterFind() {
 	
-		$this->fullName = $this->last_name . ' ' . $this->name . ' ' . $this->second_name;
+		$profileUser = Profile::find()->where(['user_id' => $this->user_id])->one();
+		
+		if ( isset($profileUser->last_name) && isset($profileUser->name) && isset($profileUser->second_name) )
+			$this->fullName = $profileUser->last_name . ' ' . $profileUser->name . ' ' . $profileUser->second_name;
+		else
+			$this->fullName = '';
+		
 		$this->orderUrl = "/admin/orders/view?id=" . $this->id;
 		
 		$this->date = Yii::$app->formatter->asDate($this->date, 'php:d.m.Y H:i');
@@ -96,9 +104,9 @@ class Orders extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
 			'fullName' => 'ФИО клиента',
-            'name' => 'Name',
-            'last_name' => 'Last Name',
-            'second_name' => 'Second Name',
+            'serviceName' => 'Услуга',
+            'statusName' => 'Статус',
+            'date' => 'Дата заявки',
             'phone' => 'Телефон',
             'email' => 'Email',
             'summ' => 'Сумма',

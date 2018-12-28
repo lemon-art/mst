@@ -72,7 +72,7 @@ $(function(){
 
 
 
-	function validateField ( el ){
+	function validateField ( el, showError = 1 ){
 
 	
 
@@ -117,9 +117,12 @@ $(function(){
 
 				if ( error ){
 
-					el.parent().addClass('has-error').removeClass('has-success');
+					if ( showError ){
+					
+						el.parent().addClass('has-error').removeClass('has-success');
 
-					el.parent().find('.help-block').html(error); 
+						el.parent().find('.help-block').html(error); 
+					}
 
 					return false;
 
@@ -214,9 +217,14 @@ $(function(){
 		
 
 	});
-
 	
+	jQuery('body').on( 'keypress', '#order-form .required input', function(e){
 
+		var el = $(this);
+
+		validateField(el, 0);
+	
+	});
 	
 
 	jQuery('body').on( 'change', '#order-form .required select', function(){

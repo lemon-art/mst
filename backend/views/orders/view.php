@@ -6,16 +6,25 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Orders */
 
-$this->title = $model->name;
+$this->title = 'Заявка №' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="orders-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+
+        ],
+    ]) ?>
+	
+	
+	    <p>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -24,28 +33,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'last_name',
-            'second_name',
-            'phone',
-            'email:email',
-            'summ',
-            'term',
-            'city',
-            'employment',
-            'work_month',
-            'work_year',
-            'income',
-            'provision',
-            'have_auto',
-            'service_id',
-            'user_id',
-        ],
-    ]) ?>
 
 </div>

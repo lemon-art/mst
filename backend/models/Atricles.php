@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\Search;
 /**
  * This is the model class for table "atricles".
  *
@@ -35,6 +35,27 @@ class Atricles extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
         ];
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		$url = '/articles/' . $this -> id;
+	 
+		if ( $search = Search::GetByUrl( $url ) ){
+		
+		}
+		else {
+			$search = new Search();
+		}
+	 
+		
+		$search -> name   = $this -> name;
+		$search -> text   = strip_tags($this -> preview_text . ' ' . $this -> detail_text);
+		$search -> url    = $url;
+		$search -> module = 'articles';
+		$search -> save();
+		
+	}
 	
 	public function upload()
 	{

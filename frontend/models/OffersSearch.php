@@ -32,6 +32,22 @@ class OffersSearch extends Offers
         return Model::scenarios();
     }
 	
+	
+	public function searchSearch( $q )
+    {
+		
+		$query =  Offers::find()->with(['banks']);
+		$query -> addOrderBy('sort DESC');
+		$query->andFilterWhere(['or',
+            ['like','name', $q],
+            ['like','preview_text', $q]]
+		);
+		$dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+		return $dataProvider;
+	}
+	
 	public function searchSpecial( )
     {
 		

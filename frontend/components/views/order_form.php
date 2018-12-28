@@ -34,24 +34,28 @@ for ( $i = 0; $i < 15; $i++){
 				<div class="form">
 					<?
 					
-					Pjax::begin([
-						'id' => 'requestOrderFormPjax',
-						'timeout' => false,
-						'enablePushState' => true,
-						'enableReplaceState' => true,
-					]); 
+					//Pjax::begin([
+					//	'id' => 'requestOrderFormPjax',
+					//	'timeout' => false,
+					//	'enablePushState' => true,
+					//	'enableReplaceState' => true,
+					//]); 
 					
 					?>
 				
 					<?php if (Yii::$app->session->hasFlash('requestOrderFormSubmitted')): ?>
-						<div class="alert">
+						<div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
-							<script>
-							$('html, body').animate({
-								scrollTop: $("#completed").offset().top - 50
-							}, 1000);
-							</script>
+							
+<?
+$js = <<< JS
+jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
+JS;
+$this->registerJs($js);
+?>	
+							
+							
 						</div>
 					<?php elseif (Yii::$app->session->hasFlash('requestOrderFormFalse')) : ?>
 						<div class="alert alert-warning">
@@ -162,7 +166,7 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'checkbox agree']
+											'options' => ['class' => 'form-group checkbox agree'],
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 									
@@ -588,7 +592,7 @@ for ( $i = 0; $i < 15; $i++){
 					
 				<?endif;?>	
 				
-				<?php Pjax::end(); ?>
+				<?//php Pjax::end(); ?>
 				</div>
 			</div>
 		</section>
@@ -652,10 +656,13 @@ $(document).ready(function(){
 						}
 						else {
 							//$("#order-form").yiiActiveForm('validateAttribute', idnya);
-							if ( validateField ( el )){
-							
+							validateField ( el );
+
+							if ( $(this).hasClass('has-success') ){ 
+							 
 							}
 							else {
+
 								tmp.push('error');
 								if ( !errorFound ){
 									if ( isSelect )
@@ -726,7 +733,9 @@ $(document).ready(function(){
 						}
 						else {
 							//$("#order-form").yiiActiveForm('validateAttribute', idnya);
-							if ( validateField ( el )){
+
+							
+							if ( validateField ( el ) ){
 							
 							}
 							else {
@@ -798,6 +807,8 @@ $(document).ready(function(){
 	
 	
 	}
+	
+
 
 
 	/* Reinitialize */

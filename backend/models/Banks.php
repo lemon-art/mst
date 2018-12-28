@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use backend\models\Offers;
+use backend\models\Search;
 /**
  * This is the model class for table "banks".
  *
@@ -58,6 +59,27 @@ class Banks extends \yii\db\ActiveRecord
             'phone' => 'Телефон',
         ];
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		$url = '/banks/' . $this -> code;
+	 
+		if ( $search = Search::GetByUrl( $url ) ){
+		
+		}
+		else {
+			$search = new Search();
+		}
+	 
+		
+		$search -> name   = $this -> name;
+		$search -> text   = strip_tags($this -> preview_text . ' ' . $this -> adress . ' ' . $this -> phone);
+		$search -> url    = $url;
+		$search -> module = 'banks';
+		$search -> save();
+		
+	}
 	
 	
 	//формирует список банков

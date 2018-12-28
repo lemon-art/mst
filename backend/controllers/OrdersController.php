@@ -8,6 +8,12 @@ use backend\models\OrdersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+//use backend\models\Kredit;
+use backend\models\Ipoteka;
+//use backend\models\Debet;
+//use backend\models\DebetCards;
+//use backend\models\Avtokredit;
+//use backend\models\KreditKards;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -52,8 +58,40 @@ class OrdersController extends Controller
      */
     public function actionView($id)
     {
+	
+		$model = $this->findModel($id);
+		$order_id = $model->order_id;
+	
+		switch ( $model->service_id ) {
+		
+			case 1:
+				$orderModel = Kredit::findOne($order_id);
+				break;
+			case 2:
+				$orderModel = Ipoteka::findOne($order_id);
+				break;			
+			case 3:
+				$orderModel = Debet::findOne($order_id);
+				break;
+			case 4:
+				$orderModel = Avtokredit::findOne($order_id);
+				break;	
+			case 5:
+				$orderModel = KreditKards::findOne($order_id);
+				break;	
+			case 6:
+				$orderModel = DebetCards::findOne($order_id);
+				break;	
+			case 7:
+				$orderModel = Debet::findOne($order_id);
+				break;	
+				
+		}
+	
+	
         return $this->render('view', [
-            'model' => $this->findModel($id),
+			'model' => $model,
+            'orderModel' => $orderModel,
         ]);
     }
 
@@ -116,6 +154,9 @@ class OrdersController extends Controller
      * @return Orders the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+	 
+
+	 
     protected function findModel($id)
     {
         if (($model = Orders::findOne($id)) !== null) {

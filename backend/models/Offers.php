@@ -4,6 +4,9 @@ namespace backend\models;
 
 use Yii;
 use backend\models\Banks;
+use backend\models\Services;
+use backend\models\Search;
+
 /**
  * This is the model class for table "offers".
  *
@@ -34,7 +37,34 @@ class Offers extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Banks::className(),['id'=>'bank_id']);
     }
-
+	
+	public function getServices()
+    {
+        return $this->hasOne(Services::className(),['id'=>'service_id']);
+    }
+	
+	/*
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		$url = '/offers/' . $this -> id;
+	 
+		if ( $search = Search::GetByUrl( $url ) ){
+		
+		}
+		else {
+			$search = new Search();
+		}
+	 
+		
+		$search -> name   = $this -> name . '(' . $this -> services -> name . ')';
+		$search -> text   = strip_tags($this -> preview_text);
+		$search -> url    = $url;
+		$search -> module = 'offers';
+		$search -> save();
+		
+	}
+	*/
     /**
      * {@inheritdoc}
      */

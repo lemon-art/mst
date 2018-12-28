@@ -21,6 +21,7 @@ use app\models\OrdersSearch;
 use app\models\ReviewsSearch;
 use app\models\Request;
 use app\models\Pages;
+use backend\models\Search;
 use dektrium\user\models\Profile;
 /**
  * Site controller
@@ -269,6 +270,32 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+	
+	public function actionSearch() {
+        
+		$q = Yii::$app->request->get('q');
+		
+		$offersModel    = new OffersSearch();
+		$offersProvider = $offersModel->searchSearch( $q );
+
+		$searchProvider = Search::GetSearchResult( $q );
+		
+		 return $this->render('search', [
+            'q' => $q,
+			'offersProvider'  => $offersProvider,
+			'searchProvider' => $searchProvider,
+        ]);
+		
+		/*
+		$query = Extrime::find()->where(['like', 'title', $q]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+        return $this->render('search',compact('post','models','q','cat','friend'));
+        */
     }
 
     /**

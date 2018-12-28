@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\Search;
 /**
  * This is the model class for table "reviews".
  *
@@ -21,6 +21,27 @@ class Reviews extends \yii\db\ActiveRecord
     {
         return 'reviews';
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		$url = '/reviews/' . $this -> id;
+	 
+		if ( $search = Search::GetByUrl( $url ) ){
+		
+		}
+		else {
+			$search = new Search();
+		}
+	 
+		
+		$search -> name   = $this -> name;
+		$search -> text   = strip_tags( $this -> text );
+		$search -> url    = $url;
+		$search -> module = 'reviews';
+		$search -> save();
+		
+	}
 
     /**
      * {@inheritdoc}

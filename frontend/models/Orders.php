@@ -7,6 +7,7 @@ use app\models\Services;
 use app\models\Kredit;
 use app\models\Avtokredit;
 use app\models\Ipoteka;
+use app\models\Debet;
 use app\models\KreditKards;
 use app\models\DebetCards;
 use backend\models\Settings;
@@ -73,6 +74,11 @@ class Orders extends \yii\db\ActiveRecord
 	public function getIpoteka()
     {
         return $this->hasOne(Ipoteka::className(),['id'=>'order_id']);
+    }
+	
+	public function getDebet()
+    {
+        return $this->hasOne(Debet::className(),['id'=>'order_id']);
     }
 	
 	public function getKreditKards()

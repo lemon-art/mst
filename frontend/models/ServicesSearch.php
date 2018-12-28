@@ -22,6 +22,23 @@ class ServicesSearch extends Services
             [['name', 'title_main', 'text_main', 'code'], 'safe'],
         ];
     }
+	
+	public function searchSearch( $q )
+    {
+		
+		$query =  Services::find();
+		$query -> addOrderBy('sort DESC');
+		$query->andFilterWhere(['or',
+            ['like','name', $q],
+            ['like','title_main', $q],
+			['like','text_main', $q]]
+		);
+
+		$dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+		return $dataProvider;
+	}
 
     /**
      * {@inheritdoc}

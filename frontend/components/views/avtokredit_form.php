@@ -214,7 +214,7 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'checkbox agree'],
+											'options' => ['class' => 'checkbox agree form-group'],
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 									

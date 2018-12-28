@@ -90,6 +90,44 @@ use yii\helpers\Html;
 									
 									<?
 									break;
+									case 3:?>
+									
+										<div class="line_bottom">
+											<div class="box">
+												<div class="icon">
+													<img src="images/ic_srok.svg" alt="">
+												</div>
+
+												<div class="name">Дата отправки:</div>
+
+												<div class="text"><?=$model['date'] ?></div>
+											</div>
+
+											<div class="box">
+												<div class="icon">
+													<img src="images/ic_money.svg" alt="">
+												</div>
+
+												<div class="name">Сумма вклада:</div>
+												<div class="text"><?=$model['debet']['summ_display'] ?></div>
+												
+												
+											</div>
+
+											<div class="box">
+												<div class="icon">
+													<img src="images/ic_time.svg" alt="">
+												</div>
+
+												<div class="name">Срок вклада:</div>
+
+												<div class="text"><?=$model['debet']['term_display'] ?></div>
+											</div>
+										</div>
+									
+									
+									<?
+									break;
 								case 4:?>
 									
 										<div class="line_bottom">

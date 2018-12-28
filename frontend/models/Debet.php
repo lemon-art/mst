@@ -36,9 +36,11 @@ class Debet extends \yii\db\ActiveRecord
 	public $issuer;
 	public $address;
 	public $registrationdate;
-	public $registrationphone;  
-	 
-	 
+	public $registrationphone; 
+	
+	public $summ_display; 
+	public $term_display;
+		
     public static function tableName()
     {
         return 'debet';
@@ -98,6 +100,26 @@ class Debet extends \yii\db\ActiveRecord
 			$this->addError($attribute, 'Пользователь с таким email уже существует. Авторизуйтесь, пожалуйста.');
 		}
 
+	}
+	
+	public function afterFind() {
+		
+		$this->term_display = $this->term . ' ' . Tools::true_wordform( $this->term, 'месяц', 'месяца', 'месяцев');
+		$this->summ_display = number_format($this->summ, 0, '', ' ') . ' ' . Tools::true_wordform( $this->summ, 'рубль', 'рубля', 'рублей');
+	}
+	
+	
+	public function beforeSave($insert){
+		if (parent::beforeSave($insert)) {
+	 
+			$arFields = Array('summ');
+			foreach ( $arFields as $field ){
+				$this->$field = Tools::numUpdate($this->$field);
+			}
+
+			return true;
+		}
+		return false;
 	}
 
     /**

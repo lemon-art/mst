@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use backend\models\Search;
 /**
  * This is the model class for table "pages".
  *
@@ -35,6 +35,27 @@ class Pages extends \yii\db\ActiveRecord
             [['code', 'title', 'h1'], 'string', 'max' => 255],
         ];
     }
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		$url = '/' . $this -> code;
+	 
+		if ( $search = Search::GetByUrl( $url ) ){
+		
+		}
+		else {
+			$search = new Search();
+		}
+	 
+		
+		$search -> name   = $this -> title;
+		$search -> text   = strip_tags( $this -> text );
+		$search -> url    = $url;
+		$search -> module = 'pages';
+		$search -> save();
+		
+	}
 
     /**
      * {@inheritdoc}

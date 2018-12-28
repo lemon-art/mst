@@ -59,6 +59,7 @@ return [
 				'reviews' => 'reviews/index',
 				'reviews/<id>' => 'reviews/view',
 				'personal' => 'site/personal',
+				'search' => 'site/search',
 				'<action:(.*)>' => 'site/pages',
             ],
         ],

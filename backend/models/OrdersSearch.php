@@ -19,8 +19,7 @@ class OrdersSearch extends Orders
     public function rules()
     {
         return [
-            [['id', 'summ', 'term', 'work_month', 'work_year', 'income', 'have_auto', 'service_id', 'user_id'], 'integer'],
-            [['name', 'last_name', 'second_name', 'phone', 'email', 'city', 'employment', 'provision'], 'safe'],
+            [['id', 'service_id', 'user_id'], 'integer']
         ];
     }
 	
@@ -73,17 +72,12 @@ class OrdersSearch extends Orders
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'summ' => $this->summ,
-            'term' => $this->term,
-            'work_month' => $this->work_month,
-            'work_year' => $this->work_year,
-            'income' => $this->income,
-            'have_auto' => $this->have_auto,
             'service_id' => $this->service_id,
             'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        /*
+		$query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
             ->andFilterWhere(['like', 'second_name', $this->second_name])
             ->andFilterWhere(['like', 'phone', $this->phone])
@@ -91,7 +85,8 @@ class OrdersSearch extends Orders
             ->andFilterWhere(['like', 'city', $this->city])
             ->andFilterWhere(['like', 'employment', $this->employment]);
             //->andFilterWhere(['like', 'provision', $this->provision]);
-
+		*/
+		
         return $dataProvider;
     }
 }

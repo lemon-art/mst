@@ -35,6 +35,8 @@ class Pages extends \yii\db\ActiveRecord
             [['code', 'title', 'h1'], 'string', 'max' => 255],
         ];
     }
+	
+
 
     /**
      * {@inheritdoc}

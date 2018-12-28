@@ -166,6 +166,7 @@ $this->registerJs($js);
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
+											'options' => ['class' => 'checkbox agree form-group']
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 									
@@ -200,7 +201,7 @@ $this->registerJs($js);
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group has-success']
+											'options' => ['class' => 'form-group has-success checkbox agree']
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 								
@@ -217,6 +218,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'percent_residue', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
@@ -224,6 +226,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'free_card', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
@@ -231,6 +234,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'cash_world', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 							</div>
@@ -240,6 +244,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, '3d_secure', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
@@ -247,6 +252,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'contactless_payment', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
@@ -254,6 +260,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'sms', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 							</div>
@@ -263,6 +270,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'overdraft', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
@@ -270,6 +278,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'transport', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
@@ -277,6 +286,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'bonus', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 							</div>
@@ -286,6 +296,7 @@ $this->registerJs($js);
 									
 									<?= $form->field($model, 'miles', [
 										'template' => '{input}{label}{error}',
+										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
 								</div>
 								
