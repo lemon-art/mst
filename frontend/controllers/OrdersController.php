@@ -51,6 +51,9 @@ class OrdersController extends Controller
 				case 6:
 					$model = new DebetCards();
 					break;	
+				case 7:
+					$model = new Debet();
+					break;	
 			}
 			
 			$arField = explode('-', $post['field']);

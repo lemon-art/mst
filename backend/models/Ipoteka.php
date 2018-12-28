@@ -3,6 +3,7 @@
 namespace backend\models;
 use dektrium\user\models\User;
 use backend\models\Tools;
+use dektrium\user\models\Profile;
 use Yii;
 
 /**
@@ -47,12 +48,12 @@ class Ipoteka extends \yii\db\ActiveRecord
 	public $bithday;
 	public $birthplace;
 	public $sn;
-	public $issuedate;
-	public $issuecode;
+	public $issueDate;
+	public $issueCode;
 	public $issuer;
 	public $address;
-	public $registrationdate;
-	public $registrationphone; 
+	public $registrationDate;
+	public $registrationPhone; 
 	 
 	 
     public static function tableName()
@@ -78,55 +79,24 @@ class Ipoteka extends \yii\db\ActiveRecord
 		];
     }
 	
-	
-	public function validateDate($attribute, $params) {
-	
-		$date0 = \DateTime::createFromFormat('d.m.Y', '01.01.1930');
-		$date1 = \DateTime::createFromFormat('d.m.Y', $this->$attribute);
-		$date2 = \DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
-		if ( $date2<=$date1 || $date0>=$date1 ) {
-			$this->addError($attribute, 'Введите реальную дату');
-		}
-		elseif( $attribute == 'bithday' ){
-		
-			$interval = $date1->diff($date2);
-			$age = $interval->format('%y');
-			if ( $age < 18 ){
-				$this->addError($attribute, 'Вам должно быть больше 18 лет!');
-			}
-		}
-		
-		
-		
+	public function getProfile()
+    {
+        return $this->hasOne(Profile::className(),['user_id'=>'user_id']);
     }
 	
-	public function validateEmail($attribute, $params) {
-		
-		if ( Yii::$app->user->isGuest && User::getUserByEmail( $this->$attribute ) ){
-			$this->addError($attribute, 'Пользователь с таким email уже существует. Авторизуйтесь, пожалуйста.');
-		}
-
+	public function GetShowFields() {
+		return ['summ_display', 'term_display', 'initial_payment', 'type', 'purpose', 'city', 'confirmation_income', 'summ_income', 'profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email', 'profile.bithday', 'profile.birthPlace', 'profile.sn', 'profile.issueDate', 'profile.issueCode', 'profile.issuer', 'profile.address', 'profile.registrationDate', 'profile.registrationPhone'];
 	}
+	
+	
 	
 	public function afterFind() {
 		
 		$this->term_display = $this->term . ' ' . Tools::true_wordform( $this->term, 'год', 'года', 'лет');
 		$this->summ_display = number_format($this->summ, 0, '', ' ') . ' ' . Tools::true_wordform( $this->summ, 'рубль', 'рубля', 'рублей');
-	}
-	
-	
-	public function beforeSave($insert){
-		if (parent::beforeSave($insert)) {
-	 
-			$arFields = Array('summ', 'summ_income', 'initial_payment');
-			foreach ( $arFields as $field ){
-				$this->$field = Tools::numUpdate($this->$field);
-			}
 
-			return true;
-		}
-		return false;
 	}
+	
 
     /**
      * {@inheritdoc}
@@ -138,9 +108,9 @@ class Ipoteka extends \yii\db\ActiveRecord
             'date' => 'Date',
             'purpose' => 'Цель кредита',
             'type' => 'Тип недвижимости',
-            'summ' => 'Стоимость недвижимости',
+            'summ_display' => 'Стоимость недвижимости',
 			'initial_payment' => 'Первоначальный взнос',
-			'term' => 'Срок кредита',
+			'term_display' => 'Срок кредита',
             'type_zalog_house' => 'Type Zalog House',
             'summ_loan' => 'Summ Loan',
             'city' => 'В каком городе покупаете?',
@@ -160,7 +130,7 @@ class Ipoteka extends \yii\db\ActiveRecord
 			'bithday' => 'Дата рождения',
 			'birthplace' => 'Место рождения',
 			'sn' => 'Номер паспорта',
-			'issuedate' => 'Дата выдачи',
+			'issueDate' => 'Дата выдачи',
 			'issuecode' => 'Код подразделения',
 			'issuer' => 'Кем выдан',
 			'address' => 'Адрес регистрации (до дома)',

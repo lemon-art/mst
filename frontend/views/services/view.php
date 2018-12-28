@@ -53,10 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <input id="filter-offer-price" type="text" name="" value="" placeholder="Любая" class="input">
                         <div class="selectWrap">
                             <select name="" style="display: none;">
+								<option value=""></option>
                                 <option value="">₽</option>
                                 <option value="">$</option>
                                 <option value="">€</option>
-                            </select><div class="nice-select" tabindex="0"><span class="current">₽</span><ul class="list"><li data-value="" class="option selected">₽</li><li data-value="" class="option">$</li><li data-value="" class="option">€</li></ul></div>
+                            </select><div class="nice-select" tabindex="0"><span class="current">₽</span><ul class="list"><li data-value="" class="option"></li><li data-value="" class="option selected">₽</li><li data-value="" class="option">$</li><li data-value="" class="option">€</li></ul></div>
                         </div>
                     </div>
                     <div class="credit_filter_col">

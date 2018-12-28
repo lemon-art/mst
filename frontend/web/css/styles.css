@@ -2630,3 +2630,15 @@ footer .social a.wt {
     margin-bottom: 10px;
     font-size: 16px;
 }
+
+@media (max-width: 768px) {
+	.form_search {
+		width: 100%;
+	}
+	
+	.form_search .search {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+}

@@ -92,8 +92,8 @@ AppAsset::register($this);
 			<div class="line_menu">
 				<div class="cont">
 					<div class="block_search">
-						<form>
-							<input type="text" name="" value placeholder="Найдется все" class="search left">
+						<form action="/search">
+							<input type="text" name="q" value placeholder="Найдется все" class="search left">
 
 							<input type="submit" value="" class="search_btn left">
 							<div class="clear"></div>

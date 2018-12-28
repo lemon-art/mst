@@ -8,12 +8,12 @@ use backend\models\OrdersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//use backend\models\Kredit;
+use backend\models\Kredit;
 use backend\models\Ipoteka;
-//use backend\models\Debet;
-//use backend\models\DebetCards;
-//use backend\models\Avtokredit;
-//use backend\models\KreditKards;
+use backend\models\Debet;
+use backend\models\DebetCards;
+use backend\models\Avtokredit;
+use backend\models\KreditKards;
 
 /**
  * OrdersController implements the CRUD actions for Orders model.
@@ -66,24 +66,31 @@ class OrdersController extends Controller
 		
 			case 1:
 				$orderModel = Kredit::findOne($order_id);
+				$arFields = Kredit::GetShowFields();
 				break;
 			case 2:
 				$orderModel = Ipoteka::findOne($order_id);
+				$arFields = Ipoteka::GetShowFields();
 				break;			
 			case 3:
 				$orderModel = Debet::findOne($order_id);
+				$arFields = Debet::GetShowFields();
 				break;
 			case 4:
 				$orderModel = Avtokredit::findOne($order_id);
+				$arFields = Avtokredit::GetShowFields();
 				break;	
 			case 5:
 				$orderModel = KreditKards::findOne($order_id);
+				$arFields = KreditKards::GetShowFields();
 				break;	
 			case 6:
 				$orderModel = DebetCards::findOne($order_id);
+				$arFields = DebetCards::GetShowFields();
 				break;	
 			case 7:
 				$orderModel = Debet::findOne($order_id);
+				$arFields = Debet::GetShowFields();
 				break;	
 				
 		}
@@ -92,6 +99,7 @@ class OrdersController extends Controller
         return $this->render('view', [
 			'model' => $model,
             'orderModel' => $orderModel,
+			'arFields' => $arFields
         ]);
     }
 

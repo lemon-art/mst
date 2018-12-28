@@ -112,6 +112,16 @@ class Profile extends ActiveRecord
             'timezone'       => \Yii::t('user', 'Time zone'),
 			'last_name'      => 'Фамилия',
 			'second_name'    => 'Отчество',
+			
+			'bithday' => 'Дата рождения',
+			'birthPlace' => 'Место рождения',
+			'sn' => 'Номер паспорта',
+			'issueDate' => 'Дата выдачи',
+			'issueCode' => 'Код подразделения',
+			'issuer' => 'Кем выдан',
+			'address' => 'Адрес регистрации (до дома)',
+			'registrationDate' => 'Дата регистрации',
+			'registrationPhone' => 'Телефон по месту регистрации', 
         ];
     }
 
