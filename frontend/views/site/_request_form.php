@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 
 		<section class="section_form sectionMarg">
 			<div class="cont">
-				<div class="title">Не хотите самостоятельно <span>подбирать продукт</span>?</div>
+				<div class="title">Поможем <span>подобрать продукт</span>!</div>
 
 				<div class="subTitle">Оставьте свой телефон и мы с Вами свяжемся!</div>
 
