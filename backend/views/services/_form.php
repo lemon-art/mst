@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 use kartik\date\DatePicker;
 use dosamigos\fileupload\FileUpload;
+use backend\models\Files;
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,10 +17,37 @@ use dosamigos\fileupload\FileUpload;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-	<hr>
-	<h2>Блок на главной странице</h2>
+			<hr>
+			<h2>Блок на главной странице</h2>
 	
-   <?= $form->field($model, 'image')->fileInput(); ?>
+   						
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('image');?></label>
+							<br>
+							<?if ( $model->image ):?>
+								<?=Html::img(Files::getPath($model->image),[
+									'style' => 'width:150px;'
+								]);?>
+								<br><br>
+							<?endif;?>
+							
+							<?= $form->field($model, 'image')->fileInput()->label(false);?>
+						</div>	
+   
+   
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('big_image');?></label>
+							<br>
+							<?if ( $model->big_image ):?>
+								<?=Html::img(Files::getPath($model->big_image),[
+									'style' => 'width:150px;'
+								]);?>
+								<br><br>
+							<?endif;?>
+							
+							<?= $form->field($model, 'big_image')->fileInput()->label(false);?>
+						</div>	
+
 
    <?= $form->field($model, 'title_main')->textInput(['maxlength' => true]) ?>
    

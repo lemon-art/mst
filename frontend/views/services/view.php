@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ListView;
+use backend\models\Files;
 use frontend\components\OrderForm;
 use frontend\components\DebetForm;
 /* @var $this yii\web\View */
@@ -146,6 +147,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
 
-		
-		
+
+<?if ( $model->big_image ):?>		
+<?$imgFon = Files::getPath($model->big_image);?>
+<?
+$script = <<< JS
+    jQuery('.section_first').css({ 'background': 'url($imgFon) 0 0 no-repeat' });
+JS;
+$this->registerJs($script, yii\web\View::POS_END);
+?>	
+<?endif;?>
 	

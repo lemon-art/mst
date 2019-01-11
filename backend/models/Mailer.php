@@ -73,7 +73,7 @@ class Mailer extends Component
 	
         Mailer::sendMessage(
             $admin_email,
-            $subject . $service_name,
+            $subject,
             'order_service_' . $service_id,
             ['model' => $model, 'service' => $service_name]
         );

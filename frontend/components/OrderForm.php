@@ -160,7 +160,7 @@ class OrderForm extends Widget {
 			
 				Yii::$app->session->setFlash('requestOrderFormSubmitted');
 				
-				Mailer::sendUserOrderMessage( 'Заявка на ', $orderModel, $this->service_name, $this->service_id );
+				Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
 				//Mailer::sendAdminOrderMessage( 'Новая заявка: ' . $this->service_name, $orderModel );
 			}
 			else {

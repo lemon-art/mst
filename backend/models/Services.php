@@ -49,6 +49,7 @@ class Services extends \yii\db\ActiveRecord
             'text_main' => 'Текст на главной',
             'code' => 'Код',
 			'image' => 'Картинка',
+			'big_image' => 'Большая фоновая картинка',
 			'sort' => 'Сортировка',
 		    'top_text' => 'Верхний текст на странице',
 			'advantages' => 'Преимущества',
