@@ -250,7 +250,7 @@ AppAsset::register($this);
 			<div class="cont">
 				<div class="logo">
 					<a href="/">
-						<img src="images/logo.svg" alt="">
+						<img src="/images/logo.png" alt="">
 					</a>
 				</div>
 

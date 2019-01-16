@@ -1827,7 +1827,7 @@ section .title_inner {
 .section_first {
     padding: 70px 0 98px;
     background: url(../images/bg1.jpg) 0 0 no-repeat;
-    background-size: cover;
+    background-size: cover !important;
 }
 
 .section_first .breadcrumbs {

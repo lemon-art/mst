@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
 	IndexIgnore */*
+	RewriteBase /
     RewriteEngine On
 </IfModule>
 

@@ -1207,4 +1207,9 @@ $(document).ready(function() {
 		console.log(article_margin);
 		$(this).find('.box').css('margin-top', article_margin);
 	});
+
+	console.log($('.section_first .title_inner').height());
+	if ($('.section_first .title_inner').height() < 60) {
+		$('.section_first').addClass('section_mini_title');
+	}
 });
