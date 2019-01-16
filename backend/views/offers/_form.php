@@ -13,7 +13,7 @@ use backend\models\Files;
 
 	<div class="row">
         <!-- left column -->
-        <div class="col-md-8">
+        <div class="col-md-12">
           <!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header with-border">
@@ -38,6 +38,33 @@ use backend\models\Files;
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('rate');?></label>
 							<?= $form->field($model, 'rate')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
 						</div>
+						
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_summ');?></label>
+							<?= $form->field($model, 'min_summ')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_summ');?></label>
+							<?= $form->field($model, 'max_summ')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_term');?></label>
+							<?= $form->field($model, 'min_term')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_term');?></label>
+							<?= $form->field($model, 'max_term')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_age');?></label>
+							<?= $form->field($model, 'min_age')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_age');?></label>
+							<?= $form->field($model, 'max_age')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						
 						<div class="form-group">
 							<?=$form->field($model, 'special')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
 						</div>
@@ -69,6 +96,8 @@ use backend\models\Files;
 							<?= $form->field($model, 'image')->fileInput()->label(false);?>
 						</div>
 						
+
+						
 						<div class="form-group">
 							<?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 						</div>
@@ -76,45 +105,7 @@ use backend\models\Files;
 					</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="box box-primary">
-				<div class="box-header with-border">
-				  <h3 class="box-title">Параметры кредита</h3>
-				</div>
-				<div class="box-body">
 
-					<div class="form-group">
-						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_summ');?></label>
-						<?= $form->field($model, 'min_summ')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_summ');?></label>
-						<?= $form->field($model, 'max_summ')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_term');?></label>
-						<?= $form->field($model, 'min_term')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_term');?></label>
-						<?= $form->field($model, 'max_term')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_age');?></label>
-						<?= $form->field($model, 'min_age')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_age');?></label>
-						<?= $form->field($model, 'max_age')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-					</div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1"><?//=$model->getAttributeLabel('valut');?></label>
-                        <?//= $form->field($model, 'valut')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-                        <?//= $form->field($model, 'valut')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
-                    </div>
-				</div>
-			</div>
-		</div>
 	
 		<?php ActiveForm::end(); ?>
 
