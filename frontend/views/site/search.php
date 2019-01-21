@@ -55,11 +55,20 @@ $this->title = 'Результаты поиска';
 			<div class="cont">
 									
 					<?
+					global $searchFind;
+					if ( $searchFind ){
+						$emptyText = '';
+					}
+					else {
+						$emptyText = 'Ничего не найдено.';
+					}
+					
 					echo ListView::widget([
 						'dataProvider' => $searchProvider,
 						'itemView' => '_search_result',
 						'layout' => '{items}{pager}',
 						'id'           => false,
+						'emptyText' => $emptyText,
 						'options' => [
 							'tag'=>'div',
 							'class' => 'search_result'
