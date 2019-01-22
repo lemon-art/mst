@@ -60,7 +60,7 @@ AppAsset::register($this);
 
 					<div class="contact">
 						<div class="tel">
-							<a href="tel:+74952152904">+7 (495) 215-29-04</a>
+							<a href="tel:+74952152904">+7 (495) 120-62-00</a>
 						</div>
 
 						<div class="call">
@@ -320,7 +320,7 @@ AppAsset::register($this);
 				</div>
 
 				<div class="line_bottom">
-					<div class="copy">&copy; ООО «Выбери», 2018 <br>Все права защищены.</div>
+					<div class="copy">&copy; ООО «Айкодак», <?=date('Y')?> <br>Все права защищены.</div>
 
 					<div class="links">
 						<div class="link">

@@ -16,7 +16,7 @@ use backend\models\Files;
 
 						<div data-element="true" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=$model['max_summ']?>" data-min-price="<?=$model['min_summ']?>"  class="item modal_link" href="#modal_call">
 
-								<div  class="box <?if ( $model->id == 1){?>small<?}?>">
+								<div  class="box <?if ( $model->service_id == 1){?>small<?}?>">
 
 									<div class="block">
 
@@ -42,7 +42,7 @@ use backend\models\Files;
 
 
 
-								<div class="box  <?if ( $model->id == 1){?>small<?}?>">
+								<div class="box  <?if ( $model->service_id == 1){?>small<?}?>">
 
 									<div class="block">
 
@@ -52,7 +52,7 @@ use backend\models\Files;
 
 								</div>
 
-                            <?if ( $model->id == 1){?>
+                            <?if ( $model->service_id == 1){?>
 
                                 <div class="box small" >
 
@@ -72,7 +72,7 @@ use backend\models\Files;
 
                             <?}?>
 
-								<div class="box  <?if ( $model->id == 1){?>small<?}?>">
+								<div class="box  <?if ( $model->service_id == 1){?>small<?}?>">
 
 									<div class="block">
 
