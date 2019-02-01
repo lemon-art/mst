@@ -1438,6 +1438,7 @@ section .title_inner {
 .bank .logo_bank img {
     display: block;
     max-width: 100%;
+    width: 200px;
 }
 
 .bank .link_bank {

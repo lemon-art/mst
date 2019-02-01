@@ -86,6 +86,20 @@ class Mailer extends Component
         );
     }
 	
+	public function sendCallbackMessage( $subject, $model )
+    {
+		$admin_email = Settings::GetSettings()->admin_email;
+	
+        Mailer::sendMessage(
+            $admin_email,
+            $subject,
+            'callback',
+            ['model' => $model, 'service' => $service_name]
+        );
+		
+
+    }
+	
 
 
     /**

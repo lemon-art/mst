@@ -30,7 +30,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-	
+	<link rel="icon" type="image/png" href="/favicon.png" />
 	<link rel="stylesheet" href="/css/response_1023.css" media="(max-width: 1023px)">
 	<link rel="stylesheet" href="/css/response_767.css" media="(max-width: 767px)">
 	<link rel="stylesheet" href="/css/response_479.css" media="(max-width: 479px)">
@@ -60,7 +60,7 @@ AppAsset::register($this);
 
 					<div class="contact">
 						<div class="tel">
-							<a href="tel:+74952152904">+7 (495) 120-62-00</a>
+							<a href="tel:+74951206200">+7 (495) 120-62-00</a>
 						</div>
 
 						<div class="call">
@@ -132,7 +132,7 @@ AppAsset::register($this);
 
 					<div class="contact">
 						<div class="tel">
-							<a href="tel:+74952152904">+7 (495) 215-29-04</a>
+							<a href="tel:+74951206200">+7 (495) 120-62-00</a>
 						</div>
 
 						<div class="call">
@@ -299,7 +299,7 @@ AppAsset::register($this);
 								<a href="/contacts">Контакты</a>
 							</li>
 							<li>
-								<a href="/about">О компании</a>
+								<a href="/about">О сервисе</a>
 							</li>
 							
 						</ul>
@@ -320,25 +320,27 @@ AppAsset::register($this);
 				</div>
 
 				<div class="line_bottom">
-					<div class="copy">&copy; ООО «Айкодак», <?=date('Y')?> <br>Все права защищены.</div>
+					<div class="copy">&copy; ООО «Айкодек», <?=date('Y')?> <br>Все права защищены.</div>
 
 					<div class="links">
 						<div class="link">
-							<a href="/">Пользовательское соглашение</a>
+							<a href="/rules">Пользовательское соглашение</a>
 						</div>
 
 						<div class="link">
-							<a href="/">Политика конфиденциальности</a>
+							<a href="/policy">Политика конфиденциальности</a>
 						</div>
 					</div>
 
+					<?/*
 					<div class="social">
 						<a href="/" target="_blank" rel="noopener" class="fb"></a>
 						<a href="/" target="_blank" rel="noopener" class="ins"></a>
 						<a href="/" target="_blank" rel="noopener" class="tg"></a>
 						<a href="/" target="_blank" rel="noopener" class="wt"></a>
 					</div>
-
+					*/?>
+					
 					<div class="created">
 						Разработано в <a href="/" target="_blank" rel="noopener"><img src="/images/created.png" alt=""></a>
 					</div>
@@ -365,6 +367,22 @@ AppAsset::register($this);
 	</div>
 
 <?php $this->endBody() ?>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(52131253, "init", {
+        id:52131253,
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/52131253" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 </html>
 <?php $this->endPage() ?>

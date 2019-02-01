@@ -78,10 +78,10 @@ class Installer extends LibraryInstaller
 
     protected function addPackage(PackageInterface $package)
     {
-        $extension = [
+        $extension = Array(
             'name' => $package->getName(),
             'version' => $package->getVersion(),
-        ];
+        );
 
         $alias = $this->generateDefaultAlias($package);
         if (!empty($alias)) {
@@ -103,7 +103,7 @@ class Installer extends LibraryInstaller
         $vendorDir = $fs->normalizePath($this->vendorDir);
         $autoload = $package->getAutoload();
 
-        $aliases = [];
+        $aliases = Array();
 
         if (!empty($autoload['psr-0'])) {
             foreach ($autoload['psr-0'] as $name => $path) {
@@ -154,7 +154,7 @@ class Installer extends LibraryInstaller
     {
         $file = $this->vendorDir . '/' . static::EXTENSION_FILE;
         if (!is_file($file)) {
-            return [];
+            return Array();
         }
         // invalidate opcache of extensions.php if exists
         if (function_exists('opcache_invalidate')) {
@@ -199,7 +199,7 @@ class Installer extends LibraryInstaller
         if (!file_exists($yiiDir)) {
             mkdir($yiiDir, 0777, true);
         }
-        foreach (['Yii.php', 'BaseYii.php', 'classes.php'] as $file) {
+        foreach (Array('Yii.php', 'BaseYii.php', 'classes.php') as $file) {
             file_put_contents($yiiDir . '/' . $file, <<<EOF
 <?php
 /**
@@ -220,7 +220,7 @@ EOF
     protected function removeBaseYiiFiles()
     {
         $yiiDir = $this->vendorDir . '/yiisoft/yii2';
-        foreach (['Yii.php', 'BaseYii.php', 'classes.php'] as $file) {
+        foreach (Array('Yii.php', 'BaseYii.php', 'classes.php') as $file) {
             if (file_exists($yiiDir . '/' . $file)) {
                 unlink($yiiDir . '/' . $file);
             }
@@ -263,7 +263,7 @@ EOF
         $params = $event->getComposer()->getPackage()->getExtra();
         if (isset($params[$extraKey]) && is_array($params[$extraKey])) {
             foreach ($params[$extraKey] as $method => $args) {
-                call_user_func_array([__CLASS__, $method], (array) $args);
+                call_user_func_array(Array(__CLASS__, $method), (array) $args);
             }
         }
     }

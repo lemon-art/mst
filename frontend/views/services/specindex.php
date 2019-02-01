@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							},
 							'layout' => '{items}',
 							'id'           => false,
+							'emptyText' => '',
 							'itemOptions' => [
 							'tag' => false,
 							],
@@ -71,6 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							},
 							'layout' => '{items}',
 							'id'           => false,
+							'emptyText' => 'Приносим извинения, информация обновляется. Скоро мы все запустим. Телефон для связи: +7 (495) 120-62-00',
 							'itemOptions' => [
 							'tag' => false,
 							],

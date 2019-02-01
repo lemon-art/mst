@@ -28,7 +28,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     /**
      * @var array noted package updates.
      */
-    private $_packageUpdates = [];
+    private $_packageUpdates = Array();
     /**
      * @var string path to the vendor directory.
      */
@@ -56,10 +56,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return [
+        return Array(
             PackageEvents::POST_PACKAGE_UPDATE => 'checkPackageUpdates',
             ScriptEvents::POST_UPDATE_CMD => 'showUpgradeNotes',
-        ];
+        );
     }
 
 
@@ -71,7 +71,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     {
         $operation = $event->getOperation();
         if ($operation instanceof UpdateOperation) {
-            $this->_packageUpdates[$operation->getInitialPackage()->getName()] = [
+            $this->_packageUpdates[$operation->getInitialPackage()->getName()] = Array(
                 'from' => $operation->getInitialPackage()->getVersion(),
                 'fromPretty' => $operation->getInitialPackage()->getPrettyVersion(),
                 'to' => $operation->getTargetPackage()->getVersion(),
@@ -81,7 +81,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
                     $operation->getTargetPackage(),
                     '<'
                 ) ? 'up' : 'down',
-            ];
+            );
         }
     }
 
@@ -186,7 +186,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
             return false;
         }
         $lines = preg_split('~\R~', file_get_contents($upgradeFile));
-        $relevantLines = [];
+        $relevantLines = Array();
         $consuming = false;
         // whether an exact match on $fromVersion has been encountered
         $foundExactMatch = false;

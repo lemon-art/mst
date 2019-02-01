@@ -23,6 +23,7 @@ use app\models\Request;
 use app\models\Pages;
 use backend\models\Search;
 use dektrium\user\models\Profile;
+use backend\models\Mailer;
 /**
  * Site controller
  */
@@ -100,6 +101,7 @@ class SiteController extends Controller
 				
 				if ( $reqModel->type == 'indexPage' ){
 					if ( $reqModel->save()){
+						Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 						Yii::$app->session->setFlash('requestFormSubmitted');
 					}
 					else {

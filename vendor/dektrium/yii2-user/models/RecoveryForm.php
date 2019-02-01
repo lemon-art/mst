@@ -14,6 +14,7 @@ namespace dektrium\user\models;
 use dektrium\user\Finder;
 use dektrium\user\Mailer;
 use yii\base\Model;
+use dektrium\user\models\User;
 
 /**
  * Model for collecting data on password recovery.
@@ -88,10 +89,20 @@ class RecoveryForm extends Model
             'emailTrim' => ['email', 'trim'],
             'emailRequired' => ['email', 'required'],
             'emailPattern' => ['email', 'email'],
+			//'EmailExist' => ['email'],
             'passwordRequired' => ['password', 'required'],
             'passwordLength' => ['password', 'string', 'max' => 72, 'min' => 6],
+			[['email'], 'validateEmail'],
         ];
     }
+	
+	public function validateEmail($attribute, $params) {
+		
+		if ( !User::getUserByEmail( $this->$attribute ) ){
+			$this->addError($attribute, 'Пользователя с таким email не существует.');
+		}
+
+	}
 
     /**
      * Sends recovery message.

@@ -103,15 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="main_title">Выгодное предложение</div>
                 <?endif;?>
 				<div class="table_profitably">
-					<div class="item_head">
-						<div class="box small"><span>№</span> Банк</div>
 
-						<div class="box small">Ставка</div>
-                        <?if ( $model->id == 1):?><div class="box small">Сумма кредита</div><?endif;?>
-						<div class="box small">Срок</div>
-
-						<div class="box ">Преимущества</div>
-					</div>
 
 
 						<?
@@ -122,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							},
 							'layout' => '{items}',
 							'id'           => false,
+							'emptyText' => 'Приносим извинения, информация обновляется. Скоро мы все запустим. Телефон для связи: +7 (495) 120-62-00',
 							'itemOptions' => [
 							'tag' => false,
 							],

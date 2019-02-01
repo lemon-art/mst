@@ -248,7 +248,7 @@ use yii\helpers\Html;
 												<td class="small" data-label="%">11.5</td>
 												<td data-label="руб./мес.">25 238,25</td>
 												<td class="td_more">
-													<a href="/">Выбрать</a>
+													<a href="#modal_call" class="modal_link">Выбрать</a>
 												</td>
 											</tr>
 											<tr>
@@ -258,7 +258,7 @@ use yii\helpers\Html;
 												<td class="small" data-label="%">11.5</td>
 												<td data-label="руб./мес.">25 238,25</td>
 												<td class="td_more">
-													<a href="/bank.html">Выбрать</a>
+													<a href="#modal_call" class="modal_link">Выбрать</a>
 												</td>
 											</tr>
 											<tr>
@@ -268,7 +268,7 @@ use yii\helpers\Html;
 												<td class="small" data-label="%">11.5</td>
 												<td data-label="руб./мес.">25 238,25</td>
 												<td class="td_more">
-													<a href="/">Выбрать</a>
+													<a href="#modal_call" class="modal_link">Выбрать</a>
 												</td>
 											</tr>
 											<tr>
@@ -278,7 +278,7 @@ use yii\helpers\Html;
 												<td class="small" data-label="%">11.5</td>
 												<td data-label="руб./мес.">25 238,25</td>
 												<td class="td_more">
-													<a href="/">Выбрать</a>
+													<a href="#modal_call" class="modal_link">Выбрать</a>
 												</td>
 											</tr>
 										</tbody>

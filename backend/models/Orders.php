@@ -59,8 +59,9 @@ class Orders extends \yii\db\ActiveRecord
 		
 		$this->orderUrl = "/admin/orders/view?id=" . $this->id;
 		
-		$this->date = Yii::$app->formatter->asDate($this->date, 'php:d.m.Y H:i');
-	
+		//$this->date = Yii::$app->formatter->asDate($this->date, 'php:d.m.Y H:i');
+		$this->date = date('d.m.Y H:i', strtotime( $this->date ));
+		
 		switch ( $this->status ) {
 			case 0:
 				$this->statusName = 'Новая';

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 use app\models\Request;
+use backend\models\Mailer;
 
 class PopupForm extends Widget {
 
@@ -23,6 +24,7 @@ class PopupForm extends Widget {
 			if ( $reqModel->type == 'callbackForm' ){	
 				if ( $reqModel->save()){
 					Yii::$app->session->setFlash('requestPopupFormSubmitted', 'Y');
+					Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 				}
 				else {
 					Yii::$app->session->setFlash('requestPopupFormFalse', 'Y');

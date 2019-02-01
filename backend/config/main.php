@@ -12,6 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
 	'language' => 'ru-RU',
+	'timeZone' => 'Europe/Moscow',
     'modules' => [
 		'gii' => [
             'class' => 'yii\gii\Module', //adding gii module
@@ -24,6 +25,16 @@ return [
 		//'rbac' => [
         //    'class' => 'dektrium\rbac\Module',
         // ],
+	],
+	'controllerMap' => [
+		'elfinder' => [
+			'class' => 'mihaildev\elfinder\PathController',
+			'access' => ['@'],
+			'root' => [
+				'path' => 'files',
+				'name' => 'Files'
+			],
+		]
 	],
     'components' => [
         'request' => [

@@ -10,7 +10,7 @@
  */
 
 namespace dektrium\user\controllers;
-
+use Yii;
 use dektrium\user\Finder;
 use dektrium\user\models\Profile;
 use dektrium\user\models\SettingsForm;
@@ -162,10 +162,19 @@ class SettingsController extends Controller
         $this->performAjaxValidation($model);
 
         $this->trigger(self::EVENT_BEFORE_PROFILE_UPDATE, $event);
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(\Yii::$app->request->post())) {
+		
+			if ( $model->bithday ){
+				$dateTime = \DateTime::createFromFormat("d.m.Y", $model->bithday);
+				$model->bithday = \Yii::$app->formatter->asDate($dateTime, 'php:Y-m-d');
+			}
+		
+			$model->save();
+			
             \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
             $this->trigger(self::EVENT_AFTER_PROFILE_UPDATE, $event);
-            return $this->refresh();
+			return $this->redirect('/personal');
+			//return $this->refresh();
         }
 
         return $this->render('profile', [

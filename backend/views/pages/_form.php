@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 use backend\models\Files;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pages */
@@ -34,10 +35,11 @@ use backend\models\Files;
 								'editorOptions' => [
 									'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
 									'inline' => false, //по умолчанию false
+									'editorOptions' => ElFinder::ckeditorOptions('elfinder', ['path' => 'web']),
 								],
 							])->label(false);?>
 						</div>
-						
+
 						
 						<div class="form-group">
 							<?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

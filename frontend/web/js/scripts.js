@@ -174,7 +174,7 @@ $(function(){
 
 	});
 
-	
+	jQuery('.summa').attr('inputmode', 'numeric');
 
 	jQuery('body').on( 'keypress', '.summa', function(e){
 

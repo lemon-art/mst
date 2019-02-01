@@ -6,7 +6,7 @@ use backend\models\Files;
 /* @var $this yii\web\View */
 /* @var $model app\models\Reviews */
 
-$this->title = 'Отзыв ' . $model->id;
+$this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 	
@@ -17,10 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						<?endif;?>
 					</div>
 
-					<div class="link_bank">
-						<p><b>Автор отзыва:</b> <?=$model->name?></p>
-					</div>
-					
+				
 					<div class="text_block">
 						<?=$model->text?>
 					</div>

@@ -57,7 +57,14 @@ class Profile extends ActiveRecord
 	
 	public function afterFind() {
 	
-		$this->display_bithday = Yii::$app->formatter->asDate($this->bithday, 'php:d.m.Y');
+		if ( $this->bithday && $this->bithday !== '0000-00-00' ){
+			$this->display_bithday = Yii::$app->formatter->asDate($this->bithday, 'php:d.m.Y');
+			$this->bithday = Yii::$app->formatter->asDate($this->bithday, 'php:d.m.Y');
+		}
+		else {
+			$this->bithday = '';
+			$this->display_bithday = '';
+		}
 
 	}
 

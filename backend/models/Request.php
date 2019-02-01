@@ -22,6 +22,13 @@ class Request extends \yii\db\ActiveRecord
     {
         return 'request';
     }
+	
+	public function afterFind() {
+	
+		$this->date = date('d.m.Y H:i', strtotime( $this->date ));
+
+
+	}
 
     /**
      * {@inheritdoc}

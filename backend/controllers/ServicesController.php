@@ -99,9 +99,13 @@ class ServicesController extends Controller
         $image = $model->image;
 		$big_image = $model->big_image;
 		
+		
+		
         if ($model->load(Yii::$app->request->post())) {
+		
 			
-			$file = UploadedFile::getInstance($model, 'image');
+			
+			$file1 = UploadedFile::getInstance($model, 'image');
 			$upFile = new Files;	
 			if ( $image && $file ){
 				$upFile -> deleteFile( $image );
@@ -113,13 +117,13 @@ class ServicesController extends Controller
 				$model->image = $image;
 			}
 			
-			$file = UploadedFile::getInstance($model, 'big_image');
+			$file2 = UploadedFile::getInstance($model, 'big_image');
 			$upFile = new Files;	
-			if ( $big_image && $file ){
+			if ( $big_image && $file2 ){
 				$upFile -> deleteFile( $big_image );
 			}
-			if ( $file ){
-				$model->big_image = $upFile -> upload( $file );
+			if ( $file2 ){
+				$model->big_image = $upFile -> upload( $file2 );
 			}			
 			elseif( $big_image ) {
 				$model->big_image = $big_image;

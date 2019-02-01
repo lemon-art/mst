@@ -89,11 +89,11 @@ $this->params['breadcrumbs'][] = $this->title;
 						<div class="line_form">
 							<label><?=$model->getAttributeLabel('bithday');?></label>
 							<?= $form->field($model, 'bithday')->widget(DatePicker::className(),[
-								'value' => date('Y-m-d'),
+								//'value' => date('Y-m-d'),
 								'class' => 'input',
 								'options' => ['placeholder' => 'Выберите дату'],
 								'pluginOptions' => [
-									'format' => 'yyyy-mm-dd',
+									'format' => 'dd.mm.yyyy',
 									'todayHighlight' => true
 								]
 							])->label(false);?>
@@ -111,9 +111,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 						<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'submit_btn order_submit']) ?>
+						<?= Html::button('Отмена', [ 'class' => 'submit_btn order_submit', 'onclick' => 'window.location.href = "/personal";' ]);?>
 					</div>
 					
-					
+					 
 
 
 					<?php ActiveForm::end(); ?>

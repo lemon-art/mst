@@ -24,10 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
+			'date',
             'phone',
             'type',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+				'class' => \yii\grid\ActionColumn::className(),
+				'template'=>'{delete}',
+			]
         ],
     ]); ?>
     <?php Pjax::end(); ?>

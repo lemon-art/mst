@@ -42,7 +42,7 @@ class RequestSearch extends Request
     public function search($params)
     {
         $query = Request::find();
-
+		$query -> addOrderBy('id DESC');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

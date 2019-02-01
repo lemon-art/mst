@@ -7,7 +7,6 @@ use backend\models\Files;
 /* @var $model app\models\Banks */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Банки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -57,23 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
 									<div class="title ic_tel">Телефоны</div>
 									
 									<div class="block">
-										<div class="box">
-											<div class="text">
-												<p>
-													<b><?=$model->phone?></b>
-												</p>
-												
-												<p><b>8 800 100-77-33</b> — для звонков юридических лиц с телефонов, зарегистрированных в регионах</p>
-											</div>
-										</div>
-
-										<div class="box">
-											<div class="text">
-												<p><b>(495) 788-88-78</b> — для звонков частных лиц из Москвы и Московской обл.</p>
-												
-												<p><b>(495) 755-58-58</b> — для звонков юридических лиц из Москвы и Московской обл.</p>
-											</div>
-										</div>
+									
+										<?=$model->phone?>
+										
 									</div>
 								</div>
 							<?endif;?>

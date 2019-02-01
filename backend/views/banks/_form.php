@@ -35,7 +35,13 @@ use dosamigos\fileupload\FileUpload;
 
     <?= $form->field($model, 'adress')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'phone')->textarea(['rows' => 6]) ?>
+	
+	<?=  $form->field($model, 'phone')->widget(CKEditor::className(),[
+		'editorOptions' => [
+			'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+			'inline' => false, //по умолчанию false
+		],
+	]);?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
