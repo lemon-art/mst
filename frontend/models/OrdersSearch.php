@@ -38,7 +38,7 @@ class OrdersSearch extends Orders
     {
 		
 		$user_id = Yii::$app->user->identity->id;
-		$query =  Orders::find()->with(['services'])->with(['kredit'])->with(['avtokredit'])->with(['ipoteka'])->with(['kreditKards'])->with(['debetCards'])->with(['debet']);
+		$query =  Orders::find()->with(['services'])->with(['kredit'])->with(['apiEvents'])->with(['banks'])->with(['avtokredit'])->with(['ipoteka'])->with(['kreditKards'])->with(['debetCards'])->with(['debet']);
 		$query -> addOrderBy('date DESC');
 		$query -> andFilterWhere([
             'user_id' => $user_id

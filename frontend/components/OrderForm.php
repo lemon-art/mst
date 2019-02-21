@@ -10,6 +10,7 @@ use app\models\Orders;
 use app\models\Kredit;
 use app\models\Ipoteka;
 use app\models\Debet;
+use app\models\Rko;
 use app\models\DebetCards;
 use app\models\Avtokredit;
 use app\models\KreditKards;
@@ -17,6 +18,8 @@ use dektrium\user\models\RegistrationForm;
 use dektrium\user\models\LoginForm;
 use dektrium\user\models\Profile;
 use backend\models\Mailer;
+use common\models\Api;
+use common\models\ApiEvents;
 
 class OrderForm extends Widget {
 
@@ -61,12 +64,11 @@ class OrderForm extends Widget {
 				$formView = 'debet_kards_form';
 				break;	
 			case 7:
-				$orderModel = new Debet();
-				$formView = 'debet_form';
+				$orderModel = new Rko();
+				$formView = 'rko_form';
 				break;	
 				
 		}
-		
 		
 		
 		$orderModel -> service_id = $this->service_id;
@@ -162,6 +164,23 @@ class OrderForm extends Widget {
 				
 				Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
 				//Mailer::sendAdminOrderMessage( 'Новая заявка: ' . $this->service_name, $orderModel );
+				
+				//отправляем заявки в банки
+				$arBanks = Api::GetServiceBanks( $this->service_id );
+				foreach ( $arBanks as $arBank){
+					$objApi = Api::build( $arBank['banks']['code'] );
+					$id_request = $objApi -> Request( $orderModel );
+					
+					$objEvent = new ApiEvents;
+					$objEvent -> order_id 	= $orderModel -> id;
+					$objEvent -> request_id = $id_request;
+					$objEvent -> bank_id 	= $arBank['banks']['id'];
+					$objEvent -> status 	= 'Заявка отправлена';
+					$objEvent -> save();
+				}
+				
+				
+				
 			}
 			else {
 				Yii::$app->session->setFlash('requestOrderFormFalse');

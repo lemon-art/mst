@@ -54,6 +54,9 @@ class ServicesController extends Controller
     {
 		
 		$model = Services::findOne(['code' => $code]);
+		if ( !$model )
+			throw new NotFoundHttpException;
+			
 		$offersModel    = new OffersSearch();
 		$offersProvider = $offersModel->searchByService( $model->id );
 		
@@ -87,6 +90,9 @@ class ServicesController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		
 		$model = Services::findOne(['code' => $code]);
+		if ( !$model )
+			throw new NotFoundHttpException;
+		
 		$offersModel    = new OffersSearch();
 		$offersProvider = $offersModel->searchSpecialByService( $model->id );
 		
@@ -104,15 +110,7 @@ class ServicesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Services();
-			
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -124,15 +122,7 @@ class ServicesController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -144,9 +134,7 @@ class ServicesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
     }
 
     /**

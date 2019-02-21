@@ -5,6 +5,25 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+	'controllerMap' => [
+		'elfinder' => [
+			'class' => 'mihaildev\elfinder\PathController',
+			'access' => ['@'],
+			 'plugin' => [
+                [
+                    'class'=>'mihaildev\elfinder\plugin\Sluggable',
+                    'lowercase' => true,
+                    'replacement' => '-'
+                ]
+            ],
+			'root' => [
+				'baseUrl'=>'',
+                'basePath'=>'@frontend/web',
+				'path' => '/upload',
+				'name' => 'Files'
+			],
+		]
+	],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

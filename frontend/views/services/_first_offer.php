@@ -5,9 +5,9 @@ use backend\models\Files;
 
 				<div class="cont">
 					<div class="img">
-						<a href="/">
+						
 							<img src="<?=Files::getPath($model['image'])?>" alt="<?=$model['name'] ?>">
-						</a>
+						
 					</div>
 
 					<div class="box">

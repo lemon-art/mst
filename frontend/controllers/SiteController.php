@@ -24,6 +24,8 @@ use app\models\Pages;
 use backend\models\Search;
 use dektrium\user\models\Profile;
 use backend\models\Mailer;
+use yii\web\NotFoundHttpException;
+
 /**
  * Site controller
  */
@@ -209,6 +211,17 @@ class SiteController extends Controller
             ]);
         }
     }
+	
+	
+	public function actionTest()
+    {
+		
+	
+		
+		return $this->render('test', [
+            'model' => $output,
+        ]);
+    }
 
     /**
      * Displays about page.
@@ -218,7 +231,10 @@ class SiteController extends Controller
 	public function actionPages( $action )
     {
 		$model = Pages::find()->where(['code' => $action])->one();
-        
+
+		if ( !$model )
+			throw new NotFoundHttpException;
+
 		
 		$reqModel 	   = new Request();
 		

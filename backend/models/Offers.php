@@ -6,6 +6,7 @@ use Yii;
 use backend\models\Banks;
 use backend\models\Services;
 use backend\models\Search;
+use backend\models\Tools;
 
 /**
  * This is the model class for table "offers".
@@ -43,6 +44,28 @@ class Offers extends \yii\db\ActiveRecord
         return $this->hasOne(Services::className(),['id'=>'service_id']);
     }
 	
+	public function afterFind() {
+		$this->min_summ = Tools::numDisplay($this->min_summ);
+		$this->max_summ = Tools::numDisplay($this->max_summ);
+	}
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	}
+	
+	public function beforeSave($insert){
+		if (parent::beforeSave($insert)) {
+	 
+			$arFields = Array('min_summ', 'max_summ');
+			foreach ( $arFields as $field ){
+				$this->$field = Tools::numUpdate($this->$field);
+			}
+
+			return true;
+		}
+		return false;
+	}
+	
 	/*
 	public function afterSave($insert, $changedAttributes){
 		parent::afterSave($insert, $changedAttributes);
@@ -72,7 +95,7 @@ class Offers extends \yii\db\ActiveRecord
     {
         return [
             [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate'], 'required'],
-            [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age', 'main_page'], 'integer'],
+            [['bank_id', 'min_term', 'max_term', 'min_age', 'max_age', 'main_page'], 'integer'],
             [['preview_text'], 'string'],
 			[['special',], 'boolean'],
             [['name'], 'string', 'max' => 255],

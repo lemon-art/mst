@@ -45,7 +45,11 @@ for ( $i = 0; $i < 15; $i++){
 <div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
-							
+							<?
+							if ( isset($_COOKIE["actionpay"]) ){
+								echo '<img src="http://apypp.com/ok/18610.png?actionpay='.$_COOKIE["actionpay"].'&apid='.$model->id.'" width="1px" height="1px"/>';
+							}
+							?>						
 <?
 $js = <<< JS
 jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
@@ -474,6 +478,7 @@ $(document).ready(function(){
 					}
 				);
 				if (tmp.length == 0) {
+					$('.actions').hide();
 					$('#order-form').yiiActiveForm('submitForm');
 					$('.main__under_title').hide();
 					$('#requestOrderFormPjax').html('<p>Ваша заявка принята. Мы свяжемся с вами в ближайшее время.</p>');
@@ -482,6 +487,27 @@ $(document).ready(function(){
 
 		},
 
+	});
+	
+	$('body').on( 'change', '.form-group.required select', function(e){
+		
+		var el = $(this);
+		validateField ( el );
+	
+	});
+	
+	$( ".form-group.required input" ).keyup(function( ) {
+		
+		var el = $(this);
+		validateField ( el );
+	
+	});
+	
+	$( ".form-group.required input" ).change(function( ) {
+		
+		var el = $(this);
+		validateField ( el );
+	
 	});
 	
 	function validateField ( el ){
@@ -497,7 +523,7 @@ $(document).ready(function(){
 		}
 		
 		$.ajax({
-		    url: '/orders/validate',
+		    url: '/orders/validate/',
 		    type: 'post',
 		    data: {'field': field, 'value': value, 'service_id': service_id},
 		    success: function (data) {

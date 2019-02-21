@@ -9,7 +9,7 @@ class Mailer extends Component
 {
     public $viewPath = 'backend/views/mail';
 
-    public $sender = 'mst-mwi@yandex.ru';
+    public $sender = 'e-hostes@marketvibor.ru';
 
     public $mailerComponent;
 
@@ -120,7 +120,7 @@ class Mailer extends Component
 
         return $mailer->compose(['html' => $view, 'text' => $view], $params)
             ->setTo($to)
-            ->setFrom('mst-mwi@yandex.ru')
+            ->setFrom('e-hostes@marketvibor.ru')
             ->setSubject($subject)
             ->send();
     }

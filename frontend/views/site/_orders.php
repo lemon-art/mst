@@ -2,6 +2,7 @@
 // YOUR_APP/views/list/_list_item.php
 //use backend\models\Files;
 use yii\helpers\Html;
+use backend\models\Files;
 ?>
 
 
@@ -12,7 +13,7 @@ use yii\helpers\Html;
 
 									<div class="more">Подробнее</div>
 								</div>
-
+								
 							<?	
 								switch ( $model['service_id'] ) {
 								case 1:?>
@@ -228,63 +229,39 @@ use yii\helpers\Html;
 							?>	
 								
 							</a>
+							<?if ( $model['apiEvents'] ):?>
+								<div class="block_none on">
+									<div class="table_request">
+										<table>
+											<thead>
+												<tr>
+													<th></th>
+													<th>Предлогаемая ставка, %</th>
+													<th>Ежемесячный платеж, руб.</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<?foreach ( $model['apiEvents'] as $arEvent ):?>
+												
+													<tr>
+														<td class="td_img">
+															<img src="<?=Files::getPath($model['banks']->image)?>" alt="<?=$model['banks']->name?>">
+														</td>
+														<td class="small" data-label="%"></td>
+														<td data-label="руб./мес."></td>
+														<td class="td_more">
+															<?=$arEvent['status']?>
+														</td>
+													</tr>
+													
+												<?endforeach;?>
+												
+											</tbody>
+										</table>
+									</div>
 
-							<div class="block_none on">
-								<div class="table_request">
-									<table>
-										<thead>
-											<tr>
-												<th></th>
-												<th>Предлогаемая ставка, %</th>
-												<th>Ежемесячный платеж, руб.</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="td_img">
-													<img src="images/partner4.png" alt="">
-												</td>
-												<td class="small" data-label="%">11.5</td>
-												<td data-label="руб./мес.">25 238,25</td>
-												<td class="td_more">
-													<a href="#modal_call" class="modal_link">Выбрать</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="td_img">
-													<img src="images/partner1.png" alt="">
-												</td>
-												<td class="small" data-label="%">11.5</td>
-												<td data-label="руб./мес.">25 238,25</td>
-												<td class="td_more">
-													<a href="#modal_call" class="modal_link">Выбрать</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="td_img">
-													<img src="images/partner2.png" alt="">
-												</td>
-												<td class="small" data-label="%">11.5</td>
-												<td data-label="руб./мес.">25 238,25</td>
-												<td class="td_more">
-													<a href="#modal_call" class="modal_link">Выбрать</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="td_img">
-													<img src="images/partner3.png" alt="">
-												</td>
-												<td class="small" data-label="%">11.5</td>
-												<td data-label="руб./мес.">25 238,25</td>
-												<td class="td_more">
-													<a href="#modal_call" class="modal_link">Выбрать</a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+									<div class="more_hide">Скрыть</div>
 								</div>
-
-								<div class="more_hide">Скрыть</div>
-							</div>
+							<?endif;?>
 						</div>

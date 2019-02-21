@@ -9,8 +9,8 @@ use yii\helpers\Html;
 <p><b>Отчество</b>: <?=$model->second_name?></p>
 <p><b>Телефон</b>: <?=$model->phone?></p>
 <p><b>Email</b>: <?=$model->email?></p>
-<p><b>Сумма вклада</b>: <?=$model->summ?></p>
-<p><b>На какой срок (месяцев)</b>: <?=$model->term?></p>
+<p><b>Организационно правовая форма</b>: <?=$model->form?></p>
+<p><b>ИНН организации</b>: <?=$model->inn?></p>
 <p><b>Город получения</b>: <?=$model->city?></p>
 
 

@@ -13,6 +13,8 @@ use app\models\DebetCards;
 use backend\models\Settings;
 use backend\models\Mailer;
 use dektrium\user\models\User;
+use common\models\ApiEvents;
+use app\models\Banks;
 /**
  * This is the model class for table "orders".
  *
@@ -59,6 +61,17 @@ class Orders extends \yii\db\ActiveRecord
 	public function getServices()
     {
         return $this->hasOne(Services::className(),['id'=>'service_id']);
+    }
+	
+	
+	public function getApiEvents()
+    {
+        return $this->hasMany(ApiEvents::className(),['order_id'=>'id']);
+    }
+	
+	public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id'])->via('apiEvents');;
     }
 	
 	public function getKredit()

@@ -32,13 +32,10 @@ use backend\models\Files;
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('text');?></label>
 							<?=  $form->field($model, 'text')->widget(CKEditor::className(),[
-								'editorOptions' => [
-									'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-									'inline' => false, //по умолчанию false
-									'editorOptions' => ElFinder::ckeditorOptions('elfinder', ['path' => 'web']),
-								],
+								'editorOptions' => ElFinder::ckeditorOptions('elfinder')
 							])->label(false);?>
 						</div>
+						
 
 						
 						<div class="form-group">

@@ -8,15 +8,15 @@ use backend\models\Files;
 
 
 
-					<div class="item_head">
+					<!--<div class="item_head">
 						<div class="box small"><span>№</span> Банк</div>
 
 						<div class="box small">Ставка</div>
-                        <?if ( $model->id == 1):?><div class="box small">Сумма кредита</div><?endif;?>
+                        <?//if ( $model->id == 1):?><div class="box small">Сумма кредита</div><?//endif;?>
 						<div class="box small">Срок</div>
 
 						<div class="box ">Преимущества</div>
-					</div>
+					</div>-->
 
 					
 
@@ -33,9 +33,10 @@ use backend\models\Files;
 										
 
 										<div class="ic_bank">
-
-											<img src="<?=Files::getPath($model->banks->image)?>" alt="<?=$model['name']?>">
-
+											
+											<?if ( $model->banks->image ):?>
+												<img src="<?=Files::getPath($model->banks->image)?>" alt="<?=$model['name']?>">
+											<?endif;?>
 											<?=$model['name']?>
 
 										</div>

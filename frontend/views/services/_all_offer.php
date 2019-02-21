@@ -7,9 +7,9 @@ use yii\helpers\Html;
 
 					<div class="item">
 						<div class="img">
-							<a href="<?=$model['offerUrl'] ?>">
+							
 								<img src="<?=Files::getPath($model['image'])?>" alt="<?=$model['name'] ?>">
-							</a>
+							
 						</div>
 
 						<div class="box">

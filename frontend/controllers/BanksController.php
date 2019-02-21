@@ -54,7 +54,9 @@ class BanksController extends Controller
     public function actionView($code)
     {
         $model = Banks::findOne(['code' => $code]);
-       
+       	if ( !$model )
+			throw new NotFoundHttpException;
+	   
 	   return $this->render('view', [
             'model' => $model,
         ]);

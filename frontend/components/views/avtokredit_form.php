@@ -50,6 +50,11 @@ for ( $i = 0; $i < 15; $i++){
 								scrollTop: $("#completed").offset().top - 60
 							}, 1000);
 							</script>
+							<?
+							if ( isset($_COOKIE["actionpay"]) ){
+								echo '<img src="http://apypp.com/ok/18610.png?actionpay='.$_COOKIE["actionpay"].'&apid='.$model->id.'" width="1px" height="1px"/>';
+							}
+							?>
 						</div>
 					<?php elseif (Yii::$app->session->hasFlash('requestOrderFormFalse')) : ?>
 						<div class="alert alert-warning">
@@ -431,6 +436,7 @@ $(document).ready(function(){
 					}
 				);
 				if (tmp.length == 0) {
+					$('.actions').hide();
 					$('#order-form').yiiActiveForm('submitForm');
 					$('.main__under_title').hide();
 					$('#requestOrderFormPjax').html('<div class="alert"><p>Ваша заявка принята. Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a></p></div>');
@@ -439,6 +445,27 @@ $(document).ready(function(){
 
 		},
 
+	});
+	
+	$('body').on( 'change', '.form-group.required select', function(e){
+		
+		var el = $(this);
+		validateField ( el );
+	
+	});
+	
+	$( ".form-group.required input" ).keyup(function( ) {
+		
+		var el = $(this);
+		validateField ( el );
+	
+	});
+	
+	$( ".form-group.required input" ).change(function( ) {
+		
+		var el = $(this);
+		validateField ( el );
+	
 	});
 	
 	function validateField ( el ){
@@ -454,7 +481,7 @@ $(document).ready(function(){
 		}
 		
 		$.ajax({
-		    url: '/orders/validate',
+		    url: '/orders/validate/',
 		    type: 'post',
 		    data: {'field': field, 'value': value, 'service_id': service_id},
 		    success: function (data) {

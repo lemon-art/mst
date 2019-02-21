@@ -49,6 +49,12 @@ use yii\widgets\Pjax;
 										<?= $form->field($model, 'phone')->textInput(['type' => 'tel', 'class' => 'input', 'placeholder' => '+7 (___)-___-__-__'])->label(false);?>
 									</div>
 								</div>
+
+								<div class="line_flex">
+									<div class="checkbox agree form-group field-request-agree required">
+										<input type="checkbox" id="request-agree" class="form-control" name="request[agree]" value="1" uncheckvalue="1" checked aria-required="true"><label class="control-label" for="ipoteka-agree">Я даю свое согласие на обработку персональных данных</label><div class="help-block"></div>
+									</div>
+								</div>
 								
 								<?= $form->field($model, 'type')->textInput(['type' => 'hidden', 'value' => 'indexPage'])->label(false);?>
 

@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                     <div class="credit_filter_col">
-                        <a onclick="filterOffer();">Подобрать</a>
+                        <a onclick="filterOffer(); gotoform();" href="#table_profitably">Подобрать</a>
                     </div>
                 </div>
                 <?else:?>
@@ -104,6 +104,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?endif;?>
 				<div class="table_profitably">
 
+
+					<div class="item_head">
+						<div class="box small"><span>№</span> Банк</div>
+
+						<div class="box small">Ставка</div>
+                        <?if ( stristr($_SERVER['REQUEST_URI'], 'services/credit') ):?><div class="box small">Сумма кредита</div><?endif;?>
+						<div class="box small">Срок</div>
+
+						<div class="box ">Преимущества</div>
+					</div>
 
 
 						<?

@@ -46,6 +46,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
 			'enableStrictParsing' => false,
+			'suffix' => '/',
             'rules' => [
                 '' => 'site/index',
 				'<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
@@ -59,6 +60,7 @@ return [
 				'reviews' => 'reviews/index',
 				'reviews/<id>' => 'reviews/view',
 				'personal' => 'site/personal',
+				'test' => 'site/test',
 				'search' => 'site/search',
 				'<action:(.*)>' => 'site/pages',
             ],

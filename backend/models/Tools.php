@@ -16,6 +16,13 @@ class Tools
 
 	}
 	
+	public function numDisplay( $value ) {
+		
+		$tmp = htmlentities($value);
+		return number_format( $tmp, 0, ' ', ' ');
+
+	}
+	
 	
 	public function true_wordform($num, $form_for_1, $form_for_2, $form_for_5){
 	

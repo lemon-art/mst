@@ -10,7 +10,7 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 	
-	<div class="bank">
+	<div class="bank reviews-page">
 					<div class="logo_bank">
 						<?if ( $model->image ):?>
 							<img src="<?=Files::getPath($model->image)?>" alt="<?=$model->name?>">

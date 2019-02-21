@@ -7,6 +7,7 @@ use app\models\Orders;
 use app\models\Ipoteka;
 use app\models\Kredit;
 use app\models\Debet;
+use app\models\Rko;
 use app\models\Avtokredit;
 use app\models\KreditKards;
 use app\models\DebetCards;
@@ -52,7 +53,7 @@ class OrdersController extends Controller
 					$model = new DebetCards();
 					break;	
 				case 7:
-					$model = new Debet();
+					$model = new Rko();
 					break;	
 			}
 			

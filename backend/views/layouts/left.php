@@ -25,6 +25,7 @@
                     ['label' => 'Настройки', 'icon' => 'gear', 'url' => ['/settings'],
 						'items' => [
 							['label' => 'Пользователи', 'icon' => 'user-o', 'url' => ['/users'],],
+							['label' => 'Интеграции API', 'icon' => 'asterisk', 'url' => ['/api'],],
 							['label' => 'Настройки сайта', 'icon' => 'dashboard', 'url' => ['/settings'],],
 						]
 					],

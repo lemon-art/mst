@@ -26,16 +26,6 @@ return [
         //    'class' => 'dektrium\rbac\Module',
         // ],
 	],
-	'controllerMap' => [
-		'elfinder' => [
-			'class' => 'mihaildev\elfinder\PathController',
-			'access' => ['@'],
-			'root' => [
-				'path' => 'files',
-				'name' => 'Files'
-			],
-		]
-	],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -60,6 +50,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+			'suffix' => '/',
             'rules' => [
                 '' => 'site/index',
 				'<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',

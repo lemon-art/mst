@@ -41,12 +41,12 @@ use backend\models\Files;
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_summ');?></label>
-							<?= $form->field($model, 'min_summ')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+							<?= $form->field($model, 'min_summ')->textInput(['maxlength' => true, 'class' => 'form-control summa'])->label(false);?>
 						</div>
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_summ');?></label>
-							<?= $form->field($model, 'max_summ')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+							<?= $form->field($model, 'max_summ')->textInput(['maxlength' => true, 'class' => 'form-control summa'])->label(false);?>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_term');?></label>
