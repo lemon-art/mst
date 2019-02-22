@@ -29,6 +29,9 @@ class Offers extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+	public $min_summ_display;
+	public $max_summ_display;
+	
     public static function tableName()
     {
         return 'offers';
@@ -56,10 +59,6 @@ class Offers extends \yii\db\ActiveRecord
 	public function beforeSave($insert){
 		if (parent::beforeSave($insert)) {
 	 
-			$arFields = Array('min_summ', 'max_summ');
-			foreach ( $arFields as $field ){
-				$this->$field = Tools::numUpdate($this->$field);
-			}
 
 			return true;
 		}

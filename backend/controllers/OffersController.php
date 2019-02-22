@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\Files;
 use yii\web\UploadedFile;
+use backend\models\Tools;
 /**
  * OffersController implements the CRUD actions for Offers model.
  */
@@ -74,8 +75,16 @@ class OffersController extends Controller
 			if ( $file ){
 				$model->image = $upFile -> upload( $file );
 			}
+			
+			$arFields = Array('min_summ', 'max_summ');
+			foreach ( $arFields as $field ){
+				$model->$field = Tools::numUpdate($model->$field);
+			}
 
 			$model->save();
+		
+			
+		
 		
             return $this->redirect(['index']);
         }
@@ -113,6 +122,12 @@ class OffersController extends Controller
 			elseif( $image ) {
 				$model->image = $image;
 			}
+			
+			$arFields = Array('min_summ', 'max_summ');
+			foreach ( $arFields as $field ){
+				$model->$field = Tools::numUpdate($model->$field);
+			}
+			
 			$model->save();
             return $this->redirect(['index']);
         }

@@ -33,6 +33,7 @@ use yii\widgets\Pjax;
 							$('#request-name').val('');
 							$('#request-phone').val('');
 						}
+						yaCounter52131253.reachGoal('obr_svyaz');
 					</script>
 					<?Yii::$app->session->setFlash('requestPopupFormSubmitted', 'N');?>
 				<?php elseif (Yii::$app->session->hasFlash('requestPopupFormFalse')) : ?>

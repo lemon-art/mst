@@ -55,6 +55,7 @@ for ( $i = 0; $i < 15; $i++){
 <?
 $js = <<< JS
 jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
+yaCounter52131253.reachGoal('credit');
 JS;
 $this->registerJs($js);
 ?>	

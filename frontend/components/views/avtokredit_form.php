@@ -49,6 +49,7 @@ for ( $i = 0; $i < 15; $i++){
 							$('html, body').animate({
 								scrollTop: $("#completed").offset().top - 60
 							}, 1000);
+							yaCounter52131253.reachGoal('avtokredit');
 							</script>
 							<?
 							if ( isset($_COOKIE["actionpay"]) ){

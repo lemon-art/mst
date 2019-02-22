@@ -12,7 +12,9 @@ class Tools
 	public function numUpdate( $value ) {
 		
 		$tmp = htmlentities($value);
-		return str_replace("&nbsp;",'',$tmp);
+		$tmp = str_replace("&nbsp;",'',$tmp);
+		$tmp = str_replace(" ",'',$tmp);
+		return $tmp;
 
 	}
 	
