@@ -97,7 +97,7 @@ $(function(){
 
 		$.ajax({
 
-		    url: '/orders/validate',
+		    url: '/orders/validate/',
 
 		    type: 'post',
 

@@ -53,7 +53,8 @@ for ( $i = 0; $i < 15; $i++){
 <?
 $js = <<< JS
 jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
-yaCounter52131253.reachGoal('depozit');
+ym(52131253, 'reachGoal', 'depozit');
+ga('send', 'event', 'submit', 'depozit');
 JS;
 $this->registerJs($js);
 ?>	

@@ -94,7 +94,7 @@ class Mailer extends Component
             $admin_email,
             $subject,
             'callback',
-            ['model' => $model, 'service' => $service_name]
+            ['model' => $model]
         );
 		
 
