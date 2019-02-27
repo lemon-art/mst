@@ -31,7 +31,7 @@ if (isset($_GET["actionpay"])){
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="SKYPE_TOOLBAR" content ="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
-	
+	<meta name="robots" content="noindex, nofollow" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -227,29 +227,7 @@ if (isset($_GET["actionpay"])){
 			</section>
 			
 		<?else:?>
-			<section class="section_first">
-				<div class="cont">
-					<?=
-					Breadcrumbs::widget(
-						[
-							'homeLink' => ['label' => 'Главная', 'url' => '/'],
-							'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-							'tag' => 'div',
-							'options' => [
-								'class' => 'breadcrumbs',//этот класс стоит по умолчанию
-								'style' => '',
-								'itemscope' => '',
-								'itemtype' => 'http://schema.org/BreadcrumbList'
-							],
-							'itemTemplate' => '<span itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">{link}</span> <span class="step"></span>',
-							'activeItemTemplate' => "{link}",
-						]
-					) ?>
 
-					<div class="title_inner"><?= Html::encode($this->title) ?></div>
-
-					
-		
 			<?= $content ?>
 		<?endif;?>
 		

@@ -83,7 +83,7 @@ class Debet extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'term_display', 'city', 'purpose', 'profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email'];
+		return ['summ_display', 'term_display', 'city', 'purpose', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
 	}
 
     /**

@@ -30,7 +30,7 @@ class Services extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'code', 'sort'], 'required'],
-            [['text_main', 'preview_text_main', 'short_name', 'top_text', 'advantages', 'scheme'], 'string'],
+            [['text_main', 'preview_text_main', 'short_name', 'top_text', 'seo_text', 'advantages', 'scheme', 'title', 'description'], 'string'],
             [['name', 'title_main', 'code'], 'string', 'max' => 255],
         ];
     }
@@ -54,6 +54,9 @@ class Services extends \yii\db\ActiveRecord
 		    'top_text' => 'Верхний текст на странице',
 			'advantages' => 'Преимущества',
 			'scheme' => 'Схема',
+			'seo_text' => 'Сео текст',
+			'title' => 'title',
+			'description' => 'description',
         ];
     }
 	

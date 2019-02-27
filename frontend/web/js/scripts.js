@@ -72,6 +72,7 @@ $(function(){
 
 
 
+
 	function validateField ( el, showError = 1 ){
 
 	
@@ -329,7 +330,15 @@ $(function(){
 
 	});
 
-	
+	jQuery('body').on( 'click', '.show_more', function(){
+
+
+		$(this).hide();
+		$('.more_info').show();
+		return false;
+		
+
+	});
 
   
 
@@ -1059,7 +1068,12 @@ $(function(){
 
 		boxParent.find('.more').text('Подробнее')
 
-	})
+	});
+	
+	$('.offer_link').click(function(e){
+
+		window.open( $(this).attr('href'), "_blank");
+	});
 
 
 

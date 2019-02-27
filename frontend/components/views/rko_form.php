@@ -109,7 +109,12 @@ $this->registerJs($js);
 								
 								
 							</div>	
-
+							<div class="line_flex">
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('snils');?></label>
+									<?= $form->field($model, 'snils')->textInput(['maxlength' => true, 'placeholder' => "Введите номер СНИЛС", 'class' => 'input required '])->label(false);?>
+								</div>
+							</div>	
 							
 							
 						</section>
@@ -191,6 +196,78 @@ $this->registerJs($js);
 								
 								<?endif;?>
 							</div>
+						</section>
+						<h3 class="hidden">Паспортные данные</h3>
+
+						<section class="step2">
+							<h4 class="title">Паспортные данные</h4>
+							
+							<?if ( Yii::$app->user->isGuest || !$profileUser->sn ):?>
+							
+								<div class="line_flex">
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('bithday');?></label>
+										<?= $form->field($model, 'bithday')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input date'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+									<label><?=$model->getAttributeLabel('address');?></label>
+											<?= $form->field($model, 'address')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('sn');?></label>
+										<?= $form->field($model, 'sn')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input sn'])->label(false);?>
+									</div>
+									
+								</div>
+								
+
+							
+							<?else:?>
+							
+								<div class="line_flex">
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('bithday');?></label>
+										<?= $form->field($model, 'bithday', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->bithday,  'placeholder' => "", 'class' => 'input date'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('address');?></label>
+										<?= $form->field($model, 'address', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->address, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('sn');?></label>
+										<?= $form->field($model, 'sn', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->sn, 'placeholder' => "", 'class' => 'input sn'])->label(false);?>
+									</div>
+									
+								</div>
+
+							
+							
+							<?endif;?>
+							
+							<div class="line_flex">
+							
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('sex');?></label>
+
+									<div class="selectWrap"> 
+									 
+										<?=$form->field($model, 'sex')->dropDownList([
+											''   => 'Выберите',
+											'M' => 'Муж.',
+											'F' => 'Жен.'
+										], 
+										['class' => 'required'])->label(false);?> 
+									</div>
+								</div>
+							
+							</div>
+							
 						</section>
 					</div>
 					

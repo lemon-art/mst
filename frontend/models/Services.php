@@ -21,11 +21,24 @@ class Services extends \yii\db\ActiveRecord
      */
 	 
 	public $preview_picture;
+	public $seo_text_preview;
+	public $seo_text_detail;
 	 
     public static function tableName()
     {
         return 'services';
     }
+	
+	
+	public function afterFind() {
+	
+		if ( $this->seo_text ){
+			$arSeoText = explode('#MORE#', $this->seo_text);
+			$this->seo_text_preview = $arSeoText['0'];
+			if ( isset($arSeoText['1']))
+				$this->seo_text_detail  = $arSeoText['1'];
+		}
+	}
 
     /**
      * {@inheritdoc}

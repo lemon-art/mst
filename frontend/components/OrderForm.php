@@ -130,6 +130,9 @@ class OrderForm extends Widget {
 						$bithday = \DateTime::createFromFormat('d.m.Y', $orderModel -> bithday);
 						$profileUser -> bithday = $bithday->format('Y-m-d');
 						
+					}
+					
+					if ( isset( $orderModel -> issuedate )){
 						$issuedate = \DateTime::createFromFormat('d.m.Y', $orderModel -> issuedate);
 						$profileUser -> issueDate = $issuedate->format('Y-m-d');
 						

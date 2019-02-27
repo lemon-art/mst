@@ -219,7 +219,7 @@ class SiteController extends Controller
 	
 		
 		return $this->render('test', [
-            'model' => $output,
+           // 'model' => $output,
         ]);
     }
 

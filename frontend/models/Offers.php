@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use backend\models\Tools;
 
 use Yii;
 use app\models\Banks;
@@ -27,7 +28,7 @@ class Offers extends \yii\db\ActiveRecord
      */
 	 
 	public $offerUrl;
-	
+
 	 
     public static function tableName()
     {
@@ -41,6 +42,17 @@ class Offers extends \yii\db\ActiveRecord
 	
 	public function afterFind() {
 		$this->offerUrl = $this->id;
+		
+		$arFields = Array('min_summ', 'max_summ', 'depozit_summ', 'min_summ_kreditcard', 'max_summ_kreditcard');
+		foreach ( $arFields as $field ){
+			if ( $this->$field ) {
+				$this->$field = Tools::numDisplay($this->$field);
+			}
+		
+		}
+		
+
+		
 	}
 
     /**
@@ -50,7 +62,7 @@ class Offers extends \yii\db\ActiveRecord
     {
         return [
             [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate','valut'], 'required'],
-            [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age'], 'integer'],
+            [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age', 'depozit_term', 'depozit_summ'], 'integer'],
             [['preview_text'], 'string'],
             [['name'], 'string', 'max' => 255],
             [['valut'], 'string', 'max' => 255],
@@ -75,7 +87,16 @@ class Offers extends \yii\db\ActiveRecord
             'max_age' => 'Максимальная возраст',
             'preview_text' => 'Текст анонса',
 			'service_id' => 'Услуга',
-            'valut'=>'Код валют'
+            'depozit_term'=>'Срок депозита',
+			'depozit_summ'=>'Мин. сумма',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
+			'valut'=>'Код валют',
         ];
     }
 }

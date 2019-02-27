@@ -74,7 +74,7 @@ class Avtokredit extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'first_payment', 'income', 'confirmation_income', 'term_display', 'condition', 'type', 'kasko', 'treid_in', 'profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email'];
+		return ['summ_display', 'first_payment', 'income', 'confirmation_income', 'term_display', 'condition', 'type', 'kasko', 'treid_in', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
 	}
 	
     /**

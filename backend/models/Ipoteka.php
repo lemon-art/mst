@@ -85,7 +85,7 @@ class Ipoteka extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'term_display', 'initial_payment', 'type', 'purpose', 'city', 'confirmation_income', 'summ_income', 'profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email', 'profile.bithday', 'profile.birthPlace', 'profile.sn', 'profile.issueDate', 'profile.issueCode', 'profile.issuer', 'profile.address', 'profile.registrationDate', 'profile.registrationPhone'];
+		return ['summ_display', 'term_display', 'initial_payment', 'type', 'purpose', 'city', 'confirmation_income', 'summ_income', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email', 'profile.bithday', 'profile.birthPlace', 'profile.sn', 'profile.issueDate', 'profile.issueCode', 'profile.issuer', 'profile.address', 'profile.registrationDate', 'profile.registrationPhone'];
 	}
 	
 	

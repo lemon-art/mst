@@ -27,9 +27,9 @@ class OrdersController extends Controller
     {
 		$post = Yii::$app->request->post();
 		
-		//$post['service_id'] = 1;
-		//$post['field'] = 'kredit-last_name';
-		//$post['value'] = '';
+		//$post['service_id'] = 7;
+		//$post['field'] = 'rko-inn';
+		//$post['value'] = '123';
 
 		if ( $post['service_id'] ){
 		
@@ -58,6 +58,7 @@ class OrdersController extends Controller
 			}
 			
 			$arField = explode('-', $post['field']);
+
 			$model -> $arField[1] = $post['value'];
 			$arValidate = ActiveForm::validate($model, $arField[1]);
 			return $this->renderPartial('validate', [

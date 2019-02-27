@@ -61,7 +61,7 @@ class DebetCards extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'residue', 'type', 'currency', 'system', 'percent_residue', 'free_card', 'cash_world', '3d_secure', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles', 'profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email'];
+		return ['summ_display', 'residue', 'type', 'currency', 'system', 'percent_residue', 'free_card', 'cash_world', '3d_secure', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
 	}
 
     /**

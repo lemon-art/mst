@@ -11,17 +11,23 @@ class Tools
 	
 	public function numUpdate( $value ) {
 		
-		$tmp = htmlentities($value);
-		$tmp = str_replace("&nbsp;",'',$tmp);
-		$tmp = str_replace(" ",'',$tmp);
-		return $tmp;
+			$tmp = htmlentities($value);
+			$tmp = str_replace("&nbsp;",'',$tmp);
+			$tmp = str_replace(" ",'',$tmp);
+			$tmp = preg_replace('/\s/', '', $tmp);
+			return $tmp;
 
 	}
 	
 	public function numDisplay( $value ) {
 		
-		$tmp = htmlentities($value);
-		return number_format( $tmp, 0, ' ', ' ');
+		if ( $value ){
+			$tmp = htmlentities($value);
+			return number_format( (int)$tmp, 0, ' ', ' ');
+		}
+		else {
+			return false;
+		}
 
 	}
 	

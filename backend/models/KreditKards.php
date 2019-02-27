@@ -65,7 +65,7 @@ class KreditKards extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'income', 'confirmation_income', 'profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email'];
+		return ['summ_display', 'income', 'confirmation_income', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
 	}
 	
 

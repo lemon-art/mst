@@ -2,6 +2,7 @@
 
 namespace app\models;
 use dektrium\user\models\User;
+use common\models\DataValidate;
 use Yii;
 
 /**
@@ -66,21 +67,69 @@ class Rko extends \yii\db\ActiveRecord
         return [
 	
 			[['email'], 'email', 'message'=>'Введите корректный email'],
-            [['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn'], 'required', 'message'=>'Заполните поле'],
+            [['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn', 'snils', 'bithday', 'address', 'sn', 'sex'], 'required', 'message'=>'Заполните поле'],
             [['id',  'service_id', 'user_id', 'status'], 'integer'],
             [['date'], 'safe'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
             [['name', 'last_name', 'second_name', 'city'], 'string', 'max' => 255],
 			[['email'], 'validateEmail'],
+			[['inn'], 'validateInn'],
+			[['bithday'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
+			[['bithday'], 'validateDate'], 
+			[['snils'], 'validateSnils'],
 			
         ];
+    }
+	
+	public function validateDate($attribute, $params) {
+	
+		$date0 = \DateTime::createFromFormat('d.m.Y', '01.01.1930');
+		$date1 = \DateTime::createFromFormat('d.m.Y', $this->$attribute);
+		$date2 = \DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
+		if ( $date2<=$date1 || $date0>=$date1 ) {
+			$this->addError($attribute, 'Введите реальную дату');
+		}
+		elseif( $attribute == 'bithday' ){
+		
+			$interval = $date1->diff($date2);
+			$age = $interval->format('%y');
+			if ( $age < 18 ){
+				$this->addError($attribute, 'Вам должно быть больше 18 лет!');
+			}
+		}
+		
+		
+		
     }
 	
 	
 	public function validateEmail($attribute, $params) {
 		
+		
+		
 		if ( Yii::$app->user->isGuest && User::getUserByEmail( $this->$attribute ) ){
 			$this->addError($attribute, 'Пользователь с таким email уже существует. Авторизуйтесь, пожалуйста.');
+		}
+
+	}
+	
+	
+	public function validateInn($attribute, $params) {
+		
+		$resiltValidate = DataValidate::validateInn( $this->$attribute );
+		
+		if ( !$resiltValidate['result'] ){
+			$this->addError($attribute, $resiltValidate['error']);
+		}
+
+	}
+	
+	public function validateSnils($attribute, $params) {
+		
+		$resiltValidate = DataValidate::validateSnils( $this->$attribute );
+		
+		if ( !$resiltValidate['result'] ){
+			$this->addError($attribute, $resiltValidate['error']);
 		}
 
 	}
@@ -104,10 +153,21 @@ class Rko extends \yii\db\ActiveRecord
             'email' => 'Email',
             'form' => 'Организационно правовая форма',
             'inn' => 'ИНН организации',
+			'snils' => 'СНИЛС',
             'city' => 'Населенный пункт',
             'service_id' => 'Service ID',
             'user_id' => 'User ID',
             'status' => 'Status',
+			'bithday' => 'Дата рождения',
+			'birthplace' => 'Место рождения',
+			'sn' => 'Номер паспорта',
+			'sex' => 'Пол',
+			'issuedate' => 'Дата выдачи',
+			'issuecode' => 'Код подразделения',
+			'issuer' => 'Кем выдан',
+			'address' => 'Адрес регистрации (до дома)',
+			'registrationdate' => 'Дата регистрации',
+			'registrationphone' => 'Телефон по месту регистрации',
             'agree' => 'Я даю свое согласие на обработку персональных данных'
         ];
     }

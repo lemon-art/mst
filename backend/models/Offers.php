@@ -48,8 +48,15 @@ class Offers extends \yii\db\ActiveRecord
     }
 	
 	public function afterFind() {
-		$this->min_summ = Tools::numDisplay($this->min_summ);
-		$this->max_summ = Tools::numDisplay($this->max_summ);
+	
+		$arFields = Array('min_summ', 'max_summ', 'depozit_summ', 'min_summ_kreditcard', 'max_summ_kreditcard');
+		foreach ( $arFields as $field ){
+			if ( $this->$field ) {
+				$this->$field = Tools::numDisplay($this->$field);
+			}
+		
+		}
+
 	}
 	
 	public function afterSave($insert, $changedAttributes){
@@ -93,9 +100,9 @@ class Offers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate'], 'required'],
+            [['bank_id', 'service_id', 'name'], 'required'],
             [['bank_id', 'min_term', 'max_term', 'min_age', 'max_age', 'main_page'], 'integer'],
-            [['preview_text'], 'string'],
+            [['preview_text', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_summ_kreditcard', 'max_summ_kreditcard', 'link', 'rate', 'depozit_term', 'depozit_summ', 'initial_payment', 'grace_period', 'grace_period', 'residue', 'cash_back', 'maintenance_cost', 'rko_service', 'rko_open'], 'safe'],
 			[['special',], 'boolean'],
             [['name'], 'string', 'max' => 255],
             //[['valut'], 'string', 'max' => 255],
@@ -123,8 +130,19 @@ class Offers extends \yii\db\ActiveRecord
 			'special'    => 'Спецпредложение',
 			'main_page'    => 'Отображать на главной',
 			'image'    => 'Картинка',
-			'sort'    => 'Сортировка'
-            //'valut' =>'Код валют'
+			'sort'    => 'Сортировка',
+            'depozit_term'=>'Срок депозита',
+			'depozit_summ'=>'Мин. сумма',
+			'initial_payment'=>'Первоначальный взнос',
+			'grace_period' => 'Льготный период',
+			'residue'    => 'Процент на остаток',
+			'cash_back'    => 'Cash back',
+			'maintenance_cost'    => 'Стоимость обслуживания',
+			'link' => 'Ссылка на сайт банка(предложения)',
+			'min_summ_kreditcard' => 'Сумма кредита (мин)',
+			'max_summ_kreditcard' => 'Сумма кредита (макс)',
+			'rko_service' => 'Обслуживание',
+			'rko_open' => 'Открытие счета'
         ];
     }
 }

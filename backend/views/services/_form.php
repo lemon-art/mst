@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 use kartik\date\DatePicker;
 use dosamigos\fileupload\FileUpload;
 use backend\models\Files;
@@ -79,10 +80,24 @@ use backend\models\Files;
 			'inline' => false, //по умолчанию false
 		],
 	]);?>
-
-    <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
+	
+	<?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 	
 	<?= $form->field($model, 'sort')->textInput(['maxlength' => true]) ?>
+	
+	<hr>
+	<h2>СЕО</h2>
+	
+	<div class="form-group">
+		<label for="exampleInputEmail1"><?=$model->getAttributeLabel('seo_text');?></label>
+		<?=  $form->field($model, 'seo_text')->widget(CKEditor::className(),[
+			'editorOptions' => ElFinder::ckeditorOptions('elfinder')
+		])->label(false);?>
+	</div>
+
+	<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+	
+	<?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
 	 
 	<hr>

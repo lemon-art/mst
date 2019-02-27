@@ -3,7 +3,7 @@ namespace common\models;
 use Yii;
 use backend\models\Banks;
 use common\models\Absolute;
-//use common\models\Tochka-bank;
+use common\models\Tochka_bank;
 /**
  * This is the model class for table "api".
  *
@@ -27,7 +27,7 @@ class Api extends \yii\db\ActiveRecord
 	public static function build( $bank_name )
     {
 	
-		
+		$bank_name = str_replace('-', '_', $bank_name);
 		$product = "common\models\\" . ucfirst($bank_name);
         if (class_exists($product)) {
             return new $product;

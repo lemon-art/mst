@@ -90,7 +90,7 @@ class Kredit extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'term_display', 'purpose', 'city', 'income', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'employment', 'work_month', 'work_year','profile.name', 'profile.last_name', 'profile.second_name', 'profile.phone', 'profile.email', 'profile.bithday', 'profile.birthPlace', 'profile.sn', 'profile.issueDate', 'profile.issueCode', 'profile.issuer', 'profile.address', 'profile.registrationDate', 'profile.registrationPhone'];
+		return ['summ_display', 'term_display', 'purpose', 'city', 'income', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'employment', 'work_month', 'work_year', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email', 'profile.bithday', 'profile.birthPlace', 'profile.sn', 'profile.issueDate', 'profile.issueCode', 'profile.issuer', 'profile.address', 'profile.registrationDate', 'profile.registrationPhone'];
 	}
 	
 

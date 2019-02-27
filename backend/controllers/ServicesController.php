@@ -107,11 +107,11 @@ class ServicesController extends Controller
 			
 			$file1 = UploadedFile::getInstance($model, 'image');
 			$upFile = new Files;	
-			if ( $image && $file ){
+			if ( $image && $file1 ){
 				$upFile -> deleteFile( $image );
 			}
-			if ( $file ){
-				$model->image = $upFile -> upload( $file );
+			if ( $file1 ){
+				$model->image = $upFile -> upload( $file1 );
 			}			
 			elseif( $image ) {
 				$model->image = $image;
