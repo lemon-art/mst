@@ -15,9 +15,9 @@ use yii\widgets\ListView;
 
 					<div class="item_head">
 						<div class="box">Банк и название продукта</div>
-
-						<div class="box">Обслуживание</div>
-                        <div class="box">Открытие счета</div>
+ 
+						<div class="box small">Обслуживание</div>
+                        <div class="box small">Открытие счета</div>
 						<div class="box ">Преимущества</div>
 					</div>
 

@@ -34,7 +34,7 @@ use yii\widgets\Pjax;
 							$('#request-phone').val('');
 						}
 						ym(52131253, 'reachGoal', 'obr_svyaz');
-						ga('send', 'event', 'submit', 'obr_svyaz');
+						gtag('event', 'obr_svyaz');
 					</script>
 					<?Yii::$app->session->setFlash('requestPopupFormSubmitted', 'N');?>
 				<?php elseif (Yii::$app->session->hasFlash('requestPopupFormFalse')) : ?>

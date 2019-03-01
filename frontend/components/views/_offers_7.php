@@ -40,7 +40,7 @@ use backend\models\Files;
 
 
 
-								<div class="box">
+								<div class="box small">
 
 									<div class="block">
 
@@ -51,7 +51,7 @@ use backend\models\Files;
 								</div>
 
 
-                                <div class="box" >
+                                <div class="box small" >
 
                                     <div class="block">
 

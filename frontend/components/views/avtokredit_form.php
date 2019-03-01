@@ -50,7 +50,7 @@ for ( $i = 0; $i < 15; $i++){
 								scrollTop: $("#completed").offset().top - 60
 							}, 1000);
 							ym(52131253, 'reachGoal', 'avtokredit');
-							ga('send', 'event', 'submit', 'avtokredit');
+							gtag('event', 'avtokredit');
 							</script>
 							<?
 							if ( isset($_COOKIE["actionpay"]) ){
