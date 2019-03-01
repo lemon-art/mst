@@ -186,7 +186,6 @@ use backend\models\Files;
 			</div>
 		</div>
 
-	
 		<?php ActiveForm::end(); ?>
 
 	</div>
