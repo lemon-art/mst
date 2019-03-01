@@ -78,7 +78,7 @@ class OffersController extends Controller
 				$model->image = $upFile -> upload( $file );
 			}
 			
-			$arFields = Array('min_summ', 'max_summ', 'depozit_summ', 'min_summ_kreditcard', 'max_summ_kreditcard');
+			$arFields = Array('min_summ', 'max_summ', 'depozit_summ', 'min_summ_kreditcard', 'max_summ_kreditcard', 'min_summ_ipoteka', 'max_summ_ipoteka');
 			foreach ( $arFields as $field ){
 				$model->$field = Tools::numUpdate($model->$field);
 			}
@@ -125,7 +125,7 @@ class OffersController extends Controller
 				$model->image = $image;
 			}
 			
-			$arFields = Array('min_summ', 'max_summ', 'depozit_summ', 'min_summ_kreditcard', 'max_summ_kreditcard');
+			$arFields = Array('min_summ', 'max_summ', 'depozit_summ', 'min_summ_kreditcard', 'max_summ_kreditcard', 'min_summ_ipoteka', 'max_summ_ipoteka');
 			foreach ( $arFields as $field ){
 				$model->$field = Tools::numUpdate($model->$field);
 			}

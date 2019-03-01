@@ -116,6 +116,16 @@ use backend\models\Files;
 							<?= $form->field($model, 'initial_payment')->textInput(['maxlength' => true, 'class' => 'form-control summa'])->label(false);?>
 						</div>
 						
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('min_summ_ipoteka');?></label>
+							<?= $form->field($model, 'min_summ_ipoteka')->textInput(['maxlength' => true, 'class' => 'form-control summa'])->label(false);?>
+						</div>
+						
+						<div class="form-group">
+							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('max_summ_ipoteka');?></label>
+							<?= $form->field($model, 'max_summ_ipoteka')->textInput(['maxlength' => true, 'class' => 'form-control summa'])->label(false);?>
+						</div>
+						
 						
 						<hr>
 						<h3 class="box-title">Депозит</h3>

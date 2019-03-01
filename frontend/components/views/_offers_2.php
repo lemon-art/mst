@@ -56,10 +56,14 @@ use backend\models\Files;
                                     <div class="block">
 
                                     	<div class="kredit_summ">
-
-	                                        <div> от <?=$model['min_summ']?> </div>
-
-	
+											
+											<?if ( $model['min_summ_ipoteka'] ):?>
+												<div> от <?=$model['min_summ_ipoteka']?> </div>
+											<?endif;?>
+											<?if ( $model['max_summ_ipoteka'] ):?>
+												<div> до <?=$model['max_summ_ipoteka']?> </div>
+											<?endif;?>
+											
 	                                    </div>
 
                                     </div>
