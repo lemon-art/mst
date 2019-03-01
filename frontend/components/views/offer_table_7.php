@@ -18,7 +18,7 @@ use yii\widgets\ListView;
  
 						<div class="box small">Обслуживание</div>
                         <div class="box small">Открытие счета</div>
-						<div class="box ">Преимущества</div>
+						<div class="box " style="width: 40%">Преимущества</div>
 					</div>
 
 						<?
