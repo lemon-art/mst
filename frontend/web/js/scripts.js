@@ -1144,7 +1144,7 @@ function setHeight(className){
 function filterOffer() {
 
     var price=$('#filter-offer-price').val();
-
+	price = price.replace(/\s/g, '');
     var date=$('#filter-offer-date li.selected').data("value");
 
 

@@ -13,7 +13,7 @@ use yii\widgets\ListView;
                 <div class="credit_filter form">
                     <div class="credit_filter_col double_input">
                         <span>Сумма кредита</span>
-                        <input id="filter-offer-price" type="text" name="" value="" placeholder="Любая" class="input">
+                        <input id="filter-offer-price" type="text" name="" value="" placeholder="Любая" class="input summa">
                         <div class="selectWrap">
                             <select name="" style="display: none;">
 								<option value=""></option>

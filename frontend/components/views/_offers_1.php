@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use backend\models\Tools;
 use backend\models\Files;
 
 ?>
@@ -11,7 +11,7 @@ use backend\models\Files;
 
 					
 
-						<div data-element="true" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=$model['max_summ']?>" data-min-price="<?=$model['min_summ']?>" <?if ( $model->link ):?>class="item offer_link"  href="<?=$model->link?>"<?else:?> class="item modal_link"  href="#modal_call"<?endif;?>>
+						<div data-element="true" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=Tools::numUpdate($model['max_summ'])?>" data-min-price="<?=Tools::numUpdate($model['min_summ'])?>" <?if ( $model->link ):?>class="item offer_link"  href="<?=$model->link?>"<?else:?> class="item modal_link"  href="#modal_call"<?endif;?>>
 
 								<div  class="box small">
 
