@@ -72,6 +72,7 @@ echo "</pre>";
 
 */
 
+
 		
 $sURL = 'https://authtest.akbars.ru:8443/connect/token'; // URL-адрес POST 
 $apiURL = 'https://apitest.akbars.ru/dsa_partner/v1/'; // URL-адрес POST 
@@ -103,15 +104,206 @@ $tokken = $arResult['access_token'];
 
 
 //получаем города
-$cityUrl = $apiURL . 'catalogs/cities';
+echo $cityUrl = $apiURL . 'catalogs/cities';
 $sPD = '';
-
+echo '<br>';
+/*
 $aHTTP = array(
   'http' => 
     array(
     'method'  => 'GET', 
-    'header'  => Array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $tokken, 'Accept: application/json, text/json, application/vnd.api+json'),
+    'header'  => Array('Authorization: Bearer ' . $tokken, 'Accept: application/json'),
    // 'content' => $sPD
+  )
+);
+$context = stream_context_create($aHTTP);
+$result = file_get_contents($cityUrl, false, $context);
+
+//echo "<pre>";
+//print_r( $result );
+//echo "</pre>";
+*/
+
+
+$ch = curl_init();  
+curl_setopt($ch, CURLOPT_URL, $cityUrl);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER,1);
+curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Authorization: Bearer ' . $tokken, 'Accept: application/json'));
+curl_setopt($ch, CURLOPT_AUTOREFERER, true );
+curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+curl_setopt( $ch, CURLOPT_ENCODING, "" );
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+$page = curl_exec ($ch);
+ 
+
+        if (curl_errno($ch)) {
+            echo "Error: " . curl_error($ch);
+        } else {
+            // Show me the result
+           
+        }
+  curl_close($ch);
+print_r( $page );
+
+/*
+
+
+//получаем города
+$cityUrl = $apiURL . 'creditrequests';
+$sPD = '{
+  "branchCode": "string",
+  "creditInfo": {
+    "amount": 0,
+    "term": 0,
+    "withInsurance": true
+  },
+  "clientInfo": {
+    "passport": {
+      "series": "string",
+      "number": "string",
+      "unitCode": "string",
+      "department": "string",
+      "dateOfIssue": "2019-02-20T07:46:39.207Z",
+      "birthplace": "string"
+    },
+    "employment": {
+      "previousEmploymentMonths": 0,
+      "currentEmploymentMonths": 0,
+      "jobs": [
+        {
+          "position": "sotrudnik",
+          "type": "fixedTermContract",
+          "inn": "string",
+          "companyName": "string",
+          "institutionalLegalForm": "ooo",
+          "industry": "architek",
+          "numberOfStaff": "do20",
+          "jobTitle": "string",
+          "supervisorPhoneNumber": "string",
+          "organizationPhoneNumber": "string",
+          "organizationPhones": [
+            {
+              "type": "organization",
+              "number": "string"
+            }
+          ],
+          "organizationAddresses": [
+            {
+              "type": "juridical",
+              "countryCode": "string",
+              "region": "string",
+              "settlement": "string",
+              "street": "string",
+              "house": "string",
+              "block": "string",
+              "flat": "string",
+              "zip": "string",
+              "regionKladrId": "string",
+              "districtKladrId": "string",
+              "cityKladrId": "string",
+              "settlementKladrId": "string",
+              "streetKladrId": "string"
+            }
+          ],
+          "isPrimary": true,
+          "monthIncomeAvg": 0
+        }
+      ]
+    },
+    "incomes": [
+      {
+        "type": "other",
+        "avgMonthIncome": 0
+      }
+    ],
+    "expenses": [
+      {
+        "type": "other",
+        "expenseAmount": 0
+      }
+    ],
+    "assets": [
+      {
+        "type": "apartments",
+        "assetBuyYear": 0,
+        "assetValue": 0,
+        "totalArea": 0,
+        "pledgedFlag": true,
+        "autoRegNum": "string",
+        "autoModelYear": 0,
+        "vehicleModel": "string"
+      }
+    ],
+    "externalCredits": [
+      {
+        "subjectRole": "borrower",
+        "externalOrgName": "string",
+        "loanBalance": 0,
+        "sum": 0,
+        "monthlyPayments": 0,
+        "endDate": "2019-02-20T07:46:39.207Z"
+      }
+    ],
+    "phones": [
+      {
+        "type": "mobile",
+        "number": "string"
+      }
+    ],
+    "addresses": [
+      {
+        "accomodation": "ownApartments",
+        "type": "registration",
+        "countryCode": "string",
+        "region": "string",
+        "settlement": "string",
+        "street": "string",
+        "house": "string",
+        "block": "string",
+        "flat": "string",
+        "zip": "string",
+        "regionKladrId": "string",
+        "districtKladrId": "string",
+        "cityKladrId": "string",
+        "settlementKladrId": "string",
+        "streetKladrId": "string"
+      }
+    ],
+    "surname": "string",
+    "name": "string",
+    "patronymic": "string",
+    "email": "string",
+    "surnameChanged": true,
+    "previousSurname": "string",
+    "birthdate": "2019-02-20T07:46:39.207Z",
+    "sex": "m",
+    "insuranceNumber": "string",
+    "countryOfRegistrationCode": "string",
+    "countryOfOriginCode": "string",
+    "countryOfCitizenshipCode": "string",
+    "registrationDate": "2019-02-20T07:46:39.207Z",
+    "maritalStatus": "jenat",
+    "numberOfChildren": 0,
+    "numberOfUnderageChildren": 0,
+    "education": "nezakonchennoeSrednee",
+    "isBankEmployee": true,
+    "hasPayrollCard": true,
+    "hasBankAccount": true,
+    "isPartnerMemberEmployee": true,
+    "hasForeignPassport": true
+  }
+}';
+ 
+$aHTTP = array(
+  'http' => 
+    array(
+    'method'  => 'POST', 
+    'header'  => Array('Content-type: text/json', 'Authorization: Bearer ' . $tokken, 'Accept: text/json'),
+    'content' => $sPD
   )
 );
 $context = stream_context_create($aHTTP);
@@ -121,9 +313,8 @@ echo "<pre>";
 print_r( $result );
 echo "</pre>";
 
-
 //kreditrequest
-
+/*
 $sPD = '{
   "branchCode": "string",
   "creditInfo": {
@@ -283,11 +474,11 @@ $context = stream_context_create($aHTTP);
 
 echo "<pre>";
 print_r( $result );
-echo "</pre>";
+echo "</pre>"; 
 
 		
 		
-		
+	 	
 	
 
 //точка банк 
@@ -319,7 +510,7 @@ print_r( $arResult );
 echo "</pre>";	
 
 
-/*		
+		
 $ch = curl_init();
 
 $header = Array("Content-type: application/vnd.api+json", "Accept: application/vnd.api+json");
@@ -419,8 +610,36 @@ $operationResults = $client->set_entry($loginResults->id, 'Contacts', $nameValue
 
 
 var_dump( $loginResults );
-*/
 
+
+$sURL = 'https://pbx117.asterisk-ip.ru/index.php?entryPoint=API';
+
+$body = Array( 
+	"action" => "CallMe",
+	"api_key" => "BAF632941EF8C29C90859BD8B422D911",
+	"name" => "тест",
+	"phone" => "+79045671423"
+);
+
+$sPD = json_encode( $body, JSON_UNESCAPED_UNICODE);
+
+$sPD = http_build_query( $body );
+$aHTTP = array(
+  'http' => // Обертка, которая будет использоваться
+    array(
+    'method'  => 'POST', // Метод запроса
+    // Ниже задаются заголовки запроса
+    'header'  => 'Content-type: application/json',
+    'content' => $sPD
+  )
+);
+$context = stream_context_create($aHTTP);
+$result = file_get_contents($sURL, false, $context);
+$arResult = json_decode( $result, JSON_UNESCAPED_UNICODE);
+
+echo "<pre>";
+print_r( $arResult );
+echo "</pre>";
 
 
 ?>

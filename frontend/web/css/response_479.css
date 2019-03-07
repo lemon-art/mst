@@ -1,16 +1,230 @@
-@media (max-width: 479px){    header .logo{        width: calc(100% - 110px);        max-width: 260px;    }    header .login a{        width: 30px;        height: 30px;        padding: 0;    }    header .login a span{        display: none;    }    header .mob_menu_link{        margin-left: 25px;    }    section .main_title{        font-size: 25px;    }    .best_month .item{        width: 100%;    }    .best_month .item .box{        padding: 0 20px;    }    .best_month .item .more{        text-align: center;    }    .section_reviews {        overflow: hidden !important;    }    .section_form .title{        font-size: 25px;        text-align: center;    }    .section_form .subTitle{        text-align: center;    }    .form .line_flex .line_form{        width: 100%;    }    .form .submit{        text-align: center;    }    .slider_reviews{        padding: 0 0 50px;    }    .slider_articles{        padding: 0 0 50px;    }    .slider_articles .article .name a{        font-size: 20px;    }    .slider_articles .article .time{        margin: 0 0 24px;        order: 1;    }    .slider_articles .article .more_all{        width: 100%;        order: 2;    }    .slider_articles .more_all a{        width: 100%;    }    .breadcrumbs{        margin-bottom: 10px;        text-align: left;    }    section .title_inner{        font-size: 30px;        text-align: left;    }    .text_block img.left{        width: calc(100% + 20px);        max-width: none;        margin: 0 -10px 26px;    }    /* Нахуй нада...    .text_block h1{        font-size: 26px;    }    .text_block h2{        font-size: 22px;    }    .text_block h3{        font-size: 18px;    }    */    .text_block ul li,    .text_block ol li{        line-height: 24px;    }    .text_block p{        line-height: 24px;    }    .text_block h4{        line-height: 24px;    }    .contacts .item{        width: calc(100% - 20px);        margin-left: 20px;    }    .contacts .item .list{                column-count: 1;        -webkit-column-count: 1;           -moz-column-count: 1;        -webkit-column-gap: 0;           -moz-column-gap: 0;                column-gap: 0;    }    .best_categories li{        width: calc(50% - 10px);    }    .best_categories li a{        min-height: 48px;        padding: 5px 10px;        font-size: 13px;    }    .super_offer .box{        padding: 0;    }    .super_offer .name{        font-size: 30px;    }    .super_offer .list li{        font-size: 17px;    }    .super_offer .more{        text-align: center;    }    .table_request table tbody tr td{        padding: 15px;    }    .form .box_btn .submit{        width: 100%;    }    .section_first{        padding: 70px 0;    }    .section_first .info{        font-size: 15px;        line-height: 24px;    }    .section_first .breadcrumbs{        text-align: center;    }    .section_first .title_inner{        text-align: center;    }    .section_request .form .line_flex{        margin-left: 0;    }    .section_request .form .line_flex .line_form{        width: 100%;        margin-left: 0;    }    .form .block_flex .selectWrap{        width: calc(50% - 10px);        max-width: 200px;    }    .form .block_flex .selectWrap + .selectWrap{        margin-top: 0;    }    .form .line_form > label{        font-size: 15px;    }    .form .line_form .checkbox{        margin-top: 0;    }    .accordion .open_sub .title{        font-size: 14px;    }    footer .logo{        width: calc(100% - 110px);        max-width: 260px;    }    footer .line_menu{        margin-top: 6px;    }    footer .line_menu .box_menu{        width: 100%;    }    footer .title_menu{        width: 100%;        cursor: pointer;    }    footer .menu{        display: none;    }    footer .copy,    footer .links{        width: 100%;    }    footer .links{        margin-top: 20px;    }    footer .social{        width: 100%;    }    footer .created a{        opacity: 1;    }    .modal{        padding: 36px 25px 25px;    }    .fancybox-close-small{        top: 15px;        right: 15px;    }		.form .field-orders-agree{		width: 100%;	}
-    .credit_filter .credit_filter_col {
+@media (max-width: 479px)
+{
+    header .logo
+    {
+        width: calc(100% - 110px);
+        max-width: 260px;
+    }    header .login a
+    {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+    }    header .login a span
+    {
+        display: none;
+    }    header .mob_menu_link
+    {
+        margin-left: 25px;
+    }    section .main_title
+    {
+        font-size: 25px;
+    }    .best_month .item
+    {
+        width: 100%;
+    }    .best_month .item .box
+    {
+        padding: 0 20px;
+    }    .best_month .item .more
+    {
+        text-align: center;
+    }    .section_reviews
+    {
+        overflow: hidden !important;
+    }    .section_form .title
+    {
+        font-size: 25px;
+
+        text-align: center;
+    }    .section_form .subTitle
+    {
+        text-align: center;
+    }    .form .line_flex .line_form
+    {
+        width: 100%;
+    }    .form .submit
+    {
+        text-align: center;
+    }    .slider_reviews
+    {
+        padding: 0 0 50px;
+    }    .slider_articles
+    {
+        padding: 0 0 50px;
+    }    .slider_articles .article .name a
+    {
+        font-size: 20px;
+    }    .slider_articles .article .time
+    {
+        margin: 0 0 24px;
+
+        order: 1;
+    }    .slider_articles .article .more_all
+    {
+        width: 100%;
+
+        order: 2;
+    }    .slider_articles .more_all a
+    {
+        width: 100%;
+    }    .breadcrumbs
+    {
+        margin-bottom: 10px;
+
+        text-align: left;
+    }    section .title_inner
+    {
+        font-size: 30px;
+
+        text-align: left;
+    }    .text_block img.left
+    {
+        width: calc(100% + 20px);
+        max-width: none;
+        margin: 0 -10px 26px;
+    }
+    .text_block ul li,
+    .text_block ol li
+    {
+        line-height: 24px;
+    }    .text_block p
+    {
+        line-height: 24px;
+    }    .text_block h4
+    {
+        line-height: 24px;
+    }    .contacts .item
+    {
+        width: calc(100% - 20px);
+        margin-left: 20px;
+    }    .contacts .item .list
+    {
+                column-count: 1;
+        -webkit-column-count: 1;
+           -moz-column-count: 1;
+        -webkit-column-gap: 0;
+           -moz-column-gap: 0;
+                column-gap: 0;
+    }    .best_categories li
+    {
+        width: calc(50% - 10px);
+    }    .best_categories li a
+    {
+        font-size: 13px;    
+
+        min-height: 48px;
+        padding: 5px 10px;
+    }    .super_offer .box
+    {
+        padding: 0;
+    }    .super_offer .name
+    {
+        font-size: 30px;
+    }    .super_offer .list li
+    {
+        font-size: 17px;
+    }    .super_offer .more
+    {
+        text-align: center;
+    }    .table_request table tbody tr td
+    {
+        padding: 15px;
+    }    .form .box_btn .submit
+    {
+        width: 100%;
+    }    .section_first
+    {
+        padding: 70px 0;
+    }    .section_first .info
+    {
+        font-size: 15px;
+        line-height: 24px;
+    }    .section_first .breadcrumbs
+    {
+        text-align: center;
+    }    .section_first .title_inner
+    {
+        text-align: center;
+    }    .section_request .form .line_flex
+    {
+        margin-left: 0;
+    }    .section_request .form .line_flex .line_form
+    {
+        width: 100%;
+        margin-left: 0;
+    }    .form .block_flex .selectWrap
+    {
+        width: calc(50% - 10px);
+        max-width: 200px;
+    }    .form .block_flex .selectWrap + .selectWrap
+    {
+        margin-top: 0;
+    }    .form .line_form > label
+    {
+        font-size: 15px;
+    }    .form .line_form .checkbox
+    {
+        margin-top: 0;
+    }    .accordion .open_sub .title
+    {
+        font-size: 14px;
+    }    footer .logo
+    {
+        width: calc(100% - 110px);
+        max-width: 260px;
+    }    footer .line_menu
+    {
+        margin-top: 6px;
+    }    footer .line_menu .box_menu
+    {
+        width: 100%;
+    }    footer .title_menu
+    {
+        width: 100%;
+
+        cursor: pointer;
+    }    footer .menu
+    {
+        display: none;
+    }    footer .copy,
+    footer .links
+    {
+        width: 100%;
+    }    footer .links
+    {
+        margin-top: 20px;
+    }    footer .social
+    {
+        width: 100%;
+    }    footer .created a
+    {
+        opacity: 1;
+    }    .modal
+    {
+        padding: 36px 25px 25px;
+    }    .fancybox-close-small
+    {
+        top: 15px;
+        right: 15px;
+    }       .form .field-orders-agree
+    {
+        width: 100%;
+    }
+    .credit_filter .credit_filter_col
+    {
         width: 100%;
         margin-right: 0;
     }
 
-    .credit_filter .credit_filter_col:first-child {
+    .credit_filter .credit_filter_col:first-child
+    {
         margin-bottom: 20px;
     }
-    .credit_filter .credit_filter_col:last-child {
+    .credit_filter .credit_filter_col:last-child
+    {
         width: 100%;
     }
-    .section_request .form .line_flex .line_form_one {
+    .section_request .form .line_flex .line_form_one
+    {
         margin-left: 0;
     }
 }

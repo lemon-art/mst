@@ -414,6 +414,7 @@ $(document).ready(function(){
 				} else {
 					ret = true;
 					$('.wizard>.steps').show();
+					$(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#completed").offset().top}, 1000);});
 				}
 
 				tmp = [];
