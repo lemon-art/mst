@@ -59,7 +59,7 @@ class ServicesSearch extends Services
     public function search()
     {
         $query = Services::find()->limit(6);
-
+		$query -> addOrderBy('sort ASC');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
