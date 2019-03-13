@@ -17,6 +17,9 @@ use dosamigos\fileupload\FileUpload;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 	
+	
+	<?=$form->field($model, 'active')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
+	
 	<?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 	
     <?= $form->field($model, 'image')->fileInput(); ?>

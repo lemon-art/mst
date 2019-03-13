@@ -42,6 +42,19 @@ $this->params['breadcrumbs'][] = $this->title;
 					},
 	 
 				],
+				[
+					'attribute' => 'active',
+					'format' => 'raw',
+					'options' => ['style' => 'width: 65px; max-width: 65px;'],
+					'value' => function($model){
+						if ( $model->active ){
+							return 'да';
+						}
+						else {
+							return 'нет';
+						}
+					},
+				],
 				'code',
 				[
 					'class' => \yii\grid\ActionColumn::className(),

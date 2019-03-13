@@ -42,7 +42,9 @@ class BanksSearch extends Banks
     public function search()
     {
         $query = Banks::find();
-
+		$query -> andFilterWhere([
+            'active' => 1
+		]);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

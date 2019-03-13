@@ -40,6 +40,7 @@ class Banks extends \yii\db\ActiveRecord
             [['name', 'code'], 'required'],
             [['preview_text', 'adress', 'phone'], 'string'],
             [['name', 'link'], 'string', 'max' => 255],
+			[['active'], 'integer'],
         ];
     }
 
@@ -57,6 +58,7 @@ class Banks extends \yii\db\ActiveRecord
             'preview_text' => 'Текст',
             'adress' => 'Адресс',
             'phone' => 'Телефон',
+			'active' => 'Активность' 
         ];
     }
 	

@@ -36,7 +36,7 @@ class OffersSearch extends Offers
 	public function searchSearch( $q )
     {
 		
-		$query =  Offers::find()->with(['banks']);
+		$query =  Offers::find()->joinWith(['banks']);
 		$query -> addOrderBy('sort DESC');
 		$query->andFilterWhere(['or',
             ['like','name', $q],
@@ -51,11 +51,13 @@ class OffersSearch extends Offers
 	public function searchSpecial( )
     {
 		
-		$query =  Offers::find()->with(['banks']);
+		$query =  Offers::find()->joinWith(['banks']);
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
-            'special' => 1
+            'special' => 1,
+			'banks.active' => 1
 		]);
+
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -65,11 +67,13 @@ class OffersSearch extends Offers
 	public function searchMainSpecial( )
     {
 		
-		$query =  Offers::find()->limit(2);
+		$query =  Offers::find()->limit(2)->joinWith(['banks']);
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
-            'main_page' => 1
+            'main_page' => 1,
+			'banks.active' => 1
 		]);
+
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
 			'pagination' => false,
@@ -80,26 +84,25 @@ class OffersSearch extends Offers
 	public function searchSpecialByService( $service_id )
     {
 		
-		$query =  Offers::find()->with(['banks']);
+		$query =  Offers::find()->joinWith(['banks']);
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
-            'special' => 1
-		]);
-		$query->andFilterWhere([
-            'service_id' => $service_id
+            'special' => 1,
+			'banks.active' => 1
 		]);
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 		return $dataProvider;
 	}
-	
+	 
 	public function searchByService( $service_id )
     {
 		
-		$query = Offers::find()->with(['banks']);
+		$query = Offers::find()->joinWith(['banks']);
 		$query->andFilterWhere([
-            'service_id' => $service_id
+            'service_id' => $service_id,
+			'banks.active' => 1
 		]);
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -118,11 +121,13 @@ class OffersSearch extends Offers
     public function search($params)
     {
 
-		$query = Offers::find();
+		$query = Offers::find()->joinWith(['banks']);
 
 		
         // add conditions that should always apply here
-
+		$query->andFilterWhere([
+			'banks.active' => 1
+		]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
