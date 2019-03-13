@@ -11,6 +11,7 @@
                 'items' => [
                     ['label' => 'Заявки', 'icon' => 'file-code-o', 'url' => ['/orders']],
 					['label' => 'Заказ звонка', 'icon' => 'phone', 'url' => ['/request']],
+					['label' => 'Заказа сотрудничества', 'icon' => 'handshake-o', 'url' => ['/request']],
                     ['label' => 'Контент', 'icon' => 'newspaper-o', 'url' => ['/debug'],
 						'items' => [
 							['label' => 'Предложения', 'icon' => 'circle-o', 'url' => ['/offers'],],

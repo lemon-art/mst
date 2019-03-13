@@ -52,7 +52,7 @@ use yii\widgets\Pjax;
 
 								<div class="line_flex">
 									<div class="checkbox agree form-group field-request-agree required">
-										<input type="checkbox" id="request-agree" class="form-control" name="request[agree]" value="1" uncheckvalue="1" checked aria-required="true"><label class="control-label" for="ipoteka-agree">Я даю свое согласие на обработку персональных данных</label><div class="help-block"></div>
+										<input type="checkbox" id="request-agree-body" class="form-control" name="request[agree]" value="1" uncheckvalue="1" checked aria-required="true"><label class="control-label" for="ipoteka-agree">Я даю свое согласие на обработку персональных данных</label><div class="help-block"></div>
 									</div>
 								</div>
 								

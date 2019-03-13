@@ -20,6 +20,7 @@ use app\models\OffersSearch;
 use app\models\OrdersSearch;
 use app\models\ReviewsSearch;
 use app\models\Request;
+use app\models\RequestPartners;
 use app\models\Pages;
 use backend\models\Search;
 use dektrium\user\models\Profile;
@@ -235,21 +236,29 @@ class SiteController extends Controller
 		if ( !$model )
 			throw new NotFoundHttpException;
 
-		
-		$reqModel 	   = new Request();
+
+			
+		if ( $action == 'terms_of_cooperation' || $action == 'terms_of_banks' || $action == 2 || $action == 3){
+			$reqModel 	   = new RequestPartners();
+			$mailSubject = 'Заявка с сайта (обратная связь) ';
+		}
+		else {
+			$reqModel 	   = new Request();
+			$mailSubject = 'Заявка с сайта (сотрудничество) ';
+		}
 		
 		if ($reqModel->load(Yii::$app->request->post())) {
 				
 			    $reqModel->type = $action;
 				if ( $reqModel->save()){
 					Yii::$app->session->setFlash('requestFormSubmitted');
+						Mailer::sendCallbackMessage( $mailSubject, $reqModel );
 					}
 				else {
 					Yii::$app->session->setFlash('requestFormFalse');
 				}
 			
 		}
-		
 		
 		if ( $model ){
 			return $this->render('pages', [
@@ -260,6 +269,7 @@ class SiteController extends Controller
 		else {
 			return $this->render('error');
 		}
+
     } 
 	 
 	 
