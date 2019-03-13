@@ -64,6 +64,7 @@ class Offers extends \yii\db\ActiveRecord
             [['bank_id', 'service_id', 'name', 'min_summ', 'max_summ', 'min_term', 'max_term', 'rate','valut'], 'required'],
             [['bank_id', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age', 'depozit_term', 'depozit_summ'], 'integer'],
             [['preview_text'], 'string'],
+			[['special', 'activ'], 'boolean'],
             [['name'], 'string', 'max' => 255],
             [['valut'], 'string', 'max' => 255],
         ];

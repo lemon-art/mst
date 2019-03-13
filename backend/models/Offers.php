@@ -103,7 +103,7 @@ class Offers extends \yii\db\ActiveRecord
             [['bank_id', 'service_id', 'name'], 'required'],
             [['bank_id', 'min_term', 'max_term', 'min_age', 'max_age', 'main_page'], 'integer'],
             [['preview_text', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_summ_kreditcard', 'max_summ_kreditcard', 'link', 'rate', 'depozit_term', 'depozit_summ', 'min_summ_ipoteka', 'max_summ_ipoteka', 'initial_payment', 'grace_period', 'grace_period', 'residue', 'cash_back', 'maintenance_cost', 'rko_service', 'rko_open'], 'safe'],
-			[['special',], 'boolean'],
+			[['special', 'activ'], 'boolean'],
             [['name'], 'string', 'max' => 255],
             //[['valut'], 'string', 'max' => 255],
         ];
@@ -144,7 +144,8 @@ class Offers extends \yii\db\ActiveRecord
 			'rko_service' => 'Обслуживание',
 			'rko_open' => 'Открытие счета',
 			'min_summ_ipoteka' => 'Мин. сумма', 
-			'max_summ_ipoteka' => 'Макс. сумма'
+			'max_summ_ipoteka' => 'Макс. сумма',
+			'activ' => 'Активность',
         ];
     }
 }

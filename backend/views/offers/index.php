@@ -31,16 +31,32 @@ $this->params['breadcrumbs'][] = $this->title;
 					return Html::a($model->name,['update', 'id' => $model->id]);
 				},
 			],
+			[
+					'attribute' => 'activ',
+					'format' => 'raw',
+					'options' => ['style' => 'width: 65px; max-width: 65px;'],
+					'value' => function($model){
+						if ( $model->activ ){
+							return 'да';
+						}
+						else {
+							return 'нет';
+						}
+					},
+				],
             [
 					'attribute' => 'bank_id',
 					'value' => function($model){
 						return $model->banks->name;
 					}
 				],  
+			[
+					'attribute' => 'service_id',
+					'value' => function($model){
+						return $model->services->name;
+					}
+				], 
             
-			'rate',
-            'min_summ',
-            'max_summ',
 			[
 				'attribute' => 'special',
 				'format' => 'raw',

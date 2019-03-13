@@ -30,6 +30,10 @@ use backend\models\Files;
 							<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'class' => 'form-control'])->label(false);?>
 						</div>
 						<div class="form-group">
+							<?=$form->field($model, 'activ')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control'])->label(false);?>
+						</div>
+						
+						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('bank_id');?></label>
 							<?= $form->field($model, 'bank_id')->dropDownList(Banks::GetList(), ['maxlength' => true, 'class' => 'form-control'])->label(false);?>
 						</div>

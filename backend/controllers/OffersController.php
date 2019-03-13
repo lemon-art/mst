@@ -90,6 +90,9 @@ class OffersController extends Controller
 		
             return $this->redirect(['index']);
         }
+		else {
+			$model -> activ = 1;
+		}
 
         return $this->render('create', [
             'model' => $model,

@@ -42,6 +42,10 @@ class OffersSearch extends Offers
             ['like','name', $q],
             ['like','preview_text', $q]]
 		);
+		$query -> andFilterWhere([
+			'banks.activ' => 1,
+			'active' => 1,
+		]);
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -55,7 +59,8 @@ class OffersSearch extends Offers
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
             'special' => 1,
-			'banks.active' => 1
+			'banks.activ' => 1,
+			'activ' => 1,
 		]);
 
 		$dataProvider = new ActiveDataProvider([
@@ -71,8 +76,10 @@ class OffersSearch extends Offers
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
             'main_page' => 1,
+			'activ' => 1,
 			'banks.active' => 1
 		]);
+		
 
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -88,6 +95,7 @@ class OffersSearch extends Offers
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
             'special' => 1,
+			'activ' => 1,
 			'banks.active' => 1
 		]);
 		$dataProvider = new ActiveDataProvider([
@@ -102,6 +110,7 @@ class OffersSearch extends Offers
 		$query = Offers::find()->joinWith(['banks']);
 		$query->andFilterWhere([
             'service_id' => $service_id,
+			'activ' => 1,
 			'banks.active' => 1
 		]);
 		$dataProvider = new ActiveDataProvider([
@@ -126,6 +135,7 @@ class OffersSearch extends Offers
 		
         // add conditions that should always apply here
 		$query->andFilterWhere([
+			'activ' => 1,
 			'banks.active' => 1
 		]);
         $dataProvider = new ActiveDataProvider([
