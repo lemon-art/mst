@@ -43,7 +43,7 @@ class OffersSearch extends Offers
             ['like','preview_text', $q]]
 		);
 		$query -> andFilterWhere([
-			'banks.activ' => 1,
+			'banks.active' => 1,
 			'active' => 1,
 		]);
 		$dataProvider = new ActiveDataProvider([
@@ -59,7 +59,7 @@ class OffersSearch extends Offers
 		$query -> addOrderBy('sort DESC');
 		$query -> andFilterWhere([
             'special' => 1,
-			'banks.activ' => 1,
+			'banks.active' => 1,
 			'activ' => 1,
 		]);
 
