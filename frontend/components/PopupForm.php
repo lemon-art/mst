@@ -7,6 +7,7 @@ use yii\base\Widget;
 use yii\helpers\Html;
 use app\models\Request;
 use backend\models\Mailer;
+use common\models\CuiteCrm;
 
 class PopupForm extends Widget {
 
@@ -25,6 +26,8 @@ class PopupForm extends Widget {
 				if ( $reqModel->save()){
 					Yii::$app->session->setFlash('requestPopupFormSubmitted', 'Y');
 					Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
+					$crmModel = new CuiteCrm;
+					$crmModel -> ShortRequest( $reqModel );
 				}
 				else {
 					Yii::$app->session->setFlash('requestPopupFormFalse', 'Y');

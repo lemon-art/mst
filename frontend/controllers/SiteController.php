@@ -26,7 +26,7 @@ use backend\models\Search;
 use dektrium\user\models\Profile;
 use backend\models\Mailer;
 use yii\web\NotFoundHttpException;
-
+use common\models\CuiteCrm;
 /**
  * Site controller
  */
@@ -94,6 +94,8 @@ class SiteController extends Controller
 		$reviewsModel  = new ReviewsSearch();
 		$reqModel 	   = new Request();
 		
+	
+		
 			$articlesProvider   = $articlesModel->search();
 			$servicesProvider   = $servicesModel->search();
 			$banksProvider      = $banksModel->search();
@@ -106,6 +108,8 @@ class SiteController extends Controller
 					if ( $reqModel->save()){
 						Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 						Yii::$app->session->setFlash('requestFormSubmitted');
+						$crmModel = new CuiteCrm;
+						$crmModel -> ShortRequest( $reqModel );
 					}
 					else {
 						Yii::$app->session->setFlash('requestFormFalse');
