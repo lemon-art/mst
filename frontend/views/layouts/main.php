@@ -317,7 +317,7 @@ if (isset($_GET["actionpay"])){
 				</div>
 
 				<div class="line_bottom">
-					<div class="copy">&copy; ООО «Айкодек», <?=date('Y')?> <br>Все права защищены.</div>
+					<div class="copy">Все права защищены.</div>
 
 					<div class="links">
 						<div class="link">
