@@ -55,6 +55,8 @@ return [
 				'specoffers/<code>' => 'services/specoffers',
 				'banks/<code>' => 'banks/view',
 				'orders/validate' => 'orders/validate',
+				'orders/savelostorder' => 'orders/savelostorder',
+				'orders/updatelostorder' => 'orders/updatelostorder',
 				'articles' => 'atricles/index',
 				'articles/<id>' => 'atricles/view',
 				'reviews' => 'reviews/index',

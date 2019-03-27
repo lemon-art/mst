@@ -44,6 +44,7 @@ class Kredit extends \yii\db\ActiveRecord
 	public $address;
 	public $registrationdate;
 	public $registrationphone;
+	public $secret_key;
  
     public static function tableName()
     {
@@ -103,12 +104,12 @@ class Kredit extends \yii\db\ActiveRecord
 			[['name', 'last_name', 'second_name', 'purpose', 'phone', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'email', 'summ', 'term', 'city', 'employment', 'work_month', 'work_year', 'income', 'bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone' ], 'required', 'message'=>'Заполните поле'],
 			[['phone_dop', 'phone_dop_own', 'education', 'family', 'child', 'credit_history'], 'required', 'message'=>'Заполните поле'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-			[['additional_income', 'rent_apartment', 'snils'], 'string', 'max' => 255],
+			[['additional_income', 'rent_apartment', 'snils', 'secret_key'], 'string', 'max' => 255],
             [['name', 'phone', 'last_name', 'second_name', 'city', 'employment', 'summ', 'income'], 'string', 'max' => 255],
 			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
 			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
 			[['email'], 'validateEmail'],
-           
+            [['phone'], 'validatePhone'],
 		];
     }
 	
@@ -133,6 +134,36 @@ class Kredit extends \yii\db\ActiveRecord
 		
 		
     }
+	
+	public function validatePhone($attribute, $params){
+	
+		$del = array("(", ")", " ", "-");
+		$emp   = array("", "", "", "");
+		 
+		$phone = str_replace($del, $emp, $this->$attribute);
+		
+		
+		if (empty( $phone )) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+
+		if (!preg_match('/^\+?\d{10,15}$/', $phone)) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+
+		if (
+			(mb_substr($phone, 0, 2) == '+7' and mb_strlen($phone) != 12) ||
+			(mb_substr($phone, 0, 1) == '7'  and mb_strlen($phone) != 11) ||
+			(mb_substr($phone, 0, 1) == '8'  and mb_strlen($phone) == 11) ||
+			(mb_substr($phone, 0, 1) == '9'  and mb_strlen($phone) == 11)
+		) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+		return true;
+	}
 	
 	public function validateEmail($attribute, $params) {
 		

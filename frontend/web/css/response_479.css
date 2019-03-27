@@ -227,4 +227,18 @@
     {
         margin-left: 0;
     }
+    
+
+    .top_form .credit_form_col{
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .top_form .credit_form_col + .credit_form_col{
+        margin-top: 15px;
+    }
+
+    .section_first .top_form .credit_form_col{
+        width: 100%;
+    }
 }

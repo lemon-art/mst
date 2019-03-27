@@ -73,67 +73,8 @@ $this->registerJs($js);
 						]); ?>
 					
 					<div class="steps">					
-						<h3 class="hidden">Общие данные</h3>
-						<section class="step0">
-						
-							<h4 class="title">Основные параметры</h4>
-							<div class="line_flex">
-						
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('summ');?></label>
-									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
-								</div>
-
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('term');?></label>
-
-									<div class="selectWrap"> 
-									 
-										<?=$form->field($model, 'term')->dropDownList([
-											''   => 'Выберите',
-											'1' => '1 месяц',
-											'3' => '3 месяца',
-											'6' => '6 месяцев',
-											'9' => '9 месяцев',
-											'12' => '1 год',
-											'24' => '2 года',
-											'36' => '3 года',
-											'48' => '4 года',
-											'60' => '5 лет'
-										], ['class' => 'required'])->label(false);?> 
-									</div>
-								</div>
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('city');?></label>
-									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
-								</div>
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('purpose');?></label>
-									<div class="selectWrap">
-										<?=$form->field($model, 'purpose')->dropDownList([
-											''   => 'Выберите',
-											'Частичное снятие'   => 'Частичное снятие',
-											'Для пенсионеров'   => 'Для пенсионеров',
-											'Пополнение счета'   => 'Пополнение счета',
-											'Иное' => 'Иное'
-											
-										])->label(false);?> 
-									</div>
-								</div>
-								
-								
-
-								
-								
-							</div>	
-
-							
-							
-						</section>
 						<h3 class="hidden">Контактные данные</h3>
-						<section class="step1">
+						<section class="step0">
 						
 							<h4 class="title">Контактные данные</h4>
 							<div class="line_flex">
@@ -209,8 +150,72 @@ $this->registerJs($js);
 									</div>
 								
 								<?endif;?>
+								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
+
 							</div>
 						</section>
+						
+						
+						<h3 class="hidden">Общие данные</h3>
+						<section class="step1">
+						
+							<h4 class="title">Основные параметры</h4>
+							<div class="line_flex">
+						
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('summ');?></label>
+									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('term');?></label>
+
+									<div class="selectWrap"> 
+									 
+										<?=$form->field($model, 'term')->dropDownList([
+											''   => 'Выберите',
+											'1' => '1 месяц',
+											'3' => '3 месяца',
+											'6' => '6 месяцев',
+											'9' => '9 месяцев',
+											'12' => '1 год',
+											'24' => '2 года',
+											'36' => '3 года',
+											'48' => '4 года',
+											'60' => '5 лет'
+										], ['class' => 'required'])->label(false);?> 
+									</div>
+								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('city');?></label>
+									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
+								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('purpose');?></label>
+									<div class="selectWrap">
+										<?=$form->field($model, 'purpose')->dropDownList([
+											''   => 'Выберите',
+											'Частичное снятие'   => 'Частичное снятие',
+											'Для пенсионеров'   => 'Для пенсионеров',
+											'Пополнение счета'   => 'Пополнение счета',
+											'Иное' => 'Иное'
+											
+										])->label(false);?> 
+									</div>
+								</div>
+								
+								
+
+								
+								
+							</div>	
+
+							
+							
+						</section>
+						
 					</div>
 					
 					<?= $form->field($model, 'service_id')->textInput(['type' => 'hidden', 'class' => 'service_id'])->label(false);?>
@@ -400,18 +405,25 @@ $(document).ready(function(){
 	
 	});
 	
-	$( ".form-group.required input" ).keyup(function( ) {
+	$( ".steps .form-group.required input" ).keyup(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
 	});
 	
-	$( ".form-group.required input" ).change(function( ) {
+	$( ".steps .form-group.required input" ).change(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
+	});
+	
+	//проверяем и сохраняем короткую заявку
+	$( "#debet-name" ).change(function( ) {
+		if ( $('#debet-name').parent().hasClass('has-success') && $('#debet-phone').parent().hasClass('has-success') ){
+			SaveLastOrder( );
+		}
 	});
 	
 	function validateField ( el ){
@@ -444,6 +456,16 @@ $(document).ready(function(){
 				else {
 					el.parent().removeClass('has-error').addClass('has-success');
 					el.parent().find('.help-block').html('');
+					
+					//проверяем и сохраняем короткую заявку
+					if ( field == 'debet-phone' ){
+
+						if ( $('#debet-name').parent().hasClass('has-success') && $('#debet-phone').parent().hasClass('has-success') ){
+							SaveLastOrder( );
+						}
+						
+					}
+					
 					return true;
 				}
 				
@@ -453,6 +475,23 @@ $(document).ready(function(){
 	
 	}
 
+	function SaveLastOrder( ){
+	
+		var service_id = $('.service_id').val();
+		var secret_key = $('#debet-secret_key').val();
+		var name = $('#debet-name').val();
+		var phone = $('#debet-phone').val();
+		
+		$.ajax({
+		    url: '/orders/savelostorder/',
+		    type: 'post',
+		    data: {'name': name, 'phone': phone, 'service_id': service_id, 'secret_key': secret_key},
+		    success: function (data) {
+			
+			}
+		});
+	
+	}
 
 	/* Reinitialize */
 	//маска телефона

@@ -9,7 +9,7 @@ use app\models\Request;
 use backend\models\Mailer;
 use common\models\CuiteCrm;
 
-class PopupForm extends Widget {
+class HelpOrder extends Widget {
 
     public function init()
     {   
@@ -20,7 +20,7 @@ class PopupForm extends Widget {
     {   
 		
 		$reqModel = new Request();
-		$crmModel = new CuiteCrm;
+		
 		if ($reqModel->load(Yii::$app->request->post())) {
 			if ( $reqModel->type == 'callbackForm' ){	
 				if ( $reqModel->save()){
@@ -36,7 +36,7 @@ class PopupForm extends Widget {
 		}
 		
 		
-		return $this->render('popup_form', [
+		return $this->render('help_form', [
 		  'model' => $reqModel,
 		]);
     }

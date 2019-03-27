@@ -1111,7 +1111,15 @@ $(function(){
 
 	    return false
 
-	})
+	});
+	
+	$('#kredit-name-top').change(function(e){
+		$('#kredit-name').val( $(this).val() ).keyup();	
+	});
+	
+	$('#kredit-phone-top').change(function(e){
+		$('#kredit-phone').val( $(this).val() ).keyup();	
+	});
 
 })
 

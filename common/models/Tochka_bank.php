@@ -3,7 +3,7 @@ namespace common\models;
 use Yii;
 
 
-class Tochka-bank 
+class Tochka_bank 
 {
 
 	public $authUrl;
@@ -26,28 +26,33 @@ class Tochka-bank
 	public function Request( $orderModel )
     {
 
+		$arPasport = explode(' ', $orderModel -> sn); 
+		$bithday  = \DateTime::createFromFormat('d.m.Y', $orderModel -> bithday);
+		$dateStart = \DateTime::createFromFormat('d.m.Y', $orderModel -> issuedate);
+	
 		$body = array(
 			'inn' => $orderModel -> inn,
-			'name' => $orderModel -> inn,
-			'adrress' => $orderModel -> inn,
-			'last_name' => $orderModel -> inn,
-			'first_name' => $orderModel -> inn,
-			'second_name' => $orderModel -> inn,
-			'birthday' => $orderModel -> inn,
-			'telephone' => $orderModel -> inn,
-			'typeDoc' => $orderModel -> inn,
-			'dateStart' => $orderModel -> inn,
-			'serial' => $orderModel -> inn,
-			'snils' => $orderModel -> inn,
-			'comment' => $orderModel -> inn,
-			'branch' => $orderModel -> inn,
-			'acc_type' => $orderModel -> inn,
-			'sex' => $orderModel -> inn,
+			'name' => $orderModel -> company_name,
+			'adrress' => $orderModel -> address,
+			'last_name' => $orderModel -> last_name,
+			'first_name' => $orderModel -> name,
+			'second_name' => $orderModel -> second_name,
+			'birthday' => $bithday->format('Y-m-d'),
+			'telephone' => $orderModel -> phone,
+			'typeDoc' => '21',
+			'dateStart' => '2015-02-02',
+			'serial' => $arPasport[0].$arPasport[1],
+			'number' => $arPasport[2],
+			'snils' => $orderModel -> snils,
+			'comment' => '',
+			'branch' => 'open',
+			'acc_type' => $orderModel -> form,
+			'sex' => 'M',
 		);
 		$body = Array( 
 			"token" => $this -> tokken,
 			"request" => $body, 
-			"workMode" => "0",
+			"workMode" => "1",
 		);
 
 		$sPD = json_encode( $body, JSON_UNESCAPED_UNICODE);
@@ -60,7 +65,7 @@ class Tochka-bank
 		  )
 		);
 		$context = stream_context_create($aHTTP);
-		$result = file_get_contents($sURL, false, $context);	
+		$result = file_get_contents($this -> apiUrl, false, $context);	
 		$arResult = json_decode( $result, JSON_UNESCAPED_UNICODE);
 		
 		

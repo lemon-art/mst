@@ -352,4 +352,14 @@
     {
         height: 100vh;
     }
+
+
+    .top_form{
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .credit_form_col span{
+        color: #222;
+    }
 }

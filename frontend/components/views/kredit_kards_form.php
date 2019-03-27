@@ -69,51 +69,9 @@ $this->registerJs($js);
 						]); ?>
 					
 					<div class="steps">					
-						<h3 class="hidden">Общие данные</h3>
-						<section class="step0">
 						
-							<h4 class="title">Основные параметры</h4>
-							<div class="line_flex">
-						
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('summ');?></label>
-									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
-								</div>
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('income');?></label>
-									<?= $form->field($model, 'income')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
-								</div>
-								
-
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('confirmation_income');?></label>
-
-									<div class="selectWrap"> 
-										<?=$form->field($model, 'confirmation_income')->dropDownList([
-													''   => 'Выберите',
-													'Найм, Справка 2-НДФЛ' => 'Найм, Справка 2-НДФЛ',
-													'Найм, Справка по форме банка' => 'Найм, Справка по форме банка',
-													'Найм, Устное подтверждение' => 'Найм, Устное подтверждение',
-													'Созаемщик без учета дохода' => 'Созаемщик без учета дохода',
-													'ИП, Налоговая декларация' => 'ИП, Налоговая декларация',
-													'ИП, Иными документами' => 'ИП, Иными документами',
-													'ИП, Устное подтверждение' => 'ИП, Устное подтверждение',
-													'Собственник бизнеса, Налоговая декларация' => 'Собственник бизнеса, Налоговая декларация',
-													'Собственник бизнеса, Иными документами' => 'Собственник бизнеса, Иными документами',
-													'Собственник бизнеса, Устное подтверждение' => 'Собственник бизнеса, Устное подтверждение',
-										], ['class' => 'required'])->label(false);?> 
-									</div>
-								</div>	
-								
-									
-							</div>	
-
-							
-							
-						</section>
 						<h3 class="hidden">Контактные данные</h3>
-						<section class="step1">
+						<section class="step0">
 						
 							<h4 class="title">Контактные данные</h4>
 							<div class="line_flex">
@@ -191,6 +149,52 @@ $this->registerJs($js);
 								<?endif;?>
 							</div>
 						</section>
+						
+						<h3 class="hidden">Общие данные</h3>
+						<section class="step1">
+						
+							<h4 class="title">Основные параметры</h4>
+							<div class="line_flex">
+						
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('summ');?></label>
+									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('income');?></label>
+									<?= $form->field($model, 'income')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+								</div>
+								
+
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('confirmation_income');?></label>
+
+									<div class="selectWrap"> 
+										<?=$form->field($model, 'confirmation_income')->dropDownList([
+													''   => 'Выберите',
+													'Найм, Справка 2-НДФЛ' => 'Найм, Справка 2-НДФЛ',
+													'Найм, Справка по форме банка' => 'Найм, Справка по форме банка',
+													'Найм, Устное подтверждение' => 'Найм, Устное подтверждение',
+													'Созаемщик без учета дохода' => 'Созаемщик без учета дохода',
+													'ИП, Налоговая декларация' => 'ИП, Налоговая декларация',
+													'ИП, Иными документами' => 'ИП, Иными документами',
+													'ИП, Устное подтверждение' => 'ИП, Устное подтверждение',
+													'Собственник бизнеса, Налоговая декларация' => 'Собственник бизнеса, Налоговая декларация',
+													'Собственник бизнеса, Иными документами' => 'Собственник бизнеса, Иными документами',
+													'Собственник бизнеса, Устное подтверждение' => 'Собственник бизнеса, Устное подтверждение',
+										], ['class' => 'required'])->label(false);?> 
+									</div>
+								</div>	
+								
+								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
+	
+							</div>	
+
+							
+							
+						</section>
+						
 					</div>
 					
 					<?= $form->field($model, 'service_id')->textInput(['type' => 'hidden', 'class' => 'service_id'])->label(false);?>
@@ -380,19 +384,27 @@ $(document).ready(function(){
 	
 	});
 	
-	$( ".form-group.required input" ).keyup(function( ) {
+	$( ".steps .form-group.required input" ).keyup(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
 	});
 	
-	$( ".form-group.required input" ).change(function( ) {
+	$( ".steps .form-group.required input" ).change(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
 	});
+	
+	//проверяем и сохраняем короткую заявку
+	$( "#kreditkards-name" ).change(function( ) {
+		if ( $('#kreditkards-name').parent().hasClass('has-success') && $('#kreditkards-phone').parent().hasClass('has-success') ){
+			SaveLastOrder( );
+		}
+	});
+	
 	
 	function validateField ( el ){
 	
@@ -424,6 +436,17 @@ $(document).ready(function(){
 				else {
 					el.parent().removeClass('has-error').addClass('has-success');
 					el.parent().find('.help-block').html('');
+					
+					//проверяем и сохраняем короткую заявку
+					if ( field == 'kreditkards-phone' ){
+
+						if ( $('#kreditkards-name').parent().hasClass('has-success') && $('#kreditkards-phone').parent().hasClass('has-success') ){
+							SaveLastOrder( );
+						}
+						
+					}
+					
+					
 					return true;
 				}
 				
@@ -433,7 +456,25 @@ $(document).ready(function(){
 	
 	}
 
-
+	function SaveLastOrder( ){
+	
+		var service_id = $('.service_id').val();
+		var secret_key = $('#kreditkards-secret_key').val();
+		var name = $('#kreditkards-name').val();
+		var phone = $('#kreditkards-phone').val();
+		
+		$.ajax({
+		    url: '/orders/savelostorder/',
+		    type: 'post',
+		    data: {'name': name, 'phone': phone, 'service_id': service_id, 'secret_key': secret_key},
+		    success: function (data) {
+			
+			}
+		});
+	
+	}
+	
+	
 	/* Reinitialize */
 	//маска телефона
 	$('input[type=tel]').mask('+7 (999)-999-99-99')

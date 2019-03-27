@@ -3,8 +3,36 @@
 /* @var $this yii\web\View */
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
+use backend\models\Files;
 $this->title = 'MarketVibor - подбор кредита';
 ?>
+
+			<section class="section_first">
+				<div class="cont">
+
+					<div class="title_inner"><?= Html::encode($kreditModel->text_main_title) ?></div>			
+
+
+
+					<div class="info"><?= Html::encode($kreditModel->top_text) ?></div>
+
+					<div class="completed">
+						<a href="/services/credit/#completed" class="scroll_link">Заполнить заявку</a>
+					</div>
+				</div>
+			</section>
+			
+<?if ( $kreditModel->big_image ):?>		
+<?$imgFon = Files::getPath($kreditModel->big_image);?>
+<?
+$script = <<< JS
+    jQuery('.section_first').css({ 'background': 'url($imgFon) 0 0 no-repeat' });
+JS;
+$this->registerJs($script, yii\web\View::POS_END);
+?>	
+<?endif;?>
+
 
 		<section class="section_amenities">
 			<div class="cont">

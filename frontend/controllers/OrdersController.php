@@ -11,6 +11,7 @@ use app\models\Rko;
 use app\models\Avtokredit;
 use app\models\KreditKards;
 use app\models\DebetCards;
+use app\models\LostOrders;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 
@@ -73,7 +74,35 @@ class OrdersController extends Controller
 
         
     }
+	
+	
 
+	public function actionSavelostorder()
+    {
+		$post = Yii::$app->request->post();
 
+		$model = LostOrders::getModelByKey( $post['secret_key'] );
+		if ( !$model )
+			$model = new LostOrders();
+			
+		$model -> name  = $post['name'];
+		$model -> phone = $post['phone'];
+		$model -> service_id = $post['service_id'];
+		$model -> secret_key = $post['secret_key'];
+		$model -> send = 0;
+		$model -> active = 0;
+		$model -> save();
+		return $this->renderPartial('validate', [
+			'result' => ''
+		]);
+	}
+	
+	public function actionUpdatelostorder()
+    {
 
+		$model = LostOrders::getNoactive();
+
+	}
+	
+	
 }

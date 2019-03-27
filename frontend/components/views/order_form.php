@@ -75,36 +75,137 @@ $this->registerJs($js);
 						]); ?>
 					
 					<div class="steps">					
+						
+						<h3 class="hidden">Основное</h3>
+						<section class="step0 center_button">
+						
+							<div class="line_flex">
+							
+								<?if ( Yii::$app->user->isGuest):?>
+								
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('name');?></label>
+										<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('phone');?></label>
+										<?= $form->field($model, 'phone')->textInput(['type' => 'tel', 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>								
+
+									
+								<?else:?>
+
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('name');?></label>
+										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('phone');?></label>
+										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+									
+																
+								
+								<?endif;?>									
+									
+								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
+
+							</div>
+							<div class="line_flex">
+						
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('summ');?></label>
+										<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('term');?></label>
+
+										<div class="selectWrap"> 
+										 
+											<?=$form->field($model, 'term')->dropDownList([
+												''   => 'Выберите',
+												'1' => '1 месяц',
+												'3' => '3 месяца',
+												'6' => '6 месяцев',
+												'9' => '9 месяцев',
+												'12' => '1 год',
+												'24' => '2 года',
+												'36' => '3 года',
+												'48' => '4 года',
+												'60' => '5 лет'
+											], ['class' => 'required'])->label(false);?> 
+										</div>
+									</div>
+									<div class="line_form_one">
+										<?= $form->field($model, 'agree', [
+											'template' => '{input}{label}{error}',
+											'options' => ['class' => 'form-group checkbox agree'],
+											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
+									</div>
+								
+							</div>
+							
+						</section>
+						
 						<h3 class="hidden">Общие данные</h3>
-						<section class="step0">
+						<section class="step1">
+						
+							<div class="line_flex">
+							
+								<?if ( Yii::$app->user->isGuest):?>
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('last_name');?></label>
+										<?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+									</div>
+									
+							
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('second_name');?></label>
+										<?= $form->field($model, 'second_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('email');?></label>
+										<?= $form->field($model, 'email')->textInput(['type' => 'email', 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+								
+
+									
+								<?else:?>
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('last_name');?></label>
+										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+									</div>
+									
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('second_name');?></label>
+										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('email');?></label>
+										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+								
+								
+								<?endif;?>
+							</div>
 						
 							<h4 class="title">Основные параметры</h4>
 							<div class="line_flex">
-						
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('summ');?></label>
-									<?= $form->field($model, 'summ')->textInput(['maxlength' => true, 'placeholder' => "Введите число", 'class' => 'input summa required '])->label(false);?>
-								</div>
-
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('term');?></label>
-
-									<div class="selectWrap"> 
-									 
-										<?=$form->field($model, 'term')->dropDownList([
-											''   => 'Выберите',
-											'1' => '1 месяц',
-											'3' => '3 месяца',
-											'6' => '6 месяцев',
-											'9' => '9 месяцев',
-											'12' => '1 год',
-											'24' => '2 года',
-											'36' => '3 года',
-											'48' => '4 года',
-											'60' => '5 лет'
-										], ['class' => 'required'])->label(false);?> 
-									</div>
-								</div>
 								
 								<div class="line_form">
 									<label><?=$model->getAttributeLabel('city');?></label>
@@ -137,88 +238,16 @@ $this->registerJs($js);
 								</div>
 								
 								
+								
+								
 							</div>	
-							<h4 class="title">Контактные данные</h4>
-							<div class="line_flex">
 							
-								<?if ( Yii::$app->user->isGuest):?>
-								
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone')->textInput(['type' => 'tel', 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email')->textInput(['type' => 'email', 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-								
-									<div class="line_form_one">
-										<?= $form->field($model, 'agree', [
-											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group checkbox agree'],
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
-									</div>
-									
-								<?else:?>
-								
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-								
-									<div class="line_form_one">
-										<?= $form->field($model, 'agree', [
-											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group has-success checkbox agree']
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
-									</div>
-								
-								<?endif;?>
-							</div>
 							
 						</section>
 
 						<h3 class="hidden">Паспортные данные</h3>
 
-						<section class="step1">
+						<section class="step2">
 							<h4 class="title">Паспортные данные</h4>
 							
 							<?if ( Yii::$app->user->isGuest || !$profileUser->sn ):?>
@@ -354,7 +383,7 @@ $this->registerJs($js);
 						
 						<h3 class="hidden">Данные о работе</h3>
 
-						<section class="step2">	
+						<section class="step3">	
 							<h4 class="title">Данные о работе</h4>
 							
 							<div class="line_flex">
@@ -466,8 +495,7 @@ $this->registerJs($js);
 						
 						
 						<h3 class="hidden">Доп.Информация</h3>
-
-						<section class="step3">	
+						<section class="step4">	
 							<h4 class="title">Доп.Информация</h4>	
 							
 
@@ -640,7 +668,9 @@ $(document).ready(function(){
 			
 			if ( newIndex > currentIndex ){
 
-						
+				
+
+				
 				$('.step' + cur).find('.form-group.required').each( 
 
 					function(index) { 
@@ -695,6 +725,44 @@ $(document).ready(function(){
 					ret = false; 
 
 				} else {
+				
+					if ( currentIndex == 0 ){
+					
+						$.fancybox.close()
+						$.fancybox.open({
+							src  : '#modal_help',
+							type : 'inline',
+							opts : {
+								speed: 300,
+								autoFocus : false,
+								i18n : {
+									'en' : {
+										CLOSE : 'Закрыть'
+									}
+								},
+								touch : false
+							}
+						})
+						
+							$('body').on( 'click', '.close_popup', function(e){
+								
+								$.fancybox.close();
+								return false;
+							});
+							
+							$('body').on( 'click', '.need_help', function(e){
+								
+								$.fancybox.close();
+								$('.actions').hide();
+								$('.main__under_title').hide();
+								$('#order-form').html('<div class="alert"><p>Наши менеджеры свяжутся с вами в ближашее время и помогут вам с заполнение заявки.</p></div>');
+								$('html, body').animate({ scrollTop: $('#order-form').offset().top - 80 }, 500);
+								return false;
+							});
+						
+						
+					}
+					
 					ret = true;
 					$('.wizard>.steps').show();
 					$(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#completed").offset().top}, 1000);});
@@ -785,18 +853,25 @@ $(document).ready(function(){
 	
 	});
 	
-	$( ".form-group.required input" ).keyup(function( ) {
+	$( ".steps .form-group.required input" ).keyup(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
 	});
 	
-	$( ".form-group.required input" ).change(function( ) {
+	$( ".steps .form-group.required input" ).change(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
+	});
+	
+	//проверяем и сохраняем короткую заявку
+	$( "#kredit-name" ).change(function( ) {
+		if ( $('#kredit-name').parent().hasClass('has-success') && $('#kredit-phone').parent().hasClass('has-success') ){
+			SaveLastOrder( );
+		}
 	});
 	
 	function validateField ( el ){
@@ -805,11 +880,15 @@ $(document).ready(function(){
 		var value = el.val();
 		var service_id = $('.service_id').val();
 		
+
+		
 		if ( el.attr('type') == 'checkbox' ){
 			if ( !el.prop("checked") ){
 				value = '';
 			}
 		}
+		
+		
 		
 		$.ajax({
 		    url: '/orders/validate/',
@@ -821,6 +900,8 @@ $(document).ready(function(){
 				for(k in result) {
 					error = result[k];
 				}
+				
+				
 				if ( error ){
 					el.parent().addClass('has-error').removeClass('has-success');
 					el.parent().find('.help-block').html(error); 
@@ -829,8 +910,23 @@ $(document).ready(function(){
 				else {
 					el.parent().removeClass('has-error').addClass('has-success');
 					el.parent().find('.help-block').html('');
+					
+					//проверяем и сохраняем короткую заявку
+					if ( field == 'kredit-phone' ){
+
+						if ( $('#kredit-name').parent().hasClass('has-success') && $('#kredit-phone').parent().hasClass('has-success') ){
+							SaveLastOrder( );
+						}
+						
+					}
+					
+					
+					
 					return true;
 				}
+				
+				
+				
 				
 		   }
 		});
@@ -838,7 +934,23 @@ $(document).ready(function(){
 	
 	}
 	
-
+	function SaveLastOrder( ){
+	
+		var service_id = $('.service_id').val();
+		var secret_key = $('#kredit-secret_key').val();
+		var name = $('#kredit-name').val();
+		var phone = $('#kredit-phone').val();
+		
+		$.ajax({
+		    url: '/orders/savelostorder/',
+		    type: 'post',
+		    data: {'name': name, 'phone': phone, 'service_id': service_id, 'secret_key': secret_key},
+		    success: function (data) {
+			
+			}
+		});
+	
+	}
 
 
 	/* Reinitialize */

@@ -10,6 +10,7 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Заявки', 'icon' => 'file-code-o', 'url' => ['/orders']],
+					['label' => 'Брошенные заявки', 'icon' => 'hand-stop-o', 'url' => ['/lostorders']],
 					['label' => 'Заказ звонка', 'icon' => 'phone', 'url' => ['/request']],
 					['label' => 'Заказ сотрудничества', 'icon' => 'handshake-o', 'url' => ['/requestp']],
                     ['label' => 'Контент', 'icon' => 'newspaper-o', 'url' => ['/debug'],

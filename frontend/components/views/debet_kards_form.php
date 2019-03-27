@@ -76,6 +76,73 @@ $this->registerJs($js);
 						<h3 class="hidden">Общие данные</h3>
 						<section class="step0">
 						
+
+							<div class="line_flex">
+							
+								<?if ( Yii::$app->user->isGuest):?>
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('last_name');?></label>
+										<?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('name');?></label>
+										<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('second_name');?></label>
+										<?= $form->field($model, 'second_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('phone');?></label>
+										<?= $form->field($model, 'phone')->textInput(['type' => 'tel', 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('email');?></label>
+										<?= $form->field($model, 'email')->textInput(['type' => 'email', 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+								
+
+									
+								<?else:?>
+								
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('last_name');?></label>
+										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('name');?></label>
+										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('second_name');?></label>
+										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+									</div>
+									
+
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('phone');?></label>
+										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+									
+									<div class="line_form">
+										<label><?=$model->getAttributeLabel('email');?></label>
+										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+									</div>
+								
+								
+								<?endif;?>
+								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
+
+							</div>
+							
 							<h4 class="title">Основные параметры</h4>
 							<div class="line_flex">
 						
@@ -138,80 +205,11 @@ $this->registerJs($js);
 									</div>
 								</div>	
 							</div>	
-							<h4 class="title">Контактные данные</h4>
-							<div class="line_flex">
-							
-								<?if ( Yii::$app->user->isGuest):?>
-								
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone')->textInput(['type' => 'tel', 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email')->textInput(['type' => 'email', 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-								
-									<div class="line_form_one">
-										<?= $form->field($model, 'agree', [
-											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'checkbox agree form-group']
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
-									</div>
-									
-								<?else:?>
-								
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
-									</div>
-									
-
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-									
-									<div class="line_form">
-										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
-									</div>
-								
-									<div class="line_form_one">
-										<?= $form->field($model, 'agree', [
-											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group has-success checkbox agree']
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
-									</div>
-								
-								<?endif;?>
+							<div class="line_form_one">
+								<?= $form->field($model, 'agree', [
+									'template' => '{input}{label}{error}',
+									'options' => ['class' => 'checkbox agree form-group']
+								])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 							</div>
 							
 							
@@ -499,18 +497,25 @@ $(document).ready(function(){
 	
 	});
 	
-	$( ".form-group.required input" ).keyup(function( ) {
+	$( ".steps .form-group.required input" ).keyup(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
 	});
 	
-	$( ".form-group.required input" ).change(function( ) {
+	$( ".steps .form-group.required input" ).change(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
+	});
+	
+	//проверяем и сохраняем короткую заявку
+	$( "#debetcards-name" ).change(function( ) {
+		if ( $('#debetcards-name').parent().hasClass('has-success') && $('#debetcards-phone').parent().hasClass('has-success') ){
+			SaveLastOrder( );
+		}
 	});
 	
 	function validateField ( el ){
@@ -543,12 +548,40 @@ $(document).ready(function(){
 				else {
 					el.parent().removeClass('has-error').addClass('has-success');
 					el.parent().find('.help-block').html('');
+					
+					//проверяем и сохраняем короткую заявку
+					if ( field == 'debetcards-phone' ){
+
+						if ( $('#debetcards-name').parent().hasClass('has-success') && $('#debetcards-phone').parent().hasClass('has-success') ){
+							SaveLastOrder( );
+						}
+						
+					}
+					
 					return true;
 				}
 				
 		   }
 		});
 	
+	
+	}
+	
+	function SaveLastOrder( ){
+	
+		var service_id = $('.service_id').val();
+		var secret_key = $('#debetcards-secret_key').val();
+		var name = $('#debetcards-name').val();
+		var phone = $('#debetcards-phone').val();
+		
+		$.ajax({
+		    url: '/orders/savelostorder/',
+		    type: 'post',
+		    data: {'name': name, 'phone': phone, 'service_id': service_id, 'secret_key': secret_key},
+		    success: function (data) {
+			
+			}
+		});
 	
 	}
 

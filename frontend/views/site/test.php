@@ -4,6 +4,7 @@ use common\models\Api;
 use common\models\ApiEvents;
 use common\models\Absolute;
 
+
 use yii\helpers\Html;
 
 
@@ -13,6 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <?
+
+
+
+$arBanks = Api::GetServiceBanks( 7 );
+
+echo "<pre>";
+print_r( $arBanks );
+echo "</pre>";
 
 //обсолюте банк
 
@@ -70,7 +79,7 @@ echo "<pre>";
 print_r( $docs );
 echo "</pre>";
 
-*/
+
 
 
 		
@@ -122,7 +131,7 @@ $result = file_get_contents($cityUrl, false, $context);
 //echo "<pre>";
 //print_r( $result );
 //echo "</pre>";
-*/
+
 
 
 $ch = curl_init();  
@@ -480,15 +489,15 @@ echo "</pre>";
 		
 	 	
 	
-
+*/
 //точка банк 
 $sURL = 'https://open.tochka.com:3000/rest/v1/request/new'; // URL-адрес POST 
 
 
 $body = Array( 
 	"token" => "1mo75abav8m7sj8l4lm3a8p54prlqr35m",
-	"request" => Array('inn' => '1659169882', 'name' => 'ИП Тестовый', 'adrress' => 'Москва, Мароссейка 15', 'last_name' => 'Тестович', 'first_name' => 'Тест', 'second_name' => 'Тестовый', 'birthday' => '1987-02-02', 'telephone' => '+79046891755', 'typeDoc' => '21',  'dateStart' => '2015-02-02', 'number' => '878456',  'serial' => '9206', 'snils' => '15267513870', 'comment' => 'test', 'branch' => 'open', 'acc_type' => '6', 'sex' => 'F',),
-	"workMode" => "0",
+	"request" => Array('inn' => '166005090056', 'name' => 'ИП Тестовый 2', 'adrress' => 'Москва, Мароссейка 15', 'last_name' => 'Тестович', 'first_name' => 'Тест', 'second_name' => 'Тестовый', 'birthday' => '1987-02-02', 'telephone' => '+79046891755', 'typeDoc' => '21',  'dateStart' => '2015-02-02', 'number' => '878456',  'serial' => '9206', 'snils' => '07728872719', 'comment' => 'test', 'branch' => 'open', 'acc_type' => '6', 'sex' => 'M'),
+	"workMode" => "1",
 );
 
 $sPD = json_encode( $body, JSON_UNESCAPED_UNICODE);
@@ -509,6 +518,7 @@ echo "<pre>";
 print_r( $arResult );
 echo "</pre>";	
 
+/*
 
 		
 $ch = curl_init();

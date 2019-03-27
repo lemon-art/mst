@@ -39,6 +39,16 @@ class ServicesSearch extends Services
         ]);
 		return $dataProvider;
 	}
+	
+	public function kredit( )
+    {
+		
+		$query =  Services::findOne(['id' => 1]);
+		$dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+		return $dataProvider;
+	}
 
     /**
      * {@inheritdoc}

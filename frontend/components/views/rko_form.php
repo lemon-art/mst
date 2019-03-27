@@ -73,55 +73,11 @@ $this->registerJs($js);
 						]); ?>
 					
 					<div class="steps">					
-						<h3 class="hidden">Общие данные</h3>
+						
+						<h3 class="hidden">Контактные данные</h3>
 						<section class="step0">
 						
-							<h4 class="title">Основные параметры</h4>
-							<div class="line_flex">
-						
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('form');?></label>
 
-									<div class="selectWrap"> 
-									 
-										<?=$form->field($model, 'form')->dropDownList([
-											''   => 'Выберите',
-											'ИП' => 'ИП',
-											'ООО' => 'ООО',
-											'Другое' => 'Другое'
-										], 
-										['class' => 'required'])->label(false);?> 
-									</div>
-								</div>
-								
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('inn');?></label>
-									<?= $form->field($model, 'inn')->textInput(['maxlength' => true, 'placeholder' => "Введите ИНН", 'class' => 'input required '])->label(false);?>
-								</div>
-
-								
-								
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('city');?></label>
-									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
-								</div>
-								
-								
-							</div>	
-							<div class="line_flex">
-								<div class="line_form">
-									<label><?=$model->getAttributeLabel('snils');?></label>
-									<?= $form->field($model, 'snils')->textInput(['maxlength' => true, 'placeholder' => "Введите номер СНИЛС", 'class' => 'input required '])->label(false);?>
-								</div>
-							</div>	
-							
-							
-						</section>
-						<h3 class="hidden">Контактные данные</h3>
-						<section class="step1">
-						
-							<h4 class="title">Контактные данные</h4>
 							<div class="line_flex">
 							
 								<?if ( Yii::$app->user->isGuest):?>
@@ -195,8 +151,62 @@ $this->registerJs($js);
 									</div>
 								
 								<?endif;?>
+								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
+
 							</div>
 						</section>
+						
+						<h3 class="hidden">Общие данные</h3>
+						<section class="step1">
+						
+							<h4 class="title">Основные параметры</h4>
+							<div class="line_flex">
+						
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('form');?></label>
+
+									<div class="selectWrap"> 
+									 
+										<?=$form->field($model, 'form')->dropDownList([
+											''   => 'Выберите',
+											'6' => 'ИП',
+											'0' => 'ООО',
+										], 
+										['class' => 'required'])->label(false);?> 
+									</div>
+								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('company_name');?></label>
+									<?= $form->field($model, 'company_name')->textInput(['maxlength' => true, 'placeholder' => "Введите наименование компании", 'class' => 'input required '])->label(false);?>
+								</div>
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('inn');?></label>
+									<?= $form->field($model, 'inn')->textInput(['maxlength' => true, 'placeholder' => "Введите ИНН", 'class' => 'input required '])->label(false);?>
+								</div>
+
+								
+								
+
+								
+								
+							</div>	
+							<div class="line_flex">
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('city');?></label>
+									<?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => "Москва", 'class' => 'input kirilica'])->label(false);?>
+								</div>
+							
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('snils');?></label>
+									<?= $form->field($model, 'snils')->textInput(['maxlength' => true, 'placeholder' => "Введите номер СНИЛС", 'class' => 'input required '])->label(false);?>
+								</div>
+							</div>	
+							
+							
+						</section>
+						
 						<h3 class="hidden">Паспортные данные</h3>
 
 						<section class="step2">
@@ -222,7 +232,6 @@ $this->registerJs($js);
 									</div>
 									
 								</div>
-								
 
 							
 							<?else:?>
@@ -252,6 +261,13 @@ $this->registerJs($js);
 							
 							<div class="line_flex">
 							
+								
+								<div class="line_form">
+									<label><?=$model->getAttributeLabel('issuedate');?></label>
+									<?= $form->field($model, 'issuedate')->textInput(['maxlength' => true, 'placeholder' => "", 'class' => 'input date'])->label(false);?>
+								</div>
+								
+								
 								<div class="line_form">
 									<label><?=$model->getAttributeLabel('sex');?></label>
 
@@ -460,18 +476,25 @@ $(document).ready(function(){
 	
 	});
 	
-	$( ".form-group.required input" ).keyup(function( ) {
+	$( ".steps .form-group.required input" ).keyup(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
 	});
 	
-	$( ".form-group.required input" ).change(function( ) {
+	$( ".steps .form-group.required input" ).change(function( ) {
 		
 		var el = $(this);
 		validateField ( el );
 	
+	});
+	
+	//проверяем и сохраняем короткую заявку
+	$( "#rko-name" ).change(function( ) {
+		if ( $('#rko-name').parent().hasClass('has-success') && $('#rko-phone').parent().hasClass('has-success') ){
+			SaveLastOrder( );
+		}
 	});
 	
 	function validateField ( el ){
@@ -510,6 +533,16 @@ $(document).ready(function(){
 					else {
 						el.parent().removeClass('has-error').addClass('has-success');
 						el.parent().find('.help-block').html('');
+						
+						//проверяем и сохраняем короткую заявку
+						if ( field == 'rko-phone' ){
+
+							if ( $('#rko-name').parent().hasClass('has-success') && $('#rko-phone').parent().hasClass('has-success') ){
+								SaveLastOrder( );
+							}
+							
+						}
+						
 						return true;
 					}
 
@@ -520,6 +553,23 @@ $(document).ready(function(){
 	
 	}
 
+	function SaveLastOrder( ){
+	
+		var service_id = $('.service_id').val();
+		var secret_key = $('#rko-secret_key').val();
+		var name = $('#rko-name').val();
+		var phone = $('#rko-phone').val();
+		
+		$.ajax({
+		    url: '/orders/savelostorder/',
+		    type: 'post',
+		    data: {'name': name, 'phone': phone, 'service_id': service_id, 'secret_key': secret_key},
+		    success: function (data) {
+			
+			}
+		});
+	
+	}
 
 	/* Reinitialize */
 	//маска телефона

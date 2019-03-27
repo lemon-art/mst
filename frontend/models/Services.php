@@ -52,6 +52,12 @@ class Services extends \yii\db\ActiveRecord
             [['name', 'title_main', 'code'], 'string', 'max' => 255],
         ];
     }
+	
+	public function loadModel($id)
+	{
+		$model = Services::findOne(['id' => $id]);
+		return $model;
+	}
 
     /**
      * {@inheritdoc}

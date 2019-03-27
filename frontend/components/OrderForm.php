@@ -14,6 +14,7 @@ use app\models\Rko;
 use app\models\DebetCards;
 use app\models\Avtokredit;
 use app\models\KreditKards;
+use app\models\LostOrders;
 use dektrium\user\models\RegistrationForm;
 use dektrium\user\models\LoginForm;
 use dektrium\user\models\Profile;
@@ -165,7 +166,13 @@ class OrderForm extends Widget {
 			
 				Yii::$app->session->setFlash('requestOrderFormSubmitted');
 				
-				Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
+				//удаляем незаполненную заявку
+				if ( $orderModel -> secret_key ){
+					$lostModel = LostOrders::getModelByKey( $orderModel -> secret_key );
+					if ( $lostModel )
+						$lostModel -> delete();
+				}
+				
 				//Mailer::sendAdminOrderMessage( 'Новая заявка: ' . $this->service_name, $orderModel );
 				
 				//отправляем заявки в банки
@@ -182,6 +189,7 @@ class OrderForm extends Widget {
 					$objEvent -> save();
 				}
 				
+				//Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
 				
 				
 			}

@@ -38,7 +38,7 @@ class Rko extends \yii\db\ActiveRecord
 	public $address;
 	public $registrationdate;
 	public $registrationphone; 
-	
+	public $secret_key;
 	public $summ_display; 
 	public $term_display; 
 	 
@@ -67,19 +67,51 @@ class Rko extends \yii\db\ActiveRecord
         return [
 	
 			[['email'], 'email', 'message'=>'Введите корректный email'],
-            [['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn', 'snils', 'bithday', 'address', 'sn', 'sex'], 'required', 'message'=>'Заполните поле'],
+            [['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn', 'snils', 'bithday', 'address', 'company_name', 'sn', 'sex', 'issuedate'], 'required', 'message'=>'Заполните поле'],
             [['id',  'service_id', 'user_id', 'status'], 'integer'],
             [['date'], 'safe'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-            [['name', 'last_name', 'second_name', 'city'], 'string', 'max' => 255],
+            [['name', 'last_name', 'second_name', 'city', 'company_name'], 'string', 'max' => 255],
 			[['email'], 'validateEmail'],
 			[['inn'], 'validateInn'],
+			[['issuedate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
 			[['bithday'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
 			[['bithday'], 'validateDate'], 
+			[['phone'], 'validatePhone'],
 			[['snils'], 'validateSnils'],
 			
         ];
     }
+	
+	public function validatePhone($attribute, $params){
+	
+		$del = array("(", ")", " ", "-");
+		$emp   = array("", "", "", "");
+		 
+		$phone = str_replace($del, $emp, $this->$attribute);
+		
+		
+		if (empty( $phone )) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+
+		if (!preg_match('/^\+?\d{10,15}$/', $phone)) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+
+		if (
+			(mb_substr($phone, 0, 2) == '+7' and mb_strlen($phone) != 12) ||
+			(mb_substr($phone, 0, 1) == '7'  and mb_strlen($phone) != 11) ||
+			(mb_substr($phone, 0, 1) == '8'  and mb_strlen($phone) == 11) ||
+			(mb_substr($phone, 0, 1) == '9'  and mb_strlen($phone) == 11)
+		) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+		return true;
+	}
 	
 	public function validateDate($attribute, $params) {
 	
@@ -160,9 +192,10 @@ class Rko extends \yii\db\ActiveRecord
             'status' => 'Status',
 			'bithday' => 'Дата рождения',
 			'birthplace' => 'Место рождения',
+			'company_name' => 'Наименование компании',
 			'sn' => 'Номер паспорта',
 			'sex' => 'Пол',
-			'issuedate' => 'Дата выдачи',
+			'issuedate' => 'Дата выдачи паспорта',
 			'issuecode' => 'Код подразделения',
 			'issuer' => 'Кем выдан',
 			'address' => 'Адрес регистрации (до дома)',

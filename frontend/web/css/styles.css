@@ -2013,11 +2013,17 @@ header .line_menu .contact
     display: none;
 }.table_profitably .item_head .box
 {
-    font-weight: 700;;
+    font-weight: 700;
 
     width: 25%;
     padding: 0 41px;
-}.table_profitably .item_head .box:fist-child
+}
+.table_profitably.kreditkards .item_head .box
+{
+    width: 33%;
+}
+
+.table_profitably .item_head .box:fist-child
 {
     padding: 0 24px;
 }.table_profitably .item_head .box span
@@ -2062,7 +2068,16 @@ header .line_menu .contact
 
     justify-content: flex-start;
     align-items: flex-start;
-}.table_profitably .item .box:first-child
+}
+.table_profitably.kreditkards .item .box
+{
+    display: flex;
+
+    width: 33%;
+    padding: 24px 20px;
+}
+
+.table_profitably .item .box:first-child
 {
     padding: 24px;
 
@@ -2589,7 +2604,14 @@ footer .links .link
 
         width: 18%;
         padding: 12px 28px;
-    }.table_profitably .item .box.small:first-child,
+    }
+	.table_profitably.kreditkards .item .box.small,
+    .table_profitably.kreditkards .item_head .box.small
+    {
+        width: 15%;
+    }
+	
+	.table_profitably .item .box.small:first-child,
     .table_profitably .item_head .box.small:first-child
     {
         width: 20%;
@@ -2702,4 +2724,58 @@ h3,
 * + h3,
 * + .h3{
   margin-top: 20px;
+}
+
+
+.top_form {
+	width: 60%;
+    margin: 0 auto;
+	display: flex;
+    margin-top: 20px;
+    padding: 5px 5px;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
+}
+.top_form .content{
+	margin: 0 auto;
+}
+
+.credit_form_col {
+	width: calc(40% - 40px);
+    margin-right: 40px;
+}
+
+.credit_form_col span {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+	color: #fff;
+    text-align: center;
+}
+
+.credit_form_col input{
+	color: #222;
+    font: 15px Geometria, Arial;
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 0 20px;
+    transition: .2s linear;
+    border: 1px solid #e8ecf0;
+    border-radius: 3px;
+    background: #fff;
+}
+
+
+
+.section_first .top_form{
+    max-width: 520px;
+    justify-content: space-between;
+}
+
+.section_first .top_form .credit_form_col{
+    margin-right: 0;
+    width: calc(50% - 15px);
 }

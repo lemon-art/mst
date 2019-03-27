@@ -10,7 +10,7 @@ use yii\widgets\ListView;
 
 				 <div class="main_title">Выгодное предложение</div>
 
-				<div class="table_profitably">
+				<div class="table_profitably kreditkards">
 
 
 					<div class="item_head">
@@ -18,7 +18,7 @@ use yii\widgets\ListView;
 
 						<div class="box small">Процентная ставка</div>
                         <div class="box small">Сумма кредита</div>
-						<div class="box small">Льготный период</div>
+						<div class="box small">Без % по кредиту</div>
 						<div class="box ">Преимущества</div>
 					</div>
 

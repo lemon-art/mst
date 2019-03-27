@@ -29,7 +29,7 @@ class Avtokredit extends \yii\db\ActiveRecord
 	 
 	public $term_display;
 	public $summ_display; 
-	 
+	public $secret_key; 
 	public $name;
 	public $last_name;
 	public $second_name;
@@ -54,9 +54,40 @@ class Avtokredit extends \yii\db\ActiveRecord
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['email'], 'validateEmail'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
+			[['phone'], 'validatePhone'],
 			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле'],
         ];
     }
+	
+	public function validatePhone($attribute, $params){
+	
+		$del = array("(", ")", " ", "-");
+		$emp   = array("", "", "", "");
+		 
+		$phone = str_replace($del, $emp, $this->$attribute);
+		
+		
+		if (empty( $phone )) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+
+		if (!preg_match('/^\+?\d{10,15}$/', $phone)) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+
+		if (
+			(mb_substr($phone, 0, 2) == '+7' and mb_strlen($phone) != 12) ||
+			(mb_substr($phone, 0, 1) == '7'  and mb_strlen($phone) != 11) ||
+			(mb_substr($phone, 0, 1) == '8'  and mb_strlen($phone) == 11) ||
+			(mb_substr($phone, 0, 1) == '9'  and mb_strlen($phone) == 11)
+		) {
+			$this->addError($attribute, 'Введите корректный номер');
+			return false;
+		}
+		return true;
+	}
 	
 	public function afterFind() {
 	

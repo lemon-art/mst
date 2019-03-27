@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\helpers\Url;
 use app\models\AtriclesSearch;
+use app\models\Services;
 use app\models\ServicesSearch;
 use app\models\BanksSearch;
 use app\models\OffersSearch;
@@ -94,6 +95,7 @@ class SiteController extends Controller
 		$reviewsModel  = new ReviewsSearch();
 		$reqModel 	   = new Request();
 		
+		
 	
 		
 			$articlesProvider   = $articlesModel->search();
@@ -101,7 +103,8 @@ class SiteController extends Controller
 			$banksProvider      = $banksModel->search();
 			$reviewsProvider    = $reviewsModel->search();
 			$bestOffersProvider = $offersModel -> searchMainSpecial();
-		
+			$kreditModel 		= Services::loadModel(1);
+			
 			if ($reqModel->load(Yii::$app->request->post())) {
 				
 				if ( $reqModel->type == 'indexPage' ){
@@ -120,6 +123,7 @@ class SiteController extends Controller
 
 		
 		return $this->render('index', [
+			'kreditModel'		 => $kreditModel,
 			'articlesProvider'   => $articlesProvider,
 			'servicesProvider'   => $servicesProvider,
 			'banksProvider'      => $banksProvider,

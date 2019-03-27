@@ -13,6 +13,7 @@ use frontend\components\PopupForm;
 use frontend\components\Login;
 use frontend\components\Register;
 use frontend\components\Forgot;
+use frontend\components\HelpOrder;
 
 AppAsset::register($this);
 
@@ -361,6 +362,10 @@ if (isset($_GET["actionpay"])){
 	
 	<div class="modal modal_login" id="modal_forgot">
 		<?=Forgot::widget();?>
+	</div>
+	
+	<div class="modal modal_login" id="modal_help">
+		<?=HelpOrder::widget();?>
 	</div>
 
 <?php $this->endBody() ?>
