@@ -25,9 +25,9 @@ class PopupForm extends Widget {
 			if ( $reqModel->type == 'callbackForm' ){	
 				if ( $reqModel->save()){
 					Yii::$app->session->setFlash('requestPopupFormSubmitted', 'Y');
-					Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 					$crmModel = new CuiteCrm;
 					$crmModel -> ShortRequest( $reqModel );
+					Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 				}
 				else {
 					Yii::$app->session->setFlash('requestPopupFormFalse', 'Y');

@@ -113,7 +113,7 @@ $this->registerJs($js);
 								
 								<?endif;?>									
 									
-								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
+								
 
 							</div>
 							<div class="line_flex">
@@ -142,15 +142,18 @@ $this->registerJs($js);
 											], ['class' => 'required'])->label(false);?> 
 										</div>
 									</div>
-									<div class="line_form_one">
+									
+								
+							</div>
+							<div class="line_flex">
+								<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
 											'options' => ['class' => 'form-group checkbox agree'],
 											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
-								
+								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
 							</div>
-							
 						</section>
 						
 						<h3 class="hidden">Общие данные</h3>
@@ -659,12 +662,21 @@ $(document).ready(function(){
 			previous: "Назад",
 
 		},
+		onInit: function (event, currentIndex) { 
+			$('.actions').addClass('center_button');
+		},
 		onStepChanging: function (event, currentIndex, newIndex) { 
+
 
 			cur = currentIndex;
 			errorFound = false;
 			ret = true;
 			tmp = [];
+			
+			
+			if ( newIndex == 0 ){
+				$('.actions').removeClass('center_button');
+			}
 			
 			if ( newIndex > currentIndex ){
 
@@ -750,7 +762,18 @@ $(document).ready(function(){
 								return false;
 							});
 							
-							$('body').on( 'click', '.need_help', function(e){
+							$('body').on( 'click', '.need_help_modal', function(e){
+								
+								
+								var secret_key = $('#kredit-secret_key').val();
+								
+								$.ajax({
+									url: '/orders/activatelostorder/'+secret_key+'/',
+									type: 'post',
+									success: function (data) {
+									
+									}
+								});
 								
 								$.fancybox.close();
 								$('.actions').hide();
@@ -763,6 +786,7 @@ $(document).ready(function(){
 						
 					}
 					
+					$('.actions').removeClass('center_button');
 					ret = true;
 					$('.wizard>.steps').show();
 					$(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#completed").offset().top}, 1000);});

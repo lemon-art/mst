@@ -42,7 +42,7 @@ class RequestpSearch extends Requestp
     public function search($params)
     {
         $query = Requestp::find();
-
+		$query -> addOrderBy('id DESC');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

@@ -362,4 +362,9 @@
     .credit_form_col span{
         color: #222;
     }
+
+
+    .section_request .form .center_button .line_flex .line_form {
+        width: calc(50% - 10px);
+    }
 }

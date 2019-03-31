@@ -248,11 +248,11 @@ class SiteController extends Controller
 			
 		if ( $action == 'terms_of_cooperation' || $action == 'terms_of_banks' || $action == 2 || $action == 3){
 			$reqModel 	   = new RequestPartners();
-			$mailSubject = 'Заявка с сайта (обратная связь) ';
+			$mailSubject = 'Заявка с сайта (сотрудничество) ';
 		}
 		else {
 			$reqModel 	   = new Request();
-			$mailSubject = 'Заявка с сайта (сотрудничество) ';
+			$mailSubject = 'Заявка с сайта (обратная связь) ';
 		}
 		
 		if ($reqModel->load(Yii::$app->request->post())) {

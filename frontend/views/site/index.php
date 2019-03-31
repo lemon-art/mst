@@ -15,7 +15,7 @@ $this->title = 'MarketVibor - подбор кредита';
 
 
 
-					<div class="info"><?= Html::encode($kreditModel->top_text) ?></div>
+					<div class="info"><?=$kreditModel->text_main_text?></div>
 
 					<div class="completed">
 						<a href="/services/credit/#completed" class="scroll_link">Заполнить заявку</a>
@@ -23,8 +23,8 @@ $this->title = 'MarketVibor - подбор кредита';
 				</div>
 			</section>
 			
-<?if ( $kreditModel->big_image ):?>		
-<?$imgFon = Files::getPath($kreditModel->big_image);?>
+<?if ( $kreditModel->text_main_img ):?>		
+<?$imgFon = Files::getPath($kreditModel->text_main_img);?>
 <?
 $script = <<< JS
     jQuery('.section_first').css({ 'background': 'url($imgFon) 0 0 no-repeat' });

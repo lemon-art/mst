@@ -108,6 +108,8 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+	
+
 }
 
 .nav > li > form > button.logout:focus,

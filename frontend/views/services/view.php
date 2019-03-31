@@ -39,19 +39,19 @@ $this->params['breadcrumbs'][] = $model->name;
 
 
 
-					<div class="info"><?= Html::encode($model->top_text) ?></div>
+					<div class="info"><?=$model->top_text?></div>
 					
 					<?if ( $model->id == 1 && Yii::$app->user->isGuest):?>
 					
 						<div class="top_form">
 							
 							<div class="credit_form_col">
-								<span>Ваше имя</span>
+								
 								<input type="text" id="kredit-name-top" class="input kirilica" name="" maxlength="255" placeholder="Введите имя" aria-required="true">
 							</div>
 							<div class="credit_form_col">
-								<span>Телефон</span>
-								 <input type="tel" id="kredit-phone-top" class="input" name="" placeholder="Введите телефон" aria-required="true">
+								
+								<input type="tel" id="kredit-phone-top" class="input" name="" placeholder="Введите телефон" aria-required="true">
 							</div>
 						   
 						</div>

@@ -46,7 +46,6 @@ class Files extends \yii\db\ActiveRecord
 			$fileName = $uid . '.' . $imageFile->extension;
 			$filePath = $directory . $fileName;
 			if ($imageFile->saveAs($filePath)) {
-				
 				$model = new Files;
 				$model -> path = $fileName;
 				$model->save();  

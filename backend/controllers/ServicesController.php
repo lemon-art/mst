@@ -101,7 +101,7 @@ class ServicesController extends Controller
 
         $image = $model->image;
 		$big_image = $model->big_image;
-		
+		$text_main_img = $model->text_main_img;
 		
 		
         if ($model->load(Yii::$app->request->post())) {
@@ -131,6 +131,21 @@ class ServicesController extends Controller
 			elseif( $big_image ) {
 				$model->big_image = $big_image;
 			}
+			
+			$file3 = UploadedFile::getInstance($model, 'text_main_img');
+			$upFile = new Files;	
+			if ( $text_main_img && $file3 ){
+				$upFile -> deleteFile( $text_main_img );
+			}
+			if ( $file3 ){
+				$id = $upFile -> upload( $file3 );
+				$model->text_main_img = $id;
+			}			
+			elseif( $text_main_img ) {
+				$model->text_main_img = $text_main_img;
+			}
+			
+			 
 			
 			$model->save();
             return $this->redirect(['index']);

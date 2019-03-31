@@ -36,7 +36,7 @@ class LostordersController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Lostorders::find(['active' => 1])->with('services'),
+            'query' => Lostorders::find()->andFilterWhere(['active' => 1])-> addOrderBy('id DESC')->with('services'),
         ]);
 
         return $this->render('index', [
@@ -45,8 +45,7 @@ class LostordersController extends Controller
     }
 
     /**
-     * Displays a single Lostorders model.
-     * @param integer $id
+     * Displays a single Lostorders model.     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */

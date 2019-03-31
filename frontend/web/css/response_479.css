@@ -241,4 +241,18 @@
     .section_first .top_form .credit_form_col{
         width: 100%;
     }
+
+
+    .section_request .form .center_button .line_flex .line_form {
+        width: 100%;
+    }
+	
+	.modal .submit{
+		position: relative;
+	}
+	
+	.modal .submit .submit_btn{
+		width: 270px;
+	}
+	
 }

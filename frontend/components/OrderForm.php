@@ -189,7 +189,7 @@ class OrderForm extends Widget {
 					$objEvent -> save();
 				}
 				
-				//Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
+				Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
 				
 				
 			}

@@ -99,7 +99,29 @@ use backend\models\Files;
 	
 	<?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-	 
+	<?if ( $model->id == 1 ):?>
+		<hr>
+		<h2>На главной странице в шапке</h2> 
+		
+		<?= $form->field($model, 'text_main_title')->textInput(['maxlength' => true]) ?>
+		
+		<?= $form->field($model, 'text_main_text')->textInput(['maxlength' => true]) ?>
+		
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1"><?=$model->getAttributeLabel('text_main_img');?></label>
+			<br>
+			<?if ( $model->text_main_img ):?>
+				<?=Html::img(Files::getPath($model->text_main_img),[
+						'style' => 'width:150px;'
+				]);?>
+				<br><br>
+			<?endif;?>
+								
+			<?= $form->field($model, 'text_main_img')->fileInput()->label(false);?>
+		</div>	
+		
+	<?endif;?>	
 	<hr>
 	 
     <div class="form-group">

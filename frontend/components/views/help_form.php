@@ -41,7 +41,7 @@ use yii\widgets\Pjax;
 						</div>
 						
 						<div class="submit">
-							<?= Html::submitButton('Требуется помощь оператора', ['class' => 'need_help submit_btn']) ?>
+							<?= Html::submitButton('Требуется помощь оператора', ['class' => 'need_help_modal submit_btn']) ?>
 						</div>
 						
 					<?php ActiveForm::end(); ?>

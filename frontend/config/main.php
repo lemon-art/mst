@@ -57,6 +57,7 @@ return [
 				'orders/validate' => 'orders/validate',
 				'orders/savelostorder' => 'orders/savelostorder',
 				'orders/updatelostorder' => 'orders/updatelostorder',
+				'orders/activatelostorder/<code>' => 'orders/activatelostorder',
 				'articles' => 'atricles/index',
 				'articles/<id>' => 'atricles/view',
 				'reviews' => 'reviews/index',

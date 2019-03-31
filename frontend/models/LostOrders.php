@@ -4,6 +4,7 @@ namespace app\models;
 use backend\models\Mailer;
 use common\models\CuiteCrm;
 use backend\models\Services;
+use app\models\Request;
 use Yii;
 
 /**
@@ -55,19 +56,44 @@ class LostOrders extends \yii\db\ActiveRecord
 		}
 	}
 	
+	//активируем брошенный заказ по ключу
+	public function addLostOrder( $secret_key ){
+		
+		$model = LostOrders::getModelByKey( $secret_key );
+		if ( $model ){
+			$reqModel = new Request();
+			$reqModel -> name = $model -> name;
+			$reqModel -> phone = $model -> phone;
+			$reqModel -> product_id = $model -> service_id;
+			$reqModel -> save();
+			$model -> delete();
+			Mailer::sendCallbackMessage( 'Требуется помощь в офомлении заявки', $reqModel );
+		}
+			
+	
+	}
+	
+	//обрабатываем все неактивные заказы, с истекшим сроком
 	public function getNoactive( )
 	{
 		$date = date("Y-m-d H:i:s", mktime( date('H'),  date('i') - 15,  date('s'), date('m'), date('d'), date('Y')));
-		$model = LostOrders::find()->andFilterWhere(['active' => 1])->with('services')->all();
+		$model = LostOrders::find()->andFilterWhere(['active' => 0])->with('services')->all();
 		foreach ( $model as $order){
 			if ( $order -> date < $date ){
-				Mailer::sendCallbackMessage( 'Недозаполненная заявка ('.$order -> services -> name.')', $order );
-				$crmModel = new CuiteCrm;
-				$crmModel -> ShortRequest( $order );
-				$order -> active = 1;
-				$order -> save();
+				LostOrders::ActivateLostOrder( $order );
 			}
 		}
+	}
+	
+	//активируем брошенный заказ, отправляем письмо и в crm
+	public function ActivateLostOrder( $model ){
+			
+		
+		$crmModel = new CuiteCrm;
+		$crmModel -> ShortRequest( $model );
+		$model -> active = 1;
+		$model -> save();
+		Mailer::sendCallbackMessage( 'Недозаполненная заявка ('.$model -> services -> name.')', $model );
 	}
 
     /**

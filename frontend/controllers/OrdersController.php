@@ -104,5 +104,10 @@ class OrdersController extends Controller
 
 	}
 	
-	
+	public function actionActivatelostorder( $code )
+    {
+
+		$model = LostOrders::addLostOrder( $code );
+
+	}
 }
