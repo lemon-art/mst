@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use common\models\CuiteCrm;
 
 use Yii;
 
@@ -34,6 +35,20 @@ class Request extends \yii\db\ActiveRecord
             [['type', 'name', 'phone'], 'string', 'max' => 255],
         ];
     }
+	
+	public function beforeSave($insert){
+		if (parent::beforeSave($insert)) {
+			
+			$reqModel = $this;
+			$crmModel = new CuiteCrm;
+			$crmModel -> ShortRequest( $reqModel );
+
+			return true;
+		}
+		return false;
+	}
+	
+	
 
     /**
      * {@inheritdoc}

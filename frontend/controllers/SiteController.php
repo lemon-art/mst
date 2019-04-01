@@ -111,8 +111,6 @@ class SiteController extends Controller
 					if ( $reqModel->save()){
 						Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 						Yii::$app->session->setFlash('requestFormSubmitted');
-						$crmModel = new CuiteCrm;
-						$crmModel -> ShortRequest( $reqModel );
 					}
 					else {
 						Yii::$app->session->setFlash('requestFormFalse');
