@@ -109,6 +109,9 @@ class SiteController extends Controller
 				
 				if ( $reqModel->type == 'indexPage' ){
 					if ( $reqModel->save()){
+					
+			
+					
 						Mailer::sendCallbackMessage( 'Заявка с сайта (обратная связь) ', $reqModel );
 						Yii::$app->session->setFlash('requestFormSubmitted');
 					}

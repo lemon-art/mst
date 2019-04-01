@@ -14,7 +14,7 @@ use yii\widgets\Pjax;
 				<div class="title">Поможем <span>подобрать продукт</span>!</div>
 
 				<div class="subTitle">Оставьте свой телефон и мы с Вами свяжемся!</div>
-
+				
 				<div class="form">
 					<?php Pjax::begin([
 						'id' => 'requestFormPjax',

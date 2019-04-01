@@ -9,7 +9,8 @@ class CuiteCrm
 
 	public $apiUrl;
 	protected $api_key;
-
+	public $name;
+	public $phone;
 	
 	function __construct(){
 	
@@ -18,7 +19,7 @@ class CuiteCrm
 
 	}
 	
-	public function ShortRequest( $orderModel )
+	public function ShortRequest()
     {
 		
 		
@@ -26,8 +27,8 @@ class CuiteCrm
 		$body = Array( 
 			"action" => "CallMe",
 			"api_key" => $this -> api_key,
-			"name" => $orderModel -> name,
-			"phone" => $this -> FormatePhone( $orderModel -> phone )
+			"name" => $this -> name,
+			"phone" => $this -> FormatePhone( $this -> phone )
 		);
 		
 		
@@ -46,7 +47,8 @@ class CuiteCrm
 		$context = stream_context_create($aHTTP);
 		$result = file_get_contents($this -> apiUrl, false, $context);	
 		$arResult = json_decode( $result, JSON_UNESCAPED_UNICODE);
-		
+		file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/log.txt', PHP_EOL . $this -> name . ' - ' . $arResult['status'], FILE_APPEND);
+
 		
 		return $arResult['status'];
 	

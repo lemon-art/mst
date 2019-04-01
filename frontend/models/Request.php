@@ -39,9 +39,13 @@ class Request extends \yii\db\ActiveRecord
 	public function beforeSave($insert){
 		if (parent::beforeSave($insert)) {
 			
-			$reqModel = $this;
-			$crmModel = new CuiteCrm;
-			$crmModel -> ShortRequest( $reqModel );
+			$post = Yii::$app->request->post();
+			if ( $post['Request']['name'] && $post['Request']['phone'] ){
+				$crmModel = new CuiteCrm;
+				$crmModel -> name = $post['Request']['name'];
+				$crmModel -> phone = $post['Request']['phone'];
+				$crmModel -> ShortRequest();
+			}
 
 			return true;
 		}
