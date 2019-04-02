@@ -89,8 +89,13 @@ class LostOrders extends \yii\db\ActiveRecord
 	public function ActivateLostOrder( $model ){
 			
 		
+
 		$crmModel = new CuiteCrm;
-		$crmModel -> ShortRequest( $model );
+		$crmModel -> name = $model -> name;
+		$crmModel -> phone = $model -> phone;
+		$crmModel -> ShortRequest();
+		
+		
 		$model -> active = 1;
 		$model -> save();
 		Mailer::sendCallbackMessage( 'Недозаполненная заявка ('.$model -> services -> name.')', $model );
