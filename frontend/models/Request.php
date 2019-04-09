@@ -40,7 +40,7 @@ class Request extends \yii\db\ActiveRecord
 		if (parent::beforeSave($insert)) {
 			
 			$post = Yii::$app->request->post();
-			if ( $post['Request']['name'] && $post['Request']['phone'] ){
+			if ( isset($post['Request']['name']) && isset($post['Request']['phone']) ){
 				$crmModel = new CuiteCrm;
 				$crmModel -> name = $post['Request']['name'];
 				$crmModel -> phone = $post['Request']['phone'];

@@ -19,9 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $arBanks = Api::GetServiceBanks( 7 );
 
-echo "<pre>";
-print_r( $arBanks );
-echo "</pre>";
+
 
 //обсолюте банк
 
@@ -79,9 +77,9 @@ echo "<pre>";
 print_r( $docs );
 echo "</pre>";
 
+*/
 
-
-
+ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)'); 
 		
 $sURL = 'https://authtest.akbars.ru:8443/connect/token'; // URL-адрес POST 
 $apiURL = 'https://apitest.akbars.ru/dsa_partner/v1/'; // URL-адрес POST 
@@ -91,7 +89,7 @@ $apiURL = 'https://apitest.akbars.ru/dsa_partner/v1/'; // URL-адрес POST
 $body = Array( 
 	"grant_type" => "password",
 	"client_id" => "ds_partners",
-	"scope" => "offline_access",
+	"scope" => "offline_access https://api.akbars.ru/dsa_partner",
 	"username" => "OOOMOST",
 	"password" => "qwerty234"
 );
@@ -111,26 +109,31 @@ $result = file_get_contents($sURL, false, $context);
 $arResult = json_decode( $result, JSON_UNESCAPED_UNICODE);
 $tokken = $arResult['access_token'];
 
+echo "<pre>";
+print_r( $arResult );
+echo "</pre>";
 
 //получаем города
 echo $cityUrl = $apiURL . 'catalogs/cities';
 $sPD = '';
 echo '<br>';
-/*
+
 $aHTTP = array(
   'http' => 
     array(
     'method'  => 'GET', 
-    'header'  => Array('Authorization: Bearer ' . $tokken, 'Accept: application/json'),
+    'header'  => Array('Authorization: Bearer ' . $tokken, 'Accept: application/json, text/json, application/vnd.api+json'),
    // 'content' => $sPD
   )
 );
-$context = stream_context_create($aHTTP);
-$result = file_get_contents($cityUrl, false, $context);
 
-//echo "<pre>";
-//print_r( $result );
-//echo "</pre>";
+
+$context = stream_context_create($aHTTP);
+//$result = file_get_contents($cityUrl, false, $context);
+
+echo "<pre>";
+print_r( $aHTTP );
+echo "</pre>";
 
 
 
@@ -140,7 +143,7 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HEADER,1);
-curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Authorization: Bearer ' . $tokken, 'Accept: application/json'));
+curl_setopt($ch, CURLOPT_HTTPHEADER, Array('Authorization: Bearer ' . $tokken, 'Accept: application/json, text/json, application/vnd.api+json'));
 curl_setopt($ch, CURLOPT_AUTOREFERER, true );
 curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
 curl_setopt( $ch, CURLOPT_ENCODING, "" );
@@ -158,9 +161,9 @@ $page = curl_exec ($ch);
   curl_close($ch);
 print_r( $page );
 
+
+
 /*
-
-
 //получаем города
 $cityUrl = $apiURL . 'creditrequests';
 $sPD = '{
@@ -489,7 +492,7 @@ echo "</pre>";
 		
 	 	
 	
-*/
+
 //точка банк 
 $sURL = 'https://open.tochka.com:3000/rest/v1/request/new'; // URL-адрес POST 
 

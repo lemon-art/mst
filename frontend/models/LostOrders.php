@@ -66,6 +66,13 @@ class LostOrders extends \yii\db\ActiveRecord
 			$reqModel -> phone = $model -> phone;
 			$reqModel -> product_id = $model -> service_id;
 			$reqModel -> save();
+			
+			$crmModel = new CuiteCrm;
+			$crmModel -> name = $model -> name;
+			$crmModel -> phone = $model -> phone;
+			$crmModel -> ShortRequest();
+			
+			
 			$model -> delete();
 			Mailer::sendCallbackMessage( 'Требуется помощь в офомлении заявки', $reqModel );
 		}
