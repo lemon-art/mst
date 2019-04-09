@@ -29,8 +29,8 @@ class Atricles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'preview_text', 'detail_text'], 'required'],
-            [['preview_text', 'detail_text'], 'string'],
+            [['name', 'preview_text', 'detail_text', 'code'], 'required'],
+            [['preview_text', 'detail_text', 'code', 'title', 'description'], 'string'],
             [['date', 'image'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -39,7 +39,7 @@ class Atricles extends \yii\db\ActiveRecord
 	public function afterSave($insert, $changedAttributes){
 		parent::afterSave($insert, $changedAttributes);
 	 
-		$url = '/articles/' . $this -> id;
+		$url = '/articles/' . $this -> code;
 	 
 		if ( $search = Search::GetByUrl( $url ) ){
 		

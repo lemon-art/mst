@@ -27,7 +27,7 @@ class Atricles extends \yii\db\ActiveRecord
     }
 	
 	public function afterFind() {
-		$this->detailUrl = '/articles/' . $this->id;
+		$this->detailUrl = '/articles/' . $this->code . '/';
 	}
 
     /**

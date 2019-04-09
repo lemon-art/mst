@@ -59,7 +59,7 @@ return [
 				'orders/updatelostorder' => 'orders/updatelostorder',
 				'orders/activatelostorder/<code>' => 'orders/activatelostorder',
 				'articles' => 'atricles/index',
-				'articles/<id>' => 'atricles/view',
+				'articles/<code>' => 'atricles/view',
 				'reviews' => 'reviews/index',
 				'reviews/<id>' => 'reviews/view',
 				'personal' => 'site/personal',

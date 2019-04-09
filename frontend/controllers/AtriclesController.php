@@ -41,9 +41,9 @@ class AtriclesController extends Controller
         ]);
     }
 
-    public function actionView($id)
+    public function actionView($code)
     {
-        $model = $this->findModel($id);
+		$model = Atricles::findOne(['code' => $code]);
 		if ( !$model )
 			throw new NotFoundHttpException;
 		

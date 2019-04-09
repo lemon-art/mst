@@ -39,10 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
 				'label' => 'Картинка',
 				'format' => 'raw',
 				'value' => function($data){
-					return Html::img(Files::getPath($data->image),[
-						'alt'=>'картинка',
-						'style' => 'width:100px;'
-					]);
+					if ( $data->image ){
+						return Html::img(Files::getPath($data->image),[
+							'alt'=>'картинка',
+							'style' => 'width:100px;'
+						]);
+					}
+					else {
+						return '';
+					}
 				},
 			],
             
