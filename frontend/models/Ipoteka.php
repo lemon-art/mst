@@ -4,7 +4,7 @@ namespace app\models;
 use dektrium\user\models\User;
 use app\models\Tools;
 use Yii;
-
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "ipoteka".
  *
@@ -152,10 +152,48 @@ class Ipoteka extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
+			
+			//подготавливаем для crm
+			$arFields = Ipoteka::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}
 		return false;
+	}
+	
+	public function makeCrmArray( $model ) {
+	
+		return Array(
+			'action' => 'Ipoteka',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'house_price' => $model->summ,
+			'first_payment' => $model->initial_payment,
+			'ipoteka_period' => $model->term,
+			'house_city' => $model->city,
+			'credit_gain' => $model->purpose,
+			'house_type' => $model->type,
+			'income' => $model->summ_income,
+			'income_docs' => $model->confirmation_income,
+			'birthdate' => CuiteCrm::FormateDate($model->bithday),
+			'birthplace' => $model->birthplace,
+			'passportnum' => $model->sn,
+			'passportdate' => CuiteCrm::FormateDate($model->issuedate),
+			'passportcode' => $model->issuecode,
+			'passport_department' => $model->issuer,
+			'register_address' => $model->address,
+			'register_date' => CuiteCrm::FormateDate($model->registrationdate),
+			'register_phone' => CuiteCrm::FormatePhone( $model->registrationphone ),
+			
+		);
+	
+		
 	}
 
     /**

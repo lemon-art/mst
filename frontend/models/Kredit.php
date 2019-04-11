@@ -8,6 +8,7 @@ use app\models\Tools;
 use backend\models\Settings;
 use backend\models\Mailer;
 use dektrium\user\models\User;
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "orders".
  *
@@ -86,6 +87,16 @@ class Kredit extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
+			
+			
+			//подготавливаем для crm
+			$arFields = Kredit::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
+			
+			
+			
 
 			return true;
 		}
@@ -171,6 +182,55 @@ class Kredit extends \yii\db\ActiveRecord
 			$this->addError($attribute, 'Пользователь с таким email уже существует. Авторизуйтесь, пожалуйста.');
 		}
 
+	}
+	
+	
+	public function makeCrmArray( $model ) {
+	
+		return Array(
+			'action' => 'Credit',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'credit_cash' => $model->summ,
+			'period' => $model->term,
+			'city' => $model->city,
+			'credit_gain' => CuiteCrm::GetListValue($model->purpose),
+			'clientincome' => $model->income,
+			'birthdate' => CuiteCrm::FormateDate($model->bithday),
+			'birthplace' => $model->birthplace,
+			'passportnum' => $model->sn,
+			'passportdate' => CuiteCrm::FormateDate($model->issuedate),
+			'passportcode' => $model->issuecode,
+			'passport_department' => $model->issuer,
+			'register_address' => $model->address,
+			'register_date' => CuiteCrm::FormateDate($model->registrationdate),
+			'register_phone' => CuiteCrm::FormatePhone( $model->registrationphone ),
+			'job_type' => CuiteCrm::GetListValue($model->employment),
+			'job_org' => $model->organizationname,
+			'job_area' => $model->areaofemployment,
+			'job_start_year' => $model->work_year,
+			'job_start_month' => $model->work_month,
+			'job_position' => $model->jobtitle,
+			'job_position_type' => CuiteCrm::GetListValue($model->jobtype),
+			'job_address' => $model->workaddress,
+			'job_phone' => CuiteCrm::FormatePhone( $model->workphone ),
+			'ext_phone' => CuiteCrm::FormatePhone( $model->phone_dop ),
+			'ext_phone_owner' => CuiteCrm::GetListValue($model->phone_dop_own ),
+			'education' => CuiteCrm::GetListValue($model->education ),
+			'family' => $model->family,
+			'children' => $model->child,
+			'ext_income' => $model->additional_income,
+			'has_auto' => $model->have_auto,
+			'house_lising' => $model->rent_apartment,
+			'credit_history' => $model->credit_history,
+			'snils' => $model->snils
+		);
+		
+	
+		
 	}
 	
 

@@ -4,7 +4,7 @@ namespace app\models;
 use dektrium\user\models\User;
 use common\models\DataValidate;
 use Yii;
-
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "rko".
  *
@@ -167,6 +167,46 @@ class Rko extends \yii\db\ActiveRecord
 	}
 	
 	public function afterFind() {
+		
+	}
+	
+	public function beforeSave($insert){
+		if (parent::beforeSave($insert)) {
+	 
+	
+			//подготавливаем для crm
+			$arFields = Rko::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
+
+			return true;
+		}
+		return false;
+	}
+	
+	public function makeCrmArray( $model ) {
+	
+		if ( $model->form == 6 )
+			$model->form = 1;
+			
+		if ( $model->form == 0 )
+			$model->form = 2;	
+		
+		
+		return Array(
+			'action' => 'rko',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'org_type' => $model->form,
+			'org_inn' => $model->inn,
+			'city' => $model->city,
+		);
+
+
 		
 	}
 

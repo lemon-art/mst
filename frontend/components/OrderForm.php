@@ -173,9 +173,13 @@ class OrderForm extends Widget {
 						$lostModel -> delete();
 				}
 				
-				//Mailer::sendAdminOrderMessage( 'Новая заявка: ' . $this->service_name, $orderModel );
+
+				
+				
+				
 				
 				//отправляем заявки в банки
+				/*
 				$arBanks = Api::GetServiceBanks( $this->service_id );
 				foreach ( $arBanks as $arBank){
 					$objApi = Api::build( $arBank['banks']['code'] );
@@ -188,6 +192,7 @@ class OrderForm extends Widget {
 					$objEvent -> status 	= 'Заявка отправлена';
 					$objEvent -> save();
 				}
+				*/
 				
 				Mailer::sendUserOrderMessage( 'Заявка на ' . $this->service_name, $orderModel, $this->service_name, $this->service_id );
 				

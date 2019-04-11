@@ -39,8 +39,8 @@ class OffersSearch extends Offers
 		$query =  Offers::find()->joinWith(['banks']);
 		$query -> addOrderBy('sort DESC');
 		$query->andFilterWhere(['or',
-            ['like','name', $q],
-            ['like','preview_text', $q]]
+            ['like','offers.name', $q],
+            ['like','offers.preview_text', $q]]
 		);
 		$query -> andFilterWhere([
 			'banks.active' => 1,

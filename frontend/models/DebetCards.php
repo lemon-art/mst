@@ -3,7 +3,7 @@
 namespace app\models;
 use dektrium\user\models\User;
 use Yii;
-
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "debet_cards".
  *
@@ -60,11 +60,19 @@ class DebetCards extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
+			
+			//подготавливаем для crm
+			$arFields = DebetCards::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}
 		return false;
 	}
+	
+	
 
     /**
      * {@inheritdoc}
@@ -73,7 +81,7 @@ class DebetCards extends \yii\db\ActiveRecord
     {
         return [
             [['summ', 'residue', 'type', 'currency', 'system'], 'required', 'message'=>'Заполните поле'],
-            [['percent_residue', 'service_id', 'free_card', 'cash_world', '3d_secure', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles'], 'integer'],
+            [['percent_residue', 'service_id', 'free_card', 'cash_world', 'secure_3d', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles'], 'integer'],
             [['summ', 'residue', 'type', 'currency', 'system'], 'string', 'max' => 255],
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['email'], 'validateEmail'],
@@ -121,9 +129,38 @@ class DebetCards extends \yii\db\ActiveRecord
 
 	}
 
-    /**
-     * {@inheritdoc}
-     */
+
+	public function makeCrmArray( $model ) {
+	
+		return Array(
+			'action' => 'DebetCards',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'purchase' => $model->summ,
+			'avg_balance' => $model->residue,
+			'currency' => $model->currency,
+			'payment_system' => $model->system,
+			'card_type' => $model->type,
+			'payment_procent' => $model->percent_residue,
+			'free_support' => $model->free_card,
+			'any_atm' => $model->cash_world,
+			'secure_3d' => $model->secure_3d,
+			'nfc' => $model-> contactless_payment,
+			'free_sms' => $model->sms,
+			'overdraft' => $model->overdraft,
+			'passage_payment' => $model->transport,
+			'miles' => $model->miles,
+			'bonuses' => $model->bonus,
+		);
+
+	
+	}
+	
+	
+	
     public function attributeLabels()
     {
         return [
@@ -138,7 +175,7 @@ class DebetCards extends \yii\db\ActiveRecord
             'service_id' => 'Service ID',
             'free_card' => 'Бесплатное обслуживание ',
             'cash_world' => 'Наличные в любых банкоматах ',
-            '3d_secure' => '3D Secure ',
+            'secure_3d' => '3D Secure ',
             'contactless_payment' => 'Бесконтактная оплата ',
             'sms' => 'Бесплатное SMS оповещение ',
             'overdraft' => 'Овердрафт ',

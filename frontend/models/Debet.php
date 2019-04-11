@@ -3,7 +3,7 @@
 namespace app\models;
 use dektrium\user\models\User;
 use Yii;
-
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "debet".
  *
@@ -147,10 +147,35 @@ class Debet extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
+			
+			//подготавливаем для crm
+			$arFields = Debet::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}
 		return false;
+	}
+	
+	
+	public function makeCrmArray( $model ) {
+	
+		return Array(
+			'action' => 'Deposit',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'payment' => $model->summ,
+			'period' => $model->term,
+			'ipoteka_period' => $model->term,
+			'city' => $model->city,
+			'payment_gain' => $model->purpose,
+		);
+
 	}
 
     /**

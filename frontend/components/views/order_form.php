@@ -562,7 +562,7 @@ $this->registerJs($js);
 												'1'   => '1',
 												'2'   => '2',
 												'3'   => '3',
-												'4-Infinity'   => 'Больше 3',
+												'more3'   => 'Больше 3',
 											])->label(false);?> 
 										</div>
 									</div>
@@ -583,9 +583,9 @@ $this->registerJs($js);
 										<div class="selectWrap">
 											<?=$form->field($model, 'have_auto')->dropDownList([
 												''   => 'Выберите',
-												'No'   => 'Нет',
-												'Отечественный'   => 'Отечественный',
-												'Иномарка'   => 'Иномарка',
+												'1'   => 'Нет',
+												'2'   => 'Отечественный',
+												'3'   => 'Иномарка',
 											])->label(false);?> 
 										</div>
 									</div>
@@ -604,12 +604,12 @@ $this->registerJs($js);
 										<div class="selectWrap">
 											<?=$form->field($model, 'credit_history')->dropDownList([
 												''   => 'Выберите',
-												'RedeemableProperly'   => 'Всегда плачу вовремя',
-												'OverduePayment'   => 'Бывают просрочки',
-												'ManyDelinquencies'   => 'Было много просрочек',
-												'PastDueAccounts'   => 'Есть текущие просрочки',
-												'DoNotTakeLoans'   => 'Не было кредитов',
-												'DoNotKnow'   => 'Не знаю',
+												'1'   => 'Всегда плачу вовремя',
+												'2'   => 'Бывают просрочки',
+												'3'   => 'Было много просрочек',
+												'4'   => 'Есть текущие просрочки',
+												'5'   => 'Не было кредитов',
+												'6'   => 'Не знаю',
 											])->label(false);?> 
 										</div>
 									</div>

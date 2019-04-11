@@ -4,7 +4,7 @@ namespace app\models;
 use dektrium\user\models\User;
 use app\models\Tools;
 use Yii;
-
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "kredit_kards".
  *
@@ -102,10 +102,33 @@ class KreditKards extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
+			
+			//подготавливаем для crm
+			$arFields = KreditKards::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}
 		return false;
+	}
+	
+	
+	public function makeCrmArray( $model ) {
+	
+		return Array(
+			'action' => 'CreditCards',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'credit_limit' => $model->summ,
+			'income' => $model->income,
+			'income_docs' => $model->confirmation_income,
+		);
+
 	}
 
     /**

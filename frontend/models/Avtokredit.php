@@ -4,7 +4,7 @@ namespace app\models;
 use app\models\Tools;
 use dektrium\user\models\User;
 use Yii;
-
+use common\models\CuiteCrm;
 /**
  * This is the model class for table "avtokredit".
  *
@@ -105,10 +105,38 @@ class Avtokredit extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
+			
+			//подготавливаем для crm
+			$arFields = Avtokredit::makeCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new CuiteCrm;
+			$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}
 		return false;
+	}
+	
+	public function makeCrmArray( $model ) {
+	
+		return Array(
+			'action' => 'Autocredit',
+			'name' => $model->name,
+			'surname' => $model->last_name,
+			'family_name' => $model->second_name,
+			'phone' => CuiteCrm::FormatePhone( $model->phone ),
+			'email' => $model->email,
+			'car_price' => $model->summ,
+			'first_payment' => $model->first_payment,
+			'autocredit_period' => $model->term,
+			'income' => $model->income,
+			'income_docs' => $model->confirmation_income,
+			'trade_in' => $model->treid_in,
+			'vehicle_type' => $model->type,
+			'vehicle_status' => $model->condition,
+			'without_casco' => $model->kasko
+		);
+
 	}
 	
 

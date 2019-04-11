@@ -312,7 +312,7 @@ class SiteController extends Controller
 	public function actionSearch() {
         
 		$q = Yii::$app->request->get('q');
-		
+	
 		$offersModel    = new OffersSearch();
 		$offersProvider = $offersModel->searchSearch( $q );
 

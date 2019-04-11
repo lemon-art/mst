@@ -165,9 +165,9 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'currency')->dropDownList([
 													''   => 'Выберите',
-													'Рубль' => 'Рубль',
-													'Доллар' => 'Доллар',
-													'Евро' => 'Евро'
+													'1' => 'Рубль',
+													'2' => 'Доллар',
+													'3' => 'Евро'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
@@ -182,11 +182,11 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'system')->dropDownList([
 													''   => 'Выберите',
-													'Visa' => 'Visa',
-													'MasterCard' => 'MasterCard',
-													'Мир' => 'Мир',
-													'American Express' => 'American Express',
-													'Другая' => 'Другая'
+													'1' => 'Visa',
+													'2' => 'MasterCard',
+													'3' => 'Мир',
+													'4' => 'American Express',
+													'5' => 'Другая'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
@@ -196,11 +196,11 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'type')->dropDownList([
 													''   => 'Выберите',
-													'Стандартная' => 'Стандартная',
-													'Золотая' => 'Золотая',
-													'Премиальная' => 'Премиальная',
-													'Электронная' => 'Электронная',
-													'Другая' => 'Другая'
+													'1' => 'Стандартная',
+													'2' => 'Золотая',
+													'3' => 'Премиальная',
+													'4' => 'Электронная',
+													'5' => 'Другая'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
@@ -246,7 +246,7 @@ $this->registerJs($js);
 							<div class="line_flex">
 								<div class="line_form">
 									
-									<?= $form->field($model, '3d_secure', [
+									<?= $form->field($model, 'secure_3d', [
 										'template' => '{input}{label}{error}',
 										'options' => ['class' => 'checkbox agree form-group']
 									])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0']);?>
