@@ -51,6 +51,7 @@ class Avtokredit extends \yii\db\ActiveRecord
         return [
             [['summ', 'income', 'confirmation_income', 'first_payment', 'term', 'condition', 'type'], 'required', 'message'=>'Заполните поле'],
             [['summ', 'first_payment', 'term', 'condition', 'type'], 'string', 'max' => 255],
+			[['kasko', 'treid_in'], 'integer'],
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['email'], 'validateEmail'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],

@@ -116,7 +116,7 @@ class Kredit extends \yii\db\ActiveRecord
 			[['phone_dop', 'phone_dop_own', 'education', 'family', 'child', 'credit_history'], 'required', 'message'=>'Заполните поле'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
 			[['additional_income', 'rent_apartment', 'snils', 'secret_key'], 'string', 'max' => 255],
-            [['name', 'phone', 'last_name', 'second_name', 'city', 'employment', 'summ', 'income'], 'string', 'max' => 255],
+            [['name', 'phone', 'last_name', 'second_name', 'city', 'employment', 'summ', 'income', 'have_auto'], 'string', 'max' => 255],
 			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
 			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
 			[['email'], 'validateEmail'],
