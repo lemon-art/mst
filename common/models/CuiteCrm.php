@@ -105,7 +105,7 @@ class CuiteCrm
 	public function FormateDate( $date ){
 	
 		$bithday = \DateTime::createFromFormat('d.m.Y', $date );
-		return $bithday->format('d-m-Y'); 
+		return $bithday->format('Y-m-d'); 
 	}
 
 	public function GetListValue( $value ){
