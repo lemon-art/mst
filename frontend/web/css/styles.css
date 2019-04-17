@@ -2520,15 +2520,31 @@ footer .links .link
 }.forgot a:hover
 {
     color: #222;
-}.alert-success
+}
+.alert
 {
-    font-size: 19px;;
+    font-size: 20px;
 
     text-align: center;
 
     border: 0;
     background: 0 0;
-}.sectionMarg .alert-success
+}
+.alert p
+{
+    font-size: 20px;
+}
+.alert-success
+{
+    font-size: 19px;
+
+    text-align: center;
+
+    border: 0;
+    background: 0 0;
+}
+
+.sectionMarg .alert-success
 {
     padding: 0;
 

@@ -778,7 +778,7 @@ $(document).ready(function(){
 								$.fancybox.close();
 								$('.actions').hide();
 								$('.main__under_title').hide();
-								$('#order-form').html('<div class="alert"><p>Наши менеджеры свяжутся с вами в ближашее время и помогут вам с заполнение заявки.</p></div>');
+								$('#order-form').html('<div class="alert"><p>Наши менеджеры свяжутся с вами в ближашее время и помогут вам с заполнением заявки.</p></div>');
 								$('html, body').animate({ scrollTop: $('#order-form').offset().top - 80 }, 500);
 								return false;
 							});

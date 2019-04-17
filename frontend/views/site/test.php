@@ -1,10 +1,10 @@
 <?php
-namespace common\models;
+namespace app\models;
 use common\models\Api;
 use common\models\ApiEvents;
 use common\models\Absolute;
-
-
+use common\models\Akbars;
+use app\models\Kredit;
 use yii\helpers\Html;
 
 
@@ -24,11 +24,18 @@ $arBanks = Api::GetServiceBanks( 7 );
 //обсолюте банк
 
 
+$orderModel = new Kredit();
+$orderModel -> city = 'Казань';
+$orderModel -> summ = 20000;
+$orderModel -> term = 12;
+$orderModel -> phone = '9871236543';
 
 
 //$objApi = Api::build( 8 );
 
-//$aBank = new Absolute();
+$aBank = new Akbars();
+$aBank -> Request( $orderModel );
+
 //$aBank -> Request();
 
 
@@ -77,7 +84,7 @@ echo "<pre>";
 print_r( $docs );
 echo "</pre>";
 
-*/
+
 
 ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)'); 
 		

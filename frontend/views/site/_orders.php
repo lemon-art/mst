@@ -11,7 +11,7 @@ use backend\models\Files;
 								<div class="line_top">
 									<div class="title">Заявка на <?=$model['services']['short_name'] ?></div>
 
-									<div class="more">Подробнее</div>
+									
 								</div>
 								
 							<?	
@@ -261,7 +261,7 @@ use backend\models\Files;
 										</table>
 									</div>
 
-									<div class="more_hide">Скрыть</div>
+									
 								</div>
 							<?endif;?>
 						</div>
