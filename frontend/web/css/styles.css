@@ -1279,6 +1279,8 @@ header .line_menu .contact
     border: 1px solid #e8e8e8;
     border-radius: 3px;
     background: #fff;
+
+    flex-direction: column;
 }.slider_articles .article:hover
 {
     border-color: transparent;
@@ -1290,7 +1292,7 @@ header .line_menu .contact
     opacity: 1;
 }.slider_articles.owl-loaded .article
 {
-    display: block;
+    display: flex;
 }.slider_articles .article .tag
 {
     color: #004199;
@@ -1325,6 +1327,8 @@ header .line_menu .contact
     line-height: 23px;;
 
     margin-top: 20px;
+
+    flex: 1 0 auto;
 }.slider_articles .article .box
 {
     display: flex;
@@ -2620,7 +2624,7 @@ footer .links .link
 
     display: inline-block;
 
-    margin-top: 27px;;
+    margin-top: 30px;;
     padding: 0 50px;
 
     cursor: pointer;

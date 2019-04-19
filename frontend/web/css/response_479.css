@@ -255,4 +255,9 @@
 		width: 270px;
 	}
 	
+
+
+    .section_first{
+        max-height: none;
+    }
 }

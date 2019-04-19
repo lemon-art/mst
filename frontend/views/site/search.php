@@ -26,24 +26,26 @@ $this->title = 'Результаты поиска';
 			<div class="cont">
 					
 					<?
-					echo ListView::widget([
-						'dataProvider' => $offersProvider,
-						'itemView' => '_best_offers',
-						'layout' => '{items}',
-						'emptyText' => '',
-						'id'           => false,
-						'options' => [
-							'tag'=>'div',
-							'class' => 'best_month'
-						],
-						'itemOptions' => [
-						'tag' => false,
-						],
-						'viewParams' => [
-						'fullView' => false,
-						'context' => 'main-page',
-						],
-					]);
+					if ( $q ){
+						echo ListView::widget([
+							'dataProvider' => $offersProvider,
+							'itemView' => '_best_offers',
+							'layout' => '{items}',
+							'emptyText' => '',
+							'id'           => false,
+							'options' => [
+								'tag'=>'div',
+								'class' => 'best_month'
+							],
+							'itemOptions' => [
+							'tag' => false,
+							],
+							'viewParams' => [
+							'fullView' => false,
+							'context' => 'main-page',
+							],
+						]);
+					}
 					?>
 
 
@@ -63,24 +65,31 @@ $this->title = 'Результаты поиска';
 						$emptyText = 'Ничего не найдено.';
 					}
 					
-					echo ListView::widget([
-						'dataProvider' => $searchProvider,
-						'itemView' => '_search_result',
-						'layout' => '{items}{pager}',
-						'id'           => false,
-						'emptyText' => $emptyText,
-						'options' => [
-							'tag'=>'div',
-							'class' => 'search_result'
-						],
+					if ( $q ){
+					
+						echo ListView::widget([
+							'dataProvider' => $searchProvider,
+							'itemView' => '_search_result',
+							'layout' => '{items}{pager}',
+							'id'           => false,
+							'emptyText' => $emptyText,
+							'options' => [
+								'tag'=>'div',
+								'class' => 'search_result'
+							],
 
-						'itemOptions' => [
-						'tag' => false,
-						],
-						'viewParams' => [
-							'fullView' => false,
-						],
-					]);
+							'itemOptions' => [
+							'tag' => false,
+							],
+							'viewParams' => [
+								'fullView' => false,
+							],
+						]);
+						
+					}
+					else {
+						echo "<p>Введите поисковый запрос.</p>";
+					}
 					?>
 
 

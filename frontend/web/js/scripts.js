@@ -1224,12 +1224,6 @@ function filterOffer() {
 }
 
 $(document).ready(function() {
-	$('.slider_articles .owl-item .article').each(function() {
-		var article_margin = $(this).height() - $(this).find('.tag').height() - $(this).find('.name').height() - $(this).find('.text').height() - $(this).find('.box').height() - 24;
-		console.log(article_margin);
-		$(this).find('.box').css('margin-top', article_margin);
-	});
-
 	console.log($('.section_first .title_inner').height());
 	if ($('.section_first .title_inner').height() < 60) {
 		$('.section_first').addClass('section_mini_title');

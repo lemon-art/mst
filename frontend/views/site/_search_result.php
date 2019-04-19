@@ -4,19 +4,20 @@ use yii\helpers\Html;
 
 //это пока временно
 $q = Yii::$app->request->get('q');
-$model['text'] = strip_tags($model['text']);
-$pos = strpos($model['text'], $q);
-if ($pos > 100 ){
-	$start = $pos - 100;
-	$text = '...' . substr($model['text'], $start, 200) . '...';
-}
-else {
-	$start = 0;
-	$text = substr($model['text'], $start, 200) . '...';
-}
+if ( $q ){
+	$model['text'] = strip_tags($model['text']);
+	$pos = strpos($model['text'], $q);
+	if ($pos > 100 ){
+		$start = $pos - 100;
+		$text = '...' . substr($model['text'], $start, 200) . '...';
+	}
+	else {
+		$start = 0;
+		$text = substr($model['text'], $start, 200) . '...';
+	}
 
-$text = str_replace($q, '<b>'.$q.'</b>', $text);
-
+	$text = str_replace($q, '<b>'.$q.'</b>', $text);
+}
 
 ?>
 
