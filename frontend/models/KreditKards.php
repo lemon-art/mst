@@ -44,7 +44,7 @@ class KreditKards extends \yii\db\ActiveRecord
             [['summ', 'income', 'confirmation_income'], 'required', 'message'=>'Заполните поле'],
            	[['agree'], 'required', 'message'=>'Необходимо согласие'],
 			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле'],
-            [['summ', 'income', 'confirmation_income'], 'string', 'max' => 255],
+            [['summ', 'income', 'confirmation_income', 'secret_key'], 'string', 'max' => 255],
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['phone'], 'validatePhone'],
 			[['email'], 'validateEmail']

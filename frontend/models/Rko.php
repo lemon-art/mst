@@ -71,7 +71,7 @@ class Rko extends \yii\db\ActiveRecord
             [['id',  'service_id', 'user_id', 'status'], 'integer'],
             [['date'], 'safe'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-            [['name', 'last_name', 'second_name', 'city', 'company_name'], 'string', 'max' => 255],
+            [['name', 'last_name', 'second_name', 'city', 'company_name', 'secret_key'], 'string', 'max' => 255],
 			[['email'], 'validateEmail'],
 			[['inn'], 'validateInn'],
 			[['issuedate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],

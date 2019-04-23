@@ -82,7 +82,7 @@ class DebetCards extends \yii\db\ActiveRecord
         return [
             [['summ', 'residue', 'type', 'currency', 'system'], 'required', 'message'=>'Заполните поле'],
             [['percent_residue', 'service_id', 'free_card', 'cash_world', 'secure_3d', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles'], 'integer'],
-            [['summ', 'residue', 'type', 'currency', 'system'], 'string', 'max' => 255],
+            [['summ', 'residue', 'type', 'currency', 'system', 'secret_key'], 'string', 'max' => 255],
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['email'], 'validateEmail'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],

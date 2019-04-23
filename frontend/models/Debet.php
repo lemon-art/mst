@@ -67,7 +67,7 @@ class Debet extends \yii\db\ActiveRecord
             [['id',  'term', 'service_id', 'user_id', 'status'], 'integer'],
             [['date'], 'safe'],
 			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-            [['name', 'last_name', 'second_name', 'purpose', 'city','summ'], 'string', 'max' => 255],
+            [['name', 'last_name', 'second_name', 'purpose', 'city','summ', 'secret_key'], 'string', 'max' => 255],
 			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
 			[['phone'], 'validatePhone'],
 			[['email'], 'validateEmail'],

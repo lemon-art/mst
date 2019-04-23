@@ -36,7 +36,7 @@ class Avtokredit extends \yii\db\ActiveRecord
 	public $phone;
 	public $email;
     public $agree;
-	 
+
 	 
     public static function tableName()
     {
@@ -50,7 +50,7 @@ class Avtokredit extends \yii\db\ActiveRecord
     {
         return [
             [['summ', 'income', 'confirmation_income', 'first_payment', 'term', 'condition', 'type'], 'required', 'message'=>'Заполните поле'],
-            [['summ', 'first_payment', 'term', 'condition', 'type'], 'string', 'max' => 255],
+            [['summ', 'first_payment', 'term', 'condition', 'type', 'secret_key'], 'string', 'max' => 255],
 			[['kasko', 'treid_in'], 'integer'],
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['email'], 'validateEmail'],

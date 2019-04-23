@@ -70,7 +70,7 @@ class Ipoteka extends \yii\db\ActiveRecord
             [['agree'], 'required', 'message'=>'Необходимо согласие'],
 			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле'],
 			[['bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone'], 'required', 'message'=>'Заполните поле'],
-            [['purpose', 'type', 'summ', 'city', 'summ_income', 'name', 'last_name', 'second_name', 'phone', 'email'], 'string', 'max' => 255],
+            [['purpose', 'type', 'summ', 'city', 'summ_income', 'name', 'last_name', 'second_name', 'phone', 'email', 'secret_key'], 'string', 'max' => 255],
 			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
 			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
 			[['email'], 'email', 'message'=>'Введите корректный email'],
