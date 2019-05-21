@@ -149,8 +149,8 @@ $this->registerJs($js);
 								<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'form-group checkbox agree'],
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
+											'options' => ['class' => 'form-group checkbox agree has-success'],
+											])->textInput(['type' => 'checkbox', 'checked' => 'checked', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 								<?= $form->field($model, 'secret_key')->textInput(['type' => 'hidden', 'value' => Yii::$app->getSecurity()->generateRandomString(20)])->label(false);?>
 							</div>

@@ -107,8 +107,8 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="line_form_one">
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
-											'options' => ['class' => 'checkbox agree form-group'],
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
+											'options' => ['class' => 'checkbox agree form-group has-success'],
+											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 									
 								<?else:?>
@@ -143,7 +143,7 @@ for ( $i = 0; $i < 15; $i++){
 										<?= $form->field($model, 'agree', [
 											'template' => '{input}{label}{error}',
 											'options' => ['class' => 'form-group has-success checkbox agree']
-											])->textInput(['type' => 'checkbox', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
+											])->textInput(['type' => 'checkbox', 'checked' => 'checked', 'value' => '1', 'checked' => 'checked', 'uncheckValue' => '0'])->label('Я даю свое согласие на обработку персональных данных');?>
 									</div>
 								
 								
