@@ -175,10 +175,10 @@ class Rko extends \yii\db\ActiveRecord
 	 
 	
 			//подготавливаем для crm
-			$arFields = Rko::makeCrmArray( $this );
+			//$arFields = Rko::makeCrmArray( $this );
 			//отправляем в crm
-			$crmModel = new CuiteCrm;
-			$crmModel -> LongRequest( $arFields );
+			//$crmModel = new CuiteCrm;
+			//$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}

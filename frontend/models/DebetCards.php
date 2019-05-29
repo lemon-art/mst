@@ -62,10 +62,10 @@ class DebetCards extends \yii\db\ActiveRecord
 			}
 			
 			//подготавливаем для crm
-			$arFields = DebetCards::makeCrmArray( $this );
+			//$arFields = DebetCards::makeCrmArray( $this );
 			//отправляем в crm
-			$crmModel = new CuiteCrm;
-			$crmModel -> LongRequest( $arFields );
+			//$crmModel = new CuiteCrm;
+			//$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}

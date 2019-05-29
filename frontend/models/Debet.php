@@ -149,10 +149,10 @@ class Debet extends \yii\db\ActiveRecord
 			}
 			
 			//подготавливаем для crm
-			$arFields = Debet::makeCrmArray( $this );
+			//$arFields = Debet::makeCrmArray( $this );
 			//отправляем в crm
-			$crmModel = new CuiteCrm;
-			$crmModel -> LongRequest( $arFields );
+			//$crmModel = new CuiteCrm;
+			//$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}

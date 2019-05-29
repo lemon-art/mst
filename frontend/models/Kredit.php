@@ -90,10 +90,10 @@ class Kredit extends \yii\db\ActiveRecord
 			
 			
 			//подготавливаем для crm
-			$arFields = Kredit::makeCrmArray( $this );
+			//$arFields = Kredit::makeCrmArray( $this );
 			//отправляем в crm
-			$crmModel = new CuiteCrm;
-			$crmModel -> LongRequest( $arFields );
+			//$crmModel = new CuiteCrm;
+			//$crmModel -> LongRequest( $arFields );
 			
 			
 			

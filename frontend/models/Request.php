@@ -41,10 +41,10 @@ class Request extends \yii\db\ActiveRecord
 			
 			$post = Yii::$app->request->post();
 			if ( isset($post['Request']['name']) && isset($post['Request']['phone']) ){
-				$crmModel = new CuiteCrm;
-				$crmModel -> name = $post['Request']['name'];
-				$crmModel -> phone = $post['Request']['phone'];
-				$crmModel -> ShortRequest();
+				//$crmModel = new CuiteCrm;
+				//$crmModel -> name = $post['Request']['name'];
+				//$crmModel -> phone = $post['Request']['phone'];
+				//$crmModel -> ShortRequest();
 			}
 
 			return true;

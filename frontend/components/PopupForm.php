@@ -20,7 +20,7 @@ class PopupForm extends Widget {
     {   
 		
 		$reqModel = new Request();
-		$crmModel = new CuiteCrm;
+		//$crmModel = new CuiteCrm;
 		if ($reqModel->load(Yii::$app->request->post())) {
 			if ( $reqModel->type == 'callbackForm' ){	
 				if ( $reqModel->save()){

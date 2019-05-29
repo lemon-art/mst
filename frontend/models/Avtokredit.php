@@ -108,10 +108,10 @@ class Avtokredit extends \yii\db\ActiveRecord
 			}
 			
 			//подготавливаем для crm
-			$arFields = Avtokredit::makeCrmArray( $this );
+			//$arFields = Avtokredit::makeCrmArray( $this );
 			//отправляем в crm
-			$crmModel = new CuiteCrm;
-			$crmModel -> LongRequest( $arFields );
+			//$crmModel = new CuiteCrm;
+			//$crmModel -> LongRequest( $arFields );
 
 			return true;
 		}
