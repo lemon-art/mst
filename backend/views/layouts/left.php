@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+﻿<aside class="main-sidebar">
 
     <section class="sidebar">
 
@@ -24,6 +24,7 @@
 						]
 					],
 					['label' => 'Страницы', 'icon' => 'sticky-note-o', 'url' => ['/pages']],
+					['label' => 'Города', 'icon' => 'fa fa-university', 'url' => ['/sity']],
                     ['label' => 'Настройки', 'icon' => 'gear', 'url' => ['/settings'],
 						'items' => [
 							['label' => 'Пользователи', 'icon' => 'user-o', 'url' => ['/users'],],

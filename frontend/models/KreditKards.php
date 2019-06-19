@@ -4,7 +4,7 @@ namespace app\models;
 use dektrium\user\models\User;
 use app\models\Tools;
 use Yii;
-use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 /**
  * This is the model class for table "kredit_kards".
  *
@@ -29,6 +29,8 @@ class KreditKards extends \yii\db\ActiveRecord
 	public $email;
 	public $secret_key;
 	public $summ_display; 
+	
+	const SCENARIO_UPDATE = 'update';
 	 
     public static function tableName()
     {
@@ -41,15 +43,22 @@ class KreditKards extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['summ', 'income', 'confirmation_income'], 'required', 'message'=>'Заполните поле'],
-           	[['agree'], 'required', 'message'=>'Необходимо согласие'],
-			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле'],
-            [['summ', 'income', 'confirmation_income', 'secret_key'], 'string', 'max' => 255],
-			[['email'], 'email', 'message'=>'Введите корректный email'],
-			[['phone'], 'validatePhone'],
-			[['email'], 'validateEmail']
+            [['summ', 'income', 'confirmation_income'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+           	[['agree'], 'required', 'message'=>'Необходимо согласие', 'on' => 'new'],
+			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+            [['summ', 'income', 'confirmation_income', 'secret_key'], 'string', 'max' => 255, 'on' => 'new'],
+			[['email'], 'email', 'message'=>'Введите корректный email', 'on' => 'new'],
+			[['phone'], 'validatePhone', 'on' => 'new'],
+			[['email'], 'validateEmail', 'on' => 'new']
         ];
     }
+	
+	public function scenarios()
+	{
+		$scenarios = parent::scenarios();
+		$scenarios[self::SCENARIO_UPDATE] = ['name', 'last_name', 'second_name', 'phone', 'email', 'summ', 'income', 'confirmation_income'];
+		return $scenarios;
+	}
 	
 	public function validateEmail($attribute, $params) {
 		
@@ -102,35 +111,54 @@ class KreditKards extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
-			
-			//подготавливаем для crm
-			//$arFields = KreditKards::makeCrmArray( $this );
-			//отправляем в crm
-			//$crmModel = new CuiteCrm;
-			//$crmModel -> LongRequest( $arFields );
-
+			$this->service_id = 5;
 			return true;
 		}
 		return false;
 	}
 	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		if ( $this -> scenario !== 'update' ){
+			//отправляем в crm
+			$arFields = KreditKards::makeBitrixCrmArray( $this );
+			$crmModel = new BitrixCrm;
+			$crmModel -> LongRequest( $arFields );
+		}
+	}
 	
-	public function makeCrmArray( $model ) {
+
+	
+	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'action' => 'CreditCards',
-			'name' => $model->name,
-			'surname' => $model->last_name,
-			'family_name' => $model->second_name,
-			'phone' => CuiteCrm::FormatePhone( $model->phone ),
-			'email' => $model->email,
-			'credit_limit' => $model->summ,
-			'income' => $model->income,
-			'income_docs' => $model->confirmation_income,
+			'TITLE' => 'Заявка на кредитную карту №' . $model->id,
+			'CATEGORY_ID' => 2,
+			'NAME' => $model->name,
+			'SECOND_NAME' => $model->last_name,
+			'LAST_NAME' => $model->second_name,
+			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
+			'EMAIL' => $model->email,
+			'OPPORTUNITY' 		=> $model->summ,
+			'UF_CRM_1559807131' => $model->id,
+			'UF_CRM_1559723329' => $model->summ,
+			'UF_CRM_1559890441' => $model->income,
+			'UF_CRM_1559914502' => BitrixCrm::GetListValue($model->confirmation_income),
+
 		);
-
 	}
-
+	
+	public function getArrayFromBitrixCrm() {
+	
+		return Array(
+			'UF_CRM_1559723329' => Array('field' => 'summ', 'type' => 'string'), 
+			'UF_CRM_1559890441' => Array('field' => 'income', 'type' => 'string'), 
+			'UF_CRM_1559914502' => Array('field' => 'confirmation_income', 'type' => 'list'), 
+			
+		);
+	}
+	
     /**
      * {@inheritdoc}
      */

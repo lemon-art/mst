@@ -61,7 +61,7 @@ class DebetCards extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['summ_display', 'residue', 'type', 'currency', 'system', 'percent_residue', 'free_card', 'cash_world', '3d_secure', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
+		return ['summ_display', 'residue', 'type', 'currency', 'system', 'percent_residue', 'free_card', 'cash_world', 'secure_3d', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
 	}
 
     /**
@@ -71,7 +71,7 @@ class DebetCards extends \yii\db\ActiveRecord
     {
         return [
             [['summ', 'residue', 'type', 'currency', 'system'], 'required', 'message'=>'Заполните поле'],
-            [['percent_residue', 'service_id', 'free_card', 'cash_world', '3d_secure', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles'], 'integer'],
+            [['percent_residue', 'service_id', 'free_card', 'cash_world', 'secure_3d', 'contactless_payment', 'sms', 'overdraft', 'transport', 'bonus', 'miles'], 'integer'],
             [['summ', 'residue', 'type', 'currency', 'system'], 'string', 'max' => 255],
 			[['email'], 'email', 'message'=>'Введите корректный email'],
 			[['email'], 'validateEmail'],
@@ -105,7 +105,7 @@ class DebetCards extends \yii\db\ActiveRecord
             'service_id' => 'Service ID',
             'free_card' => 'Бесплатное обслуживание ',
             'cash_world' => 'Наличные в любых банкоматах ',
-            '3d_secure' => '3D Secure ',
+            'secure_3d' => '3D Secure ',
             'contactless_payment' => 'Бесконтактная оплата ',
             'sms' => 'Бесплатное SMS оповещение ',
             'overdraft' => 'Овердрафт ',

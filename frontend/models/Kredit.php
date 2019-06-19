@@ -8,7 +8,7 @@ use app\models\Tools;
 use backend\models\Settings;
 use backend\models\Mailer;
 use dektrium\user\models\User;
-use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 /**
  * This is the model class for table "orders".
  *
@@ -47,6 +47,8 @@ class Kredit extends \yii\db\ActiveRecord
 	public $registrationphone;
 	public $secret_key;
  
+	const SCENARIO_UPDATE = 'update';
+ 
     public static function tableName()
     {
         return 'kredit';
@@ -73,12 +75,6 @@ class Kredit extends \yii\db\ActiveRecord
 		$this->summ_display = number_format($this->summ, 0, '', ' ') . ' ' . Tools::true_wordform( $this->summ, 'рубль', 'рубля', 'рублей');
 	}
 	
-	public function afterSave($insert, $changedAttributes){
-		parent::afterSave($insert, $changedAttributes);
-		
-		
-		
-	}
 	
 	public function beforeSave($insert){
 		if (parent::beforeSave($insert)) {
@@ -87,20 +83,21 @@ class Kredit extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
-			
-			
-			//подготавливаем для crm
-			//$arFields = Kredit::makeCrmArray( $this );
-			//отправляем в crm
-			//$crmModel = new CuiteCrm;
-			//$crmModel -> LongRequest( $arFields );
-			
-			
-			
-
+			$this->service_id = 1;
 			return true;
 		}
 		return false;
+	}
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		if ( $this -> scenario !== 'update' ){
+			//отправляем в crm
+			$arFields = Kredit::makeBitrixCrmArray( $this );
+			$crmModel = new BitrixCrm;
+			$crmModel -> LongRequest( $arFields );
+		}
 	}
 
 	
@@ -112,17 +109,24 @@ class Kredit extends \yii\db\ActiveRecord
     {
         return [
 			[['email'], 'email', 'message'=>'Введите корректный email'],
-			[['name', 'last_name', 'second_name', 'purpose', 'phone', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'email', 'summ', 'term', 'city', 'employment', 'work_month', 'work_year', 'income', 'bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone' ], 'required', 'message'=>'Заполните поле'],
-			[['phone_dop', 'phone_dop_own', 'education', 'family', 'child', 'credit_history'], 'required', 'message'=>'Заполните поле'],
-			[['agree'], 'required', 'message'=>'Необходимо согласие'],
+			[['name', 'last_name', 'second_name', 'purpose', 'phone', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'email', 'summ', 'term', 'city', 'employment', 'work_month', 'work_year', 'income', 'bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone' ], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+			[['phone_dop', 'phone_dop_own', 'education', 'family', 'child', 'credit_history'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+			[['agree'], 'required', 'message'=>'Необходимо согласие', 'on' => 'new'],
 			[['additional_income', 'rent_apartment', 'snils', 'secret_key'], 'string', 'max' => 255],
             [['name', 'phone', 'last_name', 'second_name', 'city', 'employment', 'summ', 'income', 'have_auto'], 'string', 'max' => 255],
-			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
-			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
-			[['email'], 'validateEmail'],
-            [['phone'], 'validatePhone'],
+			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату', 'on' => 'new'],
+			[['bithday', 'issuedate', 'registrationdate'], 'validateDate', 'on' => 'new'], 
+			[['email'], 'validateEmail', 'on' => 'new'],
+            [['phone'], 'validatePhone', 'on' => 'new'],
 		];
     }
+	
+	public function scenarios()
+	{
+		$scenarios = parent::scenarios();
+		$scenarios[self::SCENARIO_UPDATE] = ['name', 'last_name', 'second_name', 'purpose', 'phone', 'organizationname', 'jobtitle', 'jobtype', 'workaddress', 'workphone', 'areaofemployment', 'email', 'summ', 'term', 'city', 'employment', 'work_month', 'work_year', 'income', 'bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone', 'phone_dop', 'phone_dop_own', 'education', 'family', 'child', 'credit_history', 'additional_income', 'rent_apartment', 'snils'];
+		return $scenarios;
+	}
 	
 	
 	public function validateDate($attribute, $params) {
@@ -185,54 +189,96 @@ class Kredit extends \yii\db\ActiveRecord
 	}
 	
 	
-	public function makeCrmArray( $model ) {
+	
+	
+	
+	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'action' => 'Credit',
-			'name' => $model->name,
-			'surname' => $model->last_name,
-			'family_name' => $model->second_name,
-			'phone' => CuiteCrm::FormatePhone( $model->phone ),
-			'email' => $model->email,
-			'credit_cash' => $model->summ,
-			'period' => $model->term,
-			'city' => $model->city,
-			'credit_gain' => CuiteCrm::GetListValue($model->purpose),
-			'clientincome' => $model->income,
-			'birthdate' => CuiteCrm::FormateDate($model->bithday),
-			'birthplace' => $model->birthplace,
-			'passportnum' => $model->sn,
-			'passportdate' => CuiteCrm::FormateDate($model->issuedate),
-			'passportcode' => $model->issuecode,
-			'passport_department' => $model->issuer,
-			'register_address' => $model->address,
-			'register_date' => CuiteCrm::FormateDate($model->registrationdate),
-			'register_phone' => CuiteCrm::FormatePhone( $model->registrationphone ),
-			'job_type' => CuiteCrm::GetListValue($model->employment),
-			'job_org' => $model->organizationname,
-			'job_area' => $model->areaofemployment,
-			'job_start_year' => $model->work_year,
-			'job_start_month' => $model->work_month,
-			'job_position' => $model->jobtitle,
-			'job_position_type' => CuiteCrm::GetListValue($model->jobtype),
-			'job_address' => $model->workaddress,
-			'job_phone' => CuiteCrm::FormatePhone( $model->workphone ),
-			'ext_phone' => CuiteCrm::FormatePhone( $model->phone_dop ),
-			'ext_phone_owner' => CuiteCrm::GetListValue($model->phone_dop_own ),
-			'education' => CuiteCrm::GetListValue($model->education ),
-			'family' => $model->family,
-			'children' => $model->child,
-			'ext_income' => $model->additional_income,
-			'has_auto' => $model->have_auto,
-			'house_lising' => $model->rent_apartment,
-			'credit_history' => $model->credit_history,
-			'snils' => $model->snils
+			'TITLE' => 'Заявка на кредит №' . $model->id,
+			'CATEGORY_ID' => 1,
+			'NAME' => $model->name,
+			'SECOND_NAME' => $model->last_name,
+			'LAST_NAME' => $model->second_name,
+			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
+			'EMAIL' => $model->email,
+			'BIRTHDATE' => $model->bithday,
+			'ADDRESS_CITY' => $model->city,
+			'UF_CRM_1559828608' => $model->birthplace,
+			'UF_CRM_1559828656' => $model->sn,
+			'UF_CRM_1559828675' => $model->issuedate,
+			'UF_CRM_1559828690' => $model->issuecode,
+			'UF_CRM_1559828703' => $model->issuer,
+			'UF_CRM_1559829011' => $model->address,
+			'UF_CRM_1559829029' => $model->registrationdate,
+			'UF_CRM_1559829056' => BitrixCrm::FormatePhone( $model->registrationphone ),
+			'OPPORTUNITY' 		=> $model->summ,
+			'UF_CRM_1559807131' => $model->id,
+			'UF_CRM_1559723329' => $model->summ,
+			'UF_CRM_1559723367' => $model->term, 
+			'UF_CRM_1559723379' => $model->city,
+			'UF_CRM_1559826378' => BitrixCrm::GetListValue($model->purpose),
+			'UF_CRM_1559890195' => BitrixCrm::GetListValue($model->employment),
+			'UF_CRM_1559890345' => $model->work_month, 
+			'UF_CRM_1559890404' => $model->work_year,
+			'UF_CRM_1559890441' => $model->income,
+			'UF_CRM_1559891085' =>  $model->have_auto,
+			'UF_CRM_1559891395' => $model->organizationname, 
+			'UF_CRM_1559891798' => BitrixCrm::GetListValue($model->areaofemployment),
+			'UF_CRM_1559891861' => $model->jobtitle,
+			'UF_CRM_1559892030' => BitrixCrm::GetListValue($model->jobtype),
+			'UF_CRM_1559892212' => $model->workaddress,
+			'UF_CRM_1559892256' => $model->workphone,
+			'UF_CRM_1559894928' => $model->phone_dop,
+			'UF_CRM_1559895409' => BitrixCrm::GetListValue($model->phone_dop_own),
+            'UF_CRM_1559895502' => BitrixCrm::GetListValue($model->education),
+			'UF_CRM_1559895742' => BitrixCrm::GetListValue($model->family),
+			'UF_CRM_1559895825' => $model->child,
+			'UF_CRM_1559895958' => $model->additional_income,
+			'UF_CRM_1559896020' => $model->rent_apartment,
+			'UF_CRM_1559896183' => BitrixCrm::GetListValue($model->credit_history),
 		);
 		
 	
 		
 	}
 	
+	public function getArrayFromBitrixCrm() {
+	
+		return Array(
+			'UF_CRM_1559828608' => Array('field' => 'birthplace', 'type' => 'string'),
+			'UF_CRM_1559828656' => Array('field' => 'sn', 'type' => 'string'), 
+			'UF_CRM_1559828675' => Array('field' => 'issuedate', 'type' => 'string'), 
+			'UF_CRM_1559828690' => Array('field' => 'issuecode', 'type' => 'string'), 
+			'UF_CRM_1559828703' => Array('field' => 'issuer', 'type' => 'string'), 
+			'UF_CRM_1559829011' => Array('field' => 'address', 'type' => 'string'), 
+			'UF_CRM_1559829029' => Array('field' => 'registrationdate', 'type' => 'string'), 
+			'UF_CRM_1559829056' => Array('field' => 'registrationphone', 'type' => 'string'), 
+			'UF_CRM_1559723329' => Array('field' => 'summ', 'type' => 'string'), 
+			'UF_CRM_1559723367' => Array('field' => 'term', 'type' => 'string'), 
+			'UF_CRM_1559723379' => Array('field' => 'city', 'type' => 'string'), 
+			'UF_CRM_1559826378' => Array('field' => 'purpose', 'type' => 'list'), 
+			'UF_CRM_1559890195' => Array('field' => 'employment', 'type' => 'list'), 
+			'UF_CRM_1559890345' => Array('field' => 'work_month', 'type' => 'string'), 
+			'UF_CRM_1559890404' => Array('field' => 'work_year', 'type' => 'string'), 
+			'UF_CRM_1559890441' => Array('field' => 'income', 'type' => 'string'), 
+			'UF_CRM_1559891085' => Array('field' => 'have_auto', 'type' => 'string'), 
+			'UF_CRM_1559891395' => Array('field' => 'organizationname', 'type' => 'string'), 
+			'UF_CRM_1559891798' => Array('field' => 'areaofemployment', 'type' => 'list'), 
+			'UF_CRM_1559891861' => Array('field' => 'jobtitle', 'type' => 'string'), 
+			'UF_CRM_1559892030' => Array('field' => 'jobtype', 'type' => 'list'),
+			'UF_CRM_1559892212' => Array('field' => 'workaddress', 'type' => 'string'), 
+			'UF_CRM_1559892256' => Array('field' => 'workphone', 'type' => 'string'), 
+			'UF_CRM_1559894928' => Array('field' => 'phone_dop', 'type' => 'string'), 
+			'UF_CRM_1559895409' => Array('field' => 'phone_dop_own', 'type' => 'list'), 
+			'UF_CRM_1559895502' => Array('field' => 'education', 'type' => 'list'), 
+			'UF_CRM_1559895742' => Array('field' => 'family', 'type' => 'list'), 
+			'UF_CRM_1559895825' => Array('field' => 'child', 'type' => 'string'),
+			'UF_CRM_1559895958' => Array('field' => 'additional_income', 'type' => 'string'),
+			'UF_CRM_1559896020' => Array('field' => 'rent_apartment', 'type' => 'string'),
+			'UF_CRM_1559896183' =>  Array('field' => 'credit_history', 'type' => 'list')
+		);
+	}
 
     /**
      * {@inheritdoc}

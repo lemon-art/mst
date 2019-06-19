@@ -4,7 +4,7 @@ namespace app\models;
 use dektrium\user\models\User;
 use app\models\Tools;
 use Yii;
-use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 /**
  * This is the model class for table "ipoteka".
  *
@@ -54,6 +54,8 @@ class Ipoteka extends \yii\db\ActiveRecord
 	public $registrationdate;
 	public $registrationphone; 
 	public $secret_key; 
+	
+	const SCENARIO_UPDATE = 'update';
 	 
     public static function tableName()
     {
@@ -66,18 +68,25 @@ class Ipoteka extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['purpose', 'type', 'summ', 'term', 'confirmation_income', 'city', 'initial_payment', 'summ_income'], 'required', 'message'=>'Заполните поле'],
-            [['agree'], 'required', 'message'=>'Необходимо согласие'],
-			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле'],
-			[['bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone'], 'required', 'message'=>'Заполните поле'],
+            [['purpose', 'type', 'summ', 'term', 'confirmation_income', 'city', 'initial_payment', 'summ_income'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+            [['agree'], 'required', 'message'=>'Необходимо согласие', 'on' => 'new'],
+			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+			[['bithday', 'birthplace', 'sn', 'issuedate', 'issuecode', 'issuer', 'address', 'registrationdate', 'registrationphone'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
             [['purpose', 'type', 'summ', 'city', 'summ_income', 'name', 'last_name', 'second_name', 'phone', 'email', 'secret_key'], 'string', 'max' => 255],
-			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
-			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
-			[['email'], 'email', 'message'=>'Введите корректный email'],
-			[['phone'], 'validatePhone'],
-			[['email'], 'validateEmail'],
+			[['bithday', 'issuedate', 'registrationdate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату', 'on' => 'new'],
+			[['bithday', 'issuedate', 'registrationdate'], 'validateDate', 'on' => 'new'], 
+			[['email'], 'email', 'message'=>'Введите корректный email', 'on' => 'new'],
+			[['phone'], 'validatePhone', 'on' => 'new'],
+			[['email'], 'validateEmail', 'on' => 'new'],
 		];
     }
+	
+	public function scenarios()
+	{
+		$scenarios = parent::scenarios();
+		$scenarios[self::SCENARIO_UPDATE] = ['purpose', 'type', 'summ', 'term', 'confirmation_income', 'city', 'initial_payment', 'summ_income', 'name', 'last_name', 'second_name', 'phone', 'email'];
+		return $scenarios;
+	}
 	
 	public function validatePhone($attribute, $params){
 	
@@ -152,48 +161,72 @@ class Ipoteka extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
-			
-			//подготавливаем для crm
-			//$arFields = Ipoteka::makeCrmArray( $this );
-			//отправляем в crm
-			//$crmModel = new CuiteCrm;
-			//$crmModel -> LongRequest( $arFields );
-
+			$this->service_id = 2;
 			return true;
 		}
 		return false;
 	}
 	
-	public function makeCrmArray( $model ) {
-	
-		return Array(
-			'action' => 'Ipoteka',
-			'name' => $model->name,
-			'surname' => $model->last_name,
-			'family_name' => $model->second_name,
-			'phone' => CuiteCrm::FormatePhone( $model->phone ),
-			'email' => $model->email,
-			'house_price' => $model->summ,
-			'first_payment' => $model->initial_payment,
-			'ipoteka_period' => $model->term,
-			'house_city' => $model->city,
-			'credit_gain' => $model->purpose,
-			'house_type' => $model->type,
-			'income' => $model->summ_income,
-			'income_docs' => $model->confirmation_income,
-			'birthdate' => CuiteCrm::FormateDate($model->bithday),
-			'birthplace' => $model->birthplace,
-			'passportnum' => $model->sn,
-			'passportdate' => CuiteCrm::FormateDate($model->issuedate),
-			'passportcode' => $model->issuecode,
-			'passport_department' => $model->issuer,
-			'register_address' => $model->address,
-			'register_date' => CuiteCrm::FormateDate($model->registrationdate),
-			'register_phone' => CuiteCrm::FormatePhone( $model->registrationphone ),
-			
-		);
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		if ( $this -> scenario !== 'update' ){
+			//отправляем в crm
+			$arFields = Ipoteka::makeBitrixCrmArray( $this );
+			$crmModel = new BitrixCrm;
+			$crmModel -> LongRequest( $arFields );
+		}
+	}
 	
 		
+	public function makeBitrixCrmArray( $model ) {
+	
+		return Array(
+			'TITLE' => 'Заявка на ипотеку №' . $model->id,
+			'CATEGORY_ID' => 3,
+			'NAME' => $model->name,
+			'SECOND_NAME' => $model->last_name,
+			'LAST_NAME' => $model->second_name,
+			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
+			'EMAIL' => $model->email,
+			'BIRTHDATE' => $model->bithday,
+			'ADDRESS_CITY' => $model->city,
+			'UF_CRM_1559828608' => $model->birthplace,
+			'UF_CRM_1559828656' => $model->sn,
+			'UF_CRM_1559828675' => $model->issuedate,
+			'UF_CRM_1559828690' => $model->issuecode,
+			'UF_CRM_1559828703' => $model->issuer,
+			'UF_CRM_1559829011' => $model->address,
+			'UF_CRM_1559829029' => $model->registrationdate,
+			'UF_CRM_1559829056' => BitrixCrm::FormatePhone( $model->registrationphone ),
+			'OPPORTUNITY' 		=> $model->summ,
+			'UF_CRM_1559807131' => $model->id,
+			'UF_CRM_1559723329' => $model->summ,
+			'UF_CRM_1559723367' => $model->term, 
+			'UF_CRM_1559723379' => $model->city,
+			'UF_CRM_1559913759' => BitrixCrm::GetListValue($model->purpose),
+			'UF_CRM_1559913904' => BitrixCrm::GetListValue($model->type),
+			'UF_CRM_1559914035' => $model->initial_payment, 
+			'UF_CRM_1559890441' => $model->summ_income,
+			'UF_CRM_1559914502' => BitrixCrm::GetListValue($model->confirmation_income),
+
+		);
+	}
+	
+	public function getArrayFromBitrixCrm() {
+	
+		return Array(
+			'UF_CRM_1559723329' => Array('field' => 'summ', 'type' => 'string'), 
+			'UF_CRM_1559723379' => Array('field' => 'city', 'type' => 'string'), 
+			'UF_CRM_1559723367' => Array('field' => 'term', 'type' => 'string'), 
+			'UF_CRM_1559890441' => Array('field' => 'summ_income', 'type' => 'string'), 		
+			'UF_CRM_1559914502' => Array('field' => 'confirmation_income', 'type' => 'list'), 
+			'UF_CRM_1559913759' => Array('field' => 'purpose', 'type' => 'list'), 
+			'UF_CRM_1559914035' => Array('field' => 'initial_payment', 'type' => 'string'),
+			'UF_CRM_1559913904' => Array('field' => 'type', 'type' => 'list'), 
+
+	
+		);
 	}
 
     /**

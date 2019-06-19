@@ -3,7 +3,7 @@
 namespace app\models;
 use dektrium\user\models\User;
 use Yii;
-use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 /**
  * This is the model class for table "debet".
  *
@@ -40,7 +40,10 @@ class Debet extends \yii\db\ActiveRecord
 	public $secret_key;
 	public $summ_display; 
 	public $term_display;
-		
+	
+	const SCENARIO_UPDATE = 'update';
+	const SCENARIO_NEW = 'new';
+	
     public static function tableName()
     {
         return 'debet';
@@ -63,16 +66,23 @@ class Debet extends \yii\db\ActiveRecord
     {
         return [
 			[['email'], 'email', 'message'=>'Введите корректный email'],
-            [['name', 'last_name', 'purpose', 'second_name', 'phone', 'email', 'summ', 'term', 'city'], 'required', 'message'=>'Заполните поле'],
+            [['name', 'last_name', 'purpose', 'second_name', 'phone', 'email', 'summ', 'term', 'city'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
             [['id',  'term', 'service_id', 'user_id', 'status'], 'integer'],
-            [['date'], 'safe'],
-			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-            [['name', 'last_name', 'second_name', 'purpose', 'city','summ', 'secret_key'], 'string', 'max' => 255],
-			[['bithday', 'issuedate', 'registrationdate'], 'validateDate'], 
-			[['phone'], 'validatePhone'],
-			[['email'], 'validateEmail'],
+            [['date'], 'safe', 'on' => 'new'],
+			[['agree'], 'required', 'message'=>'Необходимо согласие', 'on' => 'new'],
+            [['name', 'last_name', 'second_name', 'purpose', 'city','summ', 'secret_key'], 'string', 'max' => 255, 'on' => 'new'],
+			[['bithday', 'issuedate', 'registrationdate'], 'validateDate', 'on' => 'new'], 
+			[['phone'], 'validatePhone', 'on' => 'new'],
+			[['email'], 'validateEmail', 'on' => 'new'],
         ];
     }
+	
+	public function scenarios()
+	{
+     $scenarios = parent::scenarios();
+     $scenarios[self::SCENARIO_UPDATE] = ['summ' , 'term', 'purpose', 'city', 'user_id'];
+     return $scenarios;
+	}
 	
 	public function validatePhone($attribute, $params){
 	
@@ -148,35 +158,57 @@ class Debet extends \yii\db\ActiveRecord
 				$this->$field = Tools::numUpdate($this->$field);
 			}
 			
-			//подготавливаем для crm
-			//$arFields = Debet::makeCrmArray( $this );
-			//отправляем в crm
-			//$crmModel = new CuiteCrm;
-			//$crmModel -> LongRequest( $arFields );
-
+			$this->service_id = 3;
 			return true;
 		}
 		return false;
 	}
 	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		if ( $this -> scenario !== 'update' ){
+			$arFields = Debet::makeBitrixCrmArray( $this );
+			//отправляем в crm
+			$crmModel = new BitrixCrm;
+			$crmModel -> LongRequest( $arFields );
+		}
+	}
 	
-	public function makeCrmArray( $model ) {
+	
+	
+	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'action' => 'Deposit',
-			'name' => $model->name,
-			'surname' => $model->last_name,
-			'family_name' => $model->second_name,
-			'phone' => CuiteCrm::FormatePhone( $model->phone ),
-			'email' => $model->email,
-			'payment' => $model->summ,
-			'period' => $model->term,
-			'ipoteka_period' => $model->term,
-			'city' => $model->city,
-			'payment_gain' => $model->purpose,
+			'TITLE' => 'Заявка на депозит №' . $model->id,
+			'CATEGORY_ID' => 4,
+			'NAME' => $model->name,
+			'SECOND_NAME' => $model->last_name,
+			'LAST_NAME' => $model->second_name,
+			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
+			'EMAIL' => $model->email,
+			'OPPORTUNITY' 		=> $model->summ,
+			'UF_CRM_1559807131' => $model->id,
+			'UF_CRM_1559918514' => $model->summ,
+			'UF_CRM_1559723367' => $model->term, 
+			'UF_CRM_1559723379' => $model->city, 
+			'UF_CRM_1559918738' => BitrixCrm::GetListValue($model->purpose),
+			
+			
 		);
-
 	}
+	
+	public function getArrayFromBitrixCrm() {
+	
+		return Array(
+			'UF_CRM_1559918514' => Array('field' => 'summ', 'type' => 'string'),
+			'UF_CRM_1559723367' => Array('field' => 'term', 'type' => 'string'), 
+			'UF_CRM_1559918738' =>  Array('field' => 'purpose', 'type' => 'list'),
+			'UF_CRM_1559723379' => Array('field' => 'city', 'type' => 'string'), 
+		);
+	}
+	
+	
 
     /**
      * {@inheritdoc}

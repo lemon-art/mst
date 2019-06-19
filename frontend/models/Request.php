@@ -1,8 +1,8 @@
 <?php
 
 namespace app\models;
-use common\models\CuiteCrm;
-
+//use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 use Yii;
 
 /**
@@ -39,17 +39,21 @@ class Request extends \yii\db\ActiveRecord
 	public function beforeSave($insert){
 		if (parent::beforeSave($insert)) {
 			
-			$post = Yii::$app->request->post();
-			if ( isset($post['Request']['name']) && isset($post['Request']['phone']) ){
-				//$crmModel = new CuiteCrm;
-				//$crmModel -> name = $post['Request']['name'];
-				//$crmModel -> phone = $post['Request']['phone'];
-				//$crmModel -> ShortRequest();
-			}
-
 			return true;
 		}
 		return false;
+	}
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		
+			//отправляем в crm
+			$crmModel = new BitrixCrm;
+			$crmModel -> name = $this -> name;
+			$crmModel -> phone = $this -> phone;
+			$crmModel -> ShortRequest();
+		
 	}
 	
 	

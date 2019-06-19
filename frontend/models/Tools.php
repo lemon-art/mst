@@ -11,6 +11,8 @@ class Tools
 	
 	public function numUpdate( $value ) {
 		
+		$arValue = explode('|', $value);
+		$value = $arValue[0];
 		$tmp = htmlentities($value);
 		return str_replace("&nbsp;",'',$tmp);
 

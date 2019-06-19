@@ -4,7 +4,7 @@ namespace app\models;
 use app\models\Tools;
 use dektrium\user\models\User;
 use Yii;
-use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 /**
  * This is the model class for table "avtokredit".
  *
@@ -37,6 +37,7 @@ class Avtokredit extends \yii\db\ActiveRecord
 	public $email;
     public $agree;
 
+	const SCENARIO_UPDATE = 'update';
 	 
     public static function tableName()
     {
@@ -49,16 +50,23 @@ class Avtokredit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['summ', 'income', 'confirmation_income', 'first_payment', 'term', 'condition', 'type'], 'required', 'message'=>'Заполните поле'],
-            [['summ', 'first_payment', 'term', 'condition', 'type', 'secret_key'], 'string', 'max' => 255],
-			[['kasko', 'treid_in'], 'integer'],
-			[['email'], 'email', 'message'=>'Введите корректный email'],
-			[['email'], 'validateEmail'],
-			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-			[['phone'], 'validatePhone'],
-			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле'],
+            [['summ', 'income', 'confirmation_income', 'first_payment', 'term', 'condition', 'type'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
+            [['summ', 'first_payment', 'term', 'condition', 'type', 'secret_key'], 'string', 'max' => 255, 'on' => 'new'],
+			[['kasko', 'treid_in'], 'integer', 'on' => 'new'],
+			[['email'], 'email', 'message'=>'Введите корректный email', 'on' => 'new'],
+			[['email'], 'validateEmail', 'on' => 'new'],
+			[['agree'], 'required', 'message'=>'Необходимо согласие', 'on' => 'new'],
+			[['phone'], 'validatePhone', 'on' => 'new'],
+			[['name', 'last_name', 'second_name', 'phone', 'email'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
         ];
     }
+	
+	public function scenarios()
+	{
+		$scenarios = parent::scenarios();
+		$scenarios[self::SCENARIO_UPDATE] = ['summ', 'income', 'confirmation_income', 'first_payment', 'term', 'condition', 'type', 'kasko', 'treid_in'];
+		return $scenarios;
+	}
 	
 	public function validatePhone($attribute, $params){
 	
@@ -106,38 +114,63 @@ class Avtokredit extends \yii\db\ActiveRecord
 			foreach ( $arFields as $field ){
 				$this->$field = Tools::numUpdate($this->$field);
 			}
-			
-			//подготавливаем для crm
-			//$arFields = Avtokredit::makeCrmArray( $this );
-			//отправляем в crm
-			//$crmModel = new CuiteCrm;
-			//$crmModel -> LongRequest( $arFields );
-
+			$this->service_id = 4;
 			return true;
 		}
 		return false;
 	}
 	
-	public function makeCrmArray( $model ) {
+	
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		if ( $this -> scenario !== 'update' ){
+			//отправляем в crm
+			$arFields = Avtokredit::makeBitrixCrmArray( $this );
+			$crmModel = new BitrixCrm;
+			$crmModel -> LongRequest( $arFields );
+		}
+	}
+	
+	
+	
+	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'action' => 'Autocredit',
-			'name' => $model->name,
-			'surname' => $model->last_name,
-			'family_name' => $model->second_name,
-			'phone' => CuiteCrm::FormatePhone( $model->phone ),
-			'email' => $model->email,
-			'car_price' => $model->summ,
-			'first_payment' => $model->first_payment,
-			'autocredit_period' => $model->term,
-			'income' => $model->income,
-			'income_docs' => $model->confirmation_income,
-			'trade_in' => $model->treid_in,
-			'vehicle_type' => $model->type,
-			'vehicle_status' => $model->condition,
-			'without_casco' => $model->kasko
-		);
+			'TITLE' => 'Заявка на автокредит №' . $model->id,
+			'CATEGORY_ID' => 6,
+			'NAME' => $model->name,
+			'SECOND_NAME' => $model->last_name,
+			'LAST_NAME' => $model->second_name,
+			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
+			'EMAIL' => $model->email,
+			'OPPORTUNITY' 		=> $model->summ,
+			'UF_CRM_1559922051' => $model->summ,
+			'UF_CRM_1559914035' => $model->first_payment,
+			'UF_CRM_1559723367' => $model->term,
+			'UF_CRM_1559890441' => $model->income,
+			'UF_CRM_1559914502' => BitrixCrm::GetListValue($model->confirmation_income),
+			'UF_CRM_1559922279' => $model->treid_in,
+			'UF_CRM_1559922304' => BitrixCrm::GetListValue($model->type),
+			'UF_CRM_1559922560' => BitrixCrm::GetListValue($model->condition),
+			'UF_CRM_1559922623' => $model->kasko
 
+		);
+	}
+	
+	public function getArrayFromBitrixCrm() {
+	
+		return Array(
+			'UF_CRM_1559922051' => Array('field' => 'summ', 'type' => 'string'), 
+			'UF_CRM_1559914035' => Array('field' => 'first_payment', 'type' => 'string'), 
+			'UF_CRM_1559723367' => Array('field' => 'term', 'type' => 'string'), 
+			'UF_CRM_1559890441' => Array('field' => 'income', 'type' => 'string'), 		
+			'UF_CRM_1559914502' => Array('field' => 'confirmation_income', 'type' => 'list'), 
+			'UF_CRM_1559922279' => Array('field' => 'treid_in', 'type' => 'string'),
+			'UF_CRM_1559922304' => Array('field' => 'type', 'type' => 'list'), 
+			'UF_CRM_1559922560' => Array('field' => 'condition', 'type' => 'list'),
+			'UF_CRM_1559922623' => Array('field' => 'kasko', 'type' => 'string'),			
+		);
 	}
 	
 

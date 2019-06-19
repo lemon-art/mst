@@ -4,7 +4,7 @@ namespace app\models;
 use dektrium\user\models\User;
 use common\models\DataValidate;
 use Yii;
-use common\models\CuiteCrm;
+use common\models\BitrixCrm;
 /**
  * This is the model class for table "rko".
  *
@@ -42,7 +42,7 @@ class Rko extends \yii\db\ActiveRecord
 	public $summ_display; 
 	public $term_display; 
 	 
-	 
+	const SCENARIO_UPDATE = 'update'; 
 	 
     public static function tableName()
     {
@@ -67,21 +67,28 @@ class Rko extends \yii\db\ActiveRecord
         return [
 	
 			[['email'], 'email', 'message'=>'Введите корректный email'],
-            [['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn', 'snils', 'bithday', 'address', 'company_name', 'sn', 'sex', 'issuedate'], 'required', 'message'=>'Заполните поле'],
+            [['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn', 'snils', 'bithday', 'address', 'company_name', 'sn', 'sex', 'issuedate'], 'required', 'message'=>'Заполните поле', 'on' => 'new'],
             [['id',  'service_id', 'user_id', 'status'], 'integer'],
             [['date'], 'safe'],
-			[['agree'], 'required', 'message'=>'Необходимо согласие'],
-            [['name', 'last_name', 'second_name', 'city', 'company_name', 'secret_key'], 'string', 'max' => 255],
-			[['email'], 'validateEmail'],
-			[['inn'], 'validateInn'],
-			[['issuedate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
-			[['bithday'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату'],
-			[['bithday'], 'validateDate'], 
-			[['phone'], 'validatePhone'],
-			[['snils'], 'validateSnils'],
+			[['agree'], 'required', 'message'=>'Необходимо согласие', 'on' => 'new'],
+            [['name', 'last_name', 'second_name', 'city', 'company_name', 'secret_key'], 'string', 'max' => 255, 'on' => 'new'],
+			[['email'], 'validateEmail', 'on' => 'new'],
+			[['inn'], 'validateInn', 'on' => 'new'],
+			[['issuedate'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату', 'on' => 'new'],
+			[['bithday'], 'date', 'format' => 'php:d.m.Y', 'message'=>'Введите корректную дату', 'on' => 'new'],
+			[['bithday'], 'validateDate', 'on' => 'new'], 
+			[['phone'], 'validatePhone', 'on' => 'new'],
+			[['snils'], 'validateSnils', 'on' => 'new'],
 			
         ];
     }
+	
+	public function scenarios()
+	{
+		$scenarios = parent::scenarios();
+		$scenarios[self::SCENARIO_UPDATE] = ['name', 'last_name', 'second_name', 'phone', 'email', 'form', 'city', 'inn', 'snils', 'bithday', 'address', 'company_name', 'sn', 'sex', 'issuedate'];
+		return $scenarios;
+	}
 	
 	public function validatePhone($attribute, $params){
 	
@@ -173,41 +180,66 @@ class Rko extends \yii\db\ActiveRecord
 	public function beforeSave($insert){
 		if (parent::beforeSave($insert)) {
 	 
-	
-			//подготавливаем для crm
-			//$arFields = Rko::makeCrmArray( $this );
-			//отправляем в crm
-			//$crmModel = new CuiteCrm;
-			//$crmModel -> LongRequest( $arFields );
-
+			$this->service_id = 7;
 			return true;
 		}
 		return false;
 	}
 	
-	public function makeCrmArray( $model ) {
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+	 
+		if ( $this -> scenario !== 'update' ){
+			//отправляем в crm
+			$arFields = Rko::makeBitrixCrmArray( $this );
+			$crmModel = new BitrixCrm;
+			$crmModel -> LongRequest( $arFields );
+		}
+	}
 	
-		if ( $model->form == 6 )
-			$model->form = 1;
-			
-		if ( $model->form == 0 )
-			$model->form = 2;	
 		
-		
+	
+	public function makeBitrixCrmArray( $model ) {
+	
 		return Array(
-			'action' => 'rko',
-			'name' => $model->name,
-			'surname' => $model->last_name,
-			'family_name' => $model->second_name,
-			'phone' => CuiteCrm::FormatePhone( $model->phone ),
-			'email' => $model->email,
-			'org_type' => $model->form,
-			'org_inn' => $model->inn,
-			'city' => $model->city,
+			'TITLE' => 'Заявка на РКО №' . $model->id,
+			'CATEGORY_ID' => 7,
+			'NAME' => $model->name,
+			'SECOND_NAME' => $model->last_name,
+			'LAST_NAME' => $model->second_name,
+			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
+			'EMAIL' => $model->email,
+			
+			'UF_CRM_1559828608' => $model->birthplace,
+			'UF_CRM_1559828656' => $model->sn,
+			'UF_CRM_1559828675' => $model->issuedate,
+			'UF_CRM_1559828690' => $model->issuecode,
+			'UF_CRM_1559828703' => $model->issuer,
+			'UF_CRM_1559829011' => $model->address,
+			'UF_CRM_1559829029' => $model->registrationdate,
+			'UF_CRM_1559829056' => BitrixCrm::FormatePhone( $model->registrationphone ),
+			
+			
+			'UF_CRM_1559723379' => $model->city,
+			'UF_CRM_1559922932' => BitrixCrm::GetListValue($model->form),
+			'UF_CRM_1559923098' => $model->inn,
+			'UF_CRM_1559923054' => $model->company_name,
+			'UF_CRM_1559923157' => $model->snils,
+			'UF_CRM_1560922154' => BitrixCrm::GetListValue($model->sex)
 		);
+	}
+	
+	public function getArrayFromBitrixCrm() {
+	
+		return Array(
+			'UF_CRM_1559723379' => Array('field' => 'city', 'type' => 'string'), 
+			'UF_CRM_1559922932' => Array('field' => 'form', 'type' => 'list'), 
+			'UF_CRM_1559923098' => Array('field' => 'inn', 'type' => 'string'), 		
+			'UF_CRM_1559923054' => Array('field' => 'company_name', 'type' => 'string'),
+			'UF_CRM_1559923157' => Array('field' => 'snils', 'type' => 'string'), 
+			'UF_CRM_1560922154' => Array('field' => 'sex', 'type' => 'list'), 
 
-
-		
+		);
 	}
 
     /**
