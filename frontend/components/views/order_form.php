@@ -47,10 +47,40 @@ for ( $i = 0; $i < 15; $i++){
 						<div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
-							<?
-							if ( isset($_COOKIE["actionpay"]) ){
-								echo '<img src="http://apypp.com/ok/18610.png?actionpay='.$_COOKIE["actionpay"].'&apid='.$model->id.'" width="1px" height="1px"/>';
-							}
+<script type"text/javascript">
+ADMITAD = window.ADMITAD || {};
+ADMITAD.Invoice = ADMITAD.Invoice || {};
+ADMITAD.Invoice.broker = 'adm';    // параметр дедупликации (по умолчанию для Admitad)
+ADMITAD.Invoice.category = '1';    // код целевого действия (определяется при интеграции)
+
+var orderedItem = [];              // временный массив 
+	
+orderedItem.push({
+	Product: {
+		category: '1',        // код тарифа (определяется при интеграции)
+		price: 'no',   // сумма заказа(передавать при процентном вознаграждении)
+		priceCurrency: 'RUB', // код валюты ISO-4217 alfa-3 >(передавать при процентном вознаграждении)
+	},
+	orderQuantity: '1',       // всегда 1
+	additionalType: 'lead'     // всегда sale
+});
+ADMITAD.Invoice.referencesOrder = ADMITAD.Invoice.referencesOrder || [];
+ADMITAD.Invoice.referencesOrder.push({
+	orderNumber: '<?php echo $model->id; ?>', // внутренний номер заказа (не более 100 символов)
+	orderedItem: orderedItem
+});
+// Важно! Если данные по заказу Admitad подгружаются через AJAX, раскомментируйте следующую строку.
+ADMITAD.Tracking.processPositions();
+</script>
+<script type="text/javascript">
+   ADMITAD = window.ADMITAD || {};
+   ADMITAD.Invoice = ADMITAD.Invoice || {};
+   ADMITAD.Invoice.accountId = '<?php echo $model->email; ?>'; // e-mail или логин пользователя в системе 
+</script>
+							<?php
+							///if ( isset($_COOKIE["actionpay"]) ){
+							//	echo '<img src="http://apypp.com/ok/18610.png?actionpay='.$_COOKIE["actionpay"].'&apid='.$model->id.'" width="1px" height="1px"/>';
+							//}
 							?>						
 <?
 $js = <<< JS
@@ -100,13 +130,13 @@ $this->registerJs($js);
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 									
 																
@@ -187,20 +217,20 @@ $this->registerJs($js);
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
 									</div>
 									
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 								
 								
@@ -322,17 +352,17 @@ $this->registerJs($js);
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('bithday');?></label>
-										<?= $form->field($model, 'bithday', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->bithday,  'placeholder' => "", 'class' => 'input date'])->label(false);?>
+										<?= $form->field($model, 'bithday', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->bithday,  'placeholder' => "", 'class' => 'input date'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('birthplace');?></label>
-										<?= $form->field($model, 'birthplace', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->birthPlace, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'birthplace', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->birthPlace, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('sn');?></label>
-										<?= $form->field($model, 'sn', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->sn, 'placeholder' => "", 'class' => 'input sn'])->label(false);?>
+										<?= $form->field($model, 'sn', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->sn, 'placeholder' => "", 'class' => 'input sn'])->label(false);?>
 									</div>
 									
 								</div>
@@ -341,12 +371,12 @@ $this->registerJs($js);
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('issuedate');?></label>
-										<?= $form->field($model, 'issuedate', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->issueDate, 'placeholder' => "", 'class' => 'input date'])->label(false);?>
+										<?= $form->field($model, 'issuedate', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->issueDate, 'placeholder' => "", 'class' => 'input date'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('issuecode');?></label>
-										<?= $form->field($model, 'issuecode', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->issueCode, 'placeholder' => "", 'class' => 'input issueCode'])->label(false);?>
+										<?= $form->field($model, 'issuecode', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->issueCode, 'placeholder' => "", 'class' => 'input issueCode'])->label(false);?>
 									</div>
 								
 									
@@ -355,26 +385,26 @@ $this->registerJs($js);
 								<div class="line_flex">
 									<div class="line_form_one">
 										<label><?=$model->getAttributeLabel('issuer');?></label>
-										<?= $form->field($model, 'issuer', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->issuer, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'issuer', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->issuer, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 								</div>
 								
 								<div class="line_flex">
 									<div class="line_form_one">
 										<label><?=$model->getAttributeLabel('address');?></label>
-										<?= $form->field($model, 'address', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->address, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'address', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->address, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 								</div>
 								
 								<div class="line_flex">
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('registrationdate');?></label>
-										<?= $form->field($model, 'registrationdate', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->registrationDate, 'placeholder' => "", 'class' => 'input date'])->label(false);?>
+										<?= $form->field($model, 'registrationdate', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->registrationDate, 'placeholder' => "", 'class' => 'input date'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('registrationphone');?></label>
-										<?= $form->field($model, 'registrationphone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->registrationPhone, 'maxlength' => true, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'registrationphone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'value' => $profileUser->registrationPhone, 'maxlength' => true, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 									
 								</div>
@@ -414,18 +444,18 @@ $this->registerJs($js);
 									<div class="selectWrap">
 										<?=$form->field($model, 'areaofemployment')->dropDownList([
 											''   => 'Выберите',
-											'1'  => 'Горнодобывающая промышленность',
-											'2'  => 'Государственное, муниципальное управление',
-											'3'  => 'Здравоохранение, социальные услуги',
-											'4'  => 'Культура, искусство, спортивная деятельность',
-											'5'  => 'Оборона, правоохранительные органы',
-											'6'  => 'Обрабатывающая промышленность (производство)',
-											'7'  => 'Профессиональная, научная, техническая деятельность',
-											'8'  => 'Сельское хозяйство, рыболовство, охота, лесоводство',
-											'9'  => 'Сфера торговли, услуг, связи',
-											'10'  => 'Транспорт',
-											'11'  => 'Финансовая деятельность, страхование',
-											'12'  => 'Иное'
+											'Горнодобывающая промышленность'  => 'Горнодобывающая промышленность',
+											'Государственное, муниципальное управление'  => 'Государственное, муниципальное управление',
+											'Здравоохранение, социальные услуги'  => 'Здравоохранение, социальные услуги',
+											'Культура, искусство, спортивная деятельность'  => 'Культура, искусство, спортивная деятельность',
+											'Оборона, правоохранительные органы'  => 'Оборона, правоохранительные органы',
+											'Обрабатывающая промышленность (производство)'  => 'Обрабатывающая промышленность (производство)',
+											'Профессиональная, научная, техническая деятельность'  => 'Профессиональная, научная, техническая деятельность',
+											'Сельское хозяйство, рыболовство, охота, лесоводство'  => 'Сельское хозяйство, рыболовство, охота, лесоводство',
+											'Сфера торговли, услуг, связи'  => 'Сфера торговли, услуг, связи',
+											'Транспорт'  => 'Транспорт',
+											'Финансовая деятельность, страхование'  => 'Финансовая деятельность, страхование',
+											'Иное'  => 'Иное'
 										])->label(false);?> 
 									</div>
 								</div>
@@ -544,11 +574,11 @@ $this->registerJs($js);
 										<div class="selectWrap">
 											<?=$form->field($model, 'family')->dropDownList([
 												''   => 'Выберите',
-												'Single'   => 'Холост/не замужем',
-												'Divorced'   => 'Разведен(а)',
-												'CivilMarriage'   => 'Гражданский брак',
-												'Married'   => 'Женат/замужем',
-												'Widow'   => 'Вдовец/вдова',
+												'Холост/не замужем'   => 'Холост/не замужем',
+												'Разведен(а)'   => 'Разведен(а)',
+												'Гражданский брак'   => 'Гражданский брак',
+												'Женат/замужем'   => 'Женат/замужем',
+												'Вдовец/вдова'   => 'Вдовец/вдова',
 											])->label(false);?> 
 										</div>
 									</div>
@@ -562,7 +592,7 @@ $this->registerJs($js);
 												'1'   => '1',
 												'2'   => '2',
 												'3'   => '3',
-												'more3'   => 'Больше 3',
+												'Больше 3'   => 'Больше 3',
 											])->label(false);?> 
 										</div>
 									</div>
@@ -583,9 +613,9 @@ $this->registerJs($js);
 										<div class="selectWrap">
 											<?=$form->field($model, 'have_auto')->dropDownList([
 												''   => 'Выберите',
-												'1'   => 'Нет',
-												'2'   => 'Отечественный',
-												'3'   => 'Иномарка',
+												'Нет'   => 'Нет',
+												'Отечественный'   => 'Отечественный',
+												'Иномарка'   => 'Иномарка',
 											])->label(false);?> 
 										</div>
 									</div>
@@ -604,12 +634,12 @@ $this->registerJs($js);
 										<div class="selectWrap">
 											<?=$form->field($model, 'credit_history')->dropDownList([
 												''   => 'Выберите',
-												'1'   => 'Всегда плачу вовремя',
-												'2'   => 'Бывают просрочки',
-												'3'   => 'Было много просрочек',
-												'4'   => 'Есть текущие просрочки',
-												'5'   => 'Не было кредитов',
-												'6'   => 'Не знаю',
+												'Всегда плачу вовремя'   => 'Всегда плачу вовремя',
+												'Бывают просрочки'   => 'Бывают просрочки',
+												'Было много просрочек'   => 'Было много просрочек',
+												'Есть текущие просрочки'   => 'Есть текущие просрочки',
+												'Не было кредитов'   => 'Не было кредитов',
+												'Не знаю'   => 'Не знаю',
 											])->label(false);?> 
 										</div>
 									</div>

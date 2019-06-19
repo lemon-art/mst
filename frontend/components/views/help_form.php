@@ -13,7 +13,7 @@ use yii\widgets\Pjax;
 		<div class="form">
 		
 			<?php Pjax::begin([
-				'id' => 'requestPopupFormPjax',
+				'id' => 'requestHelpPopupFormPjax',
 				'timeout' => false,
 				'enablePushState' => true,
 				'enableReplaceState' => true,
@@ -31,7 +31,7 @@ use yii\widgets\Pjax;
 				<?php endif;?>
 			
 					<?php $form = ActiveForm::begin([
-						'id' => 'popup-form',
+						'id' => 'help-popup-form',
 						'options' => ['data-pjax' => '1'],
 					]); ?>
 					

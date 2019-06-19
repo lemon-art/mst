@@ -113,28 +113,28 @@ $this->registerJs($js);
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 								
 								
@@ -165,9 +165,9 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'currency')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Рубль',
-													'2' => 'Доллар',
-													'3' => 'Евро'
+													'Рубль' => 'Рубль',
+													'Доллар' => 'Доллар',
+													'Евро' => 'Евро'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
@@ -182,11 +182,11 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'system')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Visa',
-													'2' => 'MasterCard',
-													'3' => 'Мир',
-													'4' => 'American Express',
-													'5' => 'Другая'
+													'Visa' => 'Visa',
+													'MasterCard' => 'MasterCard',
+													'Мир' => 'Мир',
+													'American Express' => 'American Express',
+													'Другая' => 'Другая'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
@@ -196,11 +196,11 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'type')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Стандартная',
-													'2' => 'Золотая',
-													'3' => 'Премиальная',
-													'4' => 'Электронная',
-													'5' => 'Другая'
+													'Стандартная' => 'Стандартная',
+													'Золотая' => 'Золотая',
+													'Премиальная' => 'Премиальная',
+													'Электронная' => 'Электронная',
+													'Другая' => 'Другая'
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	

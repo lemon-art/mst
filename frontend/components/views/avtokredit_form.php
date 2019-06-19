@@ -115,28 +115,28 @@ for ( $i = 0; $i < 15; $i++){
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 									
 									<div class="line_form_one">
@@ -179,12 +179,12 @@ for ( $i = 0; $i < 15; $i++){
 									 
 										<?=$form->field($model, 'term')->dropDownList([
 											''   => 'Выберите',
-											'1' => '1 год',
-											'2' => '2 года',
-											'3' => '3 года',
-											'4' => '4 года',
-											'5' => '5 лет',
-											'10' => '10 лет',
+											'12' => '1 год',
+											'24' => '2 года',
+											'36' => '3 года',
+											'48' => '4 года',
+											'60' => '5 лет',
+											'120' => '10 лет',
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>
@@ -204,16 +204,16 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'confirmation_income')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Найм, Справка 2-НДФЛ',
-													'2' => 'Найм, Справка по форме банка',
-													'3' => 'Найм, Устное подтверждение',
-													'4' => 'Созаемщик без учета дохода',
-													'5' => 'ИП, Налоговая декларация',
-													'6' => 'ИП, Иными документами',
-													'7' => 'ИП, Устное подтверждение',
-													'8' => 'Собственник бизнеса, Налоговая декларация',
-													'9' => 'Собственник бизнеса, Иными документами',
-													'10' => 'Собственник бизнеса, Устное подтверждение',
+													'Найм, Справка 2-НДФЛ' => 'Найм, Справка 2-НДФЛ',
+													'Найм, Справка по форме банка' => 'Найм, Справка по форме банка',
+													'Найм, Устное подтверждение' => 'Найм, Устное подтверждение',
+													'Созаемщик без учета дохода' => 'Созаемщик без учета дохода',
+													'ИП, Налоговая декларация' => 'ИП, Налоговая декларация',
+													'ИП, Иными документами' => 'ИП, Иными документами',
+													'ИП, Устное подтверждение' => 'ИП, Устное подтверждение',
+													'Собственник бизнеса, Налоговая декларация' => 'Собственник бизнеса, Налоговая декларация',
+													'Собственник бизнеса, Иными документами' => 'Собственник бизнеса, Иными документами',
+													'Собственник бизнеса, Устное подтверждение' => 'Собственник бизнеса, Устное подтверждение',
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
@@ -237,10 +237,10 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'type')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Легковой автомобиль',
-													'2' => 'Грузовой автомобиль',
-													'3' => 'Мотоцикл',
-													'4' => 'Снегоход'											
+													'Легковой автомобиль' => 'Легковой автомобиль',
+													'Грузовой автомобиль' => 'Грузовой автомобиль',
+													'Мотоцикл' => 'Мотоцикл',
+													'Снегоход' => 'Снегоход'											
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>
@@ -251,8 +251,8 @@ for ( $i = 0; $i < 15; $i++){
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'condition')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Новый автомобиль',
-													'2' => 'Автомобиль с пробегом',
+													'Новый автомобиль' => 'Новый автомобиль',
+													'Автомобиль с пробегом' => 'Автомобиль с пробегом',
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	

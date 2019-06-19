@@ -45,7 +45,36 @@ for ( $i = 0; $i < 15; $i++){
 <div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
-							
+<script type"text/javascript">
+ADMITAD = window.ADMITAD || {};
+ADMITAD.Invoice = ADMITAD.Invoice || {};
+ADMITAD.Invoice.broker = 'adm';    // параметр дедупликации (по умолчанию для Admitad)
+ADMITAD.Invoice.category = '1';    // код целевого действия (определяется при интеграции)
+
+var orderedItem = [];              // временный массив 
+	
+orderedItem.push({
+	Product: {
+		category: '1',        // код тарифа (определяется при интеграции)
+		price: 'no',   // сумма заказа(передавать при процентном вознаграждении)
+		priceCurrency: 'RUB', // код валюты ISO-4217 alfa-3 >(передавать при процентном вознаграждении)
+	},
+	orderQuantity: '1',       // всегда 1
+	additionalType: 'lead'     // всегда sale
+});
+ADMITAD.Invoice.referencesOrder = ADMITAD.Invoice.referencesOrder || [];
+ADMITAD.Invoice.referencesOrder.push({
+	orderNumber: '<?php echo $model->id; ?>', // внутренний номер заказа (не более 100 символов)
+	orderedItem: orderedItem
+});
+// Важно! Если данные по заказу Admitad подгружаются через AJAX, раскомментируйте следующую строку.
+ADMITAD.Tracking.processPositions();
+</script>
+<script type="text/javascript">
+   ADMITAD = window.ADMITAD || {};
+   ADMITAD.Invoice = ADMITAD.Invoice || {};
+   ADMITAD.Invoice.accountId = '<?php echo $model->email; ?>'; // e-mail или логин пользователя в системе 
+</script>
 <?
 $js = <<< JS
 jQuery(document).ready(function(){jQuery('html, body').animate({scrollTop: jQuery("#order_completed").offset().top - 50}, 1000);});
@@ -115,28 +144,28 @@ $this->registerJs($js);
 								
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('last_name');?></label>
-										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
+										<?= $form->field($model, 'last_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->last_name, 'placeholder' => "", 'class' => 'input required kirilica'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('name');?></label>
-										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true,  'value' => $profileUser->name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('second_name');?></label>
-										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'readonly'=> true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
+										<?= $form->field($model, 'second_name', ['options' => ['class' => 'form-group has-success']])->textInput(['maxlength' => true, 'value' => $profileUser->second_name, 'placeholder' => "", 'class' => 'input kirilica'])->label(false);?>
 									</div>
 									
 
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('phone');?></label>
-										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'readonly'=> true, 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'phone', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'tel', 'value' => $profileUser->phone, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 									
 									<div class="line_form">
 										<label><?=$model->getAttributeLabel('email');?></label>
-										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'readonly'=> true, 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
+										<?= $form->field($model, 'email', ['options' => ['class' => 'form-group has-success']])->textInput(['type' => 'email', 'value' => $profileUser->email, 'placeholder' => "", 'class' => 'input'])->label(false);?>
 									</div>
 								
 									<div class="line_form_one">
@@ -173,16 +202,16 @@ $this->registerJs($js);
 									<div class="selectWrap"> 
 										<?=$form->field($model, 'confirmation_income')->dropDownList([
 													''   => 'Выберите',
-													'1' => 'Найм, Справка 2-НДФЛ',
-													'2' => 'Найм, Справка по форме банка',
-													'3' => 'Найм, Устное подтверждение',
-													'4' => 'Созаемщик без учета дохода',
-													'5' => 'ИП, Налоговая декларация',
-													'6' => 'ИП, Иными документами',
-													'7' => 'ИП, Устное подтверждение',
-													'8' => 'Собственник бизнеса, Налоговая декларация',
-													'9' => 'Собственник бизнеса, Иными документами',
-													'10' => 'Собственник бизнеса, Устное подтверждение',
+													'Найм, Справка 2-НДФЛ' => 'Найм, Справка 2-НДФЛ',
+													'Найм, Справка по форме банка' => 'Найм, Справка по форме банка',
+													'Найм, Устное подтверждение' => 'Найм, Устное подтверждение',
+													'Созаемщик без учета дохода' => 'Созаемщик без учета дохода',
+													'ИП, Налоговая декларация' => 'ИП, Налоговая декларация',
+													'ИП, Иными документами' => 'ИП, Иными документами',
+													'ИП, Устное подтверждение' => 'ИП, Устное подтверждение',
+													'Собственник бизнеса, Налоговая декларация' => 'Собственник бизнеса, Налоговая декларация',
+													'Собственник бизнеса, Иными документами' => 'Собственник бизнеса, Иными документами',
+													'Собственник бизнеса, Устное подтверждение' => 'Собственник бизнеса, Устное подтверждение',
 										], ['class' => 'required'])->label(false);?> 
 									</div>
 								</div>	
