@@ -42,30 +42,37 @@ class OrderForm extends Widget {
 		switch ( $this->service_id ) {
 			case 1:
 				$orderModel = new Kredit();
+				$orderModel->scenario="new";
 				$formView = 'order_form';
 				break;
 			case 2:
 				$orderModel = new Ipoteka();
+				$orderModel->scenario="new";
 				$formView = 'ipoteka_form';
 				break;			
 			case 3:
 				$orderModel = new Debet();
+				$orderModel->scenario="new";
 				$formView = 'debet_form';
 				break;
 			case 4:
 				$orderModel = new Avtokredit();
+				$orderModel->scenario="new";
 				$formView = 'avtokredit_form';
 				break;	
 			case 5:
 				$orderModel = new KreditKards();
+				$orderModel->scenario="new";
 				$formView = 'kredit_kards_form';
 				break;	
 			case 6:
 				$orderModel = new DebetCards();
+				$orderModel->scenario="new";
 				$formView = 'debet_kards_form';
 				break;	
 			case 7:
 				$orderModel = new Rko();
+				$orderModel->scenario="new";
 				$formView = 'rko_form';
 				break;	
 				
