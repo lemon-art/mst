@@ -14,12 +14,31 @@ use frontend\components\Login;
 use frontend\components\Register;
 use frontend\components\Forgot;
 use frontend\components\HelpOrder;
+use backend\models\City;
+use yii\bootstrap\Modal;
 
 AppAsset::register($this);
 
 if (isset($_GET["actionpay"])){
     setcookie("actionpay", $_GET["actionpay"], time()+60*60*24*30);
 }
+
+//текущий город
+$subdomain = current((explode('.', $_SERVER['HTTP_HOST'])));
+$city = '';
+if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
+	$city['dec1'] = 'в России';
+} else {
+	$city = City::find()->where(['subdomain' => $subdomain])->one();
+	$city = (array)$city;
+	$city = current($city);
+	if (!$city) {
+		header('Location: http://marketvibor.ru/');
+		$city['dec1'] = 'в России';
+	} 
+}
+
+?>
 
 ?>
 <?php $this->beginPage() ?>
@@ -48,6 +67,7 @@ if (isset($_GET["actionpay"])){
   gtag('config', 'UA-134532532-1');
 </script>
 
+<script src="https://www.artfut.com/static/tagtag.min.js?campaign_code=cb5beacf10" async onerror="var self = this;window.ADMITAD=window.ADMITAD||{},ADMITAD.Helpers=ADMITAD.Helpers||{},ADMITAD.Helpers.generateDomains=function(){for(var e=new Date,n=Math.floor(new Date(2020,e.getMonth(),e.getDate()).setUTCHours(0,0,0,0)/1e3),t=parseInt(1e12*(Math.sin(n)+1)).toString(30),i=["de"],o=[],a=0;a<i.length;++a)o.push({domain:t+"."+i[a],name:t});return o},ADMITAD.Helpers.findTodaysDomain=function(e){function n(){var o=new XMLHttpRequest,a=i[t].domain,D="https://"+a+"/";o.open("HEAD",D,!0),o.onload=function(){setTimeout(e,0,i[t])},o.onerror=function(){++t<i.length?setTimeout(n,0):setTimeout(e,0,void 0)},o.send()}var t=0,i=ADMITAD.Helpers.generateDomains();n()},window.ADMITAD=window.ADMITAD||{},ADMITAD.Helpers.findTodaysDomain(function(e){if(window.ADMITAD.dynamic=e,window.ADMITAD.dynamic){var n=function(){return function(){return self.src?self:""}}(),t=n(),i=(/campaign_code=([^&]+)/.exec(t.src)||[])[1]||"";t.parentNode.removeChild(t);var o=document.getElementsByTagName("head")[0],a=document.createElement("script");a.src="https://www."+window.ADMITAD.dynamic.domain+"/static/"+window.ADMITAD.dynamic.name.slice(1)+window.ADMITAD.dynamic.name.slice(0,1)+".min.js?campaign_code="+i,o.appendChild(a)}});"></script>
 <link rel="stylesheet" href="/css/response_1023.css" media="(max-width: 1023px)">
 <link rel="stylesheet" href="/css/response_767.css" media="(max-width: 767px)">
 <link rel="stylesheet" href="/css/response_479.css" media="(max-width: 479px)">
@@ -76,6 +96,40 @@ if (isset($_GET["actionpay"])){
 						</form>
 					</div>
 
+					<div class="city">
+						<div id="user-city"></div>
+						<?php 
+						$cities = City::find()->select('name, subdomain')->all(); //список городов
+						asort($cities);
+						$column = count($cities) / 3;
+						ceil($column);
+						
+						
+						
+						Modal::begin([
+							'header' => '<h2>Выберите ваш город</h2>',
+							'toggleButton' => [
+								'label' => $city['dec1'],
+								'tag' => 'button',
+								'class' => 'btn btn-default btn-city'
+								],					
+							]); ?>
+
+							<div class="row">
+								<div class="col-sm-4">
+									<?php foreach ($cities as $key => $arr) {							
+										$urlName = $arr->subdomain;
+										$homeUrl = '.marketvibor.ru'; ?> 
+										<a href="http://<?= $urlName.$homeUrl ?>"><?= $arr->name ?><br></a>
+										<?php if ($key == $column || $key == $column * 2) {
+											echo '</div><div class="col-sm-4">';
+										}
+									} ?>
+								</div>
+							</div>
+						<?php Modal::end(); ?>
+					</div>
+					
 					<div class="contact">
 						<div class="tel">
 							<a href="tel:+74951206200">+7 (495) 120-62-00</a>
@@ -465,5 +519,13 @@ _tmr.push({id: "3083494", type: "pageView", start: (new Date()).getTime()});
 <!-- //Rating@Mail.ru counter -->
 
 </body>
+<script type="text/javascript" >
+	//шорт тег в title
+	$(document).ready(function(){
+		var content = $('title').html();	
+		document.title = content.replace(/{city_dec4}/gi, "<?php if ($city['dec1'] =! 'в России') { echo $city['dec4']; } ?>");
+	
+	});
+</script>
 </html>
 <?php $this->endPage() ?>
