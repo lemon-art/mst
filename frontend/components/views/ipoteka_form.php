@@ -16,7 +16,8 @@ for ( $i = 0; $i < 15; $i++){
 
 ?>	
 
-
+  
+  
 
 		<section class="section_request sectionMarg" id="completed">
 			<div class="cont">
