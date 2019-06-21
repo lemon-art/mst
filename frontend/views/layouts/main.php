@@ -38,7 +38,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 	} 
 }
 
-?>
+
 
 ?>
 <?php $this->beginPage() ?>
