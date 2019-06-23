@@ -24,7 +24,7 @@ if (isset($_GET["actionpay"])){
 }
 
 //текущий город
-$subdomain = current((explode('.', $_SERVER['HTTP_HOST'])));
+$subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
 $city = '';
 if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 	$city['dec1'] = 'в России';
@@ -353,7 +353,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 				</div>
 
 				<div class="line_bottom">
-					<div class="copy">Все права защищены.</div>
+					<div class="copy">2019 © МаркетВыбор.<br>Все права защищены.</div>
 
 					<div class="links">
 						<div class="link">
@@ -373,7 +373,15 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 						<a href="/" target="_blank" rel="noopener" class="wt"></a>
 					</div>
 					*/?>
-					
+					<div class="contact">
+						<div class="tel">
+						<a href="tel:+74951206200">+7 (495) 120-62-00</a>
+						</div>
+						
+						<div class="call">
+							<a href="#modal_call" class="modal_link">Перезвоните мне!</a>
+						</div>
+					</div>
 					<div class="created">
 						Разработано в <a href="/" target="_blank" rel="noopener"><img src="/images/created.png" alt=""></a>
 					</div>
