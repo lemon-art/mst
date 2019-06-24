@@ -481,11 +481,9 @@ header .top_line
 {
     color: #222;
     font-size: 15px;
-
     width: 100%;
     height: 44px;
     padding: 0 56px 0 20px;
-
     border: 1px solid #e8e8e8;
     border-radius: 3px;
 }header .search_btn
@@ -493,44 +491,21 @@ header .top_line
     width: 36px;
     height: 44px;
     margin-left: -36px;
-
     cursor: pointer;
-    transition: .2s linear;;
-
+    transition: .2s linear;
     opacity: .3;
     border: none;
     border-radius: 0 3px 3px 0;
     background: url(/images/lupa.svg) 0 50% no-repeat;
     background-size: 16px auto;
-}header .search_btn:hover
-{
-    opacity: 1;
-}header .tel a
-{
-    color: #222;
-    font-size: 18px;
-    font-weight: 600;
-
-    transition: .2s linear;;
-    text-decoration: none;
-}header .tel a:hover
-{
-    color: #004199;
-}header .call
-{
-    margin-top: 2px;
-}header .call a
-{
-    color: #004199;
-
-    transition: .2s linear;;
-    text-decoration: none;
-
-    border-bottom: 1px solid #004199;
-}header .call a:hover
-{
-    border-bottom-color: transparent;
-}header .login a
+}
+header .search_btn:hover{opacity: 1;}
+.contact .tel a{color: #222;font-size: 18px;font-weight: 600;transition: .2s linear;text-decoration: none;}
+.contact .tel a:hover{color: #004199;}
+.contact .call{margin-top: 2px;}
+.contact .call a{color: #004199;transition: .2s linear;text-decoration: none;border-bottom: 1px solid #004199;}
+.contact .call a:hover{border-bottom-color: transparent;}
+header .login a
 {
     color: #222;
     font-weight: 700;
