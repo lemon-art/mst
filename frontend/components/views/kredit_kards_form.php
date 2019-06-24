@@ -44,7 +44,7 @@ for ( $i = 0; $i < 15; $i++){
 					?>
 				
 					<?php if (Yii::$app->session->hasFlash('requestOrderFormSubmitted')): ?>
-						<?php $id_order = Orders::find()->select(['id, order_id'])->where(['order_id' => $model->id])->one();//id заявки берем из Orders ?>
+						<?php $id_order = Orders::find()->select(['id', 'order_id'])->where(['order_id' => $model->id])->one();//id заявки берем из Orders ?>
 <div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
