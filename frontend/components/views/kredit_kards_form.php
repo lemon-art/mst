@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use kartik\date\DatePicker;
+use backend\models\Orders;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Request */
 /* @var $form yii\widgets\ActiveForm */
@@ -42,6 +44,7 @@ for ( $i = 0; $i < 15; $i++){
 					?>
 				
 					<?php if (Yii::$app->session->hasFlash('requestOrderFormSubmitted')): ?>
+						<?php $id_order = Orders::find()->select(['id, order_id'])->where(['order_id' => $model->id])->one();//id заявки берем из Orders ?>
 <div class="alert" id="order_completed">
 							Ваша заявка принята.<br>
 							Вы можете следить за своими заявками в <a href="/personal">личном кабинете</a>.
@@ -64,7 +67,7 @@ orderedItem.push({
 });
 ADMITAD.Invoice.referencesOrder = ADMITAD.Invoice.referencesOrder || [];
 ADMITAD.Invoice.referencesOrder.push({
-	orderNumber: '<?php echo $model->id; ?>', // внутренний номер заказа (не более 100 символов)
+	orderNumber: '<?php echo $id_order->id; ?>', // внутренний номер заказа (не более 100 символов)
 	orderedItem: orderedItem
 });
 // Важно! Если данные по заказу Admitad подгружаются через AJAX, раскомментируйте следующую строку.
