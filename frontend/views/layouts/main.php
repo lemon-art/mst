@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -33,7 +34,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 	$city = (array)$city;
 	$city = current($city);
 	if (!$city) {
-		header('Location: http://marketvibor.ru/');
+		header('Location: http://marketvibor.ru'.Url::base());
 		$city['dec1'] = 'в России';
 	} 
 }
