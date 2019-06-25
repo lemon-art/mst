@@ -34,7 +34,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 	$city = (array)$city;
 	$city = current($city);
 	if (!$city) {
-		header('Location: http://marketvibor.ru'.Url::base());
+		header('Location: http://marketvibor.ru'.Yii::$app->request->url);
 		$city['dec1'] = 'в России';
 	} 
 }
