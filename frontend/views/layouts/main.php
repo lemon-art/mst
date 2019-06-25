@@ -352,7 +352,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 						</ul>
 					</div>
 				</div>
-<?php var_dump($city); ?>
+
 				<div class="line_bottom">
 					<div class="copy">2019 © МаркетВыбор.<br>Все права защищены.</div>
 
@@ -513,7 +513,7 @@ _tmr.push({id: "3083494", type: "pageView", start: (new Date()).getTime()});
 	//шорт тег в title
 	$(document).ready(function(){
 		var content = $('title').html();	
-		document.title = content.replace(/{city_dec4}/gi, "<?php if ($city['dec1'] == 'в России') { echo '1'; } ?>");
+		document.title = content.replace(/{city_dec4}/gi, "<?php if ($city['dec1'] != 'в России') { echo '1'; } ?>");
 	
 	});
 </script>
