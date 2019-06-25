@@ -352,7 +352,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 						</ul>
 					</div>
 				</div>
-
+<?php var_dump($city); ?>
 				<div class="line_bottom">
 					<div class="copy">2019 © МаркетВыбор.<br>Все права защищены.</div>
 
