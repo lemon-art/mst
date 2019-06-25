@@ -514,7 +514,10 @@ _tmr.push({id: "3083494", type: "pageView", start: (new Date()).getTime()});
 	$(document).ready(function(){
 		var content = $('title').html();	
 		document.title = content.replace(/{city_dec4}/gi, "<?php if ($city['dec1'] != 'в России') { echo $city['dec4']; } ?>");
-	
+		document.title = content.replace(/{city_dec3}/gi, "<?php if ($city['dec1'] != 'в России') { echo $city['dec3']; } ?>");
+		document.title = content.replace(/{city_dec2}/gi, "<?php if ($city['dec1'] != 'в России') { echo $city['dec2']; } ?>");
+		document.title = content.replace(/{city_dec1}/gi, "<?php if ($city['dec1'] != 'в России') { echo $city['dec1']; } ?>");
+		document.title = content.replace(/{city_name}/gi, "<?php if ($city['dec1'] != 'в России') { echo $city['name']; } ?>");
 	});
 </script>
 </html>
