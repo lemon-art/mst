@@ -15,6 +15,7 @@ use frontend\components\Login;
 use frontend\components\Register;
 use frontend\components\Forgot;
 use frontend\components\HelpOrder;
+use frontend\components\CurrentCity;
 use backend\models\City;
 use yii\bootstrap\Modal;
 
@@ -25,21 +26,7 @@ if (isset($_GET["actionpay"])){
 }
 
 //текущий город
-$subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
-$city = '';
-if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
-	$city['dec1'] = 'в России';
-} else {
-	$city = City::find()->where(['subdomain' => $subdomain])->one();
-	$city = (array)$city;
-	$city = current($city);
-	if (!$city) {
-		header('Location: http://marketvibor.ru'.Yii::$app->request->url);
-		$city['dec1'] = 'в России';
-	} 
-}
-
-
+$city = CurrentCity::currentCity();
 
 ?>
 <?php $this->beginPage() ?>

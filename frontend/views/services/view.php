@@ -7,11 +7,21 @@ use backend\models\Files;
 use frontend\components\OrderForm;
 use frontend\components\DebetForm;
 use frontend\components\Offers;
+use frontend\components\CurrentCity;
 use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
 
-$this->title = $model->title.' 1';
+//текущий город
+$city = CurrentCity::currentCity();
+if ($city['dec1'] == 'в России') {
+	$model->title = str_replace('{city-dec4}', 1, $model->title);
+}
+
+
+
+
+$this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $model->name;
 ?>
