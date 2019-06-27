@@ -12,16 +12,19 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
 
+
 //текущий город
 $city = CurrentCity::currentCity();
 if ($city['dec1'] == 'в России') {
-	$model->title = str_replace('{city-dec4}', 1, $model->title);
+	$model->title = str_replace('{city-mane}', 'mane', $model->title);
+	$model->title = str_replace('{city-dec1}', 'где', $model->title);
+	$model->title = str_replace('{city-dec2}', 'куда', $model->title);
+	$model->title = str_replace('{city-dec3}', 'какой', $model->title);
+	$model->title = str_replace('{city-dec4}', 'нет', $model->title);
 }
-
-
-
-
 $this->title = $model->title;
+
+
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $model->name;
 ?>
