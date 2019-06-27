@@ -5,7 +5,7 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use backend\models\Files;
-$this->title = 'MarketVibor - подбор кредита [city_gde]';
+$this->title = 'подбор кредита {city-gde} - MarketVibor';
 ?>
 
 			<section class="section_first">
