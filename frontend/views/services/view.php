@@ -12,19 +12,23 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
 
-
 //текущий город
 $city = CurrentCity::currentCity();
-if ($city['dec1'] == 'в России') {
-	$model->title = str_replace('{city-mane}', 'mane', $model->title);
-	$model->title = str_replace('{city-dec1}', 'где', $model->title);
-	$model->title = str_replace('{city-dec2}', 'куда', $model->title);
-	$model->title = str_replace('{city-dec3}', 'какой', $model->title);
-	$model->title = str_replace('{city-dec4}', 'нет', $model->title);
-}
+
+if ($city['dec1'] != 'в России') {
+	$model->title = str_replace('{city}', $city['name'], $model->title);
+	$model->title = str_replace('{city-gde}', $city['dec1'], $model->title);
+	$model->title = str_replace('{city-kuda}', $city['dec2'], $model->title);
+	$model->title = str_replace('{city-v}', $city['dec3'], $model->title);
+	$model->title = str_replace('{city-chego}', $city['dec4'], $model->title);
+
+	$model->description = str_replace('{city}', $city['name'], $model->description);
+	$model->description = str_replace('{city-gde}', $city['dec1'], $model->description);
+	$model->description = str_replace('{city-kuda}', $city['dec2'], $model->description);
+	$model->description = str_replace('{city-v}', $city['dec3'], $model->description);
+	$model->description = str_replace('{city-chego}', $city['dec4'], $model->description);
+
 $this->title = $model->title;
-
-
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $model->name;
 ?>

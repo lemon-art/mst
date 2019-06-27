@@ -19,7 +19,7 @@ class CurrentCity extends Model
     {
         //текущий город
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
-        $city = '';
+        $city = array('name' => '', 'dec1' => '', 'dec2' => '', 'dec3' => '', 'dec4' => '');
         $rus = 'в России';
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
             $city['dec1'] = $rus;
