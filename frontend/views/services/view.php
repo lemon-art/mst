@@ -22,7 +22,7 @@ if ($city['dec1'] != 'в России') {
 	$model->title = str_replace('{city-kuda}', $city['dec2'], $model->title);
 	$model->title = str_replace('{city-v}', $city['dec3'], $model->title);
 	$model->title = str_replace('{city-chego}', $city['dec4'], $model->title);
-
+}
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $model->name;
