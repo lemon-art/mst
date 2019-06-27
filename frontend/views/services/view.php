@@ -14,7 +14,6 @@ use yii\widgets\Breadcrumbs;
 
 //текущий город
 $city = CurrentCity::currentCity();
-var_dump($city);
 
 if ($city['dec1'] != 'в России') {
 	$model->title = str_replace('{city}', $city['name'], $model->title);
