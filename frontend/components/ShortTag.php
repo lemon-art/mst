@@ -16,7 +16,7 @@ class ShortTag extends Model
     public static function cityTag($text)
     {
         $city = CurrentCity::currentCity();
-        if (mysqli_num_rows($city) == 0) {
+        if (!$city) {
             header('Location: http://marketvibor.ru'.Yii::$app->request->url);
             $city['dec1'] = 'в России';
         } else {
