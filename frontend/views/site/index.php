@@ -5,7 +5,17 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use backend\models\Files;
+use frontend\components\ShortTag;
+
 $this->title = 'Подбор кредита {city-gde} - MarketVibor';
+$description = 'Подберите кредит {city-gde}, 89% отправленных заявок получают предварительное одобрение';
+
+//шорт теги
+$this->title = ShortTag::cityTag($this->title);
+$description = ShortTag::cityTag($description);
+
+$this->registerMetaTag(['name' => 'description', 'content' => $description]);
+
 ?>
 
 			<section class="section_first">

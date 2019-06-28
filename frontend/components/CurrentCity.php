@@ -2,8 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: serg
- * Date: 27.06.2019
- * Time: 15:09
  */
 
 namespace frontend\components;

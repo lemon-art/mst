@@ -14,6 +14,7 @@ use yii\widgets\Breadcrumbs;
 
 //шорт теги
 $model->title = ShortTag::cityTag($model->title);
+$model->description = ShortTag::cityTag($model->description);
 
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
