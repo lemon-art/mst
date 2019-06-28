@@ -23,7 +23,7 @@ class ShortTag extends Model
 
         $text = str_replace('{city}', $city['name'], $text);
         $text = str_replace('{city-gde}', $city['dec1'], $text);
-        $text = str_replace('в России', '', $text);
+        $text = str_replace(' в России', '', $text);
         $text = str_replace('{city-kuda}', $city['dec2'], $text);
         $text = str_replace('{city-v}', $city['dec3'], $text);
         $text = str_replace('{city-chego}', $city['dec4'], $text);
