@@ -16,6 +16,10 @@ class ShortTag extends Model
     public static function cityTag($text)
     {
         $city = CurrentCity::currentCity();
+        if (!$city) {
+            header('Location: http://marketvibor.ru'.Yii::$app->request->url);
+            $city['dec1'] = 'в России';
+        }
 
         $text = str_replace('{city}', $city['name'], $text);
         $text = str_replace('{city-gde}', $city['dec1'], $text);
