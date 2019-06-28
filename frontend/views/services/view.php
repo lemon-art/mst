@@ -7,19 +7,13 @@ use backend\models\Files;
 use frontend\components\OrderForm;
 use frontend\components\DebetForm;
 use frontend\components\Offers;
-use frontend\components\CurrentCity;
+use frontend\components\ShortTag;
 use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
 
-//текущий город
-$city = CurrentCity::currentCity();
-
-	$model->title = str_replace('{city}', $city['name'], $model->title);
-	$model->title = str_replace('{city-gde}', $city['dec1'], $model->title);
-	$model->title = str_replace('{city-kuda}', $city['dec2'], $model->title);
-	$model->title = str_replace('{city-v}', $city['dec3'], $model->title);
-	$model->title = str_replace('{city-chego}', $city['dec4'], $model->title);
+//шорт теги
+$model->title = ShortTag::cityTag($model->title);
 
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
