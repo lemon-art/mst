@@ -8,7 +8,7 @@ use backend\models\Files;
 use frontend\components\ShortTag;
 
 $this->title = 'Подбор кредита {city-gde} - MarketVibor';
-$description = 'Подберите кредит {city-gde}, 89% отправленных заявок получают предварительное одобрение';
+$description = 'Подберите кредит {city-gde}, 89% отправленных заявок на кредит, получают предварительное одобрение!';
 
 //шорт теги
 $this->title = ShortTag::cityTag($this->title);
