@@ -28,10 +28,6 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
                 font-size: 13px;
             }
 
-            #webkit-xml-viewer-source-xml {
-                display: none;
-            }
-
             .collapsible-content {
                 margin-left: 1em;
             }
