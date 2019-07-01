@@ -1,6 +1,6 @@
 <?php
 
-use backend\models\Banks;
+
 
 $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
 if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
@@ -8,10 +8,8 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
 } else {
     $subdomain = $subdomain.'.';
 }
-
-$banks = Banks::find()->select(['code'])->all();
-
 ?>
+
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"><head><style id="xml-viewer-style">/* Copyright 2014 The Chromium Authors. All rights reserved.
@@ -662,4 +660,3 @@ $banks = Banks::find()->select(['code'])->all();
                         <span class="html-attribute-name">xmlns:xsi</span>="<span class="html-attribute-value">http://www.w3.org/2001/XMLSchema-instance</span>"</span><span class="html-attribute">
                         <span class="html-attribute-name">xsi:schemaLocation</span>="<span class="html-attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd</span>"</span>&gt;</span><span class="text">...</span><span class="html-tag">&lt;/urlset&gt;</span></div></div></div></div></body></html>
 
-<?php echo var_dump($banks); ?>
