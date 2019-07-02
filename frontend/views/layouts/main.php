@@ -25,6 +25,7 @@ if (isset($_GET["actionpay"])){
     setcookie("actionpay", $_GET["actionpay"], time()+60*60*24*30);
 }
 
+
 //текущий город
 $city = CurrentCity::currentCity();
 
