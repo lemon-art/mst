@@ -98,17 +98,18 @@ $city = CurrentCity::currentCity();
 							</div>
 						<?php Modal::end(); ?>
 					</div>
-					<?php if($city['name'] == '' || $city['name'] == 'Москва'): ?>
-						<div class="contact">
-							<div class="tel">
-								<a href="tel:+74951206200">+7 (495) 120-62-00</a>
-							</div>
-
-							<div class="call">
-								<a href="#modal_call" class="modal_link">Перезвоните мне!</a>
-							</div>
+					<div class="contact">
+					<?php if($city['name'] == '' || $city['name'] == 'Москва') { ?>
+						<div class="tel">
+							<a href="tel:+74951206200">+7 (495) 120-62-00</a>
 						</div>
-					<?php endif; ?>
+
+						<div class="call">
+							<a href="#modal_call" class="modal_link">Перезвоните мне!</a>
+						</div>
+					<?php } ?>
+					</div>
+
 					<div class="login">
 						<?php if (Yii::$app->user->isGuest): ?>
 							<a href="#modal_login" class="modal_link">
