@@ -86,7 +86,7 @@ $city = CurrentCity::currentCity();
 
 							<div class="row">
 								<div class="col-sm-4">
-									<?php foreach ($cities as $key => $arr) {							
+									<?php $letter_one=''; foreach ($cities as $key => $arr) {							
 										$urlName = $arr->subdomain;
 										$homeUrl = '.marketvibor.ru'; 
 										$letter_oned=$letter_one;
