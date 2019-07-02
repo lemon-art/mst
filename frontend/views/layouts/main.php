@@ -90,6 +90,7 @@ $city = CurrentCity::currentCity();
 										$urlName = $arr->subdomain;
 										$homeUrl = '.marketvibor.ru'; 
 										if (isset($letter_one)) $letter_oned=$letter_one;
+										else $letter_oned='';
 										$letter_one = mb_substr($arr->name, 0, 1);
 										if ($letter_oned!=$letter_one) echo $letter_one; ?>
 										<a href="http://<?= $urlName.$homeUrl ?>"><?= $arr->name ?><br></a>
