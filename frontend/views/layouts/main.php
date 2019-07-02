@@ -89,8 +89,9 @@ $city = CurrentCity::currentCity();
 									<?php foreach ($cities as $key => $arr) {							
 										$urlName = $arr->subdomain;
 										$homeUrl = '.marketvibor.ru'; 
-										echo $letter_one=$arr->name[0];?> 
-										<a href="http://<?= $urlName.$homeUrl ?>"><?= $arr->name ?><br></a>
+										$name=$arr->name;
+										echo $letter_one=$name[0];?> 
+										<a href="http://<?= $urlName.$homeUrl ?>"><?= $name ?><br></a>
 										<?php if ($key == $column || $key == $column * 2) {
 											echo '</div><div class="col-sm-4">';
 										}
