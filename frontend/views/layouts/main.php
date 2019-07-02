@@ -91,7 +91,7 @@ $city = CurrentCity::currentCity();
 										$homeUrl = '.marketvibor.ru'; 
 										$letter_oned=$letter_one;
 										$letter_one = mb_substr($arr->name, 0, 1);
-										if ($letter_oned!=$letter_one) echo '<div style="">'.$letter_one.'</div>'; ?>
+										if ($letter_oned!=$letter_one) echo '<div style="font-size: 22px;">'.$letter_one.'</div>'; ?>
 										<a href="https://<?= $urlName.$homeUrl ?>"><?= $arr->name ?><br></a>
 										<?php if ($key == $column || $key == $column * 2) {
 											echo '</div><div class="col-sm-4">';
