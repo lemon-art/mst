@@ -23,7 +23,7 @@ if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
             margin: 10px;
         }
 
-        div.collapsible &gt; div.hidden {
+        div.collapsible gt; div.hidden {
                                  display:none;
                              }
 
