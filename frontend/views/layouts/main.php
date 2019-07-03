@@ -402,7 +402,7 @@ $city = CurrentCity::currentCity();
 	<div class="modal modal_login" id="modal_help">
 		<?=HelpOrder::widget();?>
 	</div>
-
+<?php var_dump($_SERVER); ?>
 <?php $this->endBody() ?>
 
 
