@@ -19,7 +19,7 @@ use yii\widgets\ListView;
 						<div class="box small">Процент на остаток</div>
                         <div class="box small">Cash back</div>
 						<div class="box small">Стоимость обслуживания</div>
-						<div class="box ">Преимущества</div>
+						<div class="box " style="width: 30%">Преимущества</div>
 					</div>
 
 						<?
