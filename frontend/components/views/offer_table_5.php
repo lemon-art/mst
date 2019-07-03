@@ -19,7 +19,7 @@ use yii\widgets\ListView;
 						<div class="box small">Процентная ставка</div>
                         <div class="box small">Сумма кредита</div>
 						<div class="box small">Без % по кредиту</div>
-						<div class="box ">Преимущества</div>
+						<div class="box " style="width: 30%">Преимущества</div>
 					</div>
 
 						<?
