@@ -18,8 +18,8 @@ class BanksSearch extends Banks
     public function rules()
     {
         return [
-            [['id', 'image'], 'integer'],
-            [['name', 'link', 'preview_text', 'adress', 'phone'], 'safe'],
+            [['id', 'image', 'priority'], 'integer'],
+            [['name', 'link', 'preview_text', 'adress', 'phone', 'title', 'description', 'license', 'foundation_date'], 'safe'],
         ];
     }
 
@@ -67,7 +67,12 @@ class BanksSearch extends Banks
             ->andFilterWhere(['like', 'link', $this->link])
             ->andFilterWhere(['like', 'preview_text', $this->preview_text])
             ->andFilterWhere(['like', 'adress', $this->adress])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'license', $this->license])
+            ->andFilterWhere(['like', 'foundation_date', $this->foundation_date])
+            ->andFilterWhere(['like', 'priority', $this->priority]);
 
         return $dataProvider;
     }

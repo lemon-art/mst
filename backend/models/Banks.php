@@ -15,6 +15,11 @@ use backend\models\Search;
  * @property string $preview_text
  * @property string $adress
  * @property string $phone
+ * @property string $title
+ * @property string $description
+ * @property string $license
+ * @property string $foundation_date
+ * @property int $priority
  */
 class Banks extends \yii\db\ActiveRecord
 {
@@ -37,10 +42,10 @@ class Banks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'code'], 'required'],
+            [['name', 'code', 'title', 'description'], 'required'],
             [['preview_text', 'adress', 'phone'], 'string'],
-            [['name', 'link'], 'string', 'max' => 255],
-			[['active'], 'integer'],
+            [['name', 'link', 'title', 'description', 'license', 'foundation_date'], 'string', 'max' => 255],
+			[['active', 'priority'], 'integer'],
         ];
     }
 
@@ -58,7 +63,10 @@ class Banks extends \yii\db\ActiveRecord
             'preview_text' => 'Текст',
             'adress' => 'Адресс',
             'phone' => 'Телефон',
-			'active' => 'Активность' 
+			'active' => 'Активность',
+			'license' => 'Лицензия',
+			'foundation_date' => 'Дата основания',
+			'priority' => 'Приоритет'
         ];
     }
 	

@@ -17,7 +17,6 @@ use dosamigos\fileupload\FileUpload;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 	
-	
 	<?=$form->field($model, 'active')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
 	
 	<?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
@@ -45,6 +44,16 @@ use dosamigos\fileupload\FileUpload;
 			'inline' => false, //по умолчанию false
 		],
 	]);?>
+
+	<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+	<?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+
+	<?= $form->field($model, 'license')->textInput(['maxlength' => true]) ?>
+
+	<?= $form->field($model, 'foundation_date')->textInput(['maxlength' => true]) ?>
+
+	<?= $form->field($model, 'priority')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
