@@ -29,10 +29,10 @@ class Atricles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'preview_text', 'detail_text', 'code'], 'required'],
+            [['name', 'preview_text', 'detail_text', 'code', 'title', 'description'], 'required'],
             [['preview_text', 'detail_text', 'code', 'title', 'description'], 'string'],
             [['date', 'image'], 'safe'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'title', 'description'], 'string', 'max' => 255],
         ];
     }
 	
@@ -76,6 +76,8 @@ class Atricles extends \yii\db\ActiveRecord
             'detail_text' => 'Детальный текст',
             'date' => 'Дата',
 			'image' => 'Картинка',
+			'title' => 'title',
+			'description' => 'description',
         ];
     }
 }
