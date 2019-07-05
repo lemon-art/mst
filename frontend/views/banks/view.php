@@ -87,6 +87,10 @@ $this->params['breadcrumbs'][] = $this->title;
 									</div>
 								</div>
 							<?endif;?>
+							<h1>Адрес</h1>
+							<h2>Адрес</h2>
+							<h3>Адрес</h3>
+							<h4>Адрес</h4>
 						</div>
 					</div>
 				</div>
