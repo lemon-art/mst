@@ -124,7 +124,7 @@ $city = CurrentCity::currentCity();
 							</a>
 
 						<?endif;?>
-						<?= Yii::$app->user->identity; ?>
+						<?= Yii::$app->user->getId(); ?>
 					</div>
 
 					<a href="#" class="mob_menu_link">
