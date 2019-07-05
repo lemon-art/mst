@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				},
 			],
 			[
-				'attribute' => 'preview_text:ntext',
+				'attribute' => 'preview_text',
 				'format' => 'raw',
 				'options' => ['style' => 'width: 400px; max-width: 450px;'],
 			],
