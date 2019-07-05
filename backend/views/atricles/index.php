@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'raw',
 				'options' => ['style' => 'width: 400px; max-width: 450px;'],
 				'value' => function($model){
-					$model->preview_text = mb_substr($model->preview_text, 0, 30).'...';
+					$model->preview_text = mb_substr($model->preview_text, 0, 45).'...';
 					return $model->preview_text;
 				},
 			],
