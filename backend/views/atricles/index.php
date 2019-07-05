@@ -50,8 +50,11 @@ $this->params['breadcrumbs'][] = $this->title;
 					}
 				},
 			],
-            
-            'preview_text:ntext',
+			[
+				'attribute' => 'preview_text:ntext',
+				'format' => 'raw',
+				'options' => ['style' => 'width: 400px; max-width: 450px;'],
+			],
 			'id',
             [
 				'class' => \yii\grid\ActionColumn::className(),
