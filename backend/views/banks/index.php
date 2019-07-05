@@ -56,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					},
 				],
 				'code',
+				'priority',
 				[
 					'class' => \yii\grid\ActionColumn::className(),
 					'template'=>'{delete}',
