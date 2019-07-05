@@ -122,13 +122,13 @@ $city = CurrentCity::currentCity();
 							<a href="/personal" class="">
 								<span>Личный кабинет</span>
 							</a>
-
 						<?endif;?>
+					</div>
+					<div class="">
 						<?php if (Yii::$app->user->id == 1) {
 							echo Html::a('<span class=\"label label-success\">admin</span>', ['admin']);
 						} ?>
 					</div>
-
 					<a href="#" class="mob_menu_link">
 						<span></span>
 						<span></span>
