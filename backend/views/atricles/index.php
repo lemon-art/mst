@@ -10,6 +10,7 @@ use backend\models\Files;
 
 $this->title = 'Статьи';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="atricles-index">
@@ -54,6 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'preview_text',
 				'format' => 'raw',
 				'options' => ['style' => 'width: 400px; max-width: 450px;'],
+				'value' => function($model){
+					$model->preview_text = substr($model->preview_text, 0, 30);
+					return $model->preview_text;
+				},
 			],
 			'id',
             [
