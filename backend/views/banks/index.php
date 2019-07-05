@@ -56,7 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
 					},
 				],
 				'code',
-				'priority',
+				[
+					'attribute' => 'priority',
+					'format' => 'raw',
+					'options' => ['style' => 'width: 65px; max-width: 65px;'],
+				],
 				[
 					'class' => \yii\grid\ActionColumn::className(),
 					'template'=>'{delete}',
