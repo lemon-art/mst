@@ -67,7 +67,7 @@ class Banks extends \yii\db\ActiveRecord
 			'license' => 'Лицензия',
 			'title' => 'title',
 			'description' => 'description',
-			'foundation_date' => 'Дата основания',
+			'foundation_date' => 'Год основания',
 			'priority' => 'Приоритет'
         ];
     }

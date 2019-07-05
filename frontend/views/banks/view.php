@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 							<?if ( $model->foundation_date ):?>
 								<div class="item big">
-									<div class="text_block"><h4><b>Дата основания</b></h4></div>
+									<div class="text_block"><h4><b>Год основания</b></h4></div>
 									<hr>
 									<div class="block">
 										<?=$model->foundation_date?>
