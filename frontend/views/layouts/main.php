@@ -124,7 +124,9 @@ $city = CurrentCity::currentCity();
 							</a>
 
 						<?endif;?>
-						<?= Yii::$app->user->id; ?>
+						<?php if (Yii::$app->user->id == 1) {
+							echo Html::a('<span class=\"label label-success\">admin</span>', ['admin']);
+						} ?>
 					</div>
 
 					<a href="#" class="mob_menu_link">
