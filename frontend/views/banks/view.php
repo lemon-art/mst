@@ -67,6 +67,26 @@ $this->params['breadcrumbs'][] = $this->title;
 									</div>
 								</div>
 							<?endif;?>
+
+							<?if ( $model->license ):?>
+								<div class="item big">
+									<div class="text_block">Лицензия</div>
+
+									<div class="block">
+										<?=$model->license?>
+									</div>
+								</div>
+							<?endif;?>
+
+							<?if ( $model->foundation_date ):?>
+								<div class="item big">
+									<div class="text_block">Дата основания</div>
+
+									<div class="block">
+										<?=$model->foundation_date?>
+									</div>
+								</div>
+							<?endif;?>
 						</div>
 					</div>
 				</div>
