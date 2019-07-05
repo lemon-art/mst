@@ -65,6 +65,8 @@ class Banks extends \yii\db\ActiveRecord
             'phone' => 'Телефон',
 			'active' => 'Активность',
 			'license' => 'Лицензия',
+			'title' => 'title',
+			'description' => 'description',
 			'foundation_date' => 'Дата основания',
 			'priority' => 'Приоритет'
         ];
