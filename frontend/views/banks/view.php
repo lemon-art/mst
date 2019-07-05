@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 							<?if ( $model->license ):?>
 								<div class="item big">
-									<div class="text_block">Лицензия</div>
+									<div class="text_block"><h4><b>Лицензия</b></h4></div>
 
 									<div class="block">
 										<?=$model->license?>
@@ -80,17 +80,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 							<?if ( $model->foundation_date ):?>
 								<div class="item big">
-									<div class="text_block">Дата основания</div>
+									<div class="text_block"><h4><b>Дата основания</b></h4></div>
 
 									<div class="block">
 										<?=$model->foundation_date?>
 									</div>
 								</div>
 							<?endif;?>
-							<h1>Адрес</h1>
-							<h2>Адрес</h2>
-							<h3>Адрес</h3>
-							<h4>Адрес</h4>
 						</div>
 					</div>
 				</div>
