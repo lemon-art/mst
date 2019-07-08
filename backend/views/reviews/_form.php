@@ -44,6 +44,10 @@ use backend\models\Files;
 							<?endif;?>
 							
 							<?= $form->field($model, 'image')->fileInput()->label(false);?>
+
+							<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+							<?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 						</div>
 						
 						<div class="form-group">

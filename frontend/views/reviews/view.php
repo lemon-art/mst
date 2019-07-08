@@ -3,8 +3,15 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use backend\models\Files;
+use frontend\components\ShortTag;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Reviews */
+
+//шорт теги
+$this->title = ShortTag::cityTag($model->title);
+$model->description = ShortTag::cityTag($model->description);
+$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = $this->title;

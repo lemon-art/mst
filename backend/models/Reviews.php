@@ -11,6 +11,8 @@ use backend\models\Search;
  * @property int $image
  * @property string $name
  * @property string $text
+ * @property string $title
+ * @property string $description
  */
 class Reviews extends \yii\db\ActiveRecord
 {
@@ -49,9 +51,9 @@ class Reviews extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'text'], 'required'],
+            [['name', 'text', 'title', 'description'], 'required'],
             [['text'], 'string'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'title', 'description'], 'string', 'max' => 255],
         ];
     }
 
@@ -65,6 +67,8 @@ class Reviews extends \yii\db\ActiveRecord
             'image' => 'Фото',
             'name' => 'Имя',
             'text' => 'Текст отзыва',
+            'title' => 'title',
+            'description' => 'description',
         ];
     }
 }
