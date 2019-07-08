@@ -59,7 +59,16 @@ $this->params['breadcrumbs'][] = $this->title;
 				[
 					'attribute' => 'priority',
 					'format' => 'raw',
-					'options' => ['style' => 'width: 65px; max-width: 65px;'],
+					'options' => ['style' => 'width: 80px; max-width: 80px;'],
+					'value' => function($model){
+						if ($model->priority <= 3){
+							return 'Высокий';
+						} elseif ($model->priority == 2) {
+							return 'Средний';
+						} else {
+							return 'Низкий';
+						}
+					},
 				],
 				[
 					'class' => \yii\grid\ActionColumn::className(),
