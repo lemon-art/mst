@@ -20,11 +20,12 @@ use yii\widgets\Breadcrumbs;
             <span class="sr-only">Toggle navigation</span>
         </a>
 
-        <a href="#" data-toggle="popover" title="Список шорт-тегов" data-trigger="hover" data-content="1. {city} 2. {city-gde} 3. {city-kuda} 4. {city-v} 5. {city-chego} ">{Шорт-теги} <span class="glyphicon glyphicon-question-sign"></span></a>
-
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav header-nav">
+                <li>
+                    <a href="#" data-toggle="popover" title="Список шорт-тегов" data-trigger="hover" data-content="1. {city} 2. {city-gde} 3. {city-kuda} 4. {city-v} 5. {city-chego} ">{Шорт-теги} <span class="glyphicon glyphicon-question-sign"></span></a>
+                </li>
 
                 
                 <li class="dropdown notifications-menu">
