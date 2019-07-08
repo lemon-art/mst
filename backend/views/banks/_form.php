@@ -53,7 +53,11 @@ use dosamigos\fileupload\FileUpload;
 
 	<?= $form->field($model, 'foundation_date')->textInput(['maxlength' => true]) ?>
 
-	<?= $form->field($model, 'priority')->textInput(['maxlength' => true]) ?>
+	<?= $form->field($model, 'priority')->textInput(['maxlength' => true])->dropDownList([
+		'1' => 'Низкий',
+		'2' => 'Средний',
+		'3' => 'Высокий',
+	]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
