@@ -197,5 +197,7 @@ $this->registerJs($script, yii\web\View::POS_END);
 					?>
 			</div>
 		</section>
-	
+<pre>
+<?php var_dump($banksProvider); ?>
+	</pre>
 	
