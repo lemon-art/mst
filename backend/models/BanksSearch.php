@@ -18,7 +18,7 @@ class BanksSearch extends Banks
     public function rules()
     {
         return [
-            [['id', 'image', 'priority'], 'integer'],
+            [['id', 'image'], 'integer'],
             [['name', 'link', 'preview_text', 'adress', 'phone', 'title', 'description', 'license', 'foundation_date'], 'safe'],
         ];
     }
