@@ -3,8 +3,13 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use frontend\components\ShortTag;
 
-$this->title = $model->h1;
+//шорт теги
+$this->title = ShortTag::cityTag($model->title);
+$model->description = ShortTag::cityTag($model->description);
+$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

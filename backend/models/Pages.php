@@ -30,9 +30,9 @@ class Pages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'title', 'h1', 'text'], 'required'],
-            [['text', 'description'], 'string'],
-            [['code', 'title', 'h1'], 'string', 'max' => 255],
+            [['code', 'title', 'h1', 'text', 'description'], 'required'],
+            [['text'], 'string'],
+            [['code', 'title', 'h1', 'description'], 'string', 'max' => 255],
         ];
     }
 	
@@ -65,10 +65,10 @@ class Pages extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'code' => 'Символьный код страницы',
-            'title' => 'Заголовок браузера',
+            'title' => 'title',
             'h1' => 'Заголовок страницы',
             'text' => 'Содержание страницы',
-            'description' => 'Description',
+            'description' => 'description',
         ];
     }
 }

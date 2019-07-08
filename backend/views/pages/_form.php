@@ -27,7 +27,9 @@ use backend\models\Files;
 						<div class="form-group">
 							 <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 						</div>
-						
+						<div class="form-group">
+							<?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+						</div>
 						
 						<div class="form-group">
 							<label for="exampleInputEmail1"><?=$model->getAttributeLabel('text');?></label>
