@@ -40,16 +40,3 @@
     </section>
 
 </aside>
-<br>
-<a href="#" data-toggle="popover" title="Список шорт-тегов" data-trigger="hover" data-content="1. {city} 2. {city-gde} 3. {city-kuda} 4. {city-v} 5. {city-chego} ">{Шорт-теги} <span class="glyphicon glyphicon-question-sign"></span></a>
-
-
-<?php
-$this->registerJs(<<<JS
-
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover();   
-});
-
-JS
-	, \yii\web\View::POS_READY);
