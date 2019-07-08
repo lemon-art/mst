@@ -45,7 +45,7 @@ class Banks extends \yii\db\ActiveRecord
             [['name', 'code', 'title', 'description'], 'required'],
             [['preview_text', 'adress', 'phone'], 'string'],
             [['name', 'link', 'title', 'description', 'license', 'foundation_date'], 'string', 'max' => 255],
-			[['active', 'priority'], 'integer'],
+			[['active'], 'integer'],
         ];
     }
 
