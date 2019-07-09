@@ -129,7 +129,7 @@ $this->registerJs($script, yii\web\View::POS_END);
 
 <?php foreach ($model as $key => $arr) {
 	echo $key.' ';
-	echo $arr.'<br>';
+	
 }
  ?>
 
