@@ -19,7 +19,7 @@ use yii\widgets\Breadcrumbs;
 //$model->preview_text_main = ShortTag::cityTag($model->preview_text_main);
 $model->text_main = ShortTag::cityTag($model->text_main);
 //$model->short_name = ShortTag::cityTag($model->short_name);
-//$model->top_text = ShortTag::cityTag($model->top_text);
+$model->top_text = ShortTag::cityTag($model->top_text);
 //$model->scheme = ShortTag::cityTag($model->scheme);
 //$model->seo_text = ShortTag::cityTag($model->seo_text);
 //$model->text_main_title = ShortTag::cityTag($model->text_main_title);
