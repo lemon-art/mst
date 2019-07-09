@@ -13,15 +13,20 @@ use yii\widgets\Breadcrumbs;
 /* @var $model app\models\Services */
 
 //шорт теги
-//$model->name = ShortTag::cityTag($model->name);
-//$model->title_main = ShortTag::cityTag($model->title_main);
-//$model->preview_text_main = ShortTag::cityTag($model->preview_text_main);
-//$model->title = ShortTag::cityTag($model->title);
-//$model->description = ShortTag::cityTag($model->description);
+$model->name = ShortTag::cityTag($model->name);
+$model->title_main = ShortTag::cityTag($model->title_main);
+$model->preview_text_main = ShortTag::cityTag($model->preview_text_main);
+$model->text_main = ShortTag::cityTag($model->text_main);
+$model->short_name = ShortTag::cityTag($model->short_name);
+$model->top_text = ShortTag::cityTag($model->top_text);
+$model->scheme = ShortTag::cityTag($model->scheme);
+$model->seo_text = ShortTag::cityTag($model->seo_text);
+$model->text_main_title = ShortTag::cityTag($model->text_main_title);
+$model->text_main_text = ShortTag::cityTag($model->text_main_text);
+$model->title = ShortTag::cityTag($model->title);
+$model->description = ShortTag::cityTag($model->description);
 
-foreach ($model as $key => $arr) {
-	$model->$key = ShortTag::cityTag($arr);
-}
+
 
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
