@@ -13,6 +13,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $model app\models\Services */
 
 echo strpos($model->seo_text, '{');
+echo strlen($model->seo_text);
 
 //шорт теги
 //$model->name = ShortTag::cityTag($model->name);
