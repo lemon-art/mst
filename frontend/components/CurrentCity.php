@@ -28,8 +28,6 @@ class CurrentCity extends Model
             if (!$city) {
                 $city = array('name' => 'Россия', 'dec1' => 'в России', 'dec2' => 'в Россию', 'dec3' => 'Российский', 'dec4' => 'России');
                 Yii::$app->response->redirect('http://marketvibor.ru'.Yii::$app->request->url);
-                //header('Location: http://marketvibor.ru'.Yii::$app->request->url);
-
             }
         }
         return $city;
