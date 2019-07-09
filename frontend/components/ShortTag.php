@@ -16,7 +16,7 @@ class ShortTag extends Model
     public static function cityTag($text)
     {
         $city = CurrentCity::currentCity();
-
+        var_dump($city);
         $text = preg_replace('|{city}|isU', $city['name'], $text);
         $text = preg_replace('|{city-gde}|isU', $city['dec1'], $text);
         $text = preg_replace('|{city-kuda}|isU', $city['dec2'], $text);
