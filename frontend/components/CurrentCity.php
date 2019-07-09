@@ -18,7 +18,7 @@ class CurrentCity extends Model
         //текущий город
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
         $city = array('name' => '', 'dec1' => '', 'dec2' => '', 'dec3' => '', 'dec4' => '');
-        $rus = 'в России';
+
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
             $city = array('name' => 'Россия', 'dec1' => 'в России', 'dec2' => 'в Россию', 'dec3' => 'Российский', 'dec4' => 'России');
         } else {
@@ -26,8 +26,10 @@ class CurrentCity extends Model
             $city = (array)$city;
             $city = current($city);
             if (!$city) {
-                header('Location: http://marketvibor.ru'.Yii::$app->request->url);
-                $city['dec1'] = $rus;
+                $city = array('name' => 'Россия', 'dec1' => 'в России', 'dec2' => 'в Россию', 'dec3' => 'Российский', 'dec4' => 'России');
+                Yii::$app->response->redirect('http://marketvibor.ru'.Yii::$app->request->url);
+                //header('Location: http://marketvibor.ru'.Yii::$app->request->url);
+
             }
         }
         return $city;
