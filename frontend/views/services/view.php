@@ -20,7 +20,7 @@ use yii\widgets\Breadcrumbs;
 //$model->description = ShortTag::cityTag($model->description);
 
 foreach ($model as $key => $arr) {
-	$arr = ShortTag::cityTag($arr);
+	$model->$key = ShortTag::cityTag($arr);
 }
 
 $this->title = $model->title;
