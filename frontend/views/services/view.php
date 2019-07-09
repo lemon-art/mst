@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $model->name;
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
 
-		<?if ( $model->seo_text ):?>
+		<?if ( $model->seo_text = ShortTag::cityTag($model->seo_text) ):?>
 			<section class="sectionMarg">
 				<div class="cont seo_text">
 					<?=$model->seo_text_preview?>
