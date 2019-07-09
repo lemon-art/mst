@@ -126,6 +126,9 @@ JS;
 $this->registerJs($script, yii\web\View::POS_END);
 ?>	
 <?endif;?>
-	<pre>
-<?php var_dump($model) ?>
-		</pre>
+
+<?php foreach ($model as $arr) {
+	var_dump($arr);
+}
+ ?>
+
