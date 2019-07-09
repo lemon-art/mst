@@ -127,8 +127,9 @@ $this->registerJs($script, yii\web\View::POS_END);
 ?>	
 <?endif;?>
 
-<?php foreach ($model as $arr) {
-	var_dump($arr);
+<?php foreach ($model as $key => $arr) {
+	echo $key.' ';
+	echo $arr.'<br>';
 }
  ?>
 
