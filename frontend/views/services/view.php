@@ -23,7 +23,7 @@ echo strlen($model->seo_text);
 //$model->short_name = ShortTag::cityTag($model->short_name);
 //$model->top_text = ShortTag::cityTag($model->top_text);
 //$model->scheme = ShortTag::cityTag($model->scheme);
-//$model->seo_text = ShortTag::cityTag($model->seo_text);
+$model->seo_text = ShortTag::cityTag($model->seo_text);
 //$model->text_main_title = ShortTag::cityTag($model->text_main_title);
 //$model->text_main_text = ShortTag::cityTag($model->text_main_text);
 $model->title = ShortTag::cityTag($model->title);
