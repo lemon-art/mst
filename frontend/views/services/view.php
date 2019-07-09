@@ -21,9 +21,12 @@ use yii\widgets\Breadcrumbs;
 //$model->short_name = ShortTag::cityTag($model->short_name);
 //$model->top_text = ShortTag::cityTag($model->top_text);
 //$model->scheme = ShortTag::cityTag($model->scheme);
-$model->seo_text = ShortTag::cityTag($model->seo_text);
+//$model->seo_text = ShortTag::cityTag($model->seo_text);
 //$model->text_main_title = ShortTag::cityTag($model->text_main_title);
 //$model->text_main_text = ShortTag::cityTag($model->text_main_text);
+$model->seo_text_preview = ShortTag::cityTag($model->seo_text_preview);
+$model->seo_text_detail = ShortTag::cityTag($model->seo_text_detail);
+
 $model->title = ShortTag::cityTag($model->title);
 $model->description = ShortTag::cityTag($model->description);
 
@@ -112,7 +115,7 @@ $this->params['breadcrumbs'][] = $model->name;
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
 
-		<?if ( $model->seo_text = ShortTag::cityTag($model->seo_text) ):?>
+		<?if ( $model->seo_text ):?>
 			<section class="sectionMarg">
 				<div class="cont seo_text">
 					<?=$model->seo_text_preview?>
