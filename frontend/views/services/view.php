@@ -129,7 +129,7 @@ $this->registerJs($script, yii\web\View::POS_END);
 
 <?php foreach ($model as $key => $arr) {
 	echo $key.'<br>';
-	echo mb_substr($key, 0, 20).'<br>';
+	echo mb_substr($arr, 0, 20).'<br>';
 
 }
  ?>
