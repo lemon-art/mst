@@ -17,11 +17,11 @@ class ShortTag extends Model
     {
         $city = CurrentCity::currentCity();
 
-        $text = preg_replace('|{(.*)}|isU', $city['name'], $text);
-        $text = preg_replace('|{(.*)}|isU', $city['dec1'], $text);
-        $text = preg_replace('|{(.*)}|isU', $city['dec2'], $text);
-        $text = preg_replace('|{(.*)}|isU', $city['dec3'], $text);
-        $text = preg_replace('|{(.*)}|isU', $city['dec4'], $text);
+        preg_replace('|{(.*)}|isU', $city['name'], $text);
+        preg_replace('|{(.*)}|isU', $city['dec1'], $text);
+        preg_replace('|{(.*)}|isU', $city['dec2'], $text);
+        preg_replace('|{(.*)}|isU', $city['dec3'], $text);
+        preg_replace('|{(.*)}|isU', $city['dec4'], $text);
 
 
 //        $text = str_replace('{city}', $city['name'], $text);
