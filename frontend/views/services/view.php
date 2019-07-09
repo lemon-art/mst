@@ -13,13 +13,18 @@ use yii\widgets\Breadcrumbs;
 /* @var $model app\models\Services */
 
 //шорт теги
-$model->name = ShortTag::cityTag($model->name);
-$model->title_main = ShortTag::cityTag($model->title_main);
-$model->preview_text_main = ShortTag::cityTag($model->preview_text_main);
-$this->title = ShortTag::cityTag($model->title);
-$model->description = ShortTag::cityTag($model->description);
-$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
+//$model->name = ShortTag::cityTag($model->name);
+//$model->title_main = ShortTag::cityTag($model->title_main);
+//$model->preview_text_main = ShortTag::cityTag($model->preview_text_main);
+//$model->title = ShortTag::cityTag($model->title);
+//$model->description = ShortTag::cityTag($model->description);
 
+foreach ($model as $key => $arr) {
+	$arr = ShortTag::cityTag($arr);
+}
+
+$this->title = $model->title;
+$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $model->name;
 ?>
 
@@ -127,10 +132,4 @@ $this->registerJs($script, yii\web\View::POS_END);
 ?>	
 <?endif;?>
 
-<?php foreach ($model as $key => $arr) {
-	echo $key.'<br>';
-	echo mb_substr($arr, 0, 20).'<br>';
-
-}
- ?>
 
