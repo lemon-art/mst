@@ -8,10 +8,15 @@ use frontend\components\ShortTag;
 /* @var $model app\models\Banks */
 
 //шорт теги
-$this->title = ShortTag::cityTag($model->title);
+$model->title = ShortTag::cityTag($model->title);
 $model->description = ShortTag::cityTag($model->description);
-$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
+$model->name = ShortTag::cityTag($model->name);
+$model->preview_text = ShortTag::cityTag($model->preview_text);
+$model->adress = ShortTag::cityTag($model->adress);
+$model->phone = ShortTag::cityTag($model->phone);
 
+$this->title = $model->title;
+$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

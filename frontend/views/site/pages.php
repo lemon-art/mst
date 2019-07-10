@@ -8,8 +8,10 @@ use frontend\components\ShortTag;
 //шорт теги
 $this->title = ShortTag::cityTag($model->title);
 $model->description = ShortTag::cityTag($model->description);
-$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
+$this->h1 = ShortTag::cityTag($model->h1);
+$this->text = ShortTag::cityTag($model->text);
 
+$this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
