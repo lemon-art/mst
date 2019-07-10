@@ -14,6 +14,11 @@ $description = 'Подберите кредит {city-gde}, 89% отправле
 $this->title = ShortTag::cityTag($this->title);
 $description = ShortTag::cityTag($description);
 
+$kreditModel->text_main_title = ShortTag::cityTag($kreditModel->text_main_title);
+$kreditModel->text_main_text = ShortTag::cityTag($kreditModel->text_main_text);
+
+
+
 $this->registerMetaTag(['name' => 'description', 'content' => $description]);
 
 ?>
@@ -198,20 +203,3 @@ $this->registerJs($script, yii\web\View::POS_END);
 			</div>
 		</section>
 	
-<?php
-array($kreditModel);
-array($articlesProvider);
-array($servicesProvider);
-array($banksProvider);
-array($reqModel);
-array($bestOffersProvider);
-array($reviewsProvider);
-var_dump($kreditModel.'<br>');
-var_dump($articlesProvider.'<br>');
-var_dump($servicesProvider.'<br>');
-var_dump($banksProvider.'<br>');
-var_dump($reqModel.'<br>');
-var_dump($bestOffersProvider.'<br>');
-var_dump($reviewsProvider.'<br>');
-
-?>
