@@ -199,7 +199,7 @@ $this->registerJs($script, yii\web\View::POS_END);
 		</section>
 	
 <?php
-var_dump($kreditModel.'<br>');
+var_dump($kreditModel->text_main_title.'<br>');
 var_dump($articlesProvider.'<br>');
 var_dump($servicesProvider.'<br>');
 var_dump($banksProvider.'<br>');
