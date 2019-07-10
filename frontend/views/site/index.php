@@ -198,3 +198,13 @@ $this->registerJs($script, yii\web\View::POS_END);
 			</div>
 		</section>
 	
+<?php
+var_dump($kreditModel.'<br>');
+var_dump($articlesProvider.'<br>');
+var_dump($servicesProvider.'<br>');
+var_dump($banksProvider.'<br>');
+var_dump($reqModel.'<br>');
+var_dump($bestOffersProvider.'<br>');
+var_dump($reviewsProvider.'<br>');
+
+?>
