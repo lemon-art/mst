@@ -40,7 +40,23 @@ use yii\helpers\Html;
                 ],
             ]
         ) ?>
-		<?= Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', ['class' => 'btn btn-success', 'id' => 'tag-help']) ?>
+		<?= Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', [
+			'class' => 'btn btn-success',
+			'id' => 'tag-help',
+			'data-toggle' => 'popover',
+			'data-content' => '1',
+			'data-trigger' => "hover"
+		]) ?>
     </section>
 
 </aside>
+
+<?php
+$this->registerJs(<<<JS
+
+    $(document).ready(function() {
+       $('[data-toggle="popover"]').popover(); 
+    });
+
+JS
+	, \yii\web\View::POS_READY);
