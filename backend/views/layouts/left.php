@@ -45,7 +45,7 @@ use yii\helpers\Html;
 1{city} - Название, Москва&nbsp;&nbsp;
 2{city-gde} - (где?) в Москве&nbsp;
 3{city-kuda} - (куда?) в Москву
-4{city-kakoi} - (какой?) Московский&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4{city-kakoi} - (какой?) Московский&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 5{city-chego} - (чего?) Москвы">Шорт-теги <span class="glyphicon glyphicon-info-sign"></span></button>
     </section>
 
