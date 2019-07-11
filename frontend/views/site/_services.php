@@ -5,8 +5,8 @@ use yii\helpers\Html;
 use frontend\components\ShortTag;
 
 $model['title_main'] = ShortTag::cityTag($model['title_main']);
-$model['title_main'] = ShortTag::cityTag($model['preview_text_main']);
-$model['title_main'] = ShortTag::cityTag($model['text_main']);
+$model['preview_text_main'] = ShortTag::cityTag($model['preview_text_main']);
+$model['text_main'] = ShortTag::cityTag($model['text_main']);
 ?>
 
 
