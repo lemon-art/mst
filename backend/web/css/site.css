@@ -127,10 +127,10 @@ a.desc:after {
 
 
 #tag-help {
-    text-align: center;
     position:fixed;
     z-index:9999;
     margin-top: 50px;
+    margin-left: 30px;
     padding: 5px;
     cursor: pointer;
     text-decoration: none;
