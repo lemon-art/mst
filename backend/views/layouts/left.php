@@ -42,8 +42,8 @@ use yii\helpers\Html;
         ) ?>
 
 		<button class="btn btn-success" id="tag-help" title="Склонения городов" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="
-1{city} - Название, Москва
-2{city-gde} - (где?) в Москве
+1{city} - Название, Москва&nbsp;&nbsp;
+2{city-gde} - (где?) в Москве&nbsp;
 3{city-kuda} - (куда?) в Москву
 4{city-kakoi} - (какой?) Московский
 5{city-chego} - (чего?) Москвы">Шорт-теги <span class="glyphicon glyphicon-info-sign"></span></button>
