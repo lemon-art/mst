@@ -62,7 +62,7 @@ if (Yii::$app->controller->action->id === 'login') {
 						'content.php',
 						['content' => $content, 'directoryAsset' => $directoryAsset]
 					) ?>
-					
+					<div><button id='top'>11</button></div>
 				<?else:?>
 					<?Yii::$app->user->logout();?>
 					<?if ( Yii::$app->request->url !== '/admin/user/login' ):?>
