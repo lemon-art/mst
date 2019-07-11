@@ -2,6 +2,11 @@
 // YOUR_APP/views/list/_list_item.php
 use backend\models\Files;
 use yii\helpers\Html;
+use frontend\components\ShortTag;
+
+$model['title_main'] = ShortTag::cityTag($model['title_main']);
+$model['title_main'] = ShortTag::cityTag($model['preview_text_main']);
+$model['title_main'] = ShortTag::cityTag($model['text_main']);
 ?>
 
 
