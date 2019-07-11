@@ -1,4 +1,8 @@
-﻿<aside class="main-sidebar">
+﻿<?php
+use yii\helpers\Html;
+?>
+
+<aside class="main-sidebar">
 
     <section class="sidebar">
 
@@ -36,7 +40,8 @@
                 ],
             ]
         ) ?>
-		<div><button id='top'>11</button></div>
+		<div><button id='tag-help'>11</button></div>
+		<?= Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', ['class' => 'btn btn-success', 'id' => 'tag-help']) ?>
     </section>
 
 </aside>
