@@ -40,7 +40,6 @@ use yii\helpers\Html;
                 ],
             ]
         ) ?>
-		<div><button id='tag-help'>11</button></div>
 		<?= Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', ['class' => 'btn btn-success', 'id' => 'tag-help']) ?>
     </section>
 
