@@ -40,10 +40,19 @@ use yii\helpers\Html;
                 ],
             ]
         ) ?>
-		<?= Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', [
+		<?php
+		$tag_help = "
+1. {city} - Название города, Пример: Москва<br>
+2. {city-gde} - Склонение (где?) Пример: в Москве<br>
+3. {city-kuda} - Склонение (куда?) Пример: в Москву<br> 
+4. {city-kakoi} - Склонение (какой?) Пример: Московский<br> 
+5. {city-chego} - Склонение (чего?) Пример: Москвы
+";
+		echo Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', [
 			'class' => 'btn btn-success',
 			'id' => 'tag-help',
 			'data-toggle' => 'popover',
+			'title' => $tag_help,
 			'data-content' => '1',
 			'data-trigger' => "hover"
 		]) ?>
