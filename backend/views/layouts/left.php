@@ -40,12 +40,13 @@ use yii\helpers\Html;
                 ],
             ]
         ) ?>
-		
-		<a href="#" class="btn btn-success" id="tag-help" title="Склонения городов" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="Название города, Пример: Москва<br>
-2. {city-gde} - Склонение (где?) Пример: в Москве<br>
-3. {city-kuda} - Склонение (куда?) Пример: в Москву <br>
-4. {city-kakoi} - Склонение (какой?) Пример: Московский<br>
-5. {city-chego} - Склонение (чего?) Пример: Москвы">Шорт-теги <span class="glyphicon glyphicon-info-sign"></span></a>
+
+		<button class="btn btn-success" id="tag-help" title="Склонения городов" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="
+1. {city} - Название, Москва
+2. {city-gde} - (где?) в Москве
+3. {city-kuda} - (куда?) в Москву
+4. {city-kakoi} - (какой?) Московский
+5. {city-chego} - (чего?) Москвы">Шорт-теги <span class="glyphicon glyphicon-info-sign"></span></button>
     </section>
 
 </aside>
