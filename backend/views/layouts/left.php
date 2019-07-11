@@ -40,23 +40,12 @@ use yii\helpers\Html;
                 ],
             ]
         ) ?>
-		<?php
-		$tag_help = '
-1. {city} - Название города, Пример: Москва<br>
+		
+		<a href="#" class="btn btn-success" id="tag-help" title="Склонения городов" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="Название города, Пример: Москва<br>
 2. {city-gde} - Склонение (где?) Пример: в Москве<br>
 3. {city-kuda} - Склонение (куда?) Пример: в Москву <br>
 4. {city-kakoi} - Склонение (какой?) Пример: Московский<br>
-5. {city-chego} - Склонение (чего?) Пример: Москвы
-';
-		echo Html::button('Шорт-теги <span class="glyphicon glyphicon-info-sign"></span>', [
-			'class' => 'btn btn-success',
-			'id' => 'tag-help',
-			'data-toggle' => 'popover',
-			'title' => 'Склонения городов',
-			'data-content' => $tag_help,
-			'data-trigger' => "hover",
-			'data-placement' => 'bottom'
-		]) ?>
+5. {city-chego} - Склонение (чего?) Пример: Москвы">Шорт-теги <span class="glyphicon glyphicon-info-sign"></span></a>
     </section>
 
 </aside>
