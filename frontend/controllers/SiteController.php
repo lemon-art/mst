@@ -384,7 +384,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionSiteMap()
+    public function actionSitemap()
     {
         //$this->layout = '@app/frontend/views/layouts/sitemap.php';
         return $this->render('sitemap');
