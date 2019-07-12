@@ -66,7 +66,6 @@ return [
 				'test' => 'site/test',
 				'search' => 'site/search',
 				'<action:(.*)>' => 'site/pages',
-				'sitemap' => 'site/sitemap'
             ],
         ],
 		'assetManager' => [
