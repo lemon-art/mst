@@ -1,7 +1,5 @@
 <?php
 
-
-
 $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
 if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
     $subdomain = '';
