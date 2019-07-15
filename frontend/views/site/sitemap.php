@@ -12,48 +12,14 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>
         </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/credit/</loc>
-            <lastmod>2019-06-13T11:19:07+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/ipoteka/</loc>
-            <lastmod>2019-06-13T11:19:39+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/deposit/</loc>
-            <lastmod>2019-06-13T11:19:11+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/credit-cards/</loc>
-            <lastmod>2019-06-13T11:19:16+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/debet-cards/</loc>
-            <lastmod>2019-06-13T11:19:15+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/credit-auto/</loc>
-            <lastmod>2019-06-13T11:19:18+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/services/rko/</loc>
-            <lastmod>2019-06-13T11:19:16+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.9</priority>
-        </url>
+        <?php foreach ($services as $arr) { ?>
+            <url>
+                <loc>https://<?= $arr['code'] ?>marketvibor.ru/services/credit/</loc>
+                <lastmod>2019-06-13T11:19:07+01:00</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.9</priority>
+            </url>
+        <?php } ?>
         <url>
             <loc>https://<?= $subdomain ?>marketvibor.ru/specoffers/</loc>
             <lastmod>2019-06-13T11:19:17+01:00</lastmod>

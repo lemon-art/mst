@@ -387,18 +387,22 @@ class SiteController extends Controller
 
     public function actionSitemap()
     {
+        //имеется ли текущий город в базе
         CurrentCity::currentCity();
-
         $this->layout = '@app/views/layouts/sitemap.php';
 
-        $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
+        $services = Services::find()->select(['code'])->all();
 
+        $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
             $subdomain = '';
         } else {
             $subdomain = $subdomain.'.';
         }
         
-        return $this->render('sitemap',['subdomain' => $subdomain]);
+        return $this->render('sitemap',[
+            'subdomain' => $subdomain,
+            'services' => $services,
+        ]);
     }
 }
