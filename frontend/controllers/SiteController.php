@@ -18,9 +18,11 @@ use app\models\Atricles;
 use app\models\AtriclesSearch;
 use app\models\Services;
 use app\models\ServicesSearch;
+use app\models\Banks;
 use app\models\BanksSearch;
 use app\models\OffersSearch;
 use app\models\OrdersSearch;
+use app\models\Reviews;
 use app\models\ReviewsSearch;
 use app\models\Request;
 use app\models\RequestPartners;
@@ -394,6 +396,8 @@ class SiteController extends Controller
 
         $services = Services::find()->select(['code'])->all();
         $articles = Atricles::find()->select(['code'])->all();
+        $banks = Banks::find()->select(['code'])->all();
+        $reviews = Reviews::find()->select(['id'])->all();
 
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
@@ -405,6 +409,8 @@ class SiteController extends Controller
             'subdomain' => $subdomain,
             'services' => $services,
             'articles' => $articles,
+            'banks' => $banks,
+            'reviews' => $reviews,
         ]);
     }
 }

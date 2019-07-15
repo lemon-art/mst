@@ -74,102 +74,25 @@
             <changefreq>daily</changefreq>
             <priority>0.8</priority>
         </url>
+
+        <?php foreach ($banks as $arr3) { ?>
+            <url>
+                <loc>https://<?= $subdomain ?>marketvibor.ru/banks/<?= $arr3['code'] ?>/</loc>
+                <lastmod>2019-06-13T11:19:38+01:00</lastmod>
+                <changefreq>daily</changefreq>
+                <priority>0.8</priority>
+            </url>
+        <?php } ?>
+
+        <?php foreach ($reviews as $arr4) { ?>
         <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/qiwi/</loc>
-            <lastmod>2019-06-13T11:19:38+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/akbars/</loc>
-            <lastmod>2019-06-13T11:19:38+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/tochka-bank/</loc>
-            <lastmod>2019-06-13T11:19:38+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/absolute/</loc>
-            <lastmod>2019-06-13T11:19:38+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/Delobank/</loc>
-            <lastmod>2019-06-13T11:19:39+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/raiffeisen/</loc>
-            <lastmod>2019-06-13T11:19:39+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/vostbank/</loc>
-            <lastmod>2019-06-13T11:19:40+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/skb-bank/</loc>
-            <lastmod>2019-06-13T11:19:40+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/banks/alfabank/</loc>
-            <lastmod>2019-06-13T11:20:02+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/4/</loc>
+            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/<?= $arr4['id'] ?>/</loc>
             <lastmod>2019-06-13T11:19:40+01:00</lastmod>
             <changefreq>daily</changefreq>
             <priority>0.7</priority>
         </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/5/</loc>
-            <lastmod>2019-06-13T11:19:41+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.7</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/6/</loc>
-            <lastmod>2019-06-13T11:19:41+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.7</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/7/</loc>
-            <lastmod>2019-06-13T11:19:41+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.7</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/8/</loc>
-            <lastmod>2019-06-13T11:19:42+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.7</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/9/</loc>
-            <lastmod>2019-06-13T11:19:42+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.7</priority>
-        </url>
-        <url>
-            <loc>https://<?= $subdomain ?>marketvibor.ru/reviews/10/</loc>
-            <lastmod>2019-06-13T11:19:42+01:00</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.7</priority>
-        </url>
+        <?php } ?>
+
         <url>
             <loc>https://<?= $subdomain ?>marketvibor.ru/specoffers/credit/</loc>
             <lastmod>2019-06-13T11:19:43+01:00</lastmod>
@@ -276,103 +199,27 @@
     </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
   </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible39"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/qiwi/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
+  </span>
+                <?php foreach ($banks as $arr3) { ?>
+                <div class="collapsible" id="collapsible39"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
+    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/<?= $arr3['code'] ?>/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:38+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
   </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible40"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/akbars/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:38+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible41"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/tochka-bank/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:38+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible42"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/absolute/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:38+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible43"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/Delobank/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:39+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible44"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/raiffeisen/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:39+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible45"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/vostbank/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:40+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible46"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/skb-bank/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:40+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible47"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/banks/alfabank/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:20:02+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.8</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible48"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/4/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
+  </span>
+                <?php } ?>
+
+                <?php foreach ($reviews as $arr4) { ?>
+                <div class="collapsible" id="collapsible48"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
+    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/<?= $arr4['id'] ?>/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:40+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
   </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible49"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/5/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:41+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible50"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/6/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:41+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible51"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/7/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:41+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible52"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/8/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:42+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible53"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/9/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:42+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible54"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/reviews/10/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:42+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
-    </span><div class="line"><span class="html-tag">&lt;priority&gt;</span><span class="text">0.7</span><span class="html-tag">&lt;/priority&gt;</span></div><span class="text">
-  </span></div><div class="line"><span class="html-tag">&lt;/url&gt;</span></div></div><div class="collapsed hidden"><div class="line"><span class="button expand-button"></span><span class="html-tag">&lt;url&gt;</span><span class="text">...</span><span class="html-tag">&lt;/url&gt;</span></div></div></div><span class="text">
-  </span><div class="collapsible" id="collapsible55"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
+  </span>
+                <?php } ?>
+                <div class="collapsible" id="collapsible55"><div class="expanded"><div class="line"><span class="button collapse-button"></span><span class="html-tag">&lt;url&gt;</span></div><div class="collapsible-content"><span class="text">
     </span><div class="line"><span class="html-tag">&lt;loc&gt;</span><span class="text">https://<?= $subdomain ?>marketvibor.ru/specoffers/credit/</span><span class="html-tag">&lt;/loc&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;lastmod&gt;</span><span class="text">2019-06-13T11:19:43+01:00</span><span class="html-tag">&lt;/lastmod&gt;</span></div><span class="text">
     </span><div class="line"><span class="html-tag">&lt;changefreq&gt;</span><span class="text">daily</span><span class="html-tag">&lt;/changefreq&gt;</span></div><span class="text">
