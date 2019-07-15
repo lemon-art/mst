@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\components\CurrentCity;
 use yii\helpers\Url;
+use app\models\Atricles;
 use app\models\AtriclesSearch;
 use app\models\Services;
 use app\models\ServicesSearch;
@@ -392,6 +393,7 @@ class SiteController extends Controller
         $this->layout = '@app/views/layouts/sitemap.php';
 
         $services = Services::find()->select(['code'])->all();
+        $articles = Atricles::find()->select(['code'])->all();
 
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
@@ -399,10 +401,10 @@ class SiteController extends Controller
         } else {
             $subdomain = $subdomain.'.';
         }
-        
         return $this->render('sitemap',[
             'subdomain' => $subdomain,
             'services' => $services,
+            'articles' => $articles,
         ]);
     }
 }
