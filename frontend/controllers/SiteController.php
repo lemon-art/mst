@@ -387,6 +387,14 @@ class SiteController extends Controller
     public function actionSitemap()
     {
         $this->layout = '@app/views/layouts/sitemap.php';
-        return $this->render('sitemap');
+
+        $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
+        if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
+            $subdomain = '';
+        } else {
+            $subdomain = $subdomain.'.';
+        }
+        
+        return $this->render('sitemap',['subdomain' => $subdomain]);
     }
 }
