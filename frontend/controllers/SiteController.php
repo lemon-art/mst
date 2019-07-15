@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\components\CurrentCity;
 use yii\helpers\Url;
 use app\models\AtriclesSearch;
 use app\models\Services;
@@ -386,9 +387,12 @@ class SiteController extends Controller
 
     public function actionSitemap()
     {
+        CurrentCity::currentCity();
+
         $this->layout = '@app/views/layouts/sitemap.php';
 
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
+
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
             $subdomain = '';
         } else {
