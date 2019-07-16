@@ -87,6 +87,9 @@ $this->params['breadcrumbs'][] = $model->name;
 				</div>
 			</section>
 
+		<?php if ($model->code == 'credit') {
+			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
+		} ?>
 
 		<section class="sectionMarg">
 			<div class="cont">
@@ -110,8 +113,9 @@ $this->params['breadcrumbs'][] = $model->name;
         </section>
 
 		
-		
-		<?=Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);?>
+		<?php if ($model->code != 'credit') {
+			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
+		} ?>
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
 
