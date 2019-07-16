@@ -108,9 +108,6 @@ $this->params['breadcrumbs'][] = $model->name;
 			</div>
 		</section>
 
-        <section>
-
-        </section>
 
 		
 		<?php if ($model->code != 'credit') {
