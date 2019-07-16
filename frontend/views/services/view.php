@@ -88,30 +88,35 @@ $this->params['breadcrumbs'][] = $model->name;
 			</section>
 
 		<?php if ($model->code == 'credit') {
-			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
-		} ?>
+			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]); ?>
+			<section class="scheme_work sectionMarg">
+				<div class="cont">
+					<div class="main_title">Наши преимущества</div>
+					<?=$model->advantages?>
+				</div>
+			</section>
+			<section class="sectionMarg">
+				<div class="cont">
+					<div class="main_title">Схема работы</div>
+					<?=$model->scheme?>
+				</div>
+			</section>
+		<?php } ?>
 
-		<section class="sectionMarg">
-			<div class="cont">
-				<div class="main_title">Наши преимущества</div>
-
-				<?=$model->advantages?>
-			</div>
-		</section>
-
-
-		<section class="scheme_work sectionMarg">
-			<div class="cont">
-				<div class="main_title">Схема работы</div>
-				
-				<?=$model->scheme?>
-			</div>
-		</section>
-
-
-		
-		<?php if ($model->code != 'credit') {
-			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
+		<?php if ($model->code != 'credit') { ?>
+			<section class="sectionMarg">
+				<div class="cont">
+					<div class="main_title">Наши преимущества</div>
+					<?=$model->advantages?>
+				</div>
+			</section>
+			<section class="scheme_work sectionMarg">
+				<div class="cont">
+					<div class="main_title">Схема работы</div>
+					<?=$model->scheme?>
+				</div>
+			</section>
+			<?php echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
 		} ?>
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
