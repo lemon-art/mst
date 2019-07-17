@@ -91,14 +91,14 @@ $this->params['breadcrumbs'][] = $model->name;
 			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]); ?>
 			<section class="scheme_work sectionMarg">
 				<div class="cont">
-					<div class="main_title">Наши преимущества</div>
-					<?=$model->advantages?>
+					<div class="main_title">Схема работы</div>
+					<?=$model->scheme?>
 				</div>
 			</section>
 			<section class="sectionMarg">
 				<div class="cont">
-					<div class="main_title">Схема работы</div>
-					<?=$model->scheme?>
+					<div class="main_title">Наши преимущества</div>
+					<?=$model->advantages?>
 				</div>
 			</section>
 		<?php } ?>
