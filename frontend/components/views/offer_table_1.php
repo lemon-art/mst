@@ -106,3 +106,4 @@ use yii\widgets\ListView;
 				</div>
 			</div>
 		</section>
+<?php var_dump($offersProvider); ?>
