@@ -182,11 +182,11 @@ class Ipoteka extends \yii\db\ActiveRecord
 	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'TITLE' => 'Заявка на ипотеку №' . $model->id,
+			'TITLE' => 'Заявка на ипотеку',
 			'CATEGORY_ID' => 3,
 			'NAME' => $model->name,
-			'SECOND_NAME' => $model->last_name,
-			'LAST_NAME' => $model->second_name,
+			'SECOND_NAME' => $model->second_name,
+			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
 			'BIRTHDATE' => $model->bithday,

@@ -65,7 +65,20 @@ class Profile extends ActiveRecord
 			$this->bithday = '';
 			$this->display_bithday = '';
 		}
-
+		
+		if ( $this->registrationDate && $this->registrationDate !== '0000-00-00' ){
+			$this->registrationDate = Yii::$app->formatter->asDate($this->registrationDate, 'php:d.m.Y');
+		}
+		else {
+			$this->registrationDate = '';
+		}
+		
+		if ( $this->issueDate && $this->issueDate !== '0000-00-00' ){
+			$this->issueDate = Yii::$app->formatter->asDate($this->issueDate, 'php:d.m.Y');
+		}
+		else {
+			$this->issueDate = '';
+		}
 	}
 
     /**
@@ -129,6 +142,8 @@ class Profile extends ActiveRecord
 			'address' => 'Адрес регистрации (до дома)',
 			'registrationDate' => 'Дата регистрации',
 			'registrationPhone' => 'Телефон по месту регистрации', 
+			'snils' => 'Снилс',
+			'sex' => 'Пол', 
         ];
     }
 

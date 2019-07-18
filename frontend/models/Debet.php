@@ -180,11 +180,11 @@ class Debet extends \yii\db\ActiveRecord
 	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'TITLE' => 'Заявка на депозит №' . $model->id,
+			'TITLE' => 'Заявка на депозит',
 			'CATEGORY_ID' => 4,
 			'NAME' => $model->name,
-			'SECOND_NAME' => $model->last_name,
-			'LAST_NAME' => $model->second_name,
+			'SECOND_NAME' => $model->second_name,
+			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
 			'OPPORTUNITY' 		=> $model->summ,

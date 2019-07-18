@@ -202,13 +202,15 @@ class Rko extends \yii\db\ActiveRecord
 	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'TITLE' => 'Заявка на РКО №' . $model->id,
+			'TITLE' => 'Заявка на РКО',
 			'CATEGORY_ID' => 7,
 			'NAME' => $model->name,
-			'SECOND_NAME' => $model->last_name,
-			'LAST_NAME' => $model->second_name,
+			'SECOND_NAME' => $model->second_name,
+			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
+			'BIRTHDATE' => $model->bithday,
+			'ADDRESS_CITY' => $model->city,
 			
 			'UF_CRM_1559828608' => $model->birthplace,
 			'UF_CRM_1559828656' => $model->sn,
@@ -224,8 +226,8 @@ class Rko extends \yii\db\ActiveRecord
 			'UF_CRM_1559922932' => BitrixCrm::GetListValue($model->form),
 			'UF_CRM_1559923098' => $model->inn,
 			'UF_CRM_1559923054' => $model->company_name,
-			'UF_CRM_1559923157' => $model->snils,
-			'UF_CRM_1560922154' => BitrixCrm::GetListValue($model->sex)
+			'UF_CRM_1559896228' => $model->snils,
+			'UF_CRM_1561550005' => BitrixCrm::GetListValue($model->sex)
 		);
 	}
 	
@@ -236,8 +238,8 @@ class Rko extends \yii\db\ActiveRecord
 			'UF_CRM_1559922932' => Array('field' => 'form', 'type' => 'list'), 
 			'UF_CRM_1559923098' => Array('field' => 'inn', 'type' => 'string'), 		
 			'UF_CRM_1559923054' => Array('field' => 'company_name', 'type' => 'string'),
-			'UF_CRM_1559923157' => Array('field' => 'snils', 'type' => 'string'), 
-			'UF_CRM_1560922154' => Array('field' => 'sex', 'type' => 'list'), 
+			'UF_CRM_1559896228' => Array('field' => 'snils', 'type' => 'string'), 
+			'UF_CRM_1561550005' => Array('field' => 'sex', 'type' => 'list'), 
 
 		);
 	}

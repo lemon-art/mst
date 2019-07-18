@@ -136,14 +136,14 @@ class KreditKards extends \yii\db\ActiveRecord
 			'TITLE' => 'Заявка на кредитную карту №' . $model->id,
 			'CATEGORY_ID' => 2,
 			'NAME' => $model->name,
-			'SECOND_NAME' => $model->last_name,
-			'LAST_NAME' => $model->second_name,
+			'SECOND_NAME' => $model->second_name,
+			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
 			'OPPORTUNITY' 		=> $model->summ,
 			'UF_CRM_1559807131' => $model->id,
-			'UF_CRM_1559723329' => $model->summ,
-			'UF_CRM_1559890441' => $model->income,
+			'UF_CRM_1561551713' => $model->summ,
+			'UF_CRM_1559890441' => $model->income, 
 			'UF_CRM_1559914502' => BitrixCrm::GetListValue($model->confirmation_income),
 
 		);
@@ -152,7 +152,7 @@ class KreditKards extends \yii\db\ActiveRecord
 	public function getArrayFromBitrixCrm() {
 	
 		return Array(
-			'UF_CRM_1559723329' => Array('field' => 'summ', 'type' => 'string'), 
+			'UF_CRM_1561551713' => Array('field' => 'summ', 'type' => 'string'), 
 			'UF_CRM_1559890441' => Array('field' => 'income', 'type' => 'string'), 
 			'UF_CRM_1559914502' => Array('field' => 'confirmation_income', 'type' => 'list'), 
 			

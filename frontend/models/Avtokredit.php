@@ -137,11 +137,11 @@ class Avtokredit extends \yii\db\ActiveRecord
 	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'TITLE' => 'Заявка на автокредит №' . $model->id,
+			'TITLE' => 'Заявка на автокредит',
 			'CATEGORY_ID' => 6,
 			'NAME' => $model->name,
-			'SECOND_NAME' => $model->last_name,
-			'LAST_NAME' => $model->second_name,
+			'SECOND_NAME' => $model->second_name,
+			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
 			'OPPORTUNITY' 		=> $model->summ,

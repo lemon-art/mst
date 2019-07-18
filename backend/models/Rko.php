@@ -174,7 +174,7 @@ class Rko extends \yii\db\ActiveRecord
     }
 	
 	public function GetShowFields() {
-		return ['form', 'city', 'inn', 'snils', 'profile.bithday', 'profile.address', 'company_name', 'profile.sn', 'sex', 'profile.issueDate', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email'];
+		return ['form', 'city', 'inn', 'profile.snils', 'company_name', 'profile.last_name', 'profile.name', 'profile.second_name', 'profile.phone', 'profile.email', 'profile.bithday', 'profile.sn', 'profile.issueDate', 'profile.issueCode', 'profile.issuer', 'profile.address', 'profile.registrationDate', 'profile.sex'];
 	}
 
     /**
