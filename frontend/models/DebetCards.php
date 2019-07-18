@@ -155,7 +155,6 @@ class DebetCards extends \yii\db\ActiveRecord
 			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
-			'OPPORTUNITY' 		=> $model->summ,
 			'UF_CRM_1559807131' => $model->id,
 			'UF_CRM_1559920491' => $model->summ,
 			'UF_CRM_1559920463' => $model->residue,

@@ -195,7 +195,7 @@ class Kredit extends \yii\db\ActiveRecord
 	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'TITLE' => 'Заявка на кредит №' . $model->id,
+			'TITLE' => 'Заявка на кредит',
 			'CATEGORY_ID' => 1,
 			'NAME' => $model->name,
 			'SECOND_NAME' => $model->second_name,
@@ -207,13 +207,12 @@ class Kredit extends \yii\db\ActiveRecord
 			'ADDRESS_CITY' => $model->city,
 			'UF_CRM_1559828608' => $model->birthplace,
 			'UF_CRM_1559828656' => $model->sn,
-			'UF_CRM_1559828675' => $model->issuedate,
+			'UF_CRM_1563181991' => $model->issuedate,
 			'UF_CRM_1559828690' => $model->issuecode,
 			'UF_CRM_1559828703' => $model->issuer,
 			'UF_CRM_1559829011' => $model->address,
-			'UF_CRM_1559829029' => $model->registrationdate,
+			'UF_CRM_1563182035' => $model->registrationdate,
 			'UF_CRM_1559829056' => BitrixCrm::FormatePhone( $model->registrationphone ),
-			'OPPORTUNITY' 		=> $model->summ,
 			'UF_CRM_1559807131' => $model->id,
 			'UF_CRM_1559723329' => $model->summ,
 			'UF_CRM_1559723367' => $model->term, 

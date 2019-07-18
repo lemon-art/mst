@@ -214,11 +214,11 @@ class Rko extends \yii\db\ActiveRecord
 			
 			'UF_CRM_1559828608' => $model->birthplace,
 			'UF_CRM_1559828656' => $model->sn,
-			'UF_CRM_1559828675' => $model->issuedate,
+			'UF_CRM_1563181991' => $model->issuedate,
 			'UF_CRM_1559828690' => $model->issuecode,
 			'UF_CRM_1559828703' => $model->issuer,
 			'UF_CRM_1559829011' => $model->address,
-			'UF_CRM_1559829029' => $model->registrationdate,
+			'UF_CRM_1563182035' => $model->registrationdate,
 			'UF_CRM_1559829056' => BitrixCrm::FormatePhone( $model->registrationphone ),
 			
 			

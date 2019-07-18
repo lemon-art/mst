@@ -264,8 +264,8 @@ class BitrixCrm
 				$profileUser -> email = $email;
 				$profileUser -> public_email = $email;
 				$profileUser -> bithday = $arContact['BIRTHDATE'];
-				$profileUser -> issueDate = $arContact['UF_CRM_1559828675'];
-				$profileUser -> registrationDate = $arContact['UF_CRM_1559829029'];
+				$profileUser -> issueDate = $arContact['UF_CRM_1563181991'];
+				$profileUser -> registrationDate = $arContact['UF_CRM_1563182035'];
 				$profileUser -> birthPlace = $arContact['UF_CRM_1559828608'];
 				$profileUser -> sn =  $arContact['UF_CRM_1559828656'];
 				$profileUser -> issueCode =  $arContact['UF_CRM_1559828690'];

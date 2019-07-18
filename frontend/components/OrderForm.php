@@ -134,10 +134,19 @@ class OrderForm extends Widget {
 					$profileUser -> email = $orderModel -> email;
 					$profileUser -> public_email = $orderModel -> email;
 					
+					
 					if ( isset( $orderModel -> bithday )){
 						$bithday = \DateTime::createFromFormat('d.m.Y', $orderModel -> bithday);
 						$profileUser -> bithday = $bithday->format('Y-m-d');
 						
+					}
+					
+					if ( isset( $orderModel -> sex )){
+						$profileUser -> sex = $orderModel->sex;
+					}
+					
+					if ( isset( $orderModel -> snils )){
+						$profileUser -> snils = $orderModel->snils;
 					}
 					
 					if ( isset( $orderModel -> issuedate )){

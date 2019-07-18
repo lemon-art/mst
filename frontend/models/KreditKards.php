@@ -133,14 +133,13 @@ class KreditKards extends \yii\db\ActiveRecord
 	public function makeBitrixCrmArray( $model ) {
 	
 		return Array(
-			'TITLE' => 'Заявка на кредитную карту №' . $model->id,
+			'TITLE' => 'Заявка на кредитную карту',
 			'CATEGORY_ID' => 2,
 			'NAME' => $model->name,
 			'SECOND_NAME' => $model->second_name,
 			'LAST_NAME' => $model->last_name,
 			'PHONE' => BitrixCrm::FormatePhone( $model->phone ),
 			'EMAIL' => $model->email,
-			'OPPORTUNITY' 		=> $model->summ,
 			'UF_CRM_1559807131' => $model->id,
 			'UF_CRM_1561551713' => $model->summ,
 			'UF_CRM_1559890441' => $model->income, 
