@@ -2,6 +2,11 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
+use backend\models\Offers;
+use backend\models\Banks;
+
+$banks = Banks::find()->select(['id', 'name'])->all();
+
 ?>	
 
 
@@ -11,6 +16,26 @@ use yii\widgets\ListView;
 				<div class="main_title">Подбор кредитов</div>
 
                 <div class="credit_filter form">
+                    <div class="credit_filter_col">
+                        <span>Банк</span>
+
+                        <div class="selectWrap">
+                            <select name="" style="display: none;">
+                                <option value="">На любой</option>
+                                <?php foreach ($banks as $bank) { ?>
+                                <option value="<?= $bank['id'] ?>"><?= $bank['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                            <div class="nice-select" tabindex="0"><span class="current">Все</span>
+                                <ul id="filter-offer-bank" class="list">
+                                    <li data-value="" class="option selected" >Все</li>
+                                    <?php foreach ($banks as $bank) { ?>
+                                    <li data-value="<?= $bank['id'] ?>" class="option"><?= $bank['name'] ?></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="credit_filter_col double_input">
                         <span>Сумма кредита</span>
                         <input id="filter-offer-price" type="text" name="" value="" placeholder="Любая" class="input summa">
@@ -57,6 +82,7 @@ use yii\widgets\ListView;
                             </div>
                         </div>
                     </div>
+
                     <div class="credit_filter_col">
                         <a onclick="filterOffer(); gotoform();" href="#table_profitably">Подобрать</a>
                     </div>
