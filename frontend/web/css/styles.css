@@ -383,7 +383,6 @@ input[type=submit]
     width: 6px;
     height: 11px;
     margin-top: -4px;
-    margin-right: 1px;
 
     content: '';
     transform: rotate(-90deg);;
@@ -2851,4 +2850,6 @@ body {
 	margin-top: -90px;
 }
 
-
+#filter-offer-price {
+    margin-right: 1px;
+}
