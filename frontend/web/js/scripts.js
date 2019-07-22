@@ -1166,7 +1166,7 @@ function filterOffer() {
 
 		if(
 
-			($( this ).data( "name" )==bank)
+			($( this ).data( "name" )!=bank)
 
 			&&bank!=""
 
@@ -1182,7 +1182,7 @@ function filterOffer() {
 
 		if(
 
-			($( this ).data( "rate" )==rate)
+			($( this ).data( "rate" )!=rate)
 
 			&&rate!=""
 
