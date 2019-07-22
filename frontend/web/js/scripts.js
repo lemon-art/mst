@@ -1154,12 +1154,45 @@ function filterOffer() {
     var price=$('#filter-offer-price').val();
 	price = price.replace(/\s/g, '');
     var date=$('#filter-offer-date li.selected').data("value");
+	var bank=$('#filter-offer-bank li.selected').data("value");
+	var rate=$('#filter-offer-rate li.selected').data("value");
 
 
 
     $('.mob_profitably.owl-carousel [data-element="true"]').each(function() {
 
     	var visible=true;
+
+
+		if(
+
+			($( this ).data( "name" )==bank)
+
+			&&bank!=""
+
+		)
+
+		{
+
+			visible=false;
+
+		}
+
+
+
+		if(
+
+			($( this ).data( "rate" )==rate)
+
+			&&rate!=""
+
+		)
+
+		{
+
+			visible=false;
+
+		}
 
 
 
@@ -1215,10 +1248,9 @@ function filterOffer() {
 
     });
 
-
-
+	console.log(bank);
+	console.log(rate);
     console.log(price);
-
     console.log(date);
 
 }

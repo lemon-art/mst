@@ -23,14 +23,14 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                             <select name="" style="display: none;">
                                 <option value="">Все</option>
                                 <?php foreach ($banks as $bank) { ?>
-                                    <option value="<?= $bank['id'] ?>"><?= $bank['name'] ?></option>
+                                    <option value="<?= $bank['name'] ?>"><?= $bank['name'] ?></option>
                                 <?php } ?>
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current">Все</span>
                                 <ul id="filter-offer-bank" class="list">
                                     <li data-value="" class="option selected" >Все</li>
                                     <?php foreach ($banks as $bank) { ?>
-                                        <li data-value="<?= $bank['id'] ?>" class="option"><?= $bank['name'] ?></li>
+                                        <li data-value="<?= $bank['name'] ?>" class="option"><?= $bank['name'] ?></li>
                                     <?php } ?>
                                 </ul>
                             </div>
