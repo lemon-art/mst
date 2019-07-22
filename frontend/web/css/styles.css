@@ -342,7 +342,7 @@ input[type=submit]
 }.selectWrap .nice-select
 {
     position: relative;
-
+    margin-right: 0;
     display: block;
 
     text-align: left;
