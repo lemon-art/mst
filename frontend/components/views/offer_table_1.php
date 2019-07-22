@@ -21,14 +21,14 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                         <span>Банк</span>
                         <div class="selectWrap">
                             <select name="" style="display: none;">
-                                <option value="">Любая</option>
+                                <option value="">Все</option>
                                 <?php foreach ($banks as $bank) { ?>
                                     <option value="<?= $bank['id'] ?>"><?= $bank['name'] ?></option>
                                 <?php } ?>
                             </select>
-                            <div class="nice-select" tabindex="0"><span class="current">Любая</span>
+                            <div class="nice-select" tabindex="0"><span class="current">Все</span>
                                 <ul id="filter-offer-bank" class="list">
-                                    <li data-value="" class="option selected" >Любая</li>
+                                    <li data-value="" class="option selected" >Все</li>
                                     <?php foreach ($banks as $bank) { ?>
                                         <li data-value="<?= $bank['id'] ?>" class="option"><?= $bank['name'] ?></li>
                                     <?php } ?>
@@ -40,14 +40,14 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                         <span>Ставка</span>
                         <div class="selectWrap">
                             <select name="" style="display: none;">
-                                <option value="">Все</option>
+                                <option value="">Любая</option>
                                 <?php foreach ($rates as $rate) { ?>
                                     <option value="<?= $rate['rate'] ?>"><?= $rate['rate'] ?></option>
                                 <?php } ?>
                             </select>
-                            <div class="nice-select" tabindex="0"><span class="current">Все</span>
+                            <div class="nice-select" tabindex="0"><span class="current">Любая</span>
                                 <ul id="filter-offer-rate" class="list">
-                                    <li data-value="" class="option selected" >Все</li>
+                                    <li data-value="" class="option selected" >Любая</li>
                                     <?php foreach ($rates as $rate) { ?>
                                         <li data-value="<?= $rate['rate'] ?>" class="option"><?= $rate['rate'] ?></li>
                                     <?php } ?>
