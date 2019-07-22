@@ -6,6 +6,7 @@ use backend\models\Offers;
 use backend\models\Banks;
 
 $banks = Banks::find()->select(['id', 'name'])->all();
+$rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->groupBy(['rate'])->all();
 
 ?>	
 
@@ -18,19 +19,37 @@ $banks = Banks::find()->select(['id', 'name'])->all();
                 <div class="credit_filter form">
                     <div class="credit_filter_col">
                         <span>Банк</span>
-
                         <div class="selectWrap">
                             <select name="" style="display: none;">
-                                <option value="">На любой</option>
-                                <?php foreach ($banks as $bank) { ?>
-                                <option value="<?= $bank['id'] ?>"><?= $bank['name'] ?></option>
+                                <option value="">Все</option>
+                                <?php foreach ($rates as $rate) { ?>
+                                <option value="<?= $rate['rate'] ?>"><?= $rate['rate'] ?></option>
                                 <?php } ?>
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current">Все</span>
-                                <ul id="filter-offer-bank" class="list">
+                                <ul id="filter-offer-rate" class="list">
                                     <li data-value="" class="option selected" >Все</li>
+                                    <?php foreach ($rates as $rate) { ?>
+                                    <li data-value="<?= $rate['rate'] ?>" class="option"><?= $rate['rate'] ?></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="credit_filter_col">
+                        <span>Ставка</span>
+                        <div class="selectWrap">
+                            <select name="" style="display: none;">
+                                <option value="">Любая</option>
+                                <?php foreach ($banks as $bank) { ?>
+                                    <option value="<?= $bank['id'] ?>"><?= $bank['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                            <div class="nice-select" tabindex="0"><span class="current">Любая</span>
+                                <ul id="filter-offer-bank" class="list">
+                                    <li data-value="" class="option selected" >Любая</li>
                                     <?php foreach ($banks as $bank) { ?>
-                                    <li data-value="<?= $bank['id'] ?>" class="option"><?= $bank['name'] ?></li>
+                                        <li data-value="<?= $bank['id'] ?>" class="option"><?= $bank['name'] ?></li>
                                     <?php } ?>
                                 </ul>
                             </div>
