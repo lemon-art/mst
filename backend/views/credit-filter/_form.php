@@ -4,6 +4,8 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\models\Banks;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\CreditFilter */
@@ -22,9 +24,14 @@ use backend\models\Banks;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 	
-	<?= $form->field($model, 'top_text')->textInput(['maxlength' => true]) ?>
+	<?= $form->field($model, 'top_text')->textarea(['rows' => 3]) ?>
 
-    <?= $form->field($model, 'seo_text')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'seo_text')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ],
+    ]);?>
 
     <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); array_unshift($items, ""); ?>
     <?= $form->field($model, 'bank_id')->dropdownList($items); ?>
