@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\CreditFilter */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'CreditFilter', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Фильтры кредитов', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="credit-filter-view">
