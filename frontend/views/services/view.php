@@ -12,7 +12,6 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
 
-
 //шорт теги
 $model->title = ShortTag::cityTag($model->title);
 $model->description = ShortTag::cityTag($model->description);
@@ -28,9 +27,6 @@ $model->text_main_title = ShortTag::cityTag($model->text_main_title);
 $model->text_main_text = ShortTag::cityTag($model->text_main_text);
 $model->seo_text_preview = ShortTag::cityTag($model->seo_text_preview);
 $model->seo_text_detail = ShortTag::cityTag($model->seo_text_detail);
-
-
-
 
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);

@@ -24,7 +24,7 @@ use yii\helpers\Html;
 							['label' => 'Банки', 'icon' => 'circle-o', 'url' => ['/banks'],],
 							['label' => 'Статьи', 'icon' => 'circle-o', 'url' => ['/atricles'],],
 							['label' => 'Отзывы', 'icon' => 'circle-o', 'url' => ['/reviews'],],
-							
+							['label' => 'Фильтры кредита', 'icon' => 'circle-o', 'url' => ['/credit-filter'],],
 						]
 					],
 					['label' => 'Страницы', 'icon' => 'sticky-note-o', 'url' => ['/pages']],
@@ -42,11 +42,11 @@ use yii\helpers\Html;
         ) ?>
 
 		<button class="btn btn-success" id="tag-help" title="Склонения городов" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="
-1{city} - Название, Москва&nbsp;&nbsp;
-2{city-gde} - (где?) в Москве&nbsp;
-3{city-kuda} - (куда?) в Москву
-4{city-kakoi} - (какой?) Московский&nbsp;&nbsp;
-5{city-chego} - (чего?) Москвы"><span class="glyphicon glyphicon-info-sign"></span> Шорт-теги</button>
+		1{city} - Название, Москва&nbsp;&nbsp;
+		2{city-gde} - (где?) в Москве&nbsp;
+		3{city-kuda} - (куда?) в Москву
+		4{city-kakoi} - (какой?) Московский&nbsp;&nbsp;
+		5{city-chego} - (чего?) Москвы"><span class="glyphicon glyphicon-info-sign"></span> Шорт-теги</button>
     </section>
 
 </aside>
