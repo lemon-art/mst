@@ -18,13 +18,16 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'top_text')->textarea(['rows' => 3]) ?>
+
+    <hr>
+    <h2>СЕО</h2>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-	
-	<?= $form->field($model, 'top_text')->textarea(['rows' => 3]) ?>
 
     <?= $form->field($model, 'seo_text')->widget(CKEditor::className(),[
         'editorOptions' => [
@@ -32,6 +35,9 @@ use mihaildev\elfinder\ElFinder;
             'inline' => false, //по умолчанию false
         ],
     ]);?>
+
+    <hr>
+    <h2>Фильтры</h2>
 
     <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); array_unshift($items, ""); ?>
     <?= $form->field($model, 'bank_id')->dropdownList($items); ?>
