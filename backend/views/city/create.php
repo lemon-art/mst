@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Sity */
 
 $this->title = 'Добавить город';
-$this->params['breadcrumbs'][] = ['label' => 'Sities', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Города', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sity-create">

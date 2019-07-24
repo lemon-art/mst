@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Sity */
 
 $this->title = 'Изменить город: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Sities', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Города', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

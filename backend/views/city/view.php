@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Sity */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Sities', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Города', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sity-view">
