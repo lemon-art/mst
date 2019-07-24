@@ -41,7 +41,7 @@ class CreditFilterSearch extends CreditFilter
      */
     public function search($params)
     {
-        $query = City::find();
+        $query = CreditFilter::find();
 
         // add conditions that should always apply here
 

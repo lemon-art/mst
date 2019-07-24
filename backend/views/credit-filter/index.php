@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\SitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Города';
+$this->title = 'фильтры кредита';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="credit-filter-index">
