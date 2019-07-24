@@ -36,7 +36,7 @@ class CreditFilter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'title', 'description'], 'required'],
+            [['code'], 'required'],
             [['code', 'title', 'description', 'name', 'rate'], 'string', 'max' => 255],
             [['id',  'bank_id', 'term', 'summ'], 'integer'],
         ];
