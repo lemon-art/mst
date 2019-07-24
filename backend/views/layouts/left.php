@@ -24,7 +24,7 @@ use yii\helpers\Html;
 							['label' => 'Банки', 'icon' => 'circle-o', 'url' => ['/banks'],],
 							['label' => 'Статьи', 'icon' => 'circle-o', 'url' => ['/atricles'],],
 							['label' => 'Отзывы', 'icon' => 'circle-o', 'url' => ['/reviews'],],
-							['label' => 'Фильтры кредита', 'icon' => 'circle-o', 'url' => ['/credit-filter'],],
+							['label' => 'Фильтры кредитов', 'icon' => 'circle-o', 'url' => ['/credit-filter'],],
 						]
 					],
 					['label' => 'Страницы', 'icon' => 'sticky-note-o', 'url' => ['/pages']],

@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\SitySearch */
+/* @var $searchModel backend\models\CreditFilterSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'фильтры кредита';
+$this->title = 'Фильтры кредитов';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="credit-filter-index">

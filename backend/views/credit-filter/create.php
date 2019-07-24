@@ -4,9 +4,9 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Sity */
+/* @var $model app\models\CreditFilter */
 
-$this->title = 'Добавить ссылку и фильтр кредита';
+$this->title = 'Добавить ссылку и фильтр кредитов';
 $this->params['breadcrumbs'][] = ['label' => 'Sities', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

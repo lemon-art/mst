@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\models\Banks;
@@ -25,7 +26,8 @@ use backend\models\Banks;
 
     <?= $form->field($model, 'seo_text')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'bank_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'bank_id')->dropdownList(
+        ArrayHelper::map(Banks::find()->all(), 'id', 'name')); ?>
 
     <?= $form->field($model, 'term')->textInput(['maxlength' => true]) ?>
 
