@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = 'Города';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sity-index">
+<div class="credit-filter-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Sities', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="sity-update">
+<div class="credit-filter-update">
 
     <?= $this->render('_form', [
         'model' => $model,

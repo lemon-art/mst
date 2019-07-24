@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sity-search">
+<div class="credit-filter-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

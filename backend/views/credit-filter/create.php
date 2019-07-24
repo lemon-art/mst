@@ -10,7 +10,7 @@ $this->title = 'Добавить ссылку и фильтр кредита';
 $this->params['breadcrumbs'][] = ['label' => 'Sities', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sity-create">
+<div class="credit-filter-create">
 
     <?= $this->render('_form', [
         'model' => $model,

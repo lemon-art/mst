@@ -9,7 +9,7 @@ use backend\models\Banks;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sity-form">
+<div class="credit-filter-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
