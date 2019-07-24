@@ -18,6 +18,9 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
+    <hr>
+    <h2>Информация верхней части страницы</h2>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'top_text')->textarea(['rows' => 3]) ?>
