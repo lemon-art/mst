@@ -26,8 +26,7 @@ use backend\models\Banks;
 
     <?= $form->field($model, 'seo_text')->textInput(['maxlength' => true]) ?>
 
-    <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name');
-    var_dump($items); ?>
+    <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); $items[0] = ''; ?>
     <?= $form->field($model, 'bank_id')->dropdownList([$items]); ?>
 
     <?= $form->field($model, 'term')->textInput(['maxlength' => true]) ?>
