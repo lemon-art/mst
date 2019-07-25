@@ -19,7 +19,7 @@ class CreditFilterSearch extends CreditFilter
     {
         return [
             [['id'], 'integer'],
-            [['code', 'title', 'description', 'name', 'top_text', 'seo_text', 'bank_id', 'term', 'summ', 'rate'], 'safe'],
+            [['code', 'url_name', 'category', 'title', 'description', 'name', 'top_text', 'seo_text', 'bank_id', 'term', 'summ', 'rate'], 'safe'],
         ];
     }
 
@@ -63,6 +63,8 @@ class CreditFilterSearch extends CreditFilter
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'url_name', $this->url_name])
+            ->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'name', $this->name])

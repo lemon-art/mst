@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\Banks;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CreditFilterSearch */
@@ -25,8 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'code',
+            'url_name',
             'title',
-            'name',
+            [
+                'attribute' => 'bank',
+                'format' => 'raw',
+                'value' => function($model){
+                    if ($model->bank = 0){
+                        return '';
+                    } else {
+                        $bank = Banks::find()->select(['name'])->where(['id' => $model->bank])->one();
+                        return $bank;
+                    }
+                },
+            ],
 			'term',
             'summ',
             'rate',

@@ -18,15 +18,24 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'url_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'category')->textInput(['maxlength' => true])->dropDownList([
+        '1' => 'Популярное',
+        '2' => 'Процентные ставки',
+        '3' => 'Популярные суммы',
+        '4' => 'По сроку',
+    ]); ?>
+
     <hr>
-    <h2>Информация верхней части страницы</h2>
+    <h3>Информация верхней части страницы</h3>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'top_text')->textarea(['rows' => 3]) ?>
 
     <hr>
-    <h2>СЕО</h2>
+    <h3>СЕО</h3>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -40,7 +49,7 @@ use mihaildev\elfinder\ElFinder;
     ]);?>
 
     <hr>
-    <h2>Фильтры</h2>
+    <h3>Фильтры</h3>
 
     <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); array_unshift($items, ""); ?>
     <?= $form->field($model, 'bank_id')->dropdownList($items); ?>

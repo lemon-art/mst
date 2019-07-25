@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string $code
+ * @property string $url_name
+ * @property string $category
  * @property string $title
  * @property string $description
  * @property string $name
@@ -36,9 +38,9 @@ class CreditFilter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code'], 'required'],
-            [['code', 'title', 'description', 'name', 'rate'], 'string', 'max' => 255],
-            [['id',  'bank_id', 'term', 'summ'], 'integer'],
+            [['code', 'url_name', 'category'], 'required'],
+            [['code', 'url_name', 'title', 'description', 'name', 'rate'], 'string', 'max' => 255],
+            [['id', 'category', 'bank_id', 'term', 'summ'], 'integer'],
         ];
     }
 
@@ -51,6 +53,8 @@ class CreditFilter extends \yii\db\ActiveRecord
             'id' => 'ID',
             'code' => 'Символьный код страницы',
             'title' => 'title',
+            'url_name' => 'Имя отображаемой ссылки',
+            'category' => 'Категория ссылки',
             'description' => 'description',
             'name' => 'Название',
             'top_text' => 'Верхний текст на странице',
