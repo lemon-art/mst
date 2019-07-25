@@ -32,11 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'bank_id',
                 'format' => 'raw',
                 'value' => function($model){
-                    if ($model->bank_id = 0){
+                    if ($model->bank_id == 0){
                         return '';
                     } else {
-                        $bank = Banks::find()->select(['name'])->where(['id' => $model->bank_id])->one();
-                        return $bank;
+                        $bank = Banks::find()->where(['id' => $model->bank_id])->one();
+                        return $bank['name'];
                     }
                 },
             ],
