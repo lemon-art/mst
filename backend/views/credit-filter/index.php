@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ($model->bank_id == 0){
                         return '';
                     } else {
-                        return $model->banks->name;
+                        $bank = Banks::find()->where(['id' => $model->bank_id])->one();
+                        return $bank['name'];
                     }
                 }
             ],
