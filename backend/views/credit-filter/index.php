@@ -28,18 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'code',
             'url_name',
             'title',
-            [
-                'attribute' => 'bank_id',
-                'format' => 'raw',
-                'value' => function($model){
-                    if ($model->bank_id == 0){
-                        return '';
-                    } else {
-                        $bank = Banks::find()->where(['id' => $model->bank_id])->one();
-                        return $bank->name;
-                    }
-                },
-            ],
 			'term',
             'summ',
             'rate',
