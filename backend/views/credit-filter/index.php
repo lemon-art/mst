@@ -28,7 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'code',
             'url_name',
             'title',
-			'term',
+            [
+                'attribute' => 'bank_id',
+                'value' => function($model){
+                    if ($model->bank_id == 0){
+                        return '';
+                    } else {
+                        return $model->banks->name;
+                    }
+                }
+            ],
+            'term',
             'summ',
             'rate',
 
