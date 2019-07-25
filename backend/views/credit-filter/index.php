@@ -29,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'url_name',
             'title',
             [
-                'attribute' => 'bank',
+                'attribute' => 'bank_id',
                 'format' => 'raw',
                 'value' => function($model){
-                    if ($model->bank = 0){
+                    if ($model->bank_id = 0){
                         return '';
                     } else {
-                        $bank = Banks::find()->select(['name'])->where(['id' => $model->bank])->one();
+                        $bank = Banks::find()->select(['name'])->where(['id' => $model->bank_id])->one();
                         return $bank;
                     }
                 },
