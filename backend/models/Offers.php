@@ -130,7 +130,7 @@ class Offers extends \yii\db\ActiveRecord
 			'special'    => 'Спецпредложение',
 			'main_page'    => 'Отображать на главной',
 			'image'    => 'Картинка',
-			'sort'    => 'Сортировка',
+			'sort'    => 'Приоритет',
             'depozit_term'=>'Срок депозита',
 			'depozit_summ'=>'Мин. сумма',
 			'initial_payment'=>'Первоначальный взнос',

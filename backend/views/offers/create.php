@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = 'Добавить предложение';
 $this->params['breadcrumbs'][] = ['label' => 'Предложения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$model->sort = 2; //средний приоритет по умолчанию
 ?>
 <div class="offers-create">
 
