@@ -54,9 +54,9 @@ use dosamigos\fileupload\FileUpload;
 	<?= $form->field($model, 'foundation_date')->textInput(['maxlength' => true]) ?>
 
 	<?= $form->field($model, 'priority')->textInput(['maxlength' => true])->dropDownList([
-		'1' => 'Низкий',
-		'2' => 'Средний',
-		'3' => 'Высокий'
+		'0' => 'Низкий',
+		'1' => 'Средний',
+		'2' => 'Высокий'
 	]); ?>
 
     <div class="form-group">

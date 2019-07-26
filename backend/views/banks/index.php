@@ -61,9 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
 					'format' => 'raw',
 					'options' => ['style' => 'width: 80px; max-width: 80px;'],
 					'value' => function($model){
-						if ($model->priority >= 3){
+						if ($model->priority >= 2){
 							return 'Высокий';
-						} elseif ($model->priority == 2) {
+						} elseif ($model->priority == 1) {
 							return 'Средний';
 						} else {
 							return 'Низкий';

@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = 'Добавить банк';
 $this->params['breadcrumbs'][] = ['label' => 'Банки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$model->priority = 1; //средний приоритет по умолчанию
 ?>
 <div class="banks-create">
 
