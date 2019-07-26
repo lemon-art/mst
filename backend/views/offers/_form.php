@@ -83,7 +83,7 @@ use backend\models\Files;
 							<?= $form->field($model, 'sort')->textInput(['maxlength' => true])->dropDownList([
 								'1' => 'Низкий',
 								'2' => 'Средний',
-								'3' => 'Высокий',
+								'3' => 'Высокий'
 							]); ?>
 						</div>
 					
