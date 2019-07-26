@@ -20,6 +20,8 @@ use Yii;
  * @property string $rate
  * @property int $term
  * @property int $summ
+ * @property int $min_age
+ * @property int $max_age
  */
 
 class CreditFilter extends \yii\db\ActiveRecord
@@ -40,7 +42,7 @@ class CreditFilter extends \yii\db\ActiveRecord
         return [
             [['code', 'url_name', 'category'], 'required'],
             [['code', 'url_name', 'title', 'description', 'name', 'rate'], 'string', 'max' => 255],
-            [['id', 'category', 'bank_id', 'term', 'summ'], 'integer'],
+            [['id', 'category', 'bank_id', 'term', 'summ', 'min_age', 'max_age'], 'integer'],
         ];
     }
 
@@ -63,6 +65,8 @@ class CreditFilter extends \yii\db\ActiveRecord
             'term' => 'Срок кредита, мес.',
             'summ' => 'Сумма кредита',
             'rate' => 'Процентная ставка',
+            'min_age' => 'Мин. возраст',
+            'max_age' => 'Макс. возраст',
         ];
     }
 }

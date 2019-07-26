@@ -73,6 +73,8 @@ class CreditFilterSearch extends CreditFilter
             ->andFilterWhere(['like', 'bank_id', $this->bank_id])
             ->andFilterWhere(['like', 'term', $this->term])
             ->andFilterWhere(['like', 'summ', $this->summ])
+            ->andFilterWhere(['like', 'min_age', $this->min_age])
+            ->andFilterWhere(['like', 'max_age', $this->max_age])
             ->andFilterWhere(['like', 'rate', $this->rate]);
         return $dataProvider;
     }

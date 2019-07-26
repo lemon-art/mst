@@ -60,6 +60,10 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'rate')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'min_age')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'max_age')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
