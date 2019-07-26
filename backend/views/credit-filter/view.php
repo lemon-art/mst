@@ -39,6 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'term',
             'summ',
             'rate',
+            'min_age',
+            'max_age',
         ],
     ]) ?>
 
