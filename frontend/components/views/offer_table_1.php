@@ -37,6 +37,7 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                             </div>
                         </div>
                     </div>
+                    
                     <div class="credit_filter_col">
                         <span>Ставка</span>
                         <div class="selectWrap">
@@ -57,6 +58,20 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                             </div>
                         </div>
                     </div>
+
+                    <div class="credit_filter_col double_input">
+                        <span>Сумма кредита</span>
+                        <input id="filter-offer-price" type="text" name="" value="" placeholder="Любая" class="input summa">
+                        <div class="selectWrap">
+                            <select name="" style="display: none;">
+                                <option value=""></option>
+                                <option value="">₽</option>
+                                <option value="">$</option>
+                                <option value="">€</option>
+                            </select><div class="nice-select" tabindex="0"><span class="current">₽</span><ul class="list"><li data-value="" class="option"></li><li data-value="" class="option selected">₽</li><li data-value="" class="option">$</li><li data-value="" class="option">€</li></ul></div>
+                        </div>
+                    </div>
+
                     <div class="credit_filter_col">
                         <span>На какой срок</span>
 
@@ -92,22 +107,32 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                             </div>
                         </div>
                     </div>
-                    <div class="credit_filter_col double_input">
-                        <span>Сумма кредита</span>
-                        <input id="filter-offer-price" type="text" name="" value="" placeholder="Любая" class="input summa">
-                        <div class="selectWrap">
-                            <select name="" style="display: none;">
-                                <option value=""></option>
-                                <option value="">₽</option>
-                                <option value="">$</option>
-                                <option value="">€</option>
-                            </select><div class="nice-select" tabindex="0"><span class="current">₽</span><ul class="list"><li data-value="" class="option"></li><li data-value="" class="option selected">₽</li><li data-value="" class="option">$</li><li data-value="" class="option">€</li></ul></div>
-                        </div>
-                    </div>
 
                     <div class="credit_filter_col">
                         <span>Возраст заемщика</span>
                         <input id="filter-offer-age" type="text" name="age" value="" placeholder="Любой" class="input summa">
+                    </div>
+
+                    <div class="credit_filter_col">
+                        <span>Приоритет</span>
+
+                        <div class="selectWrap">
+                            <select name="" style="display: none;">
+                                <option value="">На любой</option>
+                                <option value="1">1 месяц</option>
+                                <option value="3">3 месяца</option>
+                                <option value="6">6 месяцев</option>
+                            </select>
+                            <div class="nice-select" tabindex="0"><span class="current">Любой</span>
+                                <ul id="filter-offer-sort" class="list">
+                                    <li data-value="" class="option selected" >Любой</li>
+                                    <li data-value="" class="option" >Любой</li>
+                                    <li data-value="0" class="option">Низкий</li>
+                                    <li data-value="1" class="option">Средний</li>
+                                    <li data-value="2" class="option">Высокий</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="credit_filter_col">

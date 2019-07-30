@@ -1157,6 +1157,7 @@ function filterOffer() {
 	var bank=$('#filter-offer-bank li.selected').data("value");
 	var rate=$('#filter-offer-rate li.selected').data("value");
 	var ages=$('input[name="age"]').val();
+	var sort=$('#filter-offer-sort li.selected').data("value");
 
 
 
@@ -1245,6 +1246,22 @@ function filterOffer() {
 
 
 
+		if(
+
+			($( this ).data( "sort" )!=sort)
+
+			&&sort!=""
+
+		)
+
+		{
+
+			visible=false;
+
+		}
+		
+
+
         if(visible)
 
 		{
@@ -1268,6 +1285,7 @@ function filterOffer() {
     console.log(price);
     console.log(date);
 	console.log(ages);
+	console.log(sort);
 
 }
 
