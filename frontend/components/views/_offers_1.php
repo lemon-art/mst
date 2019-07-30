@@ -75,7 +75,7 @@ use backend\models\Files;
 									<div class="block">
 
 										<div class="time">от <?=$model['min_term']?> до <?=$model['max_term']?> месяцев</div>
-
+										<div class="time">от <?=$model['min_age']?> до <?=$model['max_age']?> лет</div>
 									</div>
 
 								</div>
