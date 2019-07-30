@@ -1156,7 +1156,7 @@ function filterOffer() {
     var date=$('#filter-offer-date li.selected').data("value");
 	var bank=$('#filter-offer-bank li.selected').data("value");
 	var rate=$('#filter-offer-rate li.selected').data("value");
-	var ages=$('#filter-offer-age').data("value");
+	var ages=$('input[name="age"]').val();
 
 
 

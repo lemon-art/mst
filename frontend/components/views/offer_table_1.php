@@ -107,7 +107,7 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
 
                     <div class="credit_filter_col">
                         <span>Возраст заемщика</span>
-                        <input id="filter-offer-age" type="text" name="" value="" placeholder="Любой" class="input summa">
+                        <input id="filter-offer-age" type="text" name="age" value="" placeholder="Любой" class="input summa">
                     </div>
 
                     <div class="credit_filter_col">
