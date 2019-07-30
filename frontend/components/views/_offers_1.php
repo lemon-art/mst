@@ -13,7 +13,7 @@ if ($model['max_age'] == null) {
 	$model['max_age'] = 100;
 }
 if ($model['sort'] == null) {
-	$model['sort'] = 1;
+	$model['sort'] = 0;
 }
 ?>
 
