@@ -413,4 +413,21 @@ class SiteController extends Controller
             'reviews' => $reviews,
         ]);
     }
+
+    public function actionCredit($code)
+    {
+        $model = Services::findOne(['code' => 1]);
+        if ( !$model )
+            throw new NotFoundHttpException;
+
+        $offersModel    = new OffersSearch();
+        $offersProvider = $offersModel->searchByService( $model->id );
+
+
+        return $this->render('/services/view', [
+            'model' => $model,
+            'offersProvider' => $offersProvider,
+            'code_credit_filter' => $code
+        ]);
+    }
 }
