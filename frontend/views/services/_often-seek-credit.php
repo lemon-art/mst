@@ -7,10 +7,10 @@ use backend\models\CreditFilter;
 
 ?>
 <hr>
-<div class="often-seek-credit">
+<div class="often-seek-credit sectionMarg">
     <div class="container">
         <br>
-        <h2><b>Часто ищут</b></h2>
+        <h2 class="main_title"><b>Часто ищут</b></h2>
         <div class="row">
 
 
