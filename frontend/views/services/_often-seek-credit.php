@@ -19,7 +19,7 @@ use backend\models\CreditFilter;
                     if ($arr['category'] == 0) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
-                        </a>
+                        </a><br>
                     <?php }
                 } ?>
             </div>
@@ -29,7 +29,7 @@ use backend\models\CreditFilter;
                     if ($arr['category'] == 1) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
-						</a>
+						</a><br>
                     <?php }
                 } ?>
             </div>
@@ -39,7 +39,7 @@ use backend\models\CreditFilter;
                     if ($arr['category'] == 2) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
-                        </a>
+                        </a><br>
                     <?php }
                 } ?>
             </div>
@@ -49,7 +49,7 @@ use backend\models\CreditFilter;
                     if ($arr['category'] == 3) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
-                        </a>
+                        </a><br>
                     <?php }
                 } ?>
             </div>
