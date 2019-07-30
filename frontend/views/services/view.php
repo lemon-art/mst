@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ListView;
 use backend\models\Files;
+use backend\models\CreditFilter;
 use frontend\components\OrderForm;
 use frontend\components\DebetForm;
 use frontend\components\Offers;
@@ -84,7 +85,10 @@ $this->params['breadcrumbs'][] = $model->name;
 			</section>
 
 		<?php if ($model->code == 'credit') {
-			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]); ?>
+			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
+
+			$credit_filter = CreditFilter::find()->all();
+			echo $this->render('_often-seek-credit', ['credit-filter' => $credit_filter]); ?>
 			<section class="scheme_work sectionMarg">
 				<div class="cont">
 					<div class="main_title">Схема работы</div>
