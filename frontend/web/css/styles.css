@@ -620,7 +620,7 @@ header .line_menu .contact
     background: #222;
 }.sectionMarg
 {
-    margin-top: 0;
+    margin-top: 60px;
 }.text_block h4
 {
     font-size: 15px;
@@ -2855,8 +2855,4 @@ body {
 
 #w0 {
 	margin-top: -90px;
-}
-
-.often-seek-credit {
-    background-color: #f1f4f7;
 }

@@ -6,8 +6,10 @@ use backend\models\CreditFilter;
 
 
 ?>
+<hr>
 <div class="often-seek-credit">
     <div class="container">
+        <br>
         <h2><b>Часто ищут</b></h2>
         <div class="row">
 
@@ -45,5 +47,6 @@ use backend\models\CreditFilter;
                 } ?>
             </div>
         </div>
+        <br>
     </div>
 </div>
