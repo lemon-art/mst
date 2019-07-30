@@ -1156,6 +1156,8 @@ function filterOffer() {
     var date=$('#filter-offer-date li.selected').data("value");
 	var bank=$('#filter-offer-bank li.selected').data("value");
 	var rate=$('#filter-offer-rate li.selected').data("value");
+	var age=$('#filter-offer-age').val();
+	age = age.replace(/\s/g, '');
 
 
 
@@ -1228,6 +1230,22 @@ function filterOffer() {
 
 
 
+		if(
+
+			($( this ).data( "min-age" )>age||age>$( this ).data( "max-age" ))
+
+			&&age!=""
+
+		)
+
+		{
+
+			visible=false;
+
+		}
+
+
+
         if(visible)
 
 		{
@@ -1252,6 +1270,7 @@ function filterOffer() {
 	console.log(rate);
     console.log(price);
     console.log(date);
+	console.log(age);
 
 }
 

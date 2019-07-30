@@ -76,6 +76,7 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                             <div class="nice-select" tabindex="0"><span class="current">На любой</span>
                                 <ul id="filter-offer-date" class="list">
                                     <li data-value="" class="option selected" >На любой</li>
+                                    <li data-value="" class="option" >На любой</li>
                                     <li data-value="1" class="option">1 месяц</li>
                                     <li data-value="3" class="option">3 месяца</li>
                                     <li data-value="6" class="option">6 месяцев</li>
@@ -102,6 +103,11 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
                                 <option value="">€</option>
                             </select><div class="nice-select" tabindex="0"><span class="current">₽</span><ul class="list"><li data-value="" class="option"></li><li data-value="" class="option selected">₽</li><li data-value="" class="option">$</li><li data-value="" class="option">€</li></ul></div>
                         </div>
+                    </div>
+
+                    <div class="credit_filter_col">
+                        <span>Возраст заемщика</span>
+                        <input id="filter-offer-age" type="text" name="" value="" placeholder="Любой" class="input summa">
                     </div>
 
                     <div class="credit_filter_col">

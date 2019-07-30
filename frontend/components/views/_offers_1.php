@@ -11,7 +11,7 @@ use backend\models\Files;
 
 					
 
-						<div data-element="true" data-name="<?=$model->banks->name ?>" data-rate="<?=$model['rate']?>" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=Tools::numUpdate($model['max_summ'])?>" data-min-price="<?=Tools::numUpdate($model['min_summ'])?>" <?if ( $model->link ):?>class="item offer_link"  href="<?=$model->link?>"<?else:?> class="item modal_link"  href="#modal_call"<?endif;?>>
+						<div data-element="true" data-name="<?=$model->banks->name ?>" data-rate="<?=$model['rate']?>" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=Tools::numUpdate($model['max_summ'])?>" data-min-price="<?=Tools::numUpdate($model['min_summ'])?>" data-max-age="<?=Tools::numUpdate($model['max_age'])?>" data-min-age="<?=Tools::numUpdate($model['min_age'])?>" <?if ( $model->link ):?>class="item offer_link"  href="<?=$model->link?>"<?else:?> class="item modal_link"  href="#modal_call"<?endif;?>>
 
 								<div  class="box small">
 
