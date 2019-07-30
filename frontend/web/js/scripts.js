@@ -1269,7 +1269,7 @@ function filterOffer() {
 	console.log(rate);
     console.log(price);
     console.log(date);
-	console.log(age);
+	console.log(ages);
 
 }
 
