@@ -2556,7 +2556,7 @@ footer .links .link
     flex-wrap: wrap;
 }.credit_filter .credit_filter_col
 {
-    width: calc(40% - 40px);
+    width: calc(26% - 40px);
     margin-right: 40px;
     margin-bottom: 10px;
 }.credit_filter .credit_filter_col span
