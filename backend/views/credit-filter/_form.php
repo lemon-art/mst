@@ -22,7 +22,7 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'category')->textInput(['maxlength' => true])->dropDownList([
         '0' => 'Популярное',
-        '1' => 'Процентные ставки',
+        '1' => 'Рекомендованное',
         '2' => 'Популярные суммы',
         '3' => 'По сроку'
     ]); ?>
