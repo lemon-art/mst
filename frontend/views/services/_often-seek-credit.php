@@ -6,35 +6,36 @@ use backend\models\CreditFilter;
 
 
 ?>
-<h2>Часто ищут</h2>
-<div class="container">
+<div class="container often-seek-credit">
     <div class="row">
-        <div class="col-sm-3">
-            <h3>Популярное</h3>
+        <h2>Часто ищут</h2>
+
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <h4><b>Популярное</b></h4>
             <?php foreach ($credit_filter as $arr){
                 if ($arr['category'] = 0) {
                     echo $arr['url_name'];
                 }
             } ?>
         </div>
-        <div class="col-sm-3">
-            <h3>Рекомендованное</h3>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <h4><b>Рекомендованное</b></h4>
             <?php foreach ($credit_filter as $arr){
                 if ($arr['category'] = 1) {
                     echo $arr['url_name'];
                 }
             } ?>
         </div>
-        <div class="col-sm-3">
-            <h3>Популярные суммы</h3>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <h4><b>Популярные суммы</b></h4>
             <?php foreach ($credit_filter as $arr){
                 if ($arr['category'] = 2) {
                     echo $arr['url_name'];
                 }
             } ?>
         </div>
-        <div class="col-sm-3">
-            <h3>По сроку</h3>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <h4><b>По сроку</b></h4>
             <?php foreach ($credit_filter as $arr){
                 if ($arr['category'] = 3) {
                     echo $arr['url_name'];
