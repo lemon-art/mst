@@ -9,8 +9,7 @@ use backend\models\CreditFilter;
 <hr>
 <div class="often-seek-credit sectionMarg">
     <div class="container">
-        <br>
-        <h2 class="main_title"><b>Часто ищут</b></h2>
+        <h2 class="main_title" align="center"><b>Часто ищут</b></h2>
         <div class="row">
 
 
@@ -47,6 +46,5 @@ use backend\models\CreditFilter;
                 } ?>
             </div>
         </div>
-        <br>
     </div>
 </div>
