@@ -1264,9 +1264,7 @@ function filterOffer() {
 
 
     });
-
-	console.log(bank);
-	console.log(rate);
+	
     console.log(price);
     console.log(date);
 	console.log(ages);
