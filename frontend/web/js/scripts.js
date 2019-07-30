@@ -1156,8 +1156,7 @@ function filterOffer() {
     var date=$('#filter-offer-date li.selected').data("value");
 	var bank=$('#filter-offer-bank li.selected').data("value");
 	var rate=$('#filter-offer-rate li.selected').data("value");
-	var age=$('#filter-offer-age').val();
-	age = age.replace(/\s/g, '');
+	var ages=$('#filter-offer-age').val();
 
 
 
@@ -1232,9 +1231,9 @@ function filterOffer() {
 
 		if(
 
-			($( this ).data( "min-age" )>age||age>$( this ).data( "max-age" ))
+			($( this ).data( "min-age" )>ages||ages>$( this ).data( "max-age" ))
 
-			&&age!=""
+			&&ages!=""
 
 		)
 
