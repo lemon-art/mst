@@ -4,6 +4,14 @@ use yii\helpers\Html;
 use backend\models\Tools;
 use backend\models\Files;
 
+
+
+if ($model['min_age'] == null) {
+	$model['min_age'] = 0;
+}
+if ($model['max_age'] == null) {
+	$model['max_age'] = 100;
+}
 ?>
 
 
