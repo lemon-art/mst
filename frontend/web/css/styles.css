@@ -2560,12 +2560,10 @@ footer .links .link
     margin-right: 40px;
     margin-bottom: 10px;
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (max-width: 1200px) {
     .credit_filter .credit_filter_col
     {
         width: calc(26% - 40px);
-        margin-right: 40px;
-        margin-bottom: 10px;
     }
 }
 .credit_filter .credit_filter_col span
