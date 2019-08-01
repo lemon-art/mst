@@ -17,6 +17,7 @@ Disallow: /admin/
 Disallow: /*?q=
 Disallow: /*personal
 Sitemap: https://<?= $subdomain ?>marketvibor.ru/sitemap.xml
+Clean-param: utm_campaign&utm_medium&utm_source&utm_term&utm_content
 
 #User-agent: Google
 #Sitemap: https://<?= $subdomain ?>marketvibor.ru/video-sitemap.xml
@@ -31,9 +32,9 @@ Disallow: /*?q=
 Disallow: /*personal
 Host: https://<?= $subdomain ?>MarketVibor.ru
 Sitemap: htps://<?= $subdomain ?>marketvibor.ru/sitemap.xml
+Clean-param: utm_campaign&utm_medium&utm_source&utm_term&utm_content
 
 User-agent: AhrefsBot
 Disallow: /
 
-Clean-param: utm_campaign&utm_medium&utm_source&utm_term&utm_content
 
