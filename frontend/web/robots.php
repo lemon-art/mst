@@ -35,3 +35,5 @@ Sitemap: htps://<?= $subdomain ?>marketvibor.ru/sitemap.xml
 User-agent: AhrefsBot
 Disallow: /
 
+Clean-param: utm_campaign&utm_medium&utm_source&utm_term&utm_content
+

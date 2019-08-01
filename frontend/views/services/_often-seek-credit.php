@@ -1,12 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use backend\models\CreditFilter;
-
 
 
 ?>
-<br>
+<br><br>
 <hr>
 <div class="often-seek-credit sectionMarg">
     <div class="container">
