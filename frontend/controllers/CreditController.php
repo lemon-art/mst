@@ -35,7 +35,22 @@ use common\models\CuiteCrm;
 
 class CreditController extends Controller
 {
-    public function actionIndex()
+
+    
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+    
+
+    public function actionView($code)
     {
         $model = Services::findOne(['code' => 1]);
         if ( !$model )
@@ -45,12 +60,6 @@ class CreditController extends Controller
         $offersProvider = $offersModel->searchByService(1);
 
 
-        return $this->render('index', [
-            'model' => $model,
-            'offersProvider' => $offersProvider,
-            //'code_credit_filter' => $code
-        ]);
-        //return $this->render('about');
+        return $this->render('view', ['model' => $model, 'offersProvider' => $offersProvider]);
     }
-    
 }
