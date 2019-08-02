@@ -29,12 +29,12 @@ class CreditController extends Controller
     public function actionView($code)
     {
 
-        $model = Services::findOne(['code' => $code]);
+        $model = Services::findOne(['code' => 'credit']);
         if ( !$model )
             throw new NotFoundHttpException;
 
         $offersModel    = new OffersSearch();
-        $offersProvider = $offersModel->searchByService( $model->id );
+        $offersProvider = $offersModel->searchByService(1);
 
 
         return $this->render('view', [
