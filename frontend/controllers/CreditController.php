@@ -2,36 +2,12 @@
 namespace frontend\controllers;
 
 use Yii;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use dektrium\user\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
-use frontend\components\CurrentCity;
-use yii\helpers\Url;
-use app\models\Atricles;
-use app\models\AtriclesSearch;
 use app\models\Services;
 use app\models\ServicesSearch;
-use app\models\Banks;
-use app\models\BanksSearch;
-use app\models\OffersSearch;
-use app\models\OrdersSearch;
-use app\models\Reviews;
-use app\models\ReviewsSearch;
-use app\models\Request;
-use app\models\RequestPartners;
-use app\models\Pages;
-use backend\models\Search;
-use dektrium\user\models\Profile;
-use backend\models\Mailer;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use common\models\CuiteCrm;
+use yii\filters\VerbFilter;
+use app\models\OffersSearch;
 
 class CreditController extends Controller
 {
@@ -48,18 +24,22 @@ class CreditController extends Controller
             ],
         ];
     }
-    
+
 
     public function actionView($code)
     {
-        $model = Services::findOne(['code' => 1]);
+
+        $model = Services::findOne(['code' => $code]);
         if ( !$model )
             throw new NotFoundHttpException;
 
         $offersModel    = new OffersSearch();
-        $offersProvider = $offersModel->searchByService(1);
+        $offersProvider = $offersModel->searchByService( $model->id );
 
 
-        return $this->render('view', ['model' => $model, 'offersProvider' => $offersProvider]);
+        return $this->render('view', [
+            'model' => $model,
+            'offersProvider' => $offersProvider
+        ]);
     }
 }
