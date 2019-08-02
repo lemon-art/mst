@@ -227,10 +227,9 @@ $city = CurrentCity::currentCity();
 	*/
    ?>
     <?if ( Yii::$app->request->url !== Yii::$app->homeUrl ):?>
-
-		<?php if ( Yii::app()->controller->id != 'services' ) {?>
-        <?php// if ( strpos(Yii::$app->request->url, 'services')  === false ) {?>
-			<section class="section_inner">
+	
+		<?php if ( strpos(Yii::$app->request->url, 'services')  === false ) {?>
+			<section class="section_inner">Yii::app()->controller->id
 				<div class="cont">
 					<?=
 					Breadcrumbs::widget(
