@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\CreditFilter;
 use Yii;
 use app\models\Services;
 use app\models\ServicesSearch;
@@ -35,11 +36,13 @@ class CreditController extends Controller
 
         $offersModel    = new OffersSearch();
         $offersProvider = $offersModel->searchByService(1);
+        $often_seek = CreditFilter::find()->all();
 
 
         return $this->render('view', [
             'model' => $model,
-            'offersProvider' => $offersProvider
+            'offersProvider' => $offersProvider,
+            'often_seek' => $often_seek
         ]);
     }
 }

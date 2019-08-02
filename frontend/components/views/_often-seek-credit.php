@@ -13,7 +13,7 @@ use yii\helpers\Html;
             <br>
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <h4><b>Популярное</b></h4>
-                <?php foreach ($credit_filter as $arr){
+                <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 0) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
@@ -23,7 +23,7 @@ use yii\helpers\Html;
             </div>
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <h4><b>Рекомендованное</b></h4>
-                <?php foreach ($credit_filter as $arr){
+                <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 1) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
@@ -33,7 +33,7 @@ use yii\helpers\Html;
             </div>
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <h4><b>Популярные суммы</b></h4>
-                <?php foreach ($credit_filter as $arr){
+                <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 2) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
@@ -43,7 +43,7 @@ use yii\helpers\Html;
             </div>
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <h4><b>По сроку</b></h4>
-                <?php foreach ($credit_filter as $arr){
+                <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 3) { ?>
                         <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
