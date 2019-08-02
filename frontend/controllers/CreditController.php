@@ -34,6 +34,10 @@ class CreditController extends Controller
         if ( !$model )
             throw new NotFoundHttpException;
 
+        $credit_filter = CreditFilter::findOne(['code' => $code]);
+        if ( !$credit_filter )
+            throw new NotFoundHttpException;
+
         $offersModel    = new OffersSearch();
         $offersProvider = $offersModel->searchByService(1);
         $often_seek = CreditFilter::find()->all();
@@ -42,7 +46,8 @@ class CreditController extends Controller
         return $this->render('view', [
             'model' => $model,
             'offersProvider' => $offersProvider,
-            'often_seek' => $often_seek
+            'often_seek' => $often_seek,
+            'credit_filter' => $credit_filter
         ]);
     }
 }
