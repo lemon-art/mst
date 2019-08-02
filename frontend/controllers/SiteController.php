@@ -416,19 +416,19 @@ class SiteController extends Controller
 
     public function actionCredit()
     {
-//        $model = Services::findOne(['code' => 1]);
-//        if ( !$model )
-//            throw new NotFoundHttpException;
-//
-//        $offersModel    = new OffersSearch();
-//        $offersProvider = $offersModel->searchByService(1);
-//
-//
-//        return $this->render('@app/frontend/views/services/view.php', [
-//            'model' => $model,
-//            'offersProvider' => $offersProvider,
-//            //'code_credit_filter' => $code
-//        ]);
-        return $this->render('about');
+        $model = Services::findOne(['code' => 1]);
+        if ( !$model )
+            throw new NotFoundHttpException;
+
+        $offersModel    = new OffersSearch();
+        $offersProvider = $offersModel->searchByService(1);
+
+
+        return $this->render('credit', [
+            'model' => $model,
+            'offersProvider' => $offersProvider,
+            //'code_credit_filter' => $code
+        ]);
+        //return $this->render('about');
     }
 }
