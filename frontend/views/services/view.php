@@ -87,9 +87,9 @@ $this->params['breadcrumbs'][] = $model->name;
 		<?php if ($model->code == 'credit') {
 			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
 
-			//$credit_filter = CreditFilter::find()->all();
-			//echo $this->render('_often-seek-credit', ['credit_filter' => $credit_filter]);
-			// ?>
+			$credit_filter = CreditFilter::find()->all();
+			echo $this->render('_often-seek-credit', ['credit_filter' => $credit_filter]);
+			 ?>
 			<section class="scheme_work sectionMarg">
 				<div class="cont">
 					<div class="main_title">Схема работы</div>
