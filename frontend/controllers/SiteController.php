@@ -421,7 +421,7 @@ class SiteController extends Controller
             throw new NotFoundHttpException;
 
         $offersModel    = new OffersSearch();
-        $offersProvider = $offersModel->searchByService( 1 );
+        $offersProvider = $offersModel->searchByService(1);
 
 
         return $this->render('/services/view', [
