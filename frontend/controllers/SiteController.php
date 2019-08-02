@@ -424,7 +424,7 @@ class SiteController extends Controller
         $offersProvider = $offersModel->searchByService(1);
 
 
-        return $this->renderFile('/services/view', [
+        return $this->render('@frontend/views/services/view', [
             'model' => $model,
             'offersProvider' => $offersProvider,
             //'code_credit_filter' => $code
