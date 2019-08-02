@@ -88,8 +88,8 @@ $this->params['breadcrumbs'][] = $model->name;
 			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
 
 			$credit_filter = CreditFilter::find()->all();
-			echo $this->render('_often-seek-credit', ['credit_filter' => $credit_filter]);
-			 ?>
+			echo $this->render('@app/components/views/_often-seek-credit.php', ['credit_filter' => $credit_filter]);
+			?>
 			<section class="scheme_work sectionMarg">
 				<div class="cont">
 					<div class="main_title">Схема работы</div>
