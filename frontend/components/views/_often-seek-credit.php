@@ -15,7 +15,7 @@ use yii\helpers\Html;
                 <h4><b>Популярное</b></h4>
                 <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 0) { ?>
-                        <a href="/services-сredit/<?=$arr['code'] ?>">
+                        <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
                         </a><br>
                     <?php }
@@ -25,7 +25,7 @@ use yii\helpers\Html;
                 <h4><b>Рекомендованное</b></h4>
                 <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 1) { ?>
-                        <a href="/services-сredit/<?=$arr['code'] ?>">
+                        <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
 						</a><br>
                     <?php }
@@ -35,7 +35,7 @@ use yii\helpers\Html;
                 <h4><b>Популярные суммы</b></h4>
                 <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 2) { ?>
-                        <a href="/services-сredit/<?=$arr['code'] ?>">
+                        <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
                         </a><br>
                     <?php }
@@ -45,7 +45,7 @@ use yii\helpers\Html;
                 <h4><b>По сроку</b></h4>
                 <?php foreach ($often_seek as $arr){
                     if ($arr['category'] == 3) { ?>
-                        <a href="/services-сredit/<?=$arr['code'] ?>">
+                        <a href="/credit/<?=$arr['code'] ?>">
                             <?=$arr['url_name'] ?>
                         </a><br>
                     <?php }

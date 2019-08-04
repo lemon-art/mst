@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\OffersSearch;
 
-class ServicesCreditController extends Controller
+class CreditController extends Controller
 {
 
     
@@ -47,6 +47,7 @@ class ServicesCreditController extends Controller
             'model' => $model,
             'offersProvider' => $offersProvider,
             'often_seek' => $often_seek,
+            'credit_filter' => $credit_filter
         ]);
     }
 }
