@@ -47,7 +47,6 @@ class CreditController extends Controller
             'model' => $model,
             'offersProvider' => $offersProvider,
             'often_seek' => $often_seek,
-            'credit_filter' => $credit_filter
         ]);
     }
 }
