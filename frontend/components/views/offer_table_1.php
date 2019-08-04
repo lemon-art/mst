@@ -4,10 +4,14 @@ use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
 use backend\models\Offers;
 use backend\models\Banks;
+use backend\models\CreditFilter;
 
 $banks = Banks::find()->select(['id', 'name'])->all();
 $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->groupBy(['rate'])->all();
 
+$code = Yii::$app->controller->action->id;
+$credit_filter = CreditFilter::findOne(['code' => $code]);
+var_dump($credit_filter);
 ?>	
 
 
