@@ -51,7 +51,8 @@ use mihaildev\elfinder\ElFinder;
     <hr>
     <h3>Фильтры</h3>
 
-    <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); array_unshift($items, ""); ?>
+    <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); array_unshift($items, "");
+    var_dump($items);?>
     <?= $form->field($model, 'bank_id')->dropdownList($items); ?>
 
     <?= $form->field($model, 'term')->textInput(['maxlength' => true]) ?>
