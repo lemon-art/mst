@@ -121,7 +121,7 @@ var_dump($filter);
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_date ?></span>
                                 <ul id="filter-offer-date" class="list">
-                                    <li data-value="<?= $filter_date_value ?>" class="option selected" ><?= $filter_date ?></li>
+                                    <li data-value="" class="option selected" ><?= $filter_date ?></li>
                                     <li data-value="" class="option" >На любой</li>
                                     <li data-value="1" class="option">1 месяц</li>
                                     <li data-value="3" class="option">3 месяца</li>
