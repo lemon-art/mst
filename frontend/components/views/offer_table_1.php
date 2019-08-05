@@ -26,6 +26,7 @@ if ($controller == 'credit') {
         $filter_bank = $filter['bank_id'];
         $filter_bank_value = Banks::find()->where(['id' => $filter_bank])->one();
         $filter_bank_value = $filter_bank_value['name'];
+        var_dump($filter_bank_value);
     }
     if ($filter['rate'] != null) {
         $filter_rate = $filter['rate'];
