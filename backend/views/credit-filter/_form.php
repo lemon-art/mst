@@ -51,7 +51,7 @@ use mihaildev\elfinder\ElFinder;
     <hr>
     <h3>Фильтры</h3>
 
-    <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name'); array_unshift($items, "");
+    <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name');
     var_dump($items);?>
     <?= $form->field($model, 'bank_id')->dropdownList($items); ?>
 
