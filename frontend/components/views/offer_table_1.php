@@ -9,8 +9,7 @@ use backend\models\CreditFilter;
 $banks = Banks::find()->select(['id', 'name'])->all();
 $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->groupBy(['rate'])->all();
 
-$code = Yii::$app->controller->action->id;
-$credit_filter = CreditFilter::findOne(['code' => $code]);
+
 var_dump($filter);
 ?>	
 
@@ -143,6 +142,15 @@ var_dump($filter);
                         <a onclick="filterOffer(); gotoform();" href="#table_profitably">Подобрать</a>
                     </div>
                 </div>
+
+                <?php if (Yii::$app->controller->id == 'credit') {
+                    $this->registerJs(<<<JS
+
+                    alert('111');
+JS
+                        , \yii\web\View::POS_READY);
+                } ?>
+
 
 				<div class="table_profitably">
 
