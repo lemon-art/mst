@@ -9,6 +9,14 @@ use backend\models\CreditFilter;
 $banks = Banks::find()->select(['id', 'name'])->all();
 $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->groupBy(['rate'])->all();
 
+$controller = Yii::$app->controller->id;
+
+$filter_bank = 'Все';
+$filter_rate = 'Любая';
+$filter_price = '';
+$filter_date = 'На любой';
+$filter_age = '';
+$filter_sort = 'Любой';
 
 var_dump($filter);
 ?>	
@@ -29,9 +37,9 @@ var_dump($filter);
                                     <option value="<?= $bank['name'] ?>"><?= $bank['name'] ?></option>
                                 <?php } ?>
                             </select>
-                            <div class="nice-select" tabindex="0"><span id="filter-bank" class="current">Все</span>
+                            <div class="nice-select" tabindex="0"><span class="current"><?= $filter_bank ?></span>
                                 <ul id="filter-offer-bank" class="list">
-                                    <li id="filter-bank" data-value="" class="option selected" >Все</li>
+                                    <li data-value="" class="option selected"><?= $filter_bank ?></li>
                                     <li data-value="" class="option" >Все</li>
                                     <?php foreach ($banks as $bank) { ?>
                                         <li data-value="<?= $bank['name'] ?>" class="option"><?= $bank['name'] ?></li>
@@ -50,9 +58,9 @@ var_dump($filter);
                                     <option value="<?= $rate['rate'] ?>">от <?= $rate['rate'] ?> % годовых</option>
                                 <?php } ?>
                             </select>
-                            <div class="nice-select" tabindex="0"><span id="filter-rate" class="current">Любая</span>
+                            <div class="nice-select" tabindex="0"><span class="current"><?= $filter_rate ?></span>
                                 <ul id="filter-offer-rate" class="list">
-                                    <li id="filter-rate" data-value="" class="option selected" >Любая</li>
+                                    <li data-value="" class="option selected" ><?= $filter_rate ?></li>
                                     <li data-value="" class="option" >Любая</li>
                                     <?php foreach ($rates as $rate) { ?>
                                         <li data-value="<?= $rate['rate'] ?>" class="option">от <?= $rate['rate'] ?> % годовых</li>
@@ -64,7 +72,7 @@ var_dump($filter);
 
                     <div class="credit_filter_col double_input">
                         <span>Сумма кредита</span>
-                        <input id="filter-offer-price filter-price" type="text" name="" value="" placeholder="Любая" class="input summa">
+                        <input id="filter-offer-price" type="text" name="" value="<?= $filter_price ?>" placeholder="Любая" class="input summa">
                         <div class="selectWrap">
                             <select name="" style="display: none;">
                                 <option value=""></option>
@@ -91,9 +99,9 @@ var_dump($filter);
                                 <option value="48">4 года</option>
                                 <option value="60">5 лет</option>
                             </select>
-                            <div class="nice-select" tabindex="0"><span id="filter-term" class="current">На любой</span>
+                            <div class="nice-select" tabindex="0"><span class="current"><?= $filter_date ?></span>
                                 <ul id="filter-offer-date" class="list">
-                                    <li id="filter-term" data-value="" class="option selected" >На любой</li>
+                                    <li data-value="" class="option selected" ><?= $filter_date ?></li>
                                     <li data-value="" class="option" >На любой</li>
                                     <li data-value="1" class="option">1 месяц</li>
                                     <li data-value="3" class="option">3 месяца</li>
@@ -113,7 +121,7 @@ var_dump($filter);
 
                     <div class="credit_filter_col">
                         <span>Возраст заемщика</span>
-                        <input id="filter-offer-age filter-age" type="text" name="age" value="" placeholder="Любой" class="input summa">
+                        <input id="filter-offer-age" type="text" name="age" value="<?= $filter_age ?>" placeholder="Любой" class="input summa">
                     </div>
 
                     <div class="credit_filter_col">
@@ -126,9 +134,9 @@ var_dump($filter);
                                 <option value="3">3 месяца</option>
                                 <option value="6">6 месяцев</option>
                             </select>
-                            <div class="nice-select" tabindex="0"><span id="filter-sort" class="current">Любой</span>
+                            <div class="nice-select" tabindex="0"><span class="current"><?= $filter_sort ?></span>
                                 <ul id="filter-offer-sort" class="list">
-                                    <li id="filter-sort" data-value="" class="option selected" >Любой</li>
+                                    <li data-value="" class="option selected" ><?= $filter_sort ?></li>
                                     <li data-value="" class="option" >Любой</li>
                                     <li data-value="0" class="option">Низкий</li>
                                     <li data-value="1" class="option">Средний</li>
@@ -143,10 +151,11 @@ var_dump($filter);
                     </div>
                 </div>
 
-                <?php if (Yii::$app->controller->id == 'credit') {
+                <?php if ($controller == 'credit') {
                     $this->registerJs(<<<JS
-
-                    alert('111');
+                    
+                    filterOffer(); gotoform();
+                    
 JS
                         , \yii\web\View::POS_READY);
                 } ?>
