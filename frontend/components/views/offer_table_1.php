@@ -39,7 +39,7 @@ if ($controller == 'credit') {
         $filter_date_value = $filter_date;
     }
 }
-var_dump($filter);
+
 ?>	
 
 
