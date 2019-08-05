@@ -26,7 +26,7 @@ if ($controller == 'credit') {
         $filter_bank_value = $filter['bank_id'];
         $filter_bank = Banks::find()->where(['id' => $filter_bank_value])->one();
         $filter_bank = $filter_bank['name'];
-        
+
     }
     if ($filter['rate'] != null) {
         $filter_rate = $filter['rate'];
@@ -61,7 +61,7 @@ if ($controller == 'credit') {
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_bank ?></span>
                                 <ul id="filter-offer-bank" class="list">
-                                    <li data-value="<?= $filter_bank_value ?>" class="option selected"><?= $filter_bank ?></li>
+                                    <li data-value="<?= $filter_bank ?>" class="option selected"><?= $filter_bank ?></li>
                                     <li data-value="" class="option" >Все</li>
                                     <?php foreach ($banks as $bank) { ?>
                                         <li data-value="<?= $bank['name'] ?>" class="option"><?= $bank['name'] ?></li>
