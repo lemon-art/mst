@@ -17,6 +17,7 @@ $filter_rate = 'Любая';
 $filter_rate_value = '';
 $filter_price = '';
 $filter_date = 'На любой';
+$filter_date_value = '';
 $filter_age = '';
 $filter_sort = 'Любой';
 
