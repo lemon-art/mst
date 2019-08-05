@@ -12,7 +12,9 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
 $controller = Yii::$app->controller->id;
 
 $filter_bank = 'Все';
+$filter_bank_value = '';
 $filter_rate = 'Любая';
+$filter_rate_value = '';
 $filter_price = '';
 $filter_date = 'На любой';
 $filter_age = '';
@@ -21,15 +23,18 @@ $filter_sort = 'Любой';
 if ($controller == 'credit') {
     if ($filter['bank_id'] != 0) {
         $filter_bank = $filter['bank_id'];
+        $filter_bank_value = Banks::find()->select(['name'])->where(['id' => $filter_bank])->one();
     }
     if ($filter['rate'] != null) {
         $filter_rate = $filter['rate'];
+        $filter_rate_value = $filter_rate;
     }
     if ($filter['summ'] != null) {
         $filter_price = $filter['summ'];
     }
     if ($filter['term'] != null) {
         $filter_date = $filter['term'];
+        $filter_date_value = $filter_date;
     }
 }
 var_dump($filter);
@@ -53,7 +58,7 @@ var_dump($filter);
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_bank ?></span>
                                 <ul id="filter-offer-bank" class="list">
-                                    <li data-value="<?= $banks[$filter_bank] ?>" class="option selected"><?= $filter_bank ?></li>
+                                    <li data-value="<?= $filter_bank_value ?>" class="option selected"><?= $filter_bank ?></li>
                                     <li data-value="" class="option" >Все</li>
                                     <?php foreach ($banks as $bank) { ?>
                                         <li data-value="<?= $bank['name'] ?>" class="option"><?= $bank['name'] ?></li>
@@ -74,7 +79,7 @@ var_dump($filter);
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_rate ?></span>
                                 <ul id="filter-offer-rate" class="list">
-                                    <li data-value="" class="option selected" ><?= $filter_rate ?></li>
+                                    <li data-value="<?= $filter_rate_value ?>" class="option selected" ><?= $filter_rate ?></li>
                                     <li data-value="" class="option" >Любая</li>
                                     <?php foreach ($rates as $rate) { ?>
                                         <li data-value="<?= $rate['rate'] ?>" class="option">от <?= $rate['rate'] ?> % годовых</li>
@@ -115,7 +120,7 @@ var_dump($filter);
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_date ?></span>
                                 <ul id="filter-offer-date" class="list">
-                                    <li data-value="" class="option selected" ><?= $filter_date ?></li>
+                                    <li data-value="<?= $filter_date_value ?>" class="option selected" ><?= $filter_date ?></li>
                                     <li data-value="" class="option" >На любой</li>
                                     <li data-value="1" class="option">1 месяц</li>
                                     <li data-value="3" class="option">3 месяца</li>
