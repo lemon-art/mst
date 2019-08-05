@@ -11,7 +11,7 @@ $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->gro
 
 $code = Yii::$app->controller->action->id;
 $credit_filter = CreditFilter::findOne(['code' => $code]);
-var_dump($credit_filter);
+var_dump($filter);
 ?>	
 
 

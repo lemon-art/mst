@@ -9,10 +9,11 @@ use app\models\Request;
 
 class Offers extends Widget {
 
-   public $service_id;
-   public $offersProvider;
+    public $service_id;
+    public $offersProvider;
+    public $filter;
 
-   public function init()
+    public function init()
     {   
         parent::init();
     }
@@ -23,7 +24,8 @@ class Offers extends Widget {
 		
 		return $this->render('offer_table_' . $this -> service_id , [
 			'offersProvider' => $this -> offersProvider,
-			'service_id' => $this -> service_id
+			'service_id' => $this -> service_id,
+            'filter' => $this -> filter
 		]);
     }
 }

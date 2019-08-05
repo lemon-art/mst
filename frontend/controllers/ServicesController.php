@@ -61,12 +61,13 @@ class ServicesController extends Controller
 		$offersModel    = new OffersSearch();
 		$offersProvider = $offersModel->searchByService( $model->id );
         $often_seek = CreditFilter::find()->all();
-		
-		
+
+        $credit_filter = 'test';
 		return $this->render('view', [
             'model' => $model,
 			'offersProvider' => $offersProvider,
-            'often_seek' => $often_seek
+            'often_seek' => $often_seek,
+            'credit_filter' => $credit_filter
         ]);
     }
 	

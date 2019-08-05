@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $model->name;
 			</section>
 
 		<?php if ($model->code == 'credit') {
-			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
+			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider, 'filter' => $credit_filter]);
 
 			echo $this->render('@app/components/views/_often-seek-credit.php', ['often_seek' => $often_seek]);
 			?>
@@ -116,7 +116,7 @@ $this->params['breadcrumbs'][] = $model->name;
 					<?=$model->scheme?>
 				</div>
 			</section>
-			<?php echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider]);
+			<?php echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider, 'filter' => $credit_filter]);
 		} ?>
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
