@@ -18,6 +18,20 @@ $filter_date = 'На любой';
 $filter_age = '';
 $filter_sort = 'Любой';
 
+if ($controller == 'credit') {
+    if ($filter['bank_id'] != 0) {
+        $filter_bank = $filter['bank_id'];
+    }
+    if ($filter['rate'] != null) {
+        $filter_rate = $filter['rate'];
+    }
+    if ($filter['summ'] != null) {
+        $filter_price = $filter['summ'];
+    }
+    if ($filter['term'] != null) {
+        $filter_date = $filter['term'];
+    }
+}
 var_dump($filter);
 ?>	
 
