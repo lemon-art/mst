@@ -36,8 +36,10 @@ if ($controller == 'credit') {
         $filter_price = $filter['summ'];
     }
     if ($filter['term'] != null) {
-        $filter_date = $filter['term'];
-        $filter_date_value = $filter_date;
+        $filter_date_value = $filter['term'];
+        $filter_date = $filter_date_value;
+        $filter_date = $filter_date.' мес.';
+
     }
 }
 
@@ -123,7 +125,7 @@ if ($controller == 'credit') {
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_date ?></span>
                                 <ul id="filter-offer-date" class="list">
-                                    <li data-value="" class="option selected" ><?= $filter_date ?></li>
+                                    <li data-value="<?= $filter_date_value ?>" class="option selected" ><?= $filter_date ?></li>
                                     <li data-value="" class="option" >На любой</li>
                                     <li data-value="1" class="option">1 месяц</li>
                                     <li data-value="3" class="option">3 месяца</li>
