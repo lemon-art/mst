@@ -154,20 +154,20 @@ $city = CurrentCity::currentCity();
 						<a href="/services/credit/">
 							<span>Кредиты</span>
 						</a>
+						<a href="/services/credit-cards/">
+							<span>Кредитные карты</span>
+						</a>
+						<a href="/services/credit-auto/">
+							<span>Автокредиты</span>
+						</a>
 						<a href="/services/ipoteka/">
 							<span>Ипотека</span>
 						</a>
 						<a href="/services/deposit/">
 							<span>Депозиты</span>
 						</a>
-						<a href="/services/credit-cards/">
-							<span>Кредитные карты</span>
-						</a>
 						<a href="/services/debet-cards/">
 							<span>Дебетовые карты</span>
-						</a>
-						<a href="/services/credit-auto/">
-							<span>Автокредиты</span>
 						</a>
                         <a href="/services/rko/">
                             <span>РКО</span>
