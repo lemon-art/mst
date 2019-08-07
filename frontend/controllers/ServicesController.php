@@ -64,7 +64,7 @@ class ServicesController extends Controller
 		$offersProvider = $offersModel->searchByService( $model->id );
         $often_seek = CreditFilter::find()->all();
         
-        $credit_filter = 'test';
+        $credit_filter = '';
 		return $this->render('view', [
             'model' => $model,
 			'offersProvider' => $offersProvider,

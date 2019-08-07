@@ -6,6 +6,7 @@ use yii\widgets\ListView;
 use backend\models\Offers;
 use backend\models\Banks;
 use backend\models\CreditFilter;
+use yii\widgets\Pjax;
 
 $banks = Banks::find()->select(['id', 'name'])->all();
 $rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->groupBy(['rate'])->all();
@@ -198,7 +199,7 @@ JS
 
 						<div class="box ">Преимущества</div>
 					</div>
-
+                    <?php Pjax::begin(); ?>
 						<?
 						echo ListView::widget([
 							'dataProvider' => $offersProvider,
@@ -223,7 +224,7 @@ JS
 						]);
 
 						?>
-
+                    <?php Pjax::end(); ?>
 					
 						
 
