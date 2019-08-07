@@ -65,7 +65,7 @@ class ServicesController extends Controller
         $often_seek = CreditFilter::find()->all();
 
         $countQuery = clone $offersProvider;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 20]);
+        $pages = new Pagination(['defaultPageSize' => 20, 'totalCount' => $countQuery->count()]);
         $pages->pageSizeParam = false;
         $offersProvider = $offersProvider->offset($pages->offset)
             ->limit($pages->limit)
