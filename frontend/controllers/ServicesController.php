@@ -6,6 +6,7 @@ use backend\models\CreditFilter;
 use Yii;
 use app\models\Services;
 use app\models\ServicesSearch;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,12 +63,20 @@ class ServicesController extends Controller
 		$offersProvider = $offersModel->searchByService( $model->id );
         $often_seek = CreditFilter::find()->all();
 
+        $countQuery = clone $offersProvider;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 20]);
+        $pages->pageSizeParam = false;
+        $offersProvider = $offersProvider->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
         $credit_filter = 'test';
 		return $this->render('view', [
             'model' => $model,
 			'offersProvider' => $offersProvider,
             'often_seek' => $often_seek,
-            'credit_filter' => $credit_filter
+            'credit_filter' => $credit_filter,
+            'pages' => $pages,
         ]);
     }
 	

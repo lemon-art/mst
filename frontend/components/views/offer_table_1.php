@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\LinkPager;
 use yii\widgets\ListView;
 use backend\models\Offers;
 use backend\models\Banks;
@@ -220,6 +221,10 @@ JS
 							// ...
 							],
 						]);
+
+                        echo LinkPager::widget([
+                            'pagination' => $pages,
+                        ]);
 						?>
 
 					
