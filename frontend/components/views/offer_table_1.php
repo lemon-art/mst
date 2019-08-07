@@ -206,20 +206,26 @@ JS
 								return $this->render('_offers_1', ['model' => $model, 'index' => $index+1]);
 							},
 							'layout' 	  => '{items}',
-							//'id'          => false,
+							'id'          => false,
 							'emptyText'   => 'Приносим извинения, информация обновляется. Скоро мы все запустим. Телефон для связи: +7 (495) 120-62-00',
-//							'itemOptions' => [
-//							    'tag' => false,
-//							],
+							'itemOptions' => [
+							    'tag' => false,
+							],
 							'options' => [
 								'tag'=>'div',
 								'class' => 'mob_profitably owl-carousel'
 							],
-//							'viewParams' => [
-//                                'fullView' => false,
-//                                'context' => 'main-page',
-//                                // ...
-//							],
+							'viewParams' => [
+                                'fullView' => false,
+                                'context' => 'main-page',
+                                // ...
+							],
+                            'pager' => [
+                                'pagination'=> [
+                                    'pageSize' => 3,
+                                    'params'=>['flag_last'=>1]
+                                ]
+                            ],
 						]);
 
 //                        echo LinkPager::widget([
