@@ -222,9 +222,9 @@ JS
 							],
 						]);
 
-                        echo LinkPager::widget([
-                            'pagination' => $pages,
-                        ]);
+//                        echo LinkPager::widget([
+//                            'pagination' => $pages,
+//                        ]);
 						?>
 
 					
