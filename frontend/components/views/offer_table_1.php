@@ -222,7 +222,7 @@ JS
 							],
                             'pager' => [
                                 'pagination'=> [
-                                    'pageSize' => 3,
+                                    'pageSize' => 10,
                                     'params'=>['flag_last'=>1]
                                 ]
                             ],
