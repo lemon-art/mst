@@ -7,6 +7,7 @@ use Yii;
 use app\models\Services;
 use app\models\ServicesSearch;
 use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
