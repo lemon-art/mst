@@ -115,6 +115,7 @@ class OffersSearch extends Offers
 		]);
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'sort' => ['defaultOrder' => ['sort' => SORT_DESC]],
 			'pagination' => [
 				'pageSize' => 40,
 			],
