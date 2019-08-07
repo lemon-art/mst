@@ -115,6 +115,9 @@ class OffersSearch extends Offers
 		]);
 		$dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40,
+			],
         ]);
 		return $dataProvider;
 	}
