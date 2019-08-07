@@ -205,7 +205,7 @@ JS
 							'itemView'     => function ($model, $key, $index, $widget) {
 								return $this->render('_offers_1', ['model' => $model, 'index' => $index+1]);
 							},
-							'layout' 	  => '{items}',
+							'layout' 	  => '{items}\n{pager}',
 							'id'          => false,
 							'emptyText'   => 'Приносим извинения, информация обновляется. Скоро мы все запустим. Телефон для связи: +7 (495) 120-62-00',
 							'itemOptions' => [
@@ -220,17 +220,8 @@ JS
                                 'context' => 'main-page',
                                 // ...
 							],
-                            'pager' => [
-                                'pagination'=> [
-                                    'pageSize' => 10,
-                                    'params'=>['flag_last'=>1]
-                                ]
-                            ],
 						]);
 
-//                        echo LinkPager::widget([
-//                            'pagination' => $pages,
-//                        ]);
 						?>
 
 					

@@ -63,21 +63,13 @@ class ServicesController extends Controller
 		$offersModel    = new OffersSearch();
 		$offersProvider = $offersModel->searchByService( $model->id );
         $often_seek = CreditFilter::find()->all();
-
-//        $countQuery = clone $offersProvider;
-//        $pages = new Pagination(['defaultPageSize' => 20, 'totalCount' => $countQuery->count()]);
-//        $pages->pageSizeParam = false;
-//        $offersProvider = $offersProvider->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->all();
-        $pages = '';
+        
         $credit_filter = 'test';
 		return $this->render('view', [
             'model' => $model,
 			'offersProvider' => $offersProvider,
             'often_seek' => $often_seek,
-            'credit_filter' => $credit_filter,
-            'pages' => $pages,
+            'credit_filter' => $credit_filter
         ]);
     }
 	

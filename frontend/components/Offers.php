@@ -12,7 +12,6 @@ class Offers extends Widget {
     public $service_id;
     public $offersProvider;
     public $filter;
-    public $pages;
     public function init()
     {   
         parent::init();
@@ -20,13 +19,11 @@ class Offers extends Widget {
 
     public function run()
     {   
-		
-		
+        
 		return $this->render('offer_table_' . $this -> service_id , [
 			'offersProvider' => $this -> offersProvider,
 			'service_id' => $this -> service_id,
-            'filter' => $this -> filter,
-            'pages' => $this -> pages
+            'filter' => $this -> filter
 		]);
     }
 }
