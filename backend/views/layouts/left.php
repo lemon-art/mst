@@ -19,6 +19,17 @@ use yii\helpers\Html;
 					['label' => 'Заказ сотрудничества', 'icon' => 'handshake-o', 'url' => ['/requestp']],
                     ['label' => 'Контент', 'icon' => 'newspaper-o', 'url' => ['/debug'],
 						'items' => [
+							['label' => 'Предложения', 'icon' => 'gear', 'url' => ['/offers-credit'],
+								'items' => [
+									['label' => 'Кредиты', 'icon' => 'circle-o', 'url' => ['/offers-credit'],],
+									['label' => 'Кредитные карты', 'icon' => 'circle-o', 'url' => ['/offers-creditcards'],],
+									['label' => 'Автокредит', 'icon' => 'circle-o', 'url' => ['/offers-autocredit'],],
+									['label' => 'Ипотека', 'icon' => 'circle-o', 'url' => ['/offers-ipoteka'],],
+									['label' => 'Депозиты', 'icon' => 'circle-o', 'url' => ['/offers-deposit'],],
+									['label' => 'Дебетовые карты', 'icon' => 'circle-o', 'url' => ['/offers-debetcards'],],
+									['label' => 'РКО', 'icon' => 'circle-o', 'url' => ['/offers-rko'],],
+								]
+							],
 							['label' => 'Предложения', 'icon' => 'circle-o', 'url' => ['/offers'],],
 							['label' => 'Услуги', 'icon' => 'circle-o', 'url' => ['/services'],],
 							['label' => 'Банки', 'icon' => 'circle-o', 'url' => ['/banks'],],
