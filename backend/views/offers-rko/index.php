@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OffersRkoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Offers Rkos';
+$this->title = 'РКО';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-rko-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Offers Rko', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить РКО', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,17 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'activ',
-            'special',
-            'main_page',
-            //'bank_id',
-            //'rate',
+            //'special',
+            //'main_page',
+            'bank_id',
+            'rate',
             //'link',
             //'preview_text:ntext',
             //'image',
-            //'sort',
+            'sort',
             //'rko_service',
             //'rko_open',
 

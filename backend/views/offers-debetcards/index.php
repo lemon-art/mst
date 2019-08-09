@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OffersDebetcardsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Offers Debetcards';
+$this->title = 'Дебетовые карты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-debetcards-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Offers Debetcards', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить дебетовую карту', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,17 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'activ',
-            'special',
-            'main_page',
-            //'bank_id',
-            //'rate',
+            //'special',
+            //'main_page',
+            'bank_id',
+            'rate',
             //'link',
             //'preview_text:ntext',
             //'image',
-            //'sort',
+            'sort',
             //'residue',
             //'cash_back',
             //'maintenance_cost',

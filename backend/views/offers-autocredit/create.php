@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\OffersAutocredit */
 
-$this->title = 'Create Offers Autocredit';
-$this->params['breadcrumbs'][] = ['label' => 'Offers Autocredits', 'url' => ['index']];
+$this->title = 'Добавить автокредит';
+$this->params['breadcrumbs'][] = ['label' => 'Автокредиты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-autocredit-create">

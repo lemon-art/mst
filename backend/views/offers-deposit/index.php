@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OffersDepositSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Offers Deposits';
+$this->title = 'Депозиты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-deposit-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Offers Deposit', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить депозит', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,19 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'activ',
-            'bank_id',
+            //'id',
             'name',
+            'activ',
+            //'special',
+            //'main_page',
+            'bank_id',
             'rate',
+            //'link',
             //'preview_text:ntext',
             //'image',
-            //'special',
-            //'sort',
-            //'main_page',
+            'sort',
             //'depozit_term',
             //'depozit_summ',
-            //'link',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

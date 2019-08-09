@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\OffersIpoteka */
 
-$this->title = 'Create Offers Ipoteka';
-$this->params['breadcrumbs'][] = ['label' => 'Offers Ipotekas', 'url' => ['index']];
+$this->title = 'Добавить ипотеку';
+$this->params['breadcrumbs'][] = ['label' => 'Ипотека', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-ipoteka-create">

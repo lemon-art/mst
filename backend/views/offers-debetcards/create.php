@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\OffersDebetcards */
 
-$this->title = 'Create Offers Debetcards';
-$this->params['breadcrumbs'][] = ['label' => 'Offers Debetcards', 'url' => ['index']];
+$this->title = 'Добавить дебетовую карту';
+$this->params['breadcrumbs'][] = ['label' => 'Дебетовые карты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-debetcards-create">

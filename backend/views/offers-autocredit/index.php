@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\OffersAutocreditSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Offers Autocredits';
+$this->title = 'Автокредиты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-autocredit-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Offers Autocredit', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить автокредит', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,17 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'activ',
-            'special',
-            'main_page',
-            //'bank_id',
-            //'rate',
+            //'special',
+            //'main_page',
+            'bank_id',
+            'rate',
             //'link',
             //'preview_text:ntext',
             //'image',
-            //'sort',
+            'sort',
             //'min_summ',
             //'max_summ',
             //'min_term',

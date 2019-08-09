@@ -19,7 +19,7 @@ use yii\helpers\Html;
 					['label' => 'Заказ сотрудничества', 'icon' => 'handshake-o', 'url' => ['/requestp']],
                     ['label' => 'Контент', 'icon' => 'newspaper-o', 'url' => ['/debug'],
 						'items' => [
-							['label' => 'Предложения', 'icon' => 'gear', 'url' => ['/offers-credit'],
+							['label' => 'Предложения', 'icon' => 'star', 'url' => ['/offers-credit'],
 								'items' => [
 									['label' => 'Кредиты', 'icon' => 'circle-o', 'url' => ['/offers-credit'],],
 									['label' => 'Кредитные карты', 'icon' => 'circle-o', 'url' => ['/offers-creditcards'],],
