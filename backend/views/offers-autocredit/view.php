@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'max_summ',
             'min_term',
             'max_term',
+            'initial_payment',
         ],
     ]) ?>
 

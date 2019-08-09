@@ -19,8 +19,8 @@ use Yii;
  * @property int $image
  * @property int $sort
  * @property string $initial_payment
- * @property string $min_summ_ipoteka
- * @property string $max_summ_ipoteka
+ * @property int $min_summ_ipoteka
+ * @property int $max_summ_ipoteka
  */
 class OffersIpoteka extends \yii\db\ActiveRecord
 {
@@ -39,9 +39,9 @@ class OffersIpoteka extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank_id', 'max_summ_ipoteka'], 'required'],
-            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort'], 'integer'],
+            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort', 'min_summ_ipoteka', 'max_summ_ipoteka'], 'integer'],
             [['preview_text'], 'string'],
-            [['name', 'link', 'initial_payment', 'min_summ_ipoteka', 'max_summ_ipoteka'], 'string', 'max' => 255],
+            [['name', 'link', 'initial_payment'], 'string', 'max' => 255],
         ];
     }
 

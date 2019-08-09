@@ -22,6 +22,7 @@ use Yii;
  * @property int $max_summ
  * @property int $min_term
  * @property int $max_term
+ * @property int $initial_payment
  */
 class OffersAutocredit extends \yii\db\ActiveRecord
 {
@@ -40,7 +41,7 @@ class OffersAutocredit extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank_id'], 'required'],
-            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort', 'min_summ', 'max_summ', 'min_term', 'max_term'], 'integer'],
+            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort', 'min_summ', 'max_summ', 'min_term', 'max_term', 'initial_payment'], 'integer'],
             [['preview_text'], 'string'],
             [['name', 'link'], 'string', 'max' => 255],
         ];
@@ -67,6 +68,7 @@ class OffersAutocredit extends \yii\db\ActiveRecord
             'max_summ' => 'Максимальная сумма',
             'min_term' => 'Минимальный срок',
             'max_term' => 'Максимальный срок',
+            'initial_payment' => 'Первоначальный платеж',
         ];
     }
 }

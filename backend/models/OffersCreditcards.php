@@ -19,8 +19,8 @@ use Yii;
  * @property int $image
  * @property int $sort
  * @property string $grace_period
- * @property string $min_summ_kreditcard
- * @property string $max_summ_kreditcard
+ * @property int $min_summ_kreditcard
+ * @property int $max_summ_kreditcard
  */
 class OffersCreditcards extends \yii\db\ActiveRecord
 {
@@ -39,9 +39,9 @@ class OffersCreditcards extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank_id'], 'required'],
-            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort'], 'integer'],
+            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort', 'min_summ_kreditcard', 'max_summ_kreditcard'], 'integer'],
             [['preview_text'], 'string'],
-            [['name', 'link', 'grace_period', 'min_summ_kreditcard', 'max_summ_kreditcard'], 'string', 'max' => 255],
+            [['name', 'link', 'grace_period'], 'string', 'max' => 255],
         ];
     }
 
