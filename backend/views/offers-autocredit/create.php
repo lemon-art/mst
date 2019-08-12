@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = 'Добавить автокредит';
 $this->params['breadcrumbs'][] = ['label' => 'Автокредиты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$model->sort = 1; //средний приоритет по умолчанию
 ?>
 <div class="offers-autocredit-create">
 

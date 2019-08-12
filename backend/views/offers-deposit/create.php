@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = 'Добавить депозит';
 $this->params['breadcrumbs'][] = ['label' => 'Депозиты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$model->sort = 1; //средний приоритет по умолчанию
 ?>
 <div class="offers-deposit-create">
 

@@ -9,6 +9,8 @@ use yii\helpers\Html;
 $this->title = 'Добавить кредитную карту';
 $this->params['breadcrumbs'][] = ['label' => 'Кредитные карты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$model->sort = 1; //средний приоритет по умолчанию
 ?>
 <div class="offers-creditcards-create">
 
