@@ -24,23 +24,49 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'name',
-            'activ',
-            //'special',
-            //'main_page',
-            'bank_id',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function($model){
+                    return Html::a($model->name,['update', 'id' => $model->id]);
+                },
+            ],
+            [
+                'attribute' => 'activ',
+                'format' => 'raw',
+                'options' => ['style' => 'width: 65px; max-width: 65px;'],
+                'value' => function($model){
+                    if ( $model->activ ){
+                        return 'да';
+                    }
+                    else {
+                        return 'нет';
+                    }
+                },
+            ],
+            [
+                'attribute' => 'bank_id',
+                'value' => function($model){
+                    return $model->banks->name;
+                }
+            ],
             'rate',
-            //'link',
-            //'preview_text:ntext',
-            //'image',
-            'sort',
-            //'initial_payment',
-            //'min_summ_ipoteka',
-            //'max_summ_ipoteka',
+            [
+                'attribute' => 'special',
+                'format' => 'raw',
+                'value' => function($model){
+                    if ( $model->special ){
+                        return 'да';
+                    }
+                    else
+                        return false;
 
-            ['class' => 'yii\grid\ActionColumn'],
+                },
+            ],
+            [
+                'class' => \yii\grid\ActionColumn::className(),
+                'template'=>'{delete}',
+            ]
         ],
     ]); ?>
 </div>

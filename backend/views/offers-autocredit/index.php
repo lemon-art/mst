@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\OffersAutocreditSearch */
@@ -11,7 +12,7 @@ $this->title = 'Автокредиты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offers-autocredit-index">
-
+    <?php Pjax::begin(); ?>
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -24,25 +25,49 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'name',
-            'activ',
-            //'special',
-            //'main_page',
-            'bank_id',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function($model){
+                    return Html::a($model->name,['update', 'id' => $model->id]);
+                },
+            ],
+            [
+                'attribute' => 'activ',
+                'format' => 'raw',
+                'options' => ['style' => 'width: 65px; max-width: 65px;'],
+                'value' => function($model){
+                    if ( $model->activ ){
+                        return 'да';
+                    }
+                    else {
+                        return 'нет';
+                    }
+                },
+            ],
+            [
+                'attribute' => 'bank_id',
+                'value' => function($model){
+                    return $model->banks->name;
+                }
+            ],
             'rate',
-            //'link',
-            //'preview_text:ntext',
-            //'image',
-            'sort',
-            //'min_summ',
-            //'max_summ',
-            //'min_term',
-            //'max_term',
-            //'initial_payment',
+            [
+                'attribute' => 'special',
+                'format' => 'raw',
+                'value' => function($model){
+                    if ( $model->special ){
+                        return 'да';
+                    }
+                    else
+                        return false;
 
-            ['class' => 'yii\grid\ActionColumn'],
+                },
+            ],
+            [
+                'class' => \yii\grid\ActionColumn::className(),
+                'template'=>'{delete}',
+            ]
         ],
     ]); ?>
 </div>
