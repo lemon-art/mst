@@ -2,50 +2,78 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Banks;
+use mihaildev\ckeditor\CKEditor;
+use backend\models\Files;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\OffersAutocredit */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="offers-autocredit-form">
 
-<div class="offers-autocredit-form">
+                <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'class' => 'form-control']);?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'activ')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']); ?>
 
-    <?= $form->field($model, 'activ')->textInput() ?>
+                <?= $form->field($model, 'special')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
 
-    <?= $form->field($model, 'special')->textInput() ?>
+                <?= $form->field($model, 'main_page')->checkbox(array('value'=>1, 'uncheckValue'=>0), ['maxlength' => true, 'class' => 'form-control']);?>
 
-    <?= $form->field($model, 'main_page')->textInput() ?>
+                <?= $form->field($model, 'bank_id')->dropDownList(Banks::GetList(), ['maxlength' => true, 'class' => 'form-control']);?>
 
-    <?= $form->field($model, 'bank_id')->textInput() ?>
+                <?= $form->field($model, 'rate')->textInput(['maxlength' => true, 'class' => 'form-control']);?>
+            
+                <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'rate')->textInput() ?>
+                <?=  $form->field($model, 'preview_text')->widget(CKEditor::className(),[
+                    'editorOptions' => [
+                        'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                        'inline' => false, //по умолчанию false
+                    ],
+                ])->label(false);?>
 
-    <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
+                <label for="exampleInputEmail1"><?=$model->getAttributeLabel('image');?></label>
+                <br>
+                <?if ( $model->image ):?>
+                    <?=Html::img(Files::getPath($model->image),[
+                        'style' => 'width:150px;'
+                    ]);?>
+                    <br><br>
+                <?endif;?>
 
-    <?= $form->field($model, 'preview_text')->textarea(['rows' => 6]) ?>
+                <?= $form->field($model, 'image')->fileInput()->label(false);?>
 
-    <?= $form->field($model, 'image')->textInput() ?>
+                <?= $form->field($model, 'sort')->textInput(['maxlength' => true])->dropDownList([
+                    '0' => 'Низкий',
+                    '1' => 'Средний',
+                    '2' => 'Высокий'
+                ]); ?>
+                
+                
+                <?= $form->field($model, 'min_summ')->textInput() ?>
 
-    <?= $form->field($model, 'sort')->textInput() ?>
+                <?= $form->field($model, 'max_summ')->textInput() ?>
 
-    <?= $form->field($model, 'min_summ')->textInput() ?>
+                <?= $form->field($model, 'min_term')->textInput() ?>
 
-    <?= $form->field($model, 'max_summ')->textInput() ?>
+                <?= $form->field($model, 'max_term')->textInput() ?>
 
-    <?= $form->field($model, 'min_term')->textInput() ?>
+                <?= $form->field($model, 'initial_payment')->textInput() ?>
 
-    <?= $form->field($model, 'max_term')->textInput() ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+                </div>
 
-    <?= $form->field($model, 'initial_payment')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+                <?php ActiveForm::end(); ?>
+            </div>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
