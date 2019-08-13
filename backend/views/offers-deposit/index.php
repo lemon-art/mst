@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model){
                     if ($model->sort >= 2){
                         return 'Высокий';
-                    } elseif ($model->priority == 1) {
+                    } elseif ($model->sort == 1) {
                         return 'Средний';
                     } else {
                         return 'Низкий';

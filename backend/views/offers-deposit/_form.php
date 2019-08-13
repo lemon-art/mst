@@ -14,7 +14,7 @@ use backend\models\Files;
     <!-- left column -->
     <div class="col-md-12">
         <!-- general form elements -->
-        <div class="box box-primary">
+        <div class="">
             <div class="offers-deposit-form">
             
                 <?php $form = ActiveForm::begin(); ?>
