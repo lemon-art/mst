@@ -14,8 +14,6 @@ $model->sort = 1; //средний приоритет по умолчанию
 ?>
 <div class="offers-credit-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
