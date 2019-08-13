@@ -66,7 +66,9 @@ class OffersCreditController extends Controller
     {
         $model = new OffersCredit();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->rate = $model->rate * 100;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -86,7 +88,9 @@ class OffersCreditController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->rate = $model->rate * 100;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
