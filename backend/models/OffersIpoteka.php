@@ -39,8 +39,9 @@ class OffersIpoteka extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank_id', 'max_summ_ipoteka'], 'required'],
-            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort', 'min_summ_ipoteka', 'max_summ_ipoteka'], 'integer'],
+            [['activ', 'special', 'main_page', 'bank_id', 'image', 'sort', 'min_summ_ipoteka', 'max_summ_ipoteka'], 'integer'],
             [['preview_text'], 'string'],
+            [['rate'], 'double'],
             [['name', 'link', 'initial_payment'], 'string', 'max' => 255],
         ];
     }

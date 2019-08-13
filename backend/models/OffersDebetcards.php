@@ -39,8 +39,9 @@ class OffersDebetcards extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank_id'], 'required'],
-            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort'], 'integer'],
+            [['activ', 'special', 'main_page', 'bank_id', 'image', 'sort'], 'integer'],
             [['preview_text'], 'string'],
+            [['rate'], 'double'],
             [['name', 'link', 'residue', 'cash_back', 'maintenance_cost'], 'string', 'max' => 255],
         ];
     }

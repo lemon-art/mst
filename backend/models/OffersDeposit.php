@@ -37,9 +37,10 @@ class OffersDeposit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['activ', 'bank_id', 'rate', 'image', 'special', 'sort', 'main_page'], 'integer'],
+            [['activ', 'bank_id', 'image', 'special', 'sort', 'main_page'], 'integer'],
             [['bank_id', 'name'], 'required'],
             [['preview_text'], 'string'],
+            [['rate'], 'double'],
             [['name', 'depozit_term', 'depozit_summ', 'link'], 'string', 'max' => 255],
         ];
     }

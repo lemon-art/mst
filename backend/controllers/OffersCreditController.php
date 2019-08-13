@@ -69,7 +69,15 @@ class OffersCreditController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->rate = $model->rate * 100;
             $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $searchModel = new OffersCreditSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
         }
 
         return $this->render('create', [
@@ -91,7 +99,14 @@ class OffersCreditController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->rate = $model->rate * 100;
             $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $searchModel = new OffersCreditSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
         }
 
         return $this->render('update', [
