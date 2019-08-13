@@ -50,7 +50,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    return $model->banks->name;
 //                }
 //            ],
-            'rate',
+            [
+                'attribute' => 'rate',
+                'format' => 'raw',
+                'value' => function($model){
+                    return $model->rate / 100;
+                },
+            ],
             [
                 'attribute' => 'special',
                 'format' => 'raw',
