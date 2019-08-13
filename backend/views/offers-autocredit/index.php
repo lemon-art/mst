@@ -65,6 +65,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'attribute' => 'sort',
+                'format' => 'raw',
+                'options' => ['style' => 'width: 80px; max-width: 80px;'],
+                'value' => function($model){
+                    if ($model->priority >= 2){
+                        return 'Высокий';
+                    } elseif ($model->priority == 1) {
+                        return 'Средний';
+                    } else {
+                        return 'Низкий';
+                    }
+                },
+            ],
+            [
                 'class' => \yii\grid\ActionColumn::className(),
                 'template'=>'{delete}',
             ]
