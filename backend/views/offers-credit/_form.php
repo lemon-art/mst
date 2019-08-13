@@ -9,6 +9,10 @@ use backend\models\Files;
 /* @var $this yii\web\View */
 /* @var $model app\models\OffersCredit */
 /* @var $form yii\widgets\ActiveForm */
+
+if ($model->rate != 0) {
+    $model->rate = $model->rate / 100;
+}
 ?>
 <div class="row">
     <!-- left column -->
