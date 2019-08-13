@@ -42,8 +42,9 @@ class OffersCredit extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'bank_id'], 'required'],
-            [['activ', 'special', 'main_page', 'bank_id', 'rate', 'image', 'sort', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age'], 'integer'],
+            [['activ', 'special', 'main_page', 'bank_id', 'image', 'sort', 'min_summ', 'max_summ', 'min_term', 'max_term', 'min_age', 'max_age'], 'integer'],
             [['preview_text'], 'string'],
+            [['rate'], 'double'],
             [['name', 'link'], 'string', 'max' => 255],
         ];
     }
