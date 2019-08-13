@@ -66,8 +66,19 @@ class OffersCreditcardsController extends Controller
     {
         $model = new OffersCreditcards();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->rate = $model->rate * 100;
+            $model->save();
+
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $searchModel = new OffersCreditcardsSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+            //return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -86,8 +97,19 @@ class OffersCreditcardsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->rate = $model->rate * 100;
+            $model->save();
+
+            //return $this->redirect(['view', 'id' => $model->id]);
+            $searchModel = new OffersCreditcardsSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+            //return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
