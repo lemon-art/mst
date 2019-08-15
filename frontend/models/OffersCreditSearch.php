@@ -39,7 +39,7 @@ class OffersCreditSearch extends OffersCredit
         $query->andFilterWhere([
             //'service_id' => $service_id,
             'activ' => 1,
-            'banks.active' => 1
+            //'banks.active' => 1
         ]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
