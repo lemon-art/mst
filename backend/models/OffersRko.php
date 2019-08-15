@@ -31,6 +31,11 @@ class OffersRko extends \yii\db\ActiveRecord
         return 'offers_rko';
     }
 
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
+    }
+
     /**
      * {@inheritdoc}
      */

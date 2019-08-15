@@ -32,6 +32,11 @@ class OffersIpoteka extends \yii\db\ActiveRecord
         return 'offers_ipoteka';
     }
 
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
+    }
+    
     /**
      * {@inheritdoc}
      */

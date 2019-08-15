@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\OffersCredit;
+use app\models\OffersCredit;
 
 /**
  * OffersCreditSearch represents the model behind the search form of `app\models\OffersCredit`.

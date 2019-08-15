@@ -31,6 +31,11 @@ class OffersDeposit extends \yii\db\ActiveRecord
         return 'offers_deposit';
     }
 
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
+    }
+    
     /**
      * {@inheritdoc}
      */

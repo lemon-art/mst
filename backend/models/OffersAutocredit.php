@@ -34,6 +34,11 @@ class OffersAutocredit extends \yii\db\ActiveRecord
         return 'offers_autocredit';
     }
 
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
+    }
+    
     /**
      * {@inheritdoc}
      */

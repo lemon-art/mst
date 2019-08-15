@@ -32,6 +32,11 @@ class OffersDebetcards extends \yii\db\ActiveRecord
         return 'offers_debetcards';
     }
 
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
+    }
+    
     /**
      * {@inheritdoc}
      */
