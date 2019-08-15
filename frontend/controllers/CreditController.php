@@ -8,7 +8,7 @@ use app\models\ServicesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\OffersSearch;
+use app\models\OffersCreditSearch;
 
 class CreditController extends Controller
 {
@@ -38,8 +38,10 @@ class CreditController extends Controller
         if ( !$credit_filter )
             throw new NotFoundHttpException;
 
-        $offersModel    = new OffersSearch();
-        $offersProvider = $offersModel->searchByService(1);
+        $offersModel    = new OffersCreditSearch();
+        $offersProvider = $offersModel->searchByService();
+//        $offersModel    = new OffersSearch();
+//        $offersProvider = $offersModel->searchByService(1);
         $often_seek = CreditFilter::find()->all();
 
 

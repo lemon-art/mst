@@ -1,8 +1,9 @@
 <?php
 
-namespace backend\models;
+namespace app\models;
 
 use Yii;
+use app\models\Banks;
 
 /**
  * This is the model class for table "offers_debetcards".
@@ -30,6 +31,11 @@ class OffersDebetcards extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'offers_debetcards';
+    }
+
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
     }
 
     /**

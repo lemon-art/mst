@@ -1,8 +1,9 @@
 <?php
 
-namespace backend\models;
+namespace app\models;
 
 use Yii;
+use app\models\Banks;
 
 /**
  * This is the model class for table "offers_ipoteka".
@@ -32,6 +33,11 @@ class OffersIpoteka extends \yii\db\ActiveRecord
         return 'offers_ipoteka';
     }
 
+    public function getBanks()
+    {
+        return $this->hasOne(Banks::className(),['id'=>'bank_id']);
+    }
+    
     /**
      * {@inheritdoc}
      */

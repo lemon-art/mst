@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace app\models;
 
 use Yii;
 use yii\base\Model;
@@ -32,6 +32,25 @@ class OffersCreditSearch extends OffersCredit
         return Model::scenarios();
     }
 
+    public function searchByService()
+    {
+
+        $query = OffersCredit::find()->joinWith(['banks']);
+        $query->andFilterWhere([
+            //'service_id' => $service_id,
+            'activ' => 1,
+            'banks.active' => 1
+        ]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['sort' => SORT_DESC]],
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+        return $dataProvider;
+    }
+    
     /**
      * Creates data provider instance with search query applied
      *

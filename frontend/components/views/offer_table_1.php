@@ -3,13 +3,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 use yii\widgets\ListView;
-use backend\models\Offers;
+use backend\models\OffersCredit;
 use backend\models\Banks;
 use backend\models\CreditFilter;
 use yii\widgets\Pjax;
 
 $banks = Banks::find()->select(['id', 'name'])->all();
-$rates = Offers::find()->select(['id', 'rate'])->where(['service_id' => 1])->groupBy(['rate'])->all();
+$rates = OffersCredit::find()->select(['id', 'rate'])->groupBy(['rate'])->all();
 
 $controller = Yii::$app->controller->id;
 
