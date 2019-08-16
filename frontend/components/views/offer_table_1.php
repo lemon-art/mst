@@ -12,6 +12,7 @@ $banks = Banks::find()->select(['id', 'name'])->all();
 $rates = OffersCredit::find()->select(['id', 'rate'])->groupBy(['rate'])->all();
 
 $controller = Yii::$app->controller->id;
+$offersProvider->rate = $offersProvider->rate / 100;
 
 $filter_bank = 'Все';
 $filter_bank_value = '';
