@@ -42,7 +42,7 @@ class CreditFilter extends \yii\db\ActiveRecord
         return [
             [['code', 'url_name', 'category'], 'required'],
             [['code', 'url_name', 'title', 'description', 'name', 'rate'], 'string', 'max' => 255],
-            [['id', 'category', 'bank_id', 'term', 'summ', 'min_age', 'max_age'], 'integer'],
+            [['category', 'bank_id', 'term', 'summ', 'min_age', 'max_age'], 'integer'],
         ];
     }
 

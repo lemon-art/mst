@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Фильтры кредитов', 
 $this->params['breadcrumbs'][] = $this->title;
 
 $model->category = 0; //популярное по умолчанию
+$model->bank_id = 0;
 ?>
 <div class="credit-filter-create">
 
