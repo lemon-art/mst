@@ -12,9 +12,6 @@ if ($model['min_age'] == null) {
 if ($model['max_age'] == null) {
 	$model['max_age'] = 100;
 }
-if ($model['sort'] == null) {
-	$model['sort'] = 0;
-}
 ?>
 
 
@@ -22,7 +19,7 @@ if ($model['sort'] == null) {
 
 					
 
-						<div data-element="true" data-name="<?=$model->banks->name ?>" data-rate="<?=$model['rate']?>" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=Tools::numUpdate($model['max_summ'])?>" data-min-price="<?=Tools::numUpdate($model['min_summ'])?>" data-max-age="<?=$model['max_age']?>" data-min-age="<?=$model['min_age']?>" data-sort="<?=$model['sort']?>" <?if ( $model->link ):?>class="item offer_link"  href="<?=$model->link?>"<?else:?> class="item modal_link"  href="#modal_call"<?endif;?>>
+						<div data-element="true" data-name="<?=$model->banks->name ?>" data-rate="<?=$model['rate']?>" data-min-term="<?=$model['min_term']?>" data-max-term="<?=$model['max_term']?>" data-max-price="<?=Tools::numUpdate($model['max_summ'])?>" data-min-price="<?=Tools::numUpdate($model['min_summ'])?>" data-max-age="<?=$model['max_age']?>" data-min-age="<?=$model['min_age']?>" <?if ( $model->link ):?>class="item offer_link"  href="<?=$model->link?>"<?else:?> class="item modal_link"  href="#modal_call"<?endif;?>>
 
 								<div  class="box small">
 
