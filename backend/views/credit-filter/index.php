@@ -31,7 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'term',
             'summ',
-            'rate',
+            [
+                'attribute' => 'rate',
+                'format' => 'raw',
+                'value' => function($model){
+                    return $model->rate / 100;
+                },
+            ],
+            'min_age',
+            'max_age',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
