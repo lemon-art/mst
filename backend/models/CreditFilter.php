@@ -17,7 +17,7 @@ use Yii;
  * @property string $top_text
  * @property string $seo_text
  * @property int $bank_id
- * @property string $rate
+ * @property int $rate
  * @property int $term
  * @property int $summ
  * @property int $min_age
@@ -41,8 +41,8 @@ class CreditFilter extends \yii\db\ActiveRecord
     {
         return [
             [['code', 'url_name', 'category'], 'required'],
-            [['code', 'url_name', 'title', 'description', 'name', 'rate'], 'string', 'max' => 255],
-            [['category', 'bank_id', 'term', 'summ', 'min_age', 'max_age'], 'integer'],
+            [['code', 'url_name', 'title', 'description', 'name'], 'string', 'max' => 255],
+            [['category', 'bank_id', 'rate', 'term', 'summ', 'min_age', 'max_age'], 'integer'],
         ];
     }
 
