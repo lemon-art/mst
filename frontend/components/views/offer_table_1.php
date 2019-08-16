@@ -81,7 +81,7 @@ if ($controller == 'credit') {
                             <select name="" style="display: none;">
                                 <option value="">Любая</option>
                                 <?php foreach ($rates as $rate) { ?>
-                                    <option value="<?= $rate['rate'] / 100 ?>">от <?= $rate['rate'] ?> % годовых</option>
+                                    <option value="<?= $rate['rate'] / 100 ?>">от <?= $rate['rate'] / 100 ?> % годовых</option>
                                 <?php } ?>
                             </select>
                             <div class="nice-select" tabindex="0"><span class="current"><?= $filter_rate ?></span>
@@ -89,7 +89,7 @@ if ($controller == 'credit') {
                                     <li data-value="<?= $filter_rate_value ?>" class="option selected" ><?= $filter_rate ?></li>
                                     <li data-value="" class="option" >Любая</li>
                                     <?php foreach ($rates as $rate) { ?>
-                                        <li data-value="<?= $rate['rate'] / 100 ?>" class="option">от <?= $rate['rate'] ?> % годовых</li>
+                                        <li data-value="<?= $rate['rate'] / 100 ?>" class="option">от <?= $rate['rate'] / 100 ?> % годовых</li>
                                     <?php } ?>
                                 </ul>
                             </div>
