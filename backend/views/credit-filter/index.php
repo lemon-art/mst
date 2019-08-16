@@ -24,10 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            
             'code',
-            'url_name',
+            [
+                'attribute' => 'url_name',
+                'format' => 'raw',
+                'value' => function($model){
+                    return Html::a($model->url_name,['update', 'id' => $model->id]);
+                },
+            ],
             'title',
             'term',
             'summ',
@@ -40,8 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'min_age',
             'max_age',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => \yii\grid\ActionColumn::className(),
+                'template'=>'{delete}',
+            ]
         ],
     ]); ?>
 </div>
