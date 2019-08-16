@@ -56,6 +56,7 @@ if ($model->rate != 0) {
     <h3>Фильтры</h3>
 
     <?php $items = ArrayHelper::map(Banks::find()->all(), 'id', 'name');
+    array_unshift($items, "0", "");
     var_dump($items);?>
     <?= $form->field($model, 'bank_id')->dropdownList($items); ?>
 
