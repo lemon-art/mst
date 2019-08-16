@@ -206,7 +206,7 @@ JS
 							'itemView'     => function ($model, $key, $index, $widget) {
 								return $this->render('_offers_1', ['model' => $model, 'index' => $index+1]);
 							},
-							'layout' 	  => "{items}\n{pager}",
+							'layout' 	  => "{items}",//\n{pager}
 							'id'          => false,
 							'emptyText'   => 'Приносим извинения, информация обновляется. Скоро мы все запустим. Телефон для связи: +7 (495) 120-62-00',
 							'itemOptions' => [
