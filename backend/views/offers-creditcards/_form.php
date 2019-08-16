@@ -9,7 +9,7 @@ use backend\models\Files;
 /* @var $this yii\web\View */
 /* @var $model app\models\OffersCreditcards */
 /* @var $form yii\widgets\ActiveForm */
-if ($model->rate != 0) {
+if ($model->rate != null) {
     $model->rate = $model->rate / 100;
 }
 ?>
