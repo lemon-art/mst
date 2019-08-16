@@ -10,6 +10,10 @@ use mihaildev\elfinder\ElFinder;
 /* @var $this yii\web\View */
 /* @var $model app\models\CreditFilter */
 /* @var $form yii\widgets\ActiveForm */
+
+if ($model->rate != 0) {
+    $model->rate = $model->rate / 100;
+}
 ?>
 
 <div class="credit-filter-form">

@@ -21,7 +21,6 @@ $filter_price = '';
 $filter_date = 'На любой';
 $filter_date_value = '';
 $filter_age = '';
-$filter_sort = 'Любой';
 
 if ($controller == 'credit') {
     if ($filter['bank_id'] != 0) {
@@ -148,28 +147,6 @@ if ($controller == 'credit') {
                     <div class="credit_filter_col">
                         <span>Возраст заемщика</span>
                         <input id="filter-offer-age" type="text" name="age" value="<?= $filter_age ?>" placeholder="Любой" class="input summa">
-                    </div>
-
-                    <div class="credit_filter_col">
-                        <span>Приоритет</span>
-
-                        <div class="selectWrap">
-                            <select name="" style="display: none;">
-                                <option value="">На любой</option>
-                                <option value="1">1 месяц</option>
-                                <option value="3">3 месяца</option>
-                                <option value="6">6 месяцев</option>
-                            </select>
-                            <div class="nice-select" tabindex="0"><span class="current"><?= $filter_sort ?></span>
-                                <ul id="filter-offer-sort" class="list">
-                                    <li data-value="" class="option selected" ><?= $filter_sort ?></li>
-                                    <li data-value="" class="option" >Любой</li>
-                                    <li data-value="0" class="option">Низкий</li>
-                                    <li data-value="1" class="option">Средний</li>
-                                    <li data-value="2" class="option">Высокий</li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="credit_filter_col">
