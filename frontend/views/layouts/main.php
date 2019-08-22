@@ -228,7 +228,11 @@ $city = CurrentCity::currentCity();
    ?>
     <?if ( Yii::$app->request->url !== Yii::$app->homeUrl ):?>
 	
-		<?php if ( strpos(Yii::$app->request->url, 'services')  !== true || strpos(Yii::$app->request->url, 'marketvibor.ru/credit/')  !== true ) { ?>
+		<?php if ( strpos(Yii::$app->request->url, 'services')  === true || strpos(Yii::$app->request->url, 'marketvibor.ru/credit/')  === true ) {?>
+			<?= $content ?>
+
+			
+		<?php } else { ?>
 			<section class="section_inner">
 				<div class="cont">
 					<?=
@@ -245,21 +249,18 @@ $city = CurrentCity::currentCity();
 							'activeItemTemplate' => "{link}",
 						]
 					) ?>
-					
+				
 
 					<div class="title_inner"><?= Html::encode($this->title) ?></div>
 				</div>
 			</section>
-			
+
 			<section class="sectionMarg">
 				<div class="cont">
 					<?= $content ?>
 				</div>
 			</section>
-			
-		<?php } else { ?>
-			<?= $content ?>
-		<?php }?>
+		<?php } ?>
 		
 
 		
