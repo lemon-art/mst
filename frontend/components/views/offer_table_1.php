@@ -30,7 +30,7 @@ if ($controller == 'credit') {
 
     }
     if ($filter['rate'] != null) {
-        $filter_rate = $filter['rate'];
+        $filter_rate = $filter['rate'] / 100;
         $filter_rate_value = $filter_rate;
     }
     if ($filter['summ'] != null) {
@@ -38,11 +38,14 @@ if ($controller == 'credit') {
     }
     if ($filter['term'] != null) {
         $filter_date_value = $filter['term'];
-        $filter_date = $filter_date_value;
-        $filter_date = $filter_date.' мес.';
+        $filter_date = $filter_date_value.' мес.';
 
     }
+    if ($filter['min_age'] != null) {
+        $filter_age = $filter['min_age'];
+    }
 }
+
 
 ?>	
 

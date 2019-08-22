@@ -12,6 +12,7 @@ if ($model['min_age'] == null) {
 if ($model['max_age'] == null) {
 	$model['max_age'] = 100;
 }
+$model['rate'] /= 100;
 ?>
 
 
@@ -54,7 +55,7 @@ if ($model['max_age'] == null) {
 
 									<div class="block">
 
-										<div class="rate">от <?=$model['rate']?> % годовых</div>
+										<div class="rate">от <?=$model['rate'] ?> % годовых</div>
 
 									</div>
 
