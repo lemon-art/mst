@@ -229,7 +229,7 @@ $city = CurrentCity::currentCity();
     <?if ( Yii::$app->request->url !== Yii::$app->homeUrl ):?>
 	
 		<?php if ( strpos(Yii::$app->request->url, 'services')  === false ) { ?>
-			<?php if ( strpos(Yii::$app->request->url, 'credit')  === false ) { ?>
+			<?php if ( strpos(Yii::$app->request->url, '/credit/')  === false ) { ?>
 				<section class="section_inner">
 					<div class="cont">
 						<?=
