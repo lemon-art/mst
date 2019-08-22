@@ -229,7 +229,7 @@ $city = CurrentCity::currentCity();
     <?if ( Yii::$app->request->url !== Yii::$app->homeUrl ):?>
 	
 		<?php if ( strpos(Yii::$app->request->url, 'services')  === false ) { ?>
-			<?php if ( strpos(Yii::$app->request->url, 'marketvibor.ru/credit/')  === false ) { ?>
+			<?php if ( strpos(Yii::$app->request->url, 'credit')  === false ) { ?>
 				<section class="section_inner">
 					<div class="cont">
 						<?=
@@ -260,7 +260,7 @@ $city = CurrentCity::currentCity();
 			<?php } else { ?>
 			<?= $content ?>
 			<?php } ?>
-		
+
 		<?php } else { ?>
 			<?= $content ?>
 		<?php } ?>
