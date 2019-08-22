@@ -45,7 +45,7 @@ class OffersCreditSearch extends OffersCredit
             'query' => $query,
             'sort' => ['defaultOrder' => ['sort' => SORT_DESC]],
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 80,
             ],
         ]);
         return $dataProvider;
