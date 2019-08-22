@@ -9,7 +9,7 @@ use backend\models\CreditFilter;
 use yii\widgets\Pjax;
 
 $banks = Banks::find()->select(['id', 'name'])->all();
-$rates = OffersCredit::find()->select(['id', 'rate'])->groupBy(['rate'])->all();
+$rates = OffersCredit::find()->select(['id', 'rate'])->where(['active' => 1])->groupBy(['rate'])->all();
 
 $controller = Yii::$app->controller->id;
 
