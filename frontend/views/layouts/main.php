@@ -228,38 +228,41 @@ $city = CurrentCity::currentCity();
    ?>
     <?if ( Yii::$app->request->url !== Yii::$app->homeUrl ):?>
 	
-		<?php if ( strpos(Yii::$app->request->url, 'services')  === true || strpos(Yii::$app->request->url, 'marketvibor.ru/credit/')  === true ) {?>
+		<?php if ( strpos(Yii::$app->request->url, 'services')  === false ) { ?>
+			<?php if ( strpos(Yii::$app->request->url, 'marketvibor.ru/credit/')  === false ) { ?>
+				<section class="section_inner">
+					<div class="cont">
+						<?=
+						Breadcrumbs::widget(
+							[
+								'homeLink' => ['label' => 'Главная', 'url' => '/'],
+								'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+								'tag' => 'div',
+								'options' => [
+									'class' => 'breadcrumbs',//этот класс стоит по умолчанию
+									'style' => ''//добавили
+								],
+								'itemTemplate' => "{link} <span class='step'></span>",
+								'activeItemTemplate' => "{link}",
+							]
+						) ?>
+
+
+						<div class="title_inner"><?= Html::encode($this->title) ?></div>
+					</div>
+				</section>
+
+				<section class="sectionMarg">
+					<div class="cont">
+						<?= $content ?>
+					</div>
+				</section>
+			<?php } else { ?>
 			<?= $content ?>
-
-			
+			<?php } ?>
+		
 		<?php } else { ?>
-			<section class="section_inner">
-				<div class="cont">
-					<?=
-					Breadcrumbs::widget(
-						[
-							'homeLink' => ['label' => 'Главная', 'url' => '/'],
-							'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-							'tag' => 'div',
-							'options' => [
-								'class' => 'breadcrumbs',//этот класс стоит по умолчанию
-								'style' => ''//добавили
-							],
-							'itemTemplate' => "{link} <span class='step'></span>",
-							'activeItemTemplate' => "{link}",
-						]
-					) ?>
-				
-
-					<div class="title_inner"><?= Html::encode($this->title) ?></div>
-				</div>
-			</section>
-
-			<section class="sectionMarg">
-				<div class="cont">
-					<?= $content ?>
-				</div>
-			</section>
+			<?= $content ?>
 		<?php } ?>
 		
 
