@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\OffersSearch;
+use app\models\OffersCreditSearch;
 /**
  * ServicesController implements the CRUD actions for Services model.
  */
@@ -59,11 +60,16 @@ class ServicesController extends Controller
 		$model = Services::findOne(['code' => $code]);
 		if ( !$model )
 			throw new NotFoundHttpException;
-			
-		$offersModel    = new OffersSearch();
-		$offersProvider = $offersModel->searchByService( $model->id );
+
+        if (Yii::$app->controller->action->id == 'credit') {
+            $offersModel    = new OffersCreditSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else {
+            $offersModel    = new OffersSearch();
+            $offersProvider = $offersModel->searchByService( $model->id );
+        }
+
         $often_seek = CreditFilter::find()->all();
-        
         $credit_filter = '';
 		return $this->render('view', [
             'model' => $model,
