@@ -61,7 +61,7 @@ class ServicesController extends Controller
 		if ( !$model )
 			throw new NotFoundHttpException;
 
-        if (Yii::$app->controller->action->id == 'credit') {
+        if ( strpos(Yii::$app->request->url, '/credit/')  === false ) {
             $offersModel    = new OffersCreditSearch();
             $offersProvider = $offersModel->searchByService();
         } else {
