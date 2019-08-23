@@ -45,7 +45,7 @@ if ($controller == 'credit') {
         $filter_age = $filter['min_age'];
     }
 }
-echo Yii::$app->request->url;
+
 ?>	
 
 
