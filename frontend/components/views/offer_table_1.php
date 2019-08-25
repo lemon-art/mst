@@ -24,10 +24,9 @@ $filter_age = '';
 
 if ($controller == 'credit') {
     if ($filter['bank_id'] != 0) {
-        $filter_bank_value = $filter['bank_id'];
-        $filter_bank = Banks::find()->where(['id' => $filter_bank_value])->one();
+        $filter_bank = Banks::find()->where(['id' => $filter['bank_id']])->one();
         $filter_bank = $filter_bank['name'];
-
+        $filter_bank_value = $filter_bank;
     }
     if ($filter['rate'] != null) {
         $filter_rate = $filter['rate'] / 100;
