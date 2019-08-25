@@ -10,8 +10,26 @@ use frontend\components\DebetForm;
 use frontend\components\Offers;
 use frontend\components\ShortTag;
 use yii\widgets\Breadcrumbs;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
+/* @var $filter backend\models\CreditFilter */
+
+//информация из фильтра
+if ($filter != '') {
+	if ($filter->name) {
+		$model->name = $filter->name;
+	}
+	if ($filter->top_text) {
+		$model->top_text = $filter->top_text;
+	}
+	if ($filter->title) {
+		$model->title = $filter->title;
+	}
+	if ($filter->description) {
+		$model->description = $filter->description;
+	}
+}
 
 //шорт теги
 $model->title = ShortTag::cityTag($model->title);
@@ -85,7 +103,7 @@ $this->params['breadcrumbs'][] = $model->name;
 			</section>
 
 		<?php if ($model->code == 'credit') {
-			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider, 'filter' => $credit_filter]);
+			echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider, 'filter' => $filter]);
 
 			echo $this->render('@app/components/views/_often-seek-credit.php', ['often_seek' => $often_seek]);
 			?>

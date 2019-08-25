@@ -70,12 +70,12 @@ class ServicesController extends Controller
         }
 
         $often_seek = CreditFilter::find()->all();
-        $credit_filter = '';
+        $filter = '';
 		return $this->render('view', [
             'model' => $model,
 			'offersProvider' => $offersProvider,
             'often_seek' => $often_seek,
-            'credit_filter' => $credit_filter
+            'filter' => $filter
         ]);
     }
 	
