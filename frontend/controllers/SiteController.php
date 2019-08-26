@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\CreditFilter;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -398,6 +399,7 @@ class SiteController extends Controller
         $articles = Atricles::find()->select(['code'])->all();
         $banks = Banks::find()->select(['code'])->all();
         $reviews = Reviews::find()->select(['id'])->all();
+        $credit_filter = CreditFilter::find()->select(['url_name'])->all();
 
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
@@ -411,6 +413,7 @@ class SiteController extends Controller
             'articles' => $articles,
             'banks' => $banks,
             'reviews' => $reviews,
+            'credit_filter' => $credit_filter,
         ]);
     }
     
