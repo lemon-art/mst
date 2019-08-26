@@ -13,39 +13,6 @@ use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Services */
-/* @var $filter backend\models\CreditFilter */
-
-//информация из фильтра
-if ($filter != '') {
-	if ($filter->name) {
-		$model->name = $filter->name;
-	}
-	if ($filter->top_text) {
-		$model->top_text = $filter->top_text;
-	}
-	if ($filter->title) {
-		$model->title = $filter->title;
-	}
-	if ($filter->description) {
-		$model->description = $filter->description;
-	}
-}
-
-//шорт теги
-$model->title = ShortTag::cityTag($model->title);
-$model->description = ShortTag::cityTag($model->description);
-$model->name = ShortTag::cityTag($model->name);
-$model->top_text = ShortTag::cityTag($model->top_text);
-$model->text_main = ShortTag::cityTag($model->text_main);
-$model->scheme = ShortTag::cityTag($model->scheme);
-$model->advantages = ShortTag::cityTag($model->advantages);
-$model->short_name = ShortTag::cityTag($model->short_name);
-$model->title_main = ShortTag::cityTag($model->title_main);
-$model->preview_text_main = ShortTag::cityTag($model->preview_text_main);
-$model->text_main_title = ShortTag::cityTag($model->text_main_title);
-$model->text_main_text = ShortTag::cityTag($model->text_main_text);
-$model->seo_text_preview = ShortTag::cityTag($model->seo_text_preview);
-$model->seo_text_detail = ShortTag::cityTag($model->seo_text_detail);
 
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
