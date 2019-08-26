@@ -58,13 +58,7 @@ class CreditController extends Controller
             $model->description = $filter->description;
         }
         if ($filter->seo_text) {
-            $arSeoText = explode('#MORE#', $filter->seo_text);
-            $filter['seo_text_preview'] = $arSeoText['0'];
-            if ( isset($arSeoText['1'])) {
-                $filter['seo_text_detail']  = $arSeoText['1'];
-                $model->seo_text_detail = $filter['seo_text_detail'];
-            }
-            $model->seo_text_preview = $filter['seo_text_preview'];
+            $model->seo_text_preview = $filter->seo_text;
         }
         
         //шорт теги
