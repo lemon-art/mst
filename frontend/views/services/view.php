@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $model->name;
 					<?=$model->scheme?>
 				</div>
 			</section>
-			<?php echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider, 'filter' => $credit_filter]);
+			<?php echo Offers::widget(['service_id' => $model->id, 'offersProvider' => $offersProvider, 'filter' => $filter]);
 		} ?>
 
 		<?=OrderForm::widget(['service_id' => $model->id, 'service_name' => $model->short_name]);?>
