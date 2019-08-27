@@ -30,7 +30,7 @@ use yii\helpers\Html;
 									['label' => 'РКО', 'icon' => 'circle-o', 'url' => ['/offers-rko'],],
 								]
 							],
-							['label' => 'Предложения', 'icon' => 'circle-o', 'url' => ['/offers'],],
+							//['label' => 'Предложения', 'icon' => 'circle-o', 'url' => ['/offers'],],
 							['label' => 'Услуги', 'icon' => 'circle-o', 'url' => ['/services'],],
 							['label' => 'Банки', 'icon' => 'circle-o', 'url' => ['/banks'],],
 							['label' => 'Статьи', 'icon' => 'circle-o', 'url' => ['/atricles'],],
