@@ -45,12 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 },
             ],
-//            [
-//                'attribute' => 'bank_id',
-//                'value' => function($model){
-//                    return $model->banks->name;
-//                }
-//            ],
+            [
+                'attribute' => 'bank_id',
+                'value' => function($model){
+                    return $model->banks->name;
+                }
+            ],
             [
                 'attribute' => 'rate',
                 'format' => 'raw',
