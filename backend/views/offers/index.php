@@ -32,30 +32,30 @@ $this->params['breadcrumbs'][] = $this->title;
 				},
 			],
 			[
-					'attribute' => 'activ',
-					'format' => 'raw',
-					'options' => ['style' => 'width: 65px; max-width: 65px;'],
-					'value' => function($model){
-						if ( $model->activ ){
-							return 'да';
-						}
-						else {
-							return 'нет';
-						}
-					},
-				],
+				'attribute' => 'activ',
+				'format' => 'raw',
+				'options' => ['style' => 'width: 65px; max-width: 65px;'],
+				'value' => function($model){
+					if ( $model->activ ){
+						return 'да';
+					}
+					else {
+						return 'нет';
+					}
+				},
+			],
             [
-					'attribute' => 'bank_id',
-					'value' => function($model){
-						return $model->banks->name;
-					}
-				],  
+				'attribute' => 'bank_id',
+				'value' => function($model){
+					return $model->banks->name;
+				}
+			],  
 			[
-					'attribute' => 'service_id',
-					'value' => function($model){
-						return $model->services->name;
-					}
-				], 
+				'attribute' => 'service_id',
+				'value' => function($model){
+					return $model->services->name;
+				}
+			], 
             
 			[
 				'attribute' => 'special',
