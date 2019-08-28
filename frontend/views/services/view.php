@@ -17,6 +17,8 @@ use yii\widgets\Breadcrumbs;
 $this->title = $model->title;
 $this->registerMetaTag(['name' => 'description', 'content' => $model->description]);
 $this->params['breadcrumbs'][] = $model->name;
+
+echo $_SERVER['REQUEST_URI'];
 ?>
 
 			<section class="section_first">
