@@ -37,6 +37,7 @@ if ($model->rate != null) {
             
                 <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
+                <h4>Преимущества</h4>
                 <?=  $form->field($model, 'preview_text')->widget(CKEditor::className(),[
                     'editorOptions' => [
                         'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
