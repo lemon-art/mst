@@ -399,7 +399,7 @@ class SiteController extends Controller
         $articles = Atricles::find()->select(['code'])->all();
         $banks = Banks::find()->select(['code'])->all();
         $reviews = Reviews::find()->select(['id'])->all();
-        $credit_filter = CreditFilter::find()->select(['url_name'])->all();
+        $credit_filter = CreditFilter::find()->select(['code'])->all();
 
         $subdomain = current(explode('.', $_SERVER['HTTP_HOST']));
         if ($subdomain == 'dev' || $subdomain == 'marketvibor') {
