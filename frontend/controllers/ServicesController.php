@@ -63,11 +63,11 @@ class ServicesController extends Controller
 		if ( !$model )
 			throw new NotFoundHttpException;
 
-        if ( Yii::$app->request->url == '/services/credit/' ) {
-            $offersModel    = new OffersCreditSearch();
-            $offersProvider = $offersModel->searchByService();
-        } else if (Yii::$app->request->url == '/services/credit-cards/') {
+        if ( Yii::$app->request->url == '/services/credit-cards/' ) {
             $offersModel    = new OffersCreditcardsSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if (Yii::$app->request->url == '/services/credit/') {
+            $offersModel    = new OffersCreditSearch();
             $offersProvider = $offersModel->searchByService();
         } else {
             $offersModel    = new OffersSearch();
