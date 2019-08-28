@@ -36,6 +36,7 @@ if ($model->rate != null) {
 
                 <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
+                <label><?=$model->getAttributeLabel('preview_text');?></label>
                 <?=  $form->field($model, 'preview_text')->widget(CKEditor::className(),[
                     'editorOptions' => [
                         'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
