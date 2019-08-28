@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use app\models\OffersCreditcardsSearch;
 use backend\models\CreditFilter;
 use Yii;
 use app\models\Services;
