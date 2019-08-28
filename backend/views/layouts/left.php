@@ -6,8 +6,7 @@ use yii\helpers\Html;
 
     <section class="sidebar">
 
-
-
+		
 
         <?= dmstr\widgets\Menu::widget(
             [
