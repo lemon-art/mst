@@ -2,6 +2,13 @@
 
 namespace frontend\controllers;
 
+use app\models\OffersCreditSearch;
+use app\models\OffersCreditcardsSearch;
+use app\models\OffersAutocreditSearch;
+use app\models\OffersDebetcardsSearch;
+use app\models\OffersDepositSearch;
+use app\models\OffersIpotekaSearch;
+use app\models\OffersRkoSearch;
 use backend\models\CreditFilter;
 use Yii;
 use app\models\Services;
@@ -12,8 +19,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\OffersSearch;
-use app\models\OffersCreditSearch;
-use app\models\OffersCreditcardsSearch;
 use frontend\components\ShortTag;
 /**
  * ServicesController implements the CRUD actions for Services model.
@@ -63,11 +68,26 @@ class ServicesController extends Controller
 		if ( !$model )
 			throw new NotFoundHttpException;
 
-        if ($model->id == 5) {
+        if ($model->id == 1) {
+            $offersModel    = new OffersCreditSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if ($model->id == 5) {
             $offersModel    = new OffersCreditcardsSearch();
             $offersProvider = $offersModel->searchByService();
-        } else if ($model->id == 1) {
-            $offersModel    = new OffersCreditSearch();
+        } else if ($model->id == 4) {
+            $offersModel    = new OffersAutocreditSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if ($model->id == 2) {
+            $offersModel    = new OffersIpotekaSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if ($model->id == 3) {
+            $offersModel    = new OffersDepositSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if ($model->id == 6) {
+            $offersModel    = new OffersDebetcardsSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if ($model->id == 7) {
+            $offersModel    = new OffersRkoSearch();
             $offersProvider = $offersModel->searchByService();
         } else {
             $offersModel    = new OffersSearch();

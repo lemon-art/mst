@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\OffersDeposit;
+use app\models\OffersDeposit;
 
 /**
  * OffersDepositSearch represents the model behind the search form of `app\models\OffersDeposit`.
@@ -32,6 +32,24 @@ class OffersDepositSearch extends OffersDeposit
         return Model::scenarios();
     }
 
+    public function searchByService()
+    {
+        $query = OffersDeposit::find()->joinWith(['banks']);
+        $query->andFilterWhere([
+            //'service_id' => $service_id,
+            'activ' => 1,
+            'banks.active' => 1
+        ]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['sort' => SORT_DESC]],
+            'pagination' => [
+                'pageSize' => 80,
+            ],
+        ]);
+        return $dataProvider;
+    }
+    
     /**
      * Creates data provider instance with search query applied
      *

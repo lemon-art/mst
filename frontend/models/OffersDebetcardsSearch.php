@@ -32,6 +32,24 @@ class OffersDebetcardsSearch extends OffersDebetcards
         return Model::scenarios();
     }
 
+    public function searchByService()
+    {
+        $query = OffersDebetcards::find()->joinWith(['banks']);
+        $query->andFilterWhere([
+            //'service_id' => $service_id,
+            'activ' => 1,
+            'banks.active' => 1
+        ]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['sort' => SORT_DESC]],
+            'pagination' => [
+                'pageSize' => 80,
+            ],
+        ]);
+        return $dataProvider;
+    }
+    
     /**
      * Creates data provider instance with search query applied
      *
