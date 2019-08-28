@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use app\models\OffersCreditcardsSearch;
 use backend\models\CreditFilter;
 use Yii;
 use app\models\Services;
@@ -13,6 +14,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\OffersSearch;
 use app\models\OffersCreditSearch;
+use app\models\OffersCreditcardsSearch;
 use frontend\components\ShortTag;
 /**
  * ServicesController implements the CRUD actions for Services model.
@@ -64,6 +66,9 @@ class ServicesController extends Controller
 
         if ( Yii::$app->request->url == '/services/credit/' ) {
             $offersModel    = new OffersCreditSearch();
+            $offersProvider = $offersModel->searchByService();
+        } else if (Yii::$app->request->url == '/services/credit-cards/') {
+            $offersModel    = new OffersCreditcardsSearch();
             $offersProvider = $offersModel->searchByService();
         } else {
             $offersModel    = new OffersSearch();

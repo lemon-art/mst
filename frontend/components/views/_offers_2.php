@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-
 use backend\models\Files;
 
+$model['rate'] /= 100;
 ?>
 
 

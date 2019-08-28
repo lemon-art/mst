@@ -34,7 +34,6 @@ class OffersCreditSearch extends OffersCredit
 
     public function searchByService()
     {
-
         $query = OffersCredit::find()->joinWith(['banks']);
         $query->andFilterWhere([
             //'service_id' => $service_id,
