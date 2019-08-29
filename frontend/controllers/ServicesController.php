@@ -68,9 +68,14 @@ class ServicesController extends Controller
 		if ( !$model )
 			throw new NotFoundHttpException;
 
+        $filter = '';
+        $often_seek = '';
+        
         if ($model->id == 1) {
             $offersModel    = new OffersCreditSearch();
             $offersProvider = $offersModel->searchByService();
+            $often_seek = CreditFilter::find()->all();
+            
         } else if ($model->id == 5) {
             $offersModel    = new OffersCreditcardsSearch();
             $offersProvider = $offersModel->searchByService();
@@ -93,9 +98,6 @@ class ServicesController extends Controller
             $offersModel    = new OffersSearch();
             $offersProvider = $offersModel->searchByService( $model->id );
         }
-
-        $filter = '';
-        $often_seek = CreditFilter::find()->all();
 
         //шорт теги
         $model->title = ShortTag::cityTag($model->title);

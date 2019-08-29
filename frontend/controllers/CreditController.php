@@ -41,7 +41,6 @@ class CreditController extends Controller
 
         $offersModel    = new OffersCreditSearch();
         $offersProvider = $offersModel->searchByService();
-
         $often_seek = CreditFilter::find()->all();
 
         //информация из фильтра
