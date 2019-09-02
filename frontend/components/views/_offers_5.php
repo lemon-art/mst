@@ -20,12 +20,12 @@ $model['rate'] /= 100;
 
 										<div class="number"><?=$index?></div>
 
-										
 
+										<?php if ($model->image) { ?>
+										<img class="ic_bank_card" src="<?=Files::getPath($model->image)?>" alt="<?=$model['name']?>">
+										
 										<div class="ic_bank">
-											<?php if ($model->image) { ?>
-												<img width="100%" height="100%" src="<?=Files::getPath($model->image)?>" alt="<?=$model['name']?>">
-											<?php } else if ($model->banks->image) { ?>
+											<?php if ($model->banks->image) { ?>
 												<img src="<?=Files::getPath($model->banks->image)?>" alt="<?=$model['name']?>">
 											<?php } ?>
 
